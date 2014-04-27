@@ -4,28 +4,28 @@ message Login
 {
 	enum Param
 	{
-		AccountTokenVerifyLoginUserCmd_CS 		= 1;
-		AccountTokenVerifyReturnLoginUserCmd_S	= 2;
-		ZoneInfoListLoginUserCmd_S				= 3;
-		UserLoginRequestLoginUserCmd_C 			= 4;
-		UserLoginReturnFailLoginUserCmd_S 		= 5;
-		UserLoginReturnOkLoginUserCmd_S 		= 6;
-		UserLoginTokenLoginUserCmd_C 			= 7;
-		ClientLogUrlLoginUserCmd_S 				= 8;
+		AccountTokenVerifyLoginUserPmd_CS 		= 1;
+		AccountTokenVerifyReturnLoginUserPmd_S	= 2;
+		ZoneInfoListLoginUserPmd_S				= 3;
+		UserLoginRequestLoginUserPmd_C 			= 4;
+		UserLoginReturnFailLoginUserPmd_S 		= 5;
+		UserLoginReturnOkLoginUserPmd_S 		= 6;
+		UserLoginTokenLoginUserPmd_C 			= 7;
+		ClientLogUrlLoginUserPmd_S 				= 8;
 
 	}
 }
 
-message AccountTokenVerifyLoginUserCmd_CS
+message AccountTokenVerifyLoginUserPmd_CS
 {
 	required string account 	 	= 1;
 	required string token 		 	= 2;
 	required uint32 version 		= 3;
-	optional uint32 gameid			= 4;///if filled ,will send ZoneInfoListLoginUserCmd_S for select ,else auto select zone
+	optional uint32 gameid			= 4;///if filled ,will send ZoneInfoListLoginUserPmd_S for select ,else auto select zone
 	optional string mid				= 5;
 }
 
-message AccountTokenVerifyReturnLoginUserCmd_S
+message AccountTokenVerifyReturnLoginUserPmd_S
 {
 	enum Reason
 	{
@@ -52,14 +52,14 @@ message ZoneInfo
 	optional ZoneState state 	= 3;
 }
 
-message ZoneInfoListLoginUserCmd_S
+message ZoneInfoListLoginUserPmd_S
 {
 	required string gamename		= 1;
 	required uint32 gameid	 		= 2;
 	repeated ZoneInfo zonelist 		= 3;
 }
 
-message UserLoginRequestLoginUserCmd_C
+message UserLoginRequestLoginUserPmd_C
 {
 	required uint32 gameid	 	= 1;
 	required uint32 zoneid	 	= 2;
@@ -67,7 +67,7 @@ message UserLoginRequestLoginUserCmd_C
 	optional string mid			= 4;
 }
 
-message UserLoginReturnFailLoginUserCmd_S
+message UserLoginReturnFailLoginUserPmd_S
 {
 	enum Reason
 	{
@@ -84,7 +84,7 @@ message UserLoginReturnFailLoginUserCmd_S
 	required string desc	 	= 2;
 }
 
-message UserLoginReturnOkLoginUserCmd_S
+message UserLoginReturnOkLoginUserPmd_S
 {
 	required uint64 accountid 		= 1;
 	required uint64 logintempid 	= 2;
@@ -94,7 +94,7 @@ message UserLoginReturnOkLoginUserCmd_S
 	required uint32 zoneid	 		= 6;
 }
 
-message UserLoginTokenLoginUserCmd_C
+message UserLoginTokenLoginUserPmd_C
 {
 	required uint32 gameid	 		= 1;
 	required uint32 zoneid	 		= 2;
@@ -105,7 +105,7 @@ message UserLoginTokenLoginUserCmd_C
 	optional string mid				= 7;
 }
 
-message ClientLogUrlLoginUserCmd_S
+message ClientLogUrlLoginUserPmd_S
 {
 	required string loglevel		= 1;
 	required string logurl			= 2;
