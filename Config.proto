@@ -1,0 +1,16 @@
+package Pmd;
+message Config
+{
+	enum Version
+	{
+		option allow_alias = true;
+		Version_Login 			= 2014;
+		Version_Game 			= 2014;
+	}
+	enum Debug
+	{
+		option allow_alias = true;
+		Debug_All 			= 1;
+		Debug_Whj 			= 1;
+	}
+}

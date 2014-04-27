@@ -1,0 +1,113 @@
+package Pmd;
+
+message Login
+{
+	enum Param
+	{
+		AccountTokenVerifyLoginUserCmd_CS 		= 1;
+		AccountTokenVerifyReturnLoginUserCmd_S	= 2;
+		ZoneInfoListLoginUserCmd_S				= 3;
+		UserLoginRequestLoginUserCmd_C 			= 4;
+		UserLoginReturnFailLoginUserCmd_S 		= 5;
+		UserLoginReturnOkLoginUserCmd_S 		= 6;
+		UserLoginTokenLoginUserCmd_C 			= 7;
+		ClientLogUrlLoginUserCmd_S 				= 8;
+
+	}
+}
+
+message AccountTokenVerifyLoginUserCmd_CS
+{
+	required string account 	 	= 1;
+	required string token 		 	= 2;
+	required uint32 version 		= 3;
+	optional uint32 gameid			= 4;///if filled ,will send ZoneInfoListLoginUserCmd_S for select ,else auto select zone
+	optional string mid				= 5;
+}
+
+message AccountTokenVerifyReturnLoginUserCmd_S
+{
+	enum Reason
+	{
+		LoginOk				= 0;
+		TokenFindError		= 1;
+		TokenDiffError 		= 2;
+		VersionError 		= 3;
+	}
+
+	required Reason retcode 	= 1;
+	optional string desc	 	= 2;
+}
+
+enum ZoneState
+{
+	Shutdown 	= 0;
+	Normal 		= 1;
+	Fullly 		= 2;//baoman
+}
+message ZoneInfo
+{
+	required uint32 zoneid	 	= 1;
+	required string zonename 	= 2;
+	optional ZoneState state 	= 3;
+}
+
+message ZoneInfoListLoginUserCmd_S
+{
+	required string gamename		= 1;
+	required uint32 gameid	 		= 2;
+	repeated ZoneInfo zonelist 		= 3;
+}
+
+message UserLoginRequestLoginUserCmd_C
+{
+	required uint32 gameid	 	= 1;
+	required uint32 zoneid	 	= 2;
+	required uint32 gameversion	= 3;
+	optional string mid			= 4;
+}
+
+message UserLoginReturnFailLoginUserCmd_S
+{
+	enum Reason
+	{
+		Password 			= 1;
+		ServerShutdown 		= 2;
+		VersionTooLow 		= 3;
+		UserTokenFind 		= 4;
+		UserTokenTempId		= 5;
+		UserTokenTimeOut	= 6;
+		LoginDulicate		= 7;
+	}
+
+	required Reason retcode 	= 1;
+	required string desc	 	= 2;
+}
+
+message UserLoginReturnOkLoginUserCmd_S
+{
+	required uint64 accountid 		= 1;
+	required uint64 logintempid 	= 2;
+	required uint64 tokenid			= 3;
+	required string gatewayurl		= 4;
+	required uint32 gameid	 		= 5;
+	required uint32 zoneid	 		= 6;
+}
+
+message UserLoginTokenLoginUserCmd_C
+{
+	required uint32 gameid	 		= 1;
+	required uint32 zoneid	 		= 2;
+	required uint64 accountid		= 3;
+	required uint64 logintempid 	= 4;
+	required uint32 timestamp	 	= 5;
+	required string tokenmd5		= 6;//md5sum(string(accountid) + string(logintempid) + string(timestamp) + string(tokenid)) && abs(curtime - timestamp)<25h
+	optional string mid				= 7;
+}
+
+message ClientLogUrlLoginUserCmd_S
+{
+	required string loglevel		= 1;
+	required string logurl			= 2;
+	required bool distinct			= 3;//相同日志信息的日志只发一遍
+}

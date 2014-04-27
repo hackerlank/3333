@@ -1,0 +1,7 @@
+package Pmd;
+
+
+enum Pmd
+{
+	Login 		= 250;
+}
