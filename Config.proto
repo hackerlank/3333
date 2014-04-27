@@ -4,7 +4,7 @@ message Config
 	enum Version
 	{
 		option allow_alias = true;
-		Version_Login 			= 2014;
+		Version_Login 			= 2015;
 		Version_Game 			= 2014;
 	}
 	enum Debug
