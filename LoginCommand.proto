@@ -15,27 +15,27 @@ message Login
 
 	}
 }
-
+// 客户端发给登陆服务器的登陆验证消息
 message AccountTokenVerifyLoginUserPmd_CS
 {
-	required string account 	 	= 1;
-	required string token 		 	= 2;
-	required uint32 version 		= 3;
+	required string account 	 	= 1;// 账号
+	required string token 		 	= 2;// token 可以是第三方认证
+	required uint32 version 		= 3;// 当前客户端版本号
 	optional uint32 gameid			= 4;///if filled ,will send ZoneInfoListLoginUserPmd_S for select ,else auto select zone
-	optional string mid				= 5;
+	optional string mid				= 5;//机器码
 }
-
+// 登陆服务器返回给客户端的认证结果
 message AccountTokenVerifyReturnLoginUserPmd_S
 {
 	enum Reason
 	{
-		LoginOk				= 0;
-		TokenFindError		= 1;
-		TokenDiffError 		= 2;
-		VersionError 		= 3;
+		LoginOk				= 0;//登陆成功
+		TokenFindError		= 1;//服务器没有token
+		TokenDiffError 		= 2;//token错误
+		VersionError 		= 3;//版本验证
 	}
 
-	required Reason retcode 	= 1;
+	required Reason retcode 	= 1;//
 	optional string desc	 	= 2;
 }
 
