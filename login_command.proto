@@ -20,7 +20,7 @@ message AccountTokenVerifyLoginUserPmd_CS
 {
 	required string account 	 	= 1;// 账号
 	required string token 		 	= 2;// token 可以是第三方认证
-	required uint32 version 		= 3;// 当前客户端版本号
+	required uint32 version 		= 3;// 当前客户端版本号Version_Login
 	optional uint32 gameid			= 4;///if filled ,will send ZoneInfoListLoginUserPmd_S for select ,else auto select zone
 	optional string mid				= 5;//机器码
 }
@@ -64,7 +64,7 @@ message UserLoginRequestLoginUserPmd_C
 {
 	required uint32 gameid	 	= 1;//游戏编号
 	required uint32 zoneid	 	= 2;//区编号
-	required uint32 gameversion	= 3;//客户端游戏版本号
+	required uint32 gameversion	= 3;//客户端游戏版本号Version_Game
 	optional string mid			= 4;//机器码
 }
 // 登陆某个区的错误返回,LoginServer返回
