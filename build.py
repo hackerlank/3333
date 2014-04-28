@@ -41,20 +41,18 @@ for na in glob.glob("*.pb.go"):
     fp = open(na)
     data = fp.read()
     fp.close()
-    regexp = re.compile("^import\s+(%s[0-9]+)" % package, re.M)
-    m = regexp.search(data)
-    if m:
-        print("fix proto import: %s" % na)
-        name = m.group(1)
-        data = []
-        fp = open(na)
-        for line in fp:
-            if not (line.startswith("import") and name in line):
-                data.append(line)
-        fp.close()
-        fp = open(na, "w")
-        fp.write("".join(data).replace(name + ".", ""))
-        fp.close()
+    names = re.findall("^import\s+(%s[0-9]+)" % package, data, re.M)
+    if not names:
+        continue
+    print("[%s] fix proto import: %s" % (" ".join(names), na))
+    fp = open(na)
+    data = "".join([line for line in fp if not (line.startswith("import") and [name for name in names if name in line])])
+    fp.close()
+    fp = open(na, "w")
+    for name in names:
+        data = data.replace(name + ".", "")
+    fp.write(data)
+    fp.close()
 
 for f in need_prototype:
     cmd = "%s %s.pb.go" % (os.path.join(tools, "prototype-" + suffix), f)
