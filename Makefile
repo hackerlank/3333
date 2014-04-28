@@ -34,11 +34,10 @@ all:    regenerate
 
 regenerate:
 	rm -f *.pb.go
-	rm -f config/*.pb.go
 	rm -rf $(GOPATH)/pkg/linux_amd64/git.code4.in/mobilegameserver/platcommon
 	rm -rf $(GOPATH)/pkg/linux_amd64/git.code4.in/mobilegameserver/platcommon.a
-	make Pmd.pb.go
-	make Config.pb.go
-	make LoginCommand.pb.go ;$(call prototype, LoginCommand.pb.go)
+	make pmd.pb.go
+	make config.pb.go
+	make login_command.pb.go ;$(call prototype, login_command.pb.go)
 	sh $(tools)/enummap.sh Pmd
 
