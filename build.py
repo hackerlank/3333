@@ -35,7 +35,7 @@ protocgengo = os.path.join(tools, "protoc-gen-go-" + suffix)
 for f in glob.glob("*.proto"):
     cmd = "%s --plugin=protoc-gen-go=%s --go_out=. %s" % (protoc, protocgengo, f)
     print(cmd)
-    os.system(cmd)
+    assert(os.system(cmd) == 0)
 
 for na in glob.glob("*.pb.go"):
     fp = open(na)
@@ -57,12 +57,12 @@ for na in glob.glob("*.pb.go"):
 for f in need_prototype:
     cmd = "%s %s.pb.go" % (os.path.join(tools, "prototype-" + suffix), f)
     print(cmd)
-    os.system(cmd)
+    assert(os.system(cmd) == 0)
 
 cmd = "%s %s ." % (os.path.join(tools, "enummap-" + suffix), package)
 print(cmd)
-os.system(cmd)
+assert(os.system(cmd) == 0)
 
 cmd = "gofmt -w -s enummap.pb.go"
 print(cmd)
-os.system(cmd)
+assert(os.system(cmd) == 0)
