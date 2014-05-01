@@ -1,0 +1,40 @@
+package Pmd;
+
+message Null
+{
+	enum Param
+	{
+		ForwardNullUserPmd_CS 		= 0;
+		TickRequestNullUserPmd_CS	= 1;
+		TickReturnNullUserPmd_CS	= 2;
+		RequestCloseNullUserPmd_CS	= 3;
+	}
+}
+
+message ForwardNullUserPmd_CS
+{
+	required uint32 byCmd		= 1;
+	required uint32 byParam		= 2;
+	optional uint32 time		= 3;//client use
+	optional uint64 fid			= 4;//server used for forward
+	optional bytes data			= 5;//data
+	optional uint64 prototype	= 6;//0:proto,1:json
+}
+
+message TickRequestNullUserPmd_CS
+{
+	required uint32 requesttime	= 1;
+}
+
+
+message TickReturnNullUserPmd_CS
+{
+	required uint32 requesttime	= 1;
+	required uint32 mytime		= 2;
+}
+
+message RequestCloseNullUserPmd_CS
+{
+	required string reason	= 1;
+}
+

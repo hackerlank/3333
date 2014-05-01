@@ -12,7 +12,7 @@ message Login
 		UserLoginReturnOkLoginUserPmd_S 		= 6;
 		UserLoginTokenLoginUserPmd_C 			= 7;
 		ClientLogUrlLoginUserPmd_S 				= 8;
-
+		MessageBoxLoginUserCmd_S				= 9;
 	}
 }
 // 客户端发给登陆服务器的登陆验证消息
@@ -113,4 +113,12 @@ message ClientLogUrlLoginUserPmd_S
 	required string loglevel		= 1;//日志几遍,Debug,Info,Error
 	required string logurl			= 2;//日志地址
 	required bool distinct			= 3;//相同日志信息的日志只发一遍
+}
+
+message MessageBoxLoginUserPmd_S
+{
+	optional string btnleft		= 1;
+	optional string btnmiddle	= 2;
+	optional string btnright	= 3;
+	optional string info		= 4;
 }

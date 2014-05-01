@@ -3,6 +3,7 @@ package Pmd;
 // 平台登陆一级消息
 enum PlatCommand
 {
+	Null 		= 0;
 	Login 		= 250;//登陆消息
 	LoginJson	= 251;//登陆消息
 }
