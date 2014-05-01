@@ -55,7 +55,7 @@ for na in glob.glob("*.pb.go"):
     fp.close()
 
 for f in need_prototype:
-    cmd = "%s %s.pb.go" % (os.path.join(tools, "prototype-" + suffix), f)
+    cmd = "python %s %s.pb.go" % (os.path.join(tools, "prototype.py"), f)
     print(cmd)
     assert(os.system(cmd) == 0)
 
