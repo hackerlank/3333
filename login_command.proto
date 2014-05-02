@@ -12,7 +12,7 @@ message Login
 		UserLoginReturnOkLoginUserPmd_S 		= 6;
 		UserLoginTokenLoginUserPmd_C 			= 7;
 		ClientLogUrlLoginUserPmd_S 				= 8;
-		MessageBoxLoginUserCmd_S				= 9;
+		MessageBoxLoginUserPmd_S				= 9;
 	}
 }
 // 客户端发给登陆服务器的登陆验证消息
