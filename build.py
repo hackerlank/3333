@@ -8,7 +8,7 @@ import re
 
 
 package = "Pmd"
-need_prototype = ("nullcommand", "login_command","login_command_json",)
+need_prototype = ("nullcommand", "logincommand","loginjsoncommand",)
 
 name = os.path.abspath(__file__)
 path = os.path.dirname(name)
