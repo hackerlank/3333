@@ -1,5 +1,5 @@
 package Pmd;
-import "login_command.proto";
+import "logincommand.proto";
 
 message LoginJson
 {
