@@ -13,6 +13,8 @@ message Login
 		UserLoginTokenLoginUserPmd_C 			= 7;
 		ClientLogUrlLoginUserPmd_S 				= 8;
 		MessageBoxLoginUserPmd_S				= 9;
+		RequestAccountRegisterLoginUserPmd_C	= 10;
+		ReturnAccountRegisterLoginUserPmd_S		= 11;
 	}
 }
 // 客户端发给登陆服务器的登陆验证消息
@@ -121,4 +123,17 @@ message MessageBoxLoginUserPmd_S
 	optional string btnmiddle	= 2;
 	optional string btnright	= 3;
 	optional string info		= 4;
+}
+// 请求注册帐号
+message RequestAccountRegisterLoginUserPmd_C
+{
+	required string account 	 	= 1;// 账号
+	required string password 	 	= 2;// 密码
+	optional string code			= 3;//验证码
+}
+// 请求注册帐号
+message ReturnAccountRegisterLoginUserPmd_S
+{
+	required string account 	 	= 1;// 账号
+	required uint64 accountid 		= 2;//账号ID
 }

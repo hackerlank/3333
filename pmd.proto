@@ -5,5 +5,4 @@ enum PlatCommand
 {
 	Null 		= 0;
 	Login 		= 250;//登陆消息
-	LoginJson	= 251;//登陆消息
 }
