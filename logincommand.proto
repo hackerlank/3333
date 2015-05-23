@@ -15,6 +15,7 @@ message Login
 		MessageBoxLoginUserPmd_S				= 9;
 		RequestAccountRegisterLoginUserPmd_C	= 10;
 		ReturnAccountRegisterLoginUserPmd_S		= 11;
+		UserLogoutTokenLoginUserPmd_C 			= 12;
 	}
 }
 // 客户端发给登陆服务器的登陆验证消息
@@ -136,4 +137,8 @@ message ReturnAccountRegisterLoginUserPmd_S
 {
 	required string account 	 	= 1;// 账号
 	required uint64 accountid 		= 2;//账号ID
+}
+// 发给网关的主动退出消息
+message UserLogoutTokenLoginUserPmd_C
+{
 }
