@@ -8,7 +8,7 @@ import re
 
 
 package = "Pmd"
-need_prototype = ("nullcommand", "logincommand",)
+need_prototype = ("nullcommand", "logincommand","forwardcommand",)
 
 name = os.path.abspath(__file__)
 path = os.path.dirname(name)

@@ -5,4 +5,5 @@ enum PlatCommand
 {
 	Null 		= 0;
 	Login 		= 250;//登陆消息
+	Forward		= 251;//登陆转发消息
 }
