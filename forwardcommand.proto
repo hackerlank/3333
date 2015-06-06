@@ -4,7 +4,9 @@ message Forward
 {
 	enum Param
 	{
-		UserJsMessageForwardUserPmd_CS 			  = 1;
+		UserJsMessageForwardUserPmd_CS 			= 1;
+		LoginLobbyReq							= 2;
+		LoginLobbyRes							= 3;
 	}
 }
 
@@ -12,4 +14,19 @@ message Forward
 message UserJsMessageForwardUserPmd_CS
 {
 	optional bytes msg	 			= 1;//消息内容
+}
+
+// HTTP请求切换到websocket链接
+message WebSocketForwardUserPmd_C
+{
+	required uint64 accountid = 1;
+}
+
+message WebSocketForwardUserPmd_S
+{
+	required string errno = 1;
+	required uint64 accountid = 2;
+	required string gatewayurl = 3;
+	required uint64 tokenid = 4;
+	required uint64 logintempid = 5;
 }
