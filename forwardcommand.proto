@@ -13,7 +13,7 @@ message Forward
 // 长连接时玩家跟区服务器的通信是通过网关转发的,统一用这个消息互相传递
 message UserJsMessageForwardUserPmd_CS
 {
-	optional bytes msg	 			= 1;//消息内容
+	optional string msg	 			= 1; // json消息内容
 }
 
 // HTTP请求切换到websocket链接
