@@ -1,0 +1,13 @@
+{
+    "name": "Pmd",
+    "dependence": [
+	],
+    "source":"./",
+    "file_list": [
+        "pmd.ts",
+		"config.ts",
+		"nullcommand.ts",
+		"logincommand.ts",
+		"forwardcommand.ts"
+    ]
+}
