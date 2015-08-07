@@ -143,4 +143,32 @@ message UserLogoutTokenLoginUserPmd_C
 {
 }
 
+//平台用户信息
+message PlatInfo
+{
+	required string account		= 1;//用户账号
+	required uint32 platid		= 2;//平台id
+	optional string email		= 3;//email
+	optional string gender		= 4;//性别
+	optional string nickname	= 5;//昵称
+	required string timestamp	= 6;//时间戳
+	required string uid			= 7;//用户ID
+	required string sign		= 8;//平台签名串
+}
+
+//第三方平台登录
+message ThirdPlatLoginUserPmd_C
+{
+	required PlatInfo platinfo 	=1;//平台用户信息
+	required uint32 gameid		=2;//游戏编号
+	required string sid			=3;//签名id
+}
+
+// 平台枚举
+enum PlatType
+{
+	PlatType_Nomal 		= 0;//本平台
+	PlatType_LeZhuan 	= 67;//手上活
+}
+
 
