@@ -162,6 +162,7 @@ message ThirdPlatLoginUserPmd_C
 	required PlatInfo platinfo 	=1;//平台用户信息
 	required uint32 gameid		=2;//游戏编号
 	required string sid			=3;//签名id
+	required string uid			=4;//用户ID
 }
 
 // 平台枚举
