@@ -101,6 +101,8 @@ message CreatePlatOrderRequestSdkPmd_C
 	required float ordermoney	= 6;//实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
 	required uint32 goodid		= 7;//用户买了什么商品
 	required uint32 goodnum		= 8;//用户买了多少个
+	optional string goodname    = 9;//商品名称
+	optional string gooddesc    = 10;//商品描述
 }
 
 // 创建订单号，有些需要于第三方沟通，有的不需要
