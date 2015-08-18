@@ -117,6 +117,7 @@ message CreatePlatOrderReturnSdkPmd_S
 	required uint32 goodnum		= 7;//用户买了多少个
 	required uint32	result		= 8;//返回值,0表示成功,1表示失败
 	optional string	noticeurl	= 9;//回调通知url
+	optional string platorder	= 10; //渠道订单号
 }
 
 
