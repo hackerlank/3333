@@ -22,4 +22,5 @@ enum HttpReturnCode
 	HttpReturnCode_JsonMessageError		= 14;//Json消息格式错误
 	HttpReturnCode_TokenValueError		= 15;//tokenvalue为空
 	HttpReturnCode_WaiGuaUidError		= 16;//uid与登陆uid不同
+	HttpReturnCode_NoGatewaytDown		= 17;//没有可用网关
 }
