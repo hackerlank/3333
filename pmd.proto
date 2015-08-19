@@ -8,3 +8,18 @@ enum PlatCommand
 	Forward		= 251;//登陆转发消息
 	Sdk 		= 252;//第三方对接服务器间消息
 }
+
+
+// HTTP请求错误返回定义
+enum HttpReturnCode
+{
+	HttpReturnCode_Null			= 0;//无错误
+	HttpReturnCode_DbError			= 2;//数据库出错
+	HttpReturnCode_GameZoneListError	= 5;//找不到游戏区列表
+	HttpReturnCode_SignError		= 11;//签名检查错误，需要重新登陆
+	HttpReturnCode_ServerShutDown		= 12;//服务器未开
+	HttpReturnCode_JsonSyntaxError		= 13;//Json语法格式错误
+	HttpReturnCode_JsonMessageError		= 14;//Json消息格式错误
+	HttpReturnCode_TokenValueError		= 15;//tokenvalue为空
+	HttpReturnCode_WaiGuaUidError		= 16;//uid与登陆uid不同
+}
