@@ -21,11 +21,14 @@ message Login
 // 客户端发给登陆服务器的登陆验证消息
 message AccountTokenVerifyLoginUserPmd_CS
 {
-	required string account 	 	= 1;// 账号
+	required string account 	 	= 1;// 平台账号
 	required string token 		 	= 2;// token 可以是第三方认证
-	required uint32 version 		= 3;// 当前客户端版本号Version_Login
+	required uint32 version 		= 3;// 当前客户端login版本号Version_Login
 	optional uint32 gameid			= 4;///if filled ,will send ZoneInfoListLoginUserPmd_S for select ,else auto select zone
-	optional string mid				= 5;//机器码
+	optional string mid			= 5;//机器码
+	optional uint32 platid 			= 6;// 平台编号
+	optional uint32 zoneid			= 7;///if filled ,will auto login UserLoginRequestLoginUserPmd_C,UserLoginTokenLoginSmd_SC
+	optional uint32 gameversion 		= 8;// 当前客户端game版本号Version_Login
 }
 enum VerifyReturnReason
 {
