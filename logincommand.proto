@@ -157,6 +157,7 @@ message PlatInfo
 	required string timestamp	= 6;//时间戳
 	required string uid			= 7;//用户ID
 	required string sign		= 8;//平台签名串
+	required uint32 gameid		= 9;//gameid
 }
 
 //第三方平台登录
