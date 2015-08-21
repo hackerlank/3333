@@ -98,12 +98,13 @@ message CreatePlatOrderRequestSdkPmd_C
 	required string gameorder	= 2;//游戏订单号
 	required uint64 roleid		= 3;//用户在游戏内部游戏服上的角色ID
 	required string rolename	= 4;//用户在游戏内部游戏服上的角色名称
-	required float originalmoney	= 5;//原价(格式:0.00),购买时应用传入的单价*总数,总原价
+	required float originalmoney= 5;//原价(格式:0.00),购买时应用传入的单价*总数,总原价
 	required float ordermoney	= 6;//实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
 	required uint32 goodid		= 7;//用户买了什么商品
 	required uint32 goodnum		= 8;//用户买了多少个
 	optional string goodname    = 9;//商品名称
 	optional string gooddesc    = 10;//商品描述
+	optional string redirecturl = 11; //客户端跳转url
 }
 
 // 创建订单号，有些需要于第三方沟通，有的不需要
@@ -112,13 +113,15 @@ message CreatePlatOrderReturnSdkPmd_S
 	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
 	required string gameorder	= 2;//游戏订单号
 	required uint64 roleid		= 3;//用户在游戏内部游戏服上的角色ID
-	required float originalmoney	= 4;//原价(格式:0.00),购买时应用传入的单价*总数,总原价
+	required float originalmoney= 4;//原价(格式:0.00),购买时应用传入的单价*总数,总原价
 	required float ordermoney	= 5;//实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
 	required uint32 goodid		= 6;//用户买了什么商品
 	required uint32 goodnum		= 7;//用户买了多少个
 	required uint32	result		= 8;//返回值,0表示成功,1表示失败
 	optional string	noticeurl	= 9;//回调通知url
-	optional string platorder	= 10; //渠道订单号
+	optional string platorder	= 10;//渠道订单号
+	optional string sign        = 11;//客户端传给第三方支付时所需签名
+	optional string redirecturl = 12; //客户端跳转url
 }
 
 
