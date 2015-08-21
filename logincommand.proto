@@ -5,17 +5,18 @@ message Login
 	enum Param
 	{
 		AccountTokenVerifyLoginUserPmd_CS 		= 1;
-		AccountTokenVerifyReturnLoginUserPmd_S	= 2;
-		ZoneInfoListLoginUserPmd_S				= 3;
+		AccountTokenVerifyReturnLoginUserPmd_S		= 2;
+		ZoneInfoListLoginUserPmd_S			= 3;
 		UserLoginRequestLoginUserPmd_C 			= 4;
 		UserLoginReturnFailLoginUserPmd_S 		= 5;
 		UserLoginReturnOkLoginUserPmd_S 		= 6;
 		UserLoginTokenLoginUserPmd_C 			= 7;
-		ClientLogUrlLoginUserPmd_S 				= 8;
-		MessageBoxLoginUserPmd_S				= 9;
-		RequestAccountRegisterLoginUserPmd_C	= 10;
+		ClientLogUrlLoginUserPmd_S 			= 8;
+		MessageBoxLoginUserPmd_S			= 9;
+		RequestAccountRegisterLoginUserPmd_C		= 10;
 		ReturnAccountRegisterLoginUserPmd_S		= 11;
 		UserLogoutTokenLoginUserPmd_C 			= 12;
+		UserLoginReconnectLoginUserPmd_C 		= 13;
 	}
 }
 // 客户端发给登陆服务器的登陆验证消息
@@ -57,7 +58,7 @@ message ZoneInfo
 {
 	required uint32 zoneid	 	= 1;//区编号
 	required string zonename 	= 2;//区名称
-	optional ZoneState state 	= 3;
+	optional ZoneState state 	= 3;//ZoneState
 }
 // 区服务器信息列表,选区列表
 message ZoneInfoListLoginUserPmd_S
@@ -144,6 +145,14 @@ message ReturnAccountRegisterLoginUserPmd_S
 // 发给网关的主动退出消息
 message UserLogoutTokenLoginUserPmd_C
 {
+}
+
+// 发给网关的断线重连消息
+message UserLoginReconnectLoginUserPmd_C
+{
+	required uint64 accountid		= 1;
+	required uint32 timestamp	 	= 2;//客户端时间戳
+	required string tokenmd5		= 3;//md5sum(string(accountid) + string(timestamp) + string(tokenkey)) && abs(curtime - timestamp)<25h
 }
 
 //平台用户信息
