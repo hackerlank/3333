@@ -17,7 +17,7 @@ message Login
 		ReturnAccountRegisterLoginUserPmd_S		= 11;
 		UserLogoutTokenLoginUserPmd_C 			= 12;
 		UserLoginReconnectLoginUserPmd_C 		= 13;
-		ReconnectKickoutLoginUserPmd_C 			= 14;
+		ReconnectKickoutLoginUserPmd_S 			= 14;
 	}
 }
 // 客户端发给登陆服务器的登陆验证消息
@@ -158,7 +158,7 @@ message UserLoginReconnectLoginUserPmd_C
 
 
 // 如果是重连成功需要给老的客户度发送踢下线消息，否则会永远抢下去
-message ReconnectKickoutLoginUserPmd_C
+message ReconnectKickoutLoginUserPmd_S
 {
 	optional string desc			= 3;//描述
 }
