@@ -7,6 +7,7 @@ message Chat
 		CommonChatUserPmd_CS 		= 1;
 		GMCommandChatUserPmd_C 		= 2;
 		GMCommandListChatUserPmd_S	= 4;
+		PrivateChatUserPmd_CS 		= 5;
 
 	}
 }
@@ -17,8 +18,15 @@ enum ChatType
 
 message CommonChatUserPmd_CS
 {
+	enum ChatType
+	{
+	    ChatType_None      	= 0;// 0<<0; /// 世界聊天
+	    ChatType_Lobby     	= 1;// 1<<0; /// 大厅聊天
+	    ChatType_Room        = 2;//1<<1; /// 房间聊天
+	}
 	enum ChatPos
 	{
+	    ChatPos_None      	= 0;// 1<<0; /// 普通聊天输出
 	    ChatPos_Normal      = 1;// 1<<0; /// 普通聊天输出
 	    ChatPos_Sys         = 2;//1<<1; /// 系统提示输出
 	    ChatPos_Tips        = 4;//1<<2; /// 冒泡提示
@@ -28,11 +36,12 @@ message CommonChatUserPmd_CS
 	    ChatPos_Honor       = 64;//1<<6; /// 荣耀信息
 	    ChatPos_Gm          = 128;//1<<7; /// GM系统公告输出位置 	
 	}
-	optional uint64 charid		= 1;
-	optional string charname	= 2;
+	optional uint64 id		= 1;
+	optional string name		= 2;
 	optional bool sexman		= 3;
-	required ChatPos chatpos 	= 4;
-	required string info 		= 5;
+	optional ChatPos chatpos 	= 4;
+	optional ChatType chattype 	= 5;
+	required string info 		= 6;
 }
 
 message GMCommandChatUserPmd_C
@@ -54,3 +63,10 @@ message GMCommandListChatUserPmd_S
 	repeated GMHelpInfo list	= 1;
 }
 
+message PrivateChatUserPmd_CS
+{
+	optional uint64 id		= 1;
+	optional string name		= 2;
+	optional bool sexman		= 3;
+	required string info 		= 4;
+}
