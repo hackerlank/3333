@@ -7,6 +7,7 @@ enum PlatCommand
 	Login 		= 250;//登陆消息
 	Forward		= 251;//登陆转发消息
 	Sdk 		= 252;//第三方对接服务器间消息
+	Chat 		= 253;//聊天消息
 }
 
 
