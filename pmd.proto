@@ -24,4 +24,7 @@ enum HttpReturnCode
 	HttpReturnCode_TokenValueError		= 15;//tokenvalue为空
 	HttpReturnCode_WaiGuaUidError		= 16;//uid与登陆uid不同
 	HttpReturnCode_NoGatewaytDown		= 17;//没有可用网关
+	HttpReturnCode_NoSdkServer		= 18;//没有可用Sdk服务器
+	HttpReturnCode_SdkCheckSignErr		= 19;//签名错误
+	HttpReturnCode_Sdk3PartyServerErr	= 20;//第三方服务器验证错误
 }
