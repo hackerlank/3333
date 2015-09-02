@@ -81,6 +81,7 @@ message PlatBaseData
 message UserLoginPlatRequestSdkPmd_C
 {
 	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
+	optional uint32 sessiontype	= 2;//标志出PlatBaseData里面session的格式,默认0是json,1表示字符串
 }
 
 // 玩家请求登陆从sdk服务器返回
