@@ -31,6 +31,8 @@ message AccountTokenVerifyLoginUserPmd_CS
 	optional uint32 platid 			= 6;// 平台编号
 	optional uint32 zoneid			= 7;///if filled ,will auto login UserLoginRequestLoginUserPmd_C,UserLoginTokenLoginSmd_SC
 	optional uint32 gameversion 		= 8;// 当前客户端game版本号Version_Login
+	optional string compress		= 9;//压缩算法
+	optional string encrypt			= 10;//压缩算法
 }
 enum VerifyReturnReason
 {
