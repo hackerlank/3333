@@ -30,7 +30,8 @@ message StartUpGameRequestSdkPmd_C
 	required string key 		= 1;
 	required uint32 version 	= 2;
 	optional string compress	= 3;//压缩算法
-	optional string encrypt		= 4;//压缩算法
+	optional string encrypt		= 4;//加密算法
+	optional string encryptkey	= 5;//加密key
 }
 
 // 返回给区服务器的连接验证状态,这里也发送区信息的原因是考虑游戏服务器可能连接名字验证服务器比连接登陆服务器快
