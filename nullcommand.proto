@@ -8,17 +8,25 @@ message Null
 		TickRequestNullUserPmd_CS	= 1;
 		TickReturnNullUserPmd_CS	= 2;
 		RequestCloseNullUserPmd_CS	= 3;
+		FrameHeaderNullUserPmd_CS	= 4;
 	}
 }
 
+enum FrameHeader
+{
+	Bitmask_None 		= 0;//
+	Bitmask_Compress	= 1;//1<<0 表示压缩
+	Bitmask_Encrypt		= 2;//1<<1表示加密
+}
 message ForwardNullUserPmd_CS
 {
-	required uint32 byCmd		= 1;
-	required uint32 byParam		= 2;
+	optional uint32 byCmd		= 1;
+	optional uint32 byParam		= 2;
 	optional uint32 time		= 3;//client use
-	optional uint64 fid			= 4;//server used for forward
-	optional bytes data			= 5;//data
-	optional uint64 prototype	= 6;//0:proto,1:json
+	optional uint64 fid		= 4;//server used for forward
+	optional bytes data		= 5;//data
+	optional uint64 prototype	= 6;//0:proto,1:json,2:http
+	optional uint32 bitmask		= 7;//FrameHeader
 }
 
 message TickRequestNullUserPmd_CS
@@ -36,5 +44,12 @@ message TickReturnNullUserPmd_CS
 message RequestCloseNullUserPmd_CS
 {
 	required string reason	= 1;
+}
+
+/// websocket贞头
+message FrameHeaderNullUserPmd_CS
+{
+	required uint32 bitmask		= 1;//FrameHeader
+	required bytes data		= 2;//data
 }
 
