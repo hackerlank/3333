@@ -197,6 +197,7 @@ enum PlatType
 {
 	PlatType_Nomal 		= 0;//本平台
 	PlatType_LeZhuan 	= 67;//手上活
+	PlatType_Play68 	= 69;//play68
 }
 
 
