@@ -21,7 +21,7 @@ message Sdk
 		ReturnRedeemPlatPointSdkPmd_S	= 14;
 		ReturnErrorCodeSdkPmd_S		= 15;//公共的错误返回，方便调试
 		RequestBindAccountSdkPmd_CS	= 16;//账号绑定
-
+		RequestBindPlatInfoSdkPmd_CS = 17;//查询绑定
 	}
 }
 
