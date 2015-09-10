@@ -223,3 +223,19 @@ message RequestBindAccountSdkPmd_CS
 	optional PlatBaseData data	= 1;//玩家登陆平台的基础信息
 	optional uint32 ret		= 2;//登陆结果, 0 表示成功,1表示已经绑定过，2表示账号已经注册过
 }
+
+// 平台基础信息
+message PlatAccountInfo
+{
+	optional uint32 platid		= 1;//平台编号
+	optional string plataccount	= 2;//账号信息,如果是ID，也需要转换成字符串，如果是id和account都有，就需要"id|account"链接
+	optional string platname    = 3;//平台名称
+}
+
+//账号绑定信息查询
+message RequestBindPlatInfoSdkPmd_CS
+{
+	optional PlatBaseData     data	  = 1;//玩家登陆平台的基础信息
+	repeated PlatAccountInfo bindplat = 2;// 已绑定平台信息
+	optional uint32 ret		          = 3;//0 表示查询成功,1表示数据查询失败
+}
