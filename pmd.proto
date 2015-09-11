@@ -27,4 +27,6 @@ enum HttpReturnCode
 	HttpReturnCode_NoSdkServer		= 18;//没有可用Sdk服务器
 	HttpReturnCode_SdkCheckSignErr		= 19;//签名错误
 	HttpReturnCode_Sdk3PartyServerErr	= 20;//第三方服务器验证错误
+	HttpReturnCode_ProtobufErr		= 21;//proto解析错误
+	HttpReturnCode_GatewayErr		= 22;//网关错误
 }
