@@ -88,6 +88,7 @@ enum LoginReturnFailReason
 	UserTokenTempId		= 5;//token错误
 	UserTokenTimeOut	= 6;//token已过期
 	LoginDulicate		= 7;//重复登陆
+	NoGatewaytDown 		= 8;//没有可用网关
 }
 
 // 登陆某个区的错误返回,LoginServer返回
