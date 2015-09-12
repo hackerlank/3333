@@ -9,6 +9,7 @@ message Null
 		TickReturnNullUserPmd_CS	= 2;
 		RequestCloseNullUserPmd_CS	= 3;
 		FrameHeaderNullUserPmd_CS	= 4;
+		CheckVersionUserPmd_CS		= 5;
 	}
 }
 
@@ -51,5 +52,12 @@ message FrameHeaderNullUserPmd_CS
 {
 	required uint32 bitmask		= 1;//FrameHeader
 	required bytes data		= 2;//data
+}
+
+/// websocket贞头
+message CheckVersionUserPmd_CS
+{
+	required uint32 versionserver		= 1;//
+	required uint32 versionclient		= 2;//
 }
 
