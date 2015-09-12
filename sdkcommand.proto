@@ -22,6 +22,7 @@ message Sdk
 		ReturnErrorCodeSdkPmd_S		= 15;//公共的错误返回，方便调试
 		RequestBindAccountSdkPmd_CS	= 16;//账号绑定
 		RequestBindPlatInfoSdkPmd_CS = 17;//查询绑定
+		RequestAccidByPlatinfoSdkPmd_CS = 18;//通过平台account查平台id
 	}
 }
 
@@ -240,4 +241,11 @@ message RequestBindPlatInfoSdkPmd_CS
 	optional PlatBaseData     data	  = 1;//玩家登陆平台的基础信息
 	repeated PlatAccountInfo bindplat = 2;// 已绑定平台信息
 	optional uint32 ret		          = 3;//0 表示查询成功,1表示数据查询失败
+}
+
+//能过平台id与plataccount查对应玩家uid
+message RequestAccidByPlatinfoSdkPmd_CS
+{
+	optional PlatBaseData     data	  = 1;//玩家登陆平台的基础信息
+	optional uint32 ret		          = 2;//0 表示查询成功,1表示数据查询失败
 }
