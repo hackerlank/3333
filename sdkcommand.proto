@@ -246,6 +246,7 @@ message RequestBindPlatInfoSdkPmd_CS
 //能过平台id与plataccount查对应玩家uid
 message RequestAccidByPlatinfoSdkPmd_CS
 {
-	optional PlatBaseData     data	  = 1;//玩家登陆平台的基础信息
-	optional uint32 ret		          = 2;//0 表示查询成功,1表示数据查询失败
+	optional PlatBaseData     data    = 1;//玩家登陆平台的基础信息
+	repeated PlatBaseData     reqdata = 2;//请求平台玩家对应基础信息
+	optional uint32 ret		          = 3;//0 表示查询成功,1表示数据查询失败
 }
