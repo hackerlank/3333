@@ -23,7 +23,7 @@ message CommonChatUserPmd_CS
 	    ChatType_None      	= 0;// 0<<0; /// 世界聊天
 	    ChatType_Lobby     	= 1;// 1<<0; /// 大厅聊天
 	    ChatType_Room       = 2;//1<<1; /// 房间聊天
-	    ChatType_Robot      = 4;//2<<2; /// 机器人聊天
+	    ChatType_Robot      = 4;//1<<2; /// 机器人聊天
 	}
 	enum ChatPos
 	{
