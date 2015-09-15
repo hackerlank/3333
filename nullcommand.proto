@@ -57,7 +57,7 @@ message FrameHeaderNullUserPmd_CS
 /// websocket贞头
 message CheckVersionUserPmd_CS
 {
-	required uint32 versionserver		= 1;//
-	required uint32 versionclient		= 2;//
+	optional uint32 versionserver		= 1;//
+	optional uint32 versionclient		= 2;//
 }
 

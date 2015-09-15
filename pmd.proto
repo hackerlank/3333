@@ -30,3 +30,16 @@ enum HttpReturnCode
 	HttpReturnCode_ProtobufErr		= 21;//proto解析错误
 	HttpReturnCode_GatewayErr		= 22;//网关错误
 }
+
+//服务器类型
+enum TaskType
+{
+	TaskType_Null			= 0;//未知
+	TaskType_Monitor		= 1;//监控服务器
+	TaskType_Login		= 2;//登陆服务器
+	TaskType_Name			= 3;//名字验证服务器
+	TaskType_Sdk			= 4;//sdk服务器
+	TaskType_Gm			= 5;//gm服务器
+	TaskType_Gateway		= 6;//网关服务器
+	TaskType_GameZone		= 7;//游戏区服务器
+}
