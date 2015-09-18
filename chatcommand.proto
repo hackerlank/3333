@@ -43,6 +43,7 @@ message CommonChatUserPmd_CS
 	optional uint32 chatpos 	= 4;//enum ChatPos
 	optional uint32 chattype 	= 5;//enum ChatType
 	required string info 		= 6;
+	optional uint64 time        = 7; // 增加时间戳
 }
 
 message GMCommandChatUserPmd_C
@@ -70,4 +71,5 @@ message PrivateChatUserPmd_CS
 	optional string name		= 2;
 	optional bool sexman		= 3;
 	required string info 		= 4;
+	optional uint64 time        = 5; // 增加时间戳
 }
