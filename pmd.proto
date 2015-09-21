@@ -4,6 +4,7 @@ package Pmd;
 enum PlatCommand
 {
 	Null 		= 0;
+	Monitor		= 249;//监控消息
 	Login 		= 250;//登陆消息
 	Forward		= 251;//登陆转发消息
 	Sdk 		= 252;//第三方对接服务器间消息
@@ -36,7 +37,7 @@ enum TaskType
 {
 	TaskType_Null			= 0;//未知
 	TaskType_Monitor		= 1;//监控服务器
-	TaskType_Login		= 2;//登陆服务器
+	TaskType_Login			= 2;//登陆服务器
 	TaskType_Name			= 3;//名字验证服务器
 	TaskType_Sdk			= 4;//sdk服务器
 	TaskType_Gm			= 5;//gm服务器
