@@ -114,6 +114,8 @@ message CreatePlatOrderRequestSdkPmd_C
 	optional string goodname    = 9;//商品名称
 	optional string gooddesc    = 10;//商品描述
 	optional string redirecturl = 11; //客户端跳转url
+	optional uint32 payplatid   = 12; //支付平台id
+	optional string extdata     = 13; //做了兼容，方便以后别的平台有特殊需求
 }
 
 // 创建订单号，有些需要于第三方沟通，有的不需要
@@ -131,8 +133,9 @@ message CreatePlatOrderReturnSdkPmd_S
 	optional string platorder	= 10;//渠道订单号
 	optional string sign        = 11;//客户端传给第三方支付时所需签名
 	optional string redirecturl = 12; //客户端跳转url
+	optional uint32 payplatid   = 13; //支付平台id
+	optional string extdata     = 14; //做了兼容，方便以后别的平台有特殊需求
 }
-
 
 // 代理通知游戏服有玩家充值
 // 对于协议里面的部分字段，比如玩家ID，商品ID等字段需要看平台充值协议，可能平台只能提供一个订单ID参数。
