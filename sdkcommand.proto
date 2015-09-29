@@ -162,7 +162,7 @@ message NotifyRechargeReturnSdkPmd_C
 	required string platorder	= 2;//平台订单号
 	required string gameorder	= 3;//游戏订单号
 	required uint64 roleid		= 4;//用户在游戏内部游戏服上的角色ID
-	required uint32	result		= 5;//购买状态, 1, 处理中;2 支付成功;3支付失败
+	required uint32	result		= 5;//购买状态, 0, 支付成功, 1, 处理中;2 支付成功(兼容老版本);3支付失败
 	optional string	extdata		= 6;//扩展数据长度
 }
 
