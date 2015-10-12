@@ -199,9 +199,12 @@ enum PlatType
 {
 	PlatType_Nomal 		= 0;//本平台
 	PlatType_LeZhuan 	= 67;//手上活
+	PlatType_WeChat 	= 68;//微信
 	PlatType_Play68 	= 69;//play68
-	PlatType_HuoWu 		= 74;//火舞
+	PlatType_AiBei    	= 70;//爱贝云
 	PlatType_XinZhiZhu 	= 73;//性之助
+	PlatType_HuoWu 		= 74;//火舞
+	PlatType_CaiGuo 	= 77;//彩果
 }
 
 
