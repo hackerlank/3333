@@ -183,6 +183,7 @@ message PlatInfo
 	required string sign		= 8;//平台签名串
 	required uint32 gameid		= 9;//gameid
 	optional string	faceurl		= 10;//平台头像
+	optional string extdata     = 11; //增加一个扩展字段，特殊平台自行组装json
 }
 
 //第三方平台登录
