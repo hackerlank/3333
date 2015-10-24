@@ -1,6 +1,6 @@
 package Pmd;
 
-// 角色名验证服务器监听区服务器消息
+// TODO
 message Sdk
 {
 	enum Param
