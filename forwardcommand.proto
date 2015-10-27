@@ -21,7 +21,7 @@ message UserJsMessageForwardUserPmd_CS
 // HTTP请求切换到websocket链接
 message WebSocketForwardUserPmd_C
 {
-	required uint64 accountid = 1;
+	required uint64 accountid = 1; // 将平台返回给客户端的uid:string强转为uint64即可
 }
 
 message WebSocketForwardUserPmd_S

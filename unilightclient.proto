@@ -1,0 +1,114 @@
+package Pmd;
+import "pmd.proto";
+import "forwardcommand.proto";
+import "logincommand.proto";
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+/// Client到LoginServer和unilight之间的HTTP POST通信URL签名
+////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+URL + "?unigame_plat_sign=" + MD5(
+	tojsonstring(HttpPackage) + 
+	tostring(unigame_plat_timestamp) + 
+	unigame_plat_key)
+	
+	// 可选参数。如果指定则消息被整体压缩后以arraybuffer的二进制方式发送，下行消息会以相同方式压缩
+	+ "&compress=" + Pmd.CompressType // ["gzip", "flate", "zlib", "lzw"]
+*/
+
+message json
+{
+}
+
+// 只有第一条发往平台的消息用HttpPackage1，其余均采用HttpPackage
+message HttpPackage1
+{
+	required string do = 1; // 消息类型
+	required json data = 2; // 应用层消息内容
+	required uint32 gameid = 3; // 游戏ID
+	optional uint32 zoneid = 4; // 如果客户端发，服务器照样返回
+	optional string uid = 5; // 可唯一代表一个用户身份的ID，由平台统一生成
+	optional string sid = 6; // 组合字段：<平台id>::<平台账户>
+}
+message HttpPackage
+{
+	required string do = 1; // 消息类型
+	required json data = 2; // 应用层消息内容
+	required uint32 gameid = 3; // 游戏ID
+	optional uint32 zoneid = 4; // 如果客户端发，服务器照样返回
+	optional string uid = 5; // 可唯一代表一个用户身份的ID，由平台统一生成
+	optional string sid = 6; // 组合字段：<平台id>::<平台账户>
+	
+	required string unigame_plat_login = 7; // 由PlatTokenLoginReturn返回，
+	required uint64 unigame_plat_timestamp = 8;	// UNIX时间戳，单位毫秒！
+}
+
+message HttpPackageReturn
+{
+	required string do = 1; // 消息类型
+	required json data = 2; // 应用层消息内容
+	required uint32 gameid = 3; // 游戏ID
+	optional uint32 zoneid = 4; // 如果客户端发，服务器照样返回
+	optional HttpReturnCode errno = 7;
+	
+	// TODO: 以下字段应该放到data里面
+	//required string unigame_plat_key;
+    //required string unigame_plat_login; // 平台登录token
+    //required string unigame_plat_login_timeout;
+
+	// TODO: 服务器下行不需要再发送该字段
+	//required string unigame_plat_timestamp = 7;	// UNIX时间戳，单位毫秒！
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+/// unilight到平台服务器之间的消息
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+// request-zone-list 【不需要签名】【无时序要求】
+message RequestZoneList
+{
+	required uint32 gameid = 4; // 游戏ID
+}
+// return ZoneInfoListLoginUserPmd_S
+
+// request-select-zone 【必须签名】
+message RequestSelectZone
+{
+	required uint32 gameid = 1; // 游戏ID
+	required uint32 zoneid = 2;
+}
+message RequestSelectZoneReturn
+{
+	required uint32 gameid = 1; // 游戏ID
+	required uint32 zoneid = 2;
+	required string gatewayurl = 3; // 游戏逻辑服务器的http网关地址
+}
+
+// plat-token-login 【不需要签名】
+message PlatTokenLogin
+{
+	required PlatInfo platinfo = 1; // 平台用户信息
+	required uint32 gameid = 2; // 游戏ID
+}
+message PlatTokenLoginReturn
+{
+	required PlatInfo platinfo = 1; // 平台用户信息
+	required uint32 gameid = 2; // 游戏ID
+	optional string uid = 3; // 可唯一代表一个用户身份的ID，由平台统一生成
+	optional string sid = 4; // 组合字段：<平台id>::<平台账户>
+
+	required string unigame_plat_key = 5;
+    required string unigame_plat_login = 6;
+    required string unigame_plat_login_timeout = 7;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+/// 客户端到unilight游戏逻辑服务器之间的消息
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+// 客户端向游戏逻辑服务器的http网关地址请求websocket的强联网地址
+// Pmd.WebSocketForwardUserPmd_C -> Pmd.WebSocketForwardUserPmd_S
+
+
+
+
