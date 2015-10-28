@@ -32,5 +32,4 @@ message WebSocketForwardUserPmd_S
 	required string jsongatewayurl = 4;
 	required uint64 tokenid = 5;
 	required uint64 logintempid = 6;
-	required string gat
 }
