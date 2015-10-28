@@ -40,7 +40,7 @@ message HttpPackage
 	optional string sid = 6; // 组合字段：<平台id>::<平台账户>
 	
 	required string unigame_plat_login = 7; // 由PlatTokenLoginReturn返回，
-	required uint64 unigame_plat_timestamp = 8;	// UNIX时间戳，单位毫秒！
+	required uint64 unigame_plat_timestamp = 8;	// UNIX时间戳，单位秒
 }
 
 message HttpPackageReturn
@@ -50,28 +50,20 @@ message HttpPackageReturn
 	required uint32 gameid = 3; // 游戏ID
 	optional uint32 zoneid = 4; // 如果客户端发，服务器照样返回
 	optional HttpReturnCode errno = 7;
-	
-	// TODO: 以下字段应该放到data里面
-	//required string unigame_plat_key;
-    //required string unigame_plat_login; // 平台登录token
-    //required string unigame_plat_login_timeout;
-
-	// TODO: 服务器下行不需要再发送该字段
-	//required string unigame_plat_timestamp = 7;	// UNIX时间戳，单位毫秒！
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /// unilight到平台服务器之间的消息
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-// request-zone-list 【不需要签名】【无时序要求】
+// 请求区列表 request-zone-list 【不需要签名】【无时序要求】
 message RequestZoneList
 {
 	required uint32 gameid = 4; // 游戏ID
 }
 // return ZoneInfoListLoginUserPmd_S
 
-// request-select-zone 【必须签名】
+// 选区 request-select-zone 【必须签名】
 message RequestSelectZone
 {
 	required uint32 gameid = 1; // 游戏ID
@@ -84,7 +76,7 @@ message RequestSelectZoneReturn
 	required string gatewayurl = 3; // 游戏逻辑服务器的http网关地址
 }
 
-// plat-token-login 【不需要签名】
+// 平台登录 plat-token-login 【不需要签名】
 message PlatTokenLogin
 {
 	required PlatInfo platinfo = 1; // 平台用户信息
@@ -102,7 +94,7 @@ message PlatTokenLoginReturn
     required string unigame_plat_login_timeout = 7;
 	
 	required string zone_name = 8; //时区的名字
-	required int64  zone_offset_sec = 9; //该时区相对于UTC的时间偏移量，单位秒
+	required int64 zone_offset_sec = 9; //该时区相对于UTC的时间偏移量，单位秒
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
