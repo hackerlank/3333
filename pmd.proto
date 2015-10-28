@@ -4,43 +4,43 @@ package Pmd;
 enum PlatCommand
 {
 	PlatCommand_Null 		= 0;
-	PlatCommand_Monitor		= 249;//监控消息
-	PlatCommand_Login 		= 250;//登陆消息
-	PlatCommand_Forward		= 251;//登陆转发消息
-	PlatCommand_Sdk 		= 252;//第三方对接服务器间消息
-	PlatCommand_Chat 		= 253;//聊天消息
+	PlatCommand_Monitor		= 249;	// 监控消息
+	PlatCommand_Login 		= 250;	// 登陆消息
+	PlatCommand_Forward		= 251;	// 登陆转发消息
+	PlatCommand_Sdk 		= 252;	// 第三方对接服务器间消息
+	PlatCommand_Chat 		= 253;	// 聊天消息
 }
 
 
 // HTTP请求错误返回定义
 enum HttpReturnCode
 {
-	HttpReturnCode_Null			= 0;//无错误
-	HttpReturnCode_DbError			= 2;//数据库出错
-	HttpReturnCode_GameZoneListError	= 5;//找不到游戏区列表
-	HttpReturnCode_SignError		= 11;//签名检查错误，需要重新登陆
-	HttpReturnCode_ServerShutDown		= 12;//服务器未开
-	HttpReturnCode_JsonSyntaxError		= 13;//Json语法格式错误
-	HttpReturnCode_JsonMessageError		= 14;//Json消息格式错误
-	HttpReturnCode_TokenValueError		= 15;//tokenvalue为空
-	HttpReturnCode_WaiGuaUidError		= 16;//uid与登陆uid不同
-	HttpReturnCode_NoGatewaytDown		= 17;//没有可用网关
-	HttpReturnCode_NoSdkServer		= 18;//没有可用Sdk服务器
-	HttpReturnCode_SdkCheckSignErr		= 19;//签名错误
-	HttpReturnCode_Sdk3PartyServerErr	= 20;//第三方服务器验证错误
-	HttpReturnCode_ProtobufErr		= 21;//proto解析错误
-	HttpReturnCode_GatewayErr		= 22;//网关错误
+	HttpReturnCode_Null					= 0;	// 无错误
+	HttpReturnCode_DbError				= 2;	// 数据库出错
+	HttpReturnCode_GameZoneListError	= 5;	// 找不到游戏区列表
+	HttpReturnCode_SignError			= 11;	// 签名检查错误，需要重新登陆
+	HttpReturnCode_ServerShutDown		= 12;	// 服务器未开
+	HttpReturnCode_JsonSyntaxError		= 13;	// Json语法格式错误
+	HttpReturnCode_JsonMessageError		= 14;	// Json消息格式错误
+	HttpReturnCode_TokenValueError		= 15;	// tokenvalue为空
+	HttpReturnCode_WaiGuaUidError		= 16;	// uid与登陆uid不同
+	HttpReturnCode_NoGatewaytDown		= 17;	// 没有可用网关
+	HttpReturnCode_NoSdkServer			= 18;	// 没有可用Sdk服务器
+	HttpReturnCode_SdkCheckSignErr		= 19;	// 签名错误
+	HttpReturnCode_Sdk3PartyServerErr	= 20;	// 第三方服务器验证错误
+	HttpReturnCode_ProtobufErr			= 21;	// proto解析错误
+	HttpReturnCode_GatewayErr			= 22;	// 网关错误
 }
 
-//服务器类型
+// 服务器类型
 enum TaskType
 {
-	TaskType_Null			= 0;//未知
-	TaskType_Monitor		= 1;//监控服务器
-	TaskType_Login			= 2;//登陆服务器
-	TaskType_Name			= 3;//名字验证服务器
-	TaskType_Sdk			= 4;//sdk服务器
-	TaskType_Gm			= 5;//gm服务器
-	TaskType_Gateway		= 6;//网关服务器
-	TaskType_GameZone		= 7;//游戏区服务器
+	TaskType_Null			= 0;	// 未知
+	TaskType_Monitor		= 1;	// 监控服务器
+	TaskType_Login			= 2;	// 登陆服务器
+	TaskType_Name			= 3;	// 名字验证服务器
+	TaskType_Sdk			= 4;	// sdk服务器
+	TaskType_Gm				= 5;	// gm服务器
+	TaskType_Gateway		= 6;	// 网关服务器
+	TaskType_GameZone		= 7;	// 游戏区服务器
 }
