@@ -173,15 +173,13 @@ message ReconnectKickoutLoginUserPmd_S
 //平台用户信息
 message PlatInfo
 {
-	required string account		= 1;//用户账号
-	required uint32 platid		= 2;//平台id
+	required string account		= 1;//用户账号。platid为PlatType_Nomal时，account可以缺省为客户端机器码
+	required PlatType platid	= 2;//平台id
 	optional string email		= 3;//email
 	optional string gender		= 4;//性别
 	optional string nickname	= 5;//昵称
-	required string timestamp	= 6;//时间戳
-	required string uid			= 7;//用户ID
-	required string sign		= 8;//平台签名串
-	required uint32 gameid		= 9;//gameid
+	optional string timestamp	= 6;//时间戳
+	optional string sign		= 8;//平台签名串
 	optional string	faceurl		= 10;//平台头像
 	optional string extdata     = 11; //增加一个扩展字段，特殊平台自行组装json
 }
