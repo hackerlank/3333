@@ -58,14 +58,14 @@ message HttpPackageReturn
 /// unilight到平台服务器之间的消息
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-// 请求区列表 request-zone-list 【不需要签名】【无时序要求】
+// 请求区列表【不需要签名】【无时序要求】
 message RequestZoneList
 {
 	required uint32 gameid = 4;						// 游戏ID
 }
 // return ZoneInfoListLoginUserPmd_S
 
-// 选区 request-select-zone 【必须签名】
+// 选区【必须签名】
 message RequestSelectZone
 {
 	required uint32 gameid = 1;						// 游戏ID
@@ -78,7 +78,7 @@ message RequestSelectZoneReturn
 	required string gatewayurl = 3;					// 游戏逻辑服务器的http网关地址
 }
 
-// 平台登录 plat-token-login 【不需要签名】
+// 平台登录【不需要签名】
 message PlatTokenLogin
 {
 	required PlatInfo platinfo = 1;					// 平台用户信息
