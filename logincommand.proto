@@ -206,6 +206,7 @@ enum PlatType
 	PlatType_XinZhiZhu 	= 73;//性之助
 	PlatType_HuoWu 		= 74;//火舞
 	PlatType_CaiGuo 	= 77;//彩果
+	PlatType_1758		= 79;//1758
 }
 
 
