@@ -102,7 +102,7 @@ message PlatTokenLoginReturn
     required string unigame_plat_login_timeout = 7;
 	
 	required string zone_name = 8; //时区的名字
-	required int64  zone_offset_sec = 9; //该时区相对于UTC的时间偏移量
+	required int64  zone_offset_sec = 9; //该时区相对于UTC的时间偏移量，单位秒
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
