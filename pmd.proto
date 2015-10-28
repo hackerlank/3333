@@ -3,12 +3,12 @@ package Pmd;
 // 平台登陆一级消息
 enum PlatCommand
 {
-	Null 		= 0;
-	Monitor		= 249;//监控消息
-	Login 		= 250;//登陆消息
-	Forward		= 251;//登陆转发消息
-	Sdk 		= 252;//第三方对接服务器间消息
-	Chat 		= 253;//聊天消息
+	PlatCommand_Null 		= 0;
+	PlatCommand_Monitor		= 249;//监控消息
+	PlatCommand_Login 		= 250;//登陆消息
+	PlatCommand_Forward		= 251;//登陆转发消息
+	PlatCommand_Sdk 		= 252;//第三方对接服务器间消息
+	PlatCommand_Chat 		= 253;//聊天消息
 }
 
 
