@@ -16,7 +16,7 @@ URL + "?unigame_plat_sign=" + MD5(
 	+ "&compress=" + Pmd.CompressType // ["gzip", "flate", "zlib", "lzw"]
 */
 
-message json
+message Any
 {
 }
 
@@ -24,7 +24,7 @@ message json
 message HttpPackage1
 {
 	required string do = 1; // 消息类型
-	required json data = 2; // 应用层消息内容
+	required Any data = 2; // 应用层消息内容
 	required uint32 gameid = 3; // 游戏ID
 	optional uint32 zoneid = 4; // 如果客户端发，服务器照样返回
 	optional string uid = 5; // 可唯一代表一个用户身份的ID，由平台统一生成
@@ -33,7 +33,7 @@ message HttpPackage1
 message HttpPackage
 {
 	required string do = 1; // 消息类型
-	required json data = 2; // 应用层消息内容
+	required Any data = 2; // 应用层消息内容
 	required uint32 gameid = 3; // 游戏ID
 	optional uint32 zoneid = 4; // 如果客户端发，服务器照样返回
 	optional string uid = 5; // 可唯一代表一个用户身份的ID，由平台统一生成
@@ -46,7 +46,7 @@ message HttpPackage
 message HttpPackageReturn
 {
 	required string do = 1; // 消息类型
-	required json data = 2; // 应用层消息内容
+	required Any data = 2; // 应用层消息内容
 	required uint32 gameid = 3; // 游戏ID
 	optional uint32 zoneid = 4; // 如果客户端发，服务器照样返回
 	optional HttpReturnCode errno = 7;
