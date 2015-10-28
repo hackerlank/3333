@@ -29,6 +29,8 @@ message WebSocketForwardUserPmd_S
 	required string errno = 1;
 	required uint64 accountid = 2;
 	required string gatewayurl = 3;
-	required uint64 tokenid = 4;
-	required uint64 logintempid = 5;
+	required string jsongatewayurl = 4;
+	required uint64 tokenid = 5;
+	required uint64 logintempid = 6;
+	required string gat
 }
