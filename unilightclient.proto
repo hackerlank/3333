@@ -86,17 +86,16 @@ message PlatTokenLogin
 }
 message PlatTokenLoginReturn
 {
-	required PlatInfo platinfo = 1;					// 平台用户信息
-	required uint32 gameid = 2;						// 游戏ID
-	optional string uid = 3;						// 可唯一代表一个用户身份的ID，由平台统一生成
-	optional string sid = 4;						// 组合字段：<平台id>::<平台账户>
-
-	required string unigame_plat_key = 5;			// 平台登录密钥，用于随后的上行消息URL签名
-    required string unigame_plat_login = 6;			// 平台登录token，用于随后的上行消息
-    required string unigame_plat_login_timeout = 7;	// 平台登录token从现在开始多少秒后过期，过期后或服务器返回HttpReturnCode_SignError时客户端需要重新走登陆流程
+	optional PlatInfo platinfo = 1;					// 平台用户信息
 	
-	required string zone_name = 8;					// 时区的名字
-	required int64 zone_offset_sec = 9;				// 该时区相对于UTC的时间偏移量，单位秒
+	required string uid = 3;						// 可唯一代表一个用户身份的ID，由平台统一生成
+	required string sid = 4;						// 组合字段：<平台id>::<平台账户>
+	required string unigame_plat_key = 5;			// 平台登录密钥，用于上行消息URL签名
+    required string unigame_plat_login = 6;			// 平台登录token，用于上行消息
+    required uint32 unigame_plat_login_life = 7;	// 平台登录token从现在开始多少秒后过期，过期后或服务器返回HttpReturnCode_SignError时客户端需要重新走登陆流程
+	
+	optional string timezone_name = 8;				// 时区的名字
+	required int32 timezone_offset = 9;				// unilight服务器时区相对于UTC的时间偏移量，单位秒
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
