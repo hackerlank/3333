@@ -15,27 +15,25 @@ message Null
 
 enum FrameHeader
 {
-	Bitmask_None 		= 0;//
-	Bitmask_Compress	= 1;//1<<0 表示压缩
-	Bitmask_Encrypt		= 2;//1<<1表示加密
+	Bitmask_None 				= 0;	// 0
+	Bitmask_Compress			= 1;	// 1 << 0 表示压缩
+	Bitmask_Encrypt				= 2;	// 1 << 1 表示加密
 }
 message ForwardNullUserPmd_CS
 {
 	optional uint32 byCmd		= 1;
 	optional uint32 byParam		= 2;
-	optional uint32 time		= 3;//client use
-	optional uint64 fid		= 4;//server used for forward
-	optional bytes data		= 5;//data
-	optional uint64 prototype	= 6;//0:proto,1:json,2:http
-	optional uint32 bitmask		= 7;//FrameHeader
+	optional uint32 time		= 3;	// client use
+	optional uint64 fid			= 4;	// server used for forward
+	optional bytes data			= 5;	// data
+	optional uint64 prototype	= 6;	// 0:proto,1:json,2:http
+	optional uint32 bitmask		= 7;	// FrameHeader位枚举
 }
 
 message TickRequestNullUserPmd_CS
 {
 	required uint32 requesttime	= 1;
 }
-
-
 message TickReturnNullUserPmd_CS
 {
 	required uint32 requesttime	= 1;
@@ -47,17 +45,17 @@ message RequestCloseNullUserPmd_CS
 	required string reason	= 1;
 }
 
-/// websocket贞头
+// websocket帧头
 message FrameHeaderNullUserPmd_CS
 {
-	required uint32 bitmask		= 1;//FrameHeader
-	required bytes data		= 2;//data
+	required uint32 bitmask		= 1;	// FrameHeader位枚举
+	required bytes data			= 2;
 }
 
-/// websocket贞头
+// websocket帧头
 message CheckVersionUserPmd_CS
 {
-	optional uint32 versionserver		= 1;//
-	optional uint32 versionclient		= 2;//
+	optional uint32 versionserver		= 1;
+	optional uint32 versionclient		= 2;
 }
 
