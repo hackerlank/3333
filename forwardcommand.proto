@@ -23,12 +23,9 @@ message WebSocketForwardUserPmd_C
 {
 	required uint64 accountid = 1; // accountid和平台返回给客户端的uid:string是完全不同的两个概念。如果没有在别处提供accountid，此处可临时将uid强转为uint64使用
 }
-
 message WebSocketForwardUserPmd_S
 {
-	required string errno = 1;
 	required uint64 accountid = 2;
-	required string gatewayurl = 3;
 	required string jsongatewayurl = 4;
 	required uint64 tokenid = 5;
 	required uint64 logintempid = 6;
