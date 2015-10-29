@@ -88,7 +88,7 @@ message PlatTokenLoginReturn
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 // 客户端向游戏逻辑服务器的http网关地址请求websocket的强联网地址
-// Pmd.WebSocketForwardUserPmd_C -> Pmd.WebSocketForwardUserPmd_S
+// Pmd.WebSocketForwardUserPmd_C ---HTTP--> Pmd.WebSocketForwardUserPmd_S ---WebSocket--> UserLoginTokenLoginUserPmd_C
 
 
 

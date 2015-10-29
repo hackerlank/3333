@@ -124,7 +124,6 @@ message UserLoginTokenLoginUserPmd_C
 	required uint64 logintempid 	= 4;
 	required uint32 timestamp	 	= 5;	// 客户端时间戳
 	required string tokenmd5		= 6;	// md5(string(accountid) + string(logintempid) + string(timestamp) + string(tokenid))
-	optional string mid				= 7;	// 机器码
 	optional string compress		= 8;	// 压缩算法
 	optional string encrypt			= 9;	// 加密算法
 	optional string encryptkey		= 10;	// 加密key
