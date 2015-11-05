@@ -188,6 +188,7 @@ message PlatInfo
 	optional string sign		= 8;		// 平台签名串
 	optional string	faceurl		= 10;		// 平台头像
 	optional string extdata     = 11; 		// 增加一个扩展字段，特殊平台自行组装json
+	optional string uid			= 12;		// 平台id(兼容老的处理方式)
 }
 
 // 第三方平台登录
