@@ -213,6 +213,7 @@ enum PlatType
 	PlatType_CaiGuo 			= 77;		// 彩果
 	PlatType_1758				= 79;		// 1758
 	PlatType_DAPAI  			= 80;		// 达派手机助手
+	PlatType_HILE  				= 82;		// 嗨乐app
 }
 
 
