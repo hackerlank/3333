@@ -18,6 +18,8 @@ message Login
 		UserLogoutTokenLoginUserPmd_C 			= 12;
 		UserLoginReconnectLoginUserPmd_C 		= 13;
 		ReconnectKickoutLoginUserPmd_S 			= 14;
+		ServerKickoutLoginUserPmd_S 			= 15;
+
 	}
 }
 
@@ -174,6 +176,12 @@ message UserLoginReconnectLoginUserPmd_C
 message ReconnectKickoutLoginUserPmd_S
 {
 	optional string desc			= 3;	// 描述
+}
+
+// 服务器主动踢玩家下线
+message ServerKickoutLoginUserPmd_S
+{
+	optional string desc			= 3;//描述
 }
 
 // 平台用户信息
