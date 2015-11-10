@@ -175,7 +175,8 @@ message UserLoginReconnectLoginUserPmd_C
 // 如果是重连成功需要给老的客户度发送踢下线消息，否则会永远抢下去
 message ReconnectKickoutLoginUserPmd_S
 {
-	optional string desc			= 3;	// 描述
+	required uint64 accountid		= 1;    // 踢下线的玩家
+	optional string desc			= 2;	// 描述
 }
 
 // 服务器主动踢玩家下线
