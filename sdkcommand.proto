@@ -201,6 +201,7 @@ message RequestRedeemPlatPointSdkPmd_C
 	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
 	optional string gameorder	= 2;//游戏订单号
 	optional uint64 point		= 3;//请求兑换的点数
+	optional string extdata     = 4;//一个扩展字段方便特殊平台
 }
 
 // 请求平台帐号中剩余点数返回
