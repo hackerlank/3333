@@ -211,7 +211,7 @@ message ReturnRedeemPlatPointSdkPmd_S
 	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
 	required string gameorder	= 2;//游戏订单号
 	required uint32 goodid      = 3;//游戏商品id  
-	required uint64 money		= 4;//以分为单位的人民币
+	required float  money		= 4;//以分为单位的人民币
 	required uint64 balance		= 5;//玩家第三方平台所剩余点数
 	required uint32 ret		    = 6;//登陆结果, 0 表示成功, 1表示失败
 	optional string retdesc		= 7;//返回描述
