@@ -76,14 +76,15 @@ message PlatBaseData
 	optional GameZoneInfo gamezone	= 1;//游戏类型
 	optional uint64 myaccid		= 2;//这个需要在后面的返回中原样返回，用于游戏平台查找对应的客户端连接,登陆验证时充当logintempid
 	optional uint32 platid		= 3;//平台编号
-	optional string plataccount	= 4;//账号信息,如果是ID，也需要转换成字符串，如果是id和account都有，就需要"id|account"链接
-	optional uint64 sdkserverid	= 5;//sdk服务器临时编号
+	optional uint32 subplatid   = 4;//子平台编号
+	optional string plataccount	= 5;//账号信息,如果是ID，也需要转换成字符串，如果是id和account都有，就需要"id|account"链接
 	optional string session		= 6;//玩家SESSION，部分平台有这个,如果是离线验证传签名
 	optional string	extdata		= 7;//扩展数据长度
 	optional string	extdata1	= 8;//扩展数据长度
 	optional string oldplataccount	= 9;//此账号是游客账号转正式账号时的游客账号，只有第一转的时候有用
 	optional string	nickname	= 10;//平台昵称
 	optional string	faceurl		= 11;//平台头像
+	optional uint64 sdkserverid	= 12;//sdk服务器临时编号
 }
 // 玩家请求登陆给sdk服务器
 message UserLoginPlatRequestSdkPmd_C
