@@ -10,6 +10,7 @@ message Null
 		RequestCloseNullUserPmd_CS	= 3;
 		FrameHeaderNullUserPmd_CS	= 4;
 		CheckVersionUserPmd_CS		= 5;
+		ForwardBwNullUserPmd_CS		= 6;
 	}
 }
 
@@ -59,3 +60,9 @@ message CheckVersionUserPmd_CS
 	optional uint32 versionclient		= 2;
 }
 
+message ForwardBwNullUserPmd_CS
+{
+	optional uint32 byCmd		= 1;
+	optional uint32 byParam		= 2;
+	optional bytes data		= 3;	// data
+}
