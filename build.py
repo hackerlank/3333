@@ -102,9 +102,13 @@ def build_cpp():
         cmd = "%s  --cpp_out=. %s  --proto_path=%s   --proto_path=%s" % (protoc, f,".","../platcommon/")
         print(cmd)
         assert(os.system(cmd) == 0)
-        #cmd = "%s  --cpp_out=. %s  --proto_path=%s   --proto_path=%s" % (protoc, f,".","../platcommon/")
-        #print(cmd)
-        #assert(os.system(cmd) == 0)
+    cmd = "sed -i '/libplatcommon_la_SOURCES/d' Makefile.am"
+    assert(os.system(cmd) == 0)
+    cmd = "sed -i '$alibplatcommon_la_SOURCES = "
+    for f in glob.glob("*.pb.cc"):
+        cmd = cmd + " " + f
+    cmd = cmd + "' Makefile.am"
+    assert(os.system(cmd) == 0)
 
 #build_go()
 
