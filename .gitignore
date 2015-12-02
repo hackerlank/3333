@@ -6,6 +6,8 @@
 *.so
 *~
 *.pb.go
+*.pb.h
+*.pb.cc
 
 # Folders
 _obj
