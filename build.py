@@ -15,6 +15,8 @@ name = os.path.abspath(__file__)
 path = os.path.dirname(name)
 dirname = os.path.basename(path)
 gopath = os.getenv("GOPATH")
+if gopath == "" or gopath == None:
+    gopath = "/Users/whj/mygo"
 system = platform.system().lower()
 suffix = system == "windows" and "windows.exe" or system
 
@@ -95,7 +97,7 @@ def build_cpp():
         os.remove(f)
     
     tools = os.path.join(gopath, "src/git.code4.in/mobilegameserver/tools")
-    protoc = os.path.join(tools, "protoc-" + suffix)
+    protoc = os.path.join(tools, "protoc-" + suffix + "-2.6.1")
     for f in glob.glob("*.proto"):
         cmd = "%s  --cpp_out=. %s  --proto_path=%s   --proto_path=%s" % (protoc, f,".","../platcommon/")
         print(cmd)

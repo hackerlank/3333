@@ -4,10 +4,16 @@
 *.o
 *.a
 *.so
+*.la
+*.lo
 *~
 *.pb.go
 *.pb.h
 *.pb.cc
+.libs/
+.deps/
+Makefile
+Makefile.in
 
 # Folders
 _obj
