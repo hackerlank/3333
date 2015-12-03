@@ -5,8 +5,8 @@ message Forward
 	enum Param
 	{
 		UserJsMessageForwardUserPmd_CS 			= 1;
-		LoginLobbyReq							= 2;
-		LoginLobbyRes							= 3;
+		//LoginLobbyReq							= 2;
+		//LoginLobbyRes							= 3;
 		WebSocketForwardUserPmd_C 			= 4;
 		WebSocketForwardUserPmd_S 			= 5;
 	}
