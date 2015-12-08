@@ -217,6 +217,8 @@ enum PlatType
 	PlatType_WeChat 			= 68;		// 微信
 	PlatType_Play68 			= 69;		// play68
 	PlatType_AiBei    			= 70;		// 爱贝云
+	PlatType_Facebook    		= 71;		// Facebook
+	PlatType_GooglePlay    		= 72;		// GooglePlay
 	PlatType_XingZhiZhu 		= 73;		// 性之助
 	PlatType_HuoWu 				= 74;		// 火舞
 	PlatType_CaiGuo 			= 77;		// 彩果
