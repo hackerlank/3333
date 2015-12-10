@@ -2,7 +2,7 @@ noinst_LTLIBRARIES = libplatcommon.la
 
 platcommonincdir = $(top_srcdir)/3Party/protobuf-2.6.1/src
 
-INCLUDES = -I$(top_srcdir)/3Party/protobuf-2.6.1/src -I$(top_srcdir)/gbuffer
+AM_CPPFLAGS = -I$(top_srcdir)/3Party/protobuf-2.6.1/src -I$(top_srcdir)/gbuffer
 
 libplatcommon_la_LIBADD = @LIBS_XML@ @LIBS_MYSQL@ \
 					 $(top_builddir)/common/libcommon.la \

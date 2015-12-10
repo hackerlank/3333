@@ -96,8 +96,9 @@ def build_cpp():
         print("rm %s" % f)
         os.remove(f)
     
-    tools = os.path.join(gopath, "src/git.code4.in/mobilegameserver/tools")
-    protoc = os.path.join(tools, "protoc-" + suffix + "-2.6.1")
+    #tools = os.path.join(gopath, "src/git.code4.in/mobilegameserver/tools")
+    #protoc = os.path.join(tools, "protoc-" + suffix + "-2.6.1")
+    protoc = "3Party/protobuf-2.4.1/src/protoc"
     for f in glob.glob("*.proto"):
         cmd = "%s  --cpp_out=. %s  --proto_path=%s   --proto_path=%s" % (protoc, f,".","../platcommon/")
         print(cmd)
