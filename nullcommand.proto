@@ -37,8 +37,8 @@ message TickRequestNullUserPmd_CS
 }
 message TickReturnNullUserPmd_CS
 {
-	required uint32 requesttime	= 1;
-	required uint32 mytime		= 2;
+	optional uint32 requesttime	= 1;
+	optional uint32 mytime		= 2;
 }
 
 message RequestCloseNullUserPmd_CS
