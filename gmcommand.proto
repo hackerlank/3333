@@ -1,0 +1,14 @@
+package Pmd;
+
+// TODO
+message Gm
+{
+	enum Param
+	{
+		DELETE_ME 	= 1;
+	}
+}
+
+message DELETE_ME
+{
+}
