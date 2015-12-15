@@ -9,7 +9,7 @@ import argparse
 
 
 package = "Pmd"
-need_prototype = ("nullcommand", "logincommand","forwardcommand","sdkcommand","monitorpmd","chatcommand",)
+need_prototype = ("nullcommand", "logincommand","forwardcommand","sdkcommand","monitorpmd","chatcommand","gmcommand",)
 
 name = os.path.abspath(__file__)
 path = os.path.dirname(name)

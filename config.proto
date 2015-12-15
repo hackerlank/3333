@@ -7,6 +7,7 @@ message Config
 		option allow_alias = true;
 		Version_Login 			= 20140427;//玩家与登陆服务器,Zoneserver与登陆服务器版本号
 		Version_Game 			= 20140427;//玩家与ZoneServer服务器的版本号
+		Version_Gm 			= 20140427;//玩家与ZoneServer服务器的版本号
 	}
 	enum Debug
 	{
