@@ -4,7 +4,7 @@ package Pmd;
 enum PlatCommand
 {
 	PlatCommand_Null 		= 0;
-	PlatCommand_Sdk 		= 248;	// GM服务器
+	PlatCommand_Gm 			= 248;	// GM服务器
 	PlatCommand_Monitor		= 249;	// 监控消息
 	PlatCommand_Login 		= 250;	// 登陆消息
 	PlatCommand_Forward		= 251;	// 登陆转发消息
