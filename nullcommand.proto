@@ -62,7 +62,5 @@ message CheckVersionUserPmd_CS
 
 message ForwardBwNullUserPmd_CS
 {
-	optional uint32 byCmd		= 1;
-	optional uint32 byParam		= 2;
 	optional bytes data		= 3;	// data
 }
