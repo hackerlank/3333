@@ -78,6 +78,8 @@ def build_go():
     assert(os.system(cmd) == 0)
 
 def build_cpp():
+    print("cp  Makefile.py Makefile.am")
+    os.system("cp Makefile.py Makefile.am")
     for f in glob.glob("*.pb.go"):
         print("rm %s" % f)
         os.remove(f)
