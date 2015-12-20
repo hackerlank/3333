@@ -6,7 +6,7 @@ AM_CPPFLAGS = -I$(top_srcdir)/3Party/protobuf-2.6.1/src -I$(top_srcdir)/bwsdk/gb
 
 libplatcommon_la_LIBADD = @LIBS_XML@ @LIBS_MYSQL@ \
 					 $(top_builddir)/common/libcommon.la \
-					 $(top_builddir)/bwsdk/gbuffer/libgbuffer.la \
+					 $(top_builddir)/common/gbuffer/libgbuffer.la \
 					 $(top_builddir)/3Party/protobuf-2.6.1/src/libprotobuf.la \
 					 $(top_builddir)/3Party/protobuf-2.6.1/src/libprotobuf-lite.la \
 					 $(top_builddir)/3Party/protobuf-2.6.1/src/libprotoc.la \

@@ -19,6 +19,7 @@ message Login
 		UserLoginReconnectLoginUserPmd_C 		= 13;
 		ReconnectKickoutLoginUserPmd_S 			= 14;
 		ServerKickoutLoginUserPmd_S 			= 15;
+		RequestZoneInfoListLoginUserPmd_C		= 16;
 
 	}
 }
@@ -74,9 +75,15 @@ message ZoneInfo
 // 区服务器信息列表,选区列表
 message ZoneInfoListLoginUserPmd_S
 {
-	required string gamename		= 1;	// 游戏名称,(区别与区名)
+	optional string gamename		= 1;	// 游戏名称,(区别与区名)
 	required uint32 gameid	 		= 2;	// 游戏编号
 	repeated ZoneInfo zonelist 		= 3;
+}
+ 
+// 请求区服务器信息列表,选区列表
+message RequestZoneInfoListLoginUserPmd_C
+{
+	required uint32 gameid	 		= 1;	// 游戏编号
 }
 
 // 请求登陆某个区,发给LoginServer
