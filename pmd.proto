@@ -45,3 +45,13 @@ enum TaskType
 	TaskType_Gateway		= 6;	// 网关服务器
 	TaskType_GameZone		= 7;	// 游戏区服务器
 }
+
+//游戏类型信息,以后可能会扩充
+message GameZoneInfo
+{
+	optional uint32 gameid		= 1;//游戏类型编号
+	optional uint32 zoneid		= 2;//游戏区id
+	optional string gamename	= 5;//游戏名称
+	optional string zonename	= 6;//游戏区名称
+}
+

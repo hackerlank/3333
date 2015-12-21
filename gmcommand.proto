@@ -1,5 +1,4 @@
 package Pmd;
-import "sdkcommand.proto";
 
 // TODO
 message Gm
