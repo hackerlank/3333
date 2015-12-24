@@ -1,15 +1,233 @@
 package Pmd;
 
-// TODO
 message Gm
 {
 	enum Param
 	{
-		StartUpGameRequestGmPmd_C 	= 1;
-		StartUpGameReturnGmPmd_S 	= 2;
-		SurportGameZoneRequestGmPmd_C 	= 3;
-		SurportGameZoneReturnGmPmd_S 	= 4;
+		StartUpGameRequestGmPmd_C = 1;
+		StartUpGameReturnGmPmd_S = 2;
+		SurportGameZoneRequestGmPmd_C = 3;
+		SurportGameZoneReturnGmPmd_S = 4;
+		stDeleteQuestionByGmUserCmd = 5;
+		stRequestOneQuestionGmUserCmd = 6;
+		stBroadcastRequestGmUserCmd = 7;
+		stForwardToOnlyGmUserCmd = 8;
+		stGameClientMessageBoxGmUserCmd = 9;
+		stReturnZoneDicGmUserCmd = 10;
+		stReturnForbidAccountListGmUserCmd = 11;
+		stReturnGameClientMessageConfigGmUserCmd = 12;
+		stGMToolPunishUserGmUserCmd20071117 = 13;
+		stRequestUserPosUserGmUserCmd = 14;
+		stRequestMobileInfoGmUserCmd = 15;
+		stQueryQuestionLimitGmUserCmd = 16;
+		stBroadcastDeleteGmUserCmd = 17;
+		stDBQueryGmUserCmd = 18;
+		stCheckOnlineGmUserCmd = 19;
+		stForceChangeSexGmUserCmd = 20;
+		stGMToolEndQuestionGmUserCmd = 21;
+		stReturnChatTypesGmUserCmd = 22;
+		stFullGameGmCmdLogDataGmUserCmd = 23;
+		stBroadcastNewGmUserCmd = 24;
+		stQueryNameExistGmUserCmd = 25;
+		stVerifyOnlineQaGmUserCmd = 26;
+		stRequestNameAccountGmUserCmd = 27;
+		stReturnNameAccountGmUserCmd = 28;
+		stReturnZoneDicMapGmUserCmd = 29;
+		stGMToolBeginQuestionGmUserCmd = 30;
+		stServerStartupGmUserCmd = 31;
+		stSetPasswordGmUserCmd = 32;
+		stForceInsertNameGmUserCmd = 33;
+		stReturnPreProcessQuestionGmUserCmd = 34;
+		stGmCommandToSceneUserCmd = 35;
+		stConfigGmUserCmd = 36;
+		stReturnZoneDicCountryGmUserCmd = 37;
+		stRequestGameClientMessageConfigGmUserCmd = 38;
+		stReturnPasswordGmUserCmd = 39;
+		stResetQuestionLimitGmUserCmd = 40;
+		stRequestUnForbidAccountGmUserCmd = 41;
+		stRequestZoneConfigGmUserCmd = 42;
+		stRequestPreProcessQuestionGmUserCmd = 43;
+		stGmServerMessageGmUserCmd = 44;
+		stDeleteQuestionGmUserCmd = 45;
+		stNotifyShutdownGmUserCmd = 46;
+		stRequestChatTypesGmUserCmd = 47;
+		stReturnUserPosUserGmUserCmd = 48;
+		stSequenceQuestionGmUserCmd = 49;
+		stReturnDBConnectionConfigGmUserCmd = 50;
+		stServerShutdownGmUserCmd = 51;
+		stCancelChatConfigGmUserCmd = 52;
+		stForceModifyNameGmUserCmd = 53;
+		stReturnLoginGmUserCmd = 54;
+		stPlayerSatisfactionGmUserCmd = 55;
+		stRequestAddQuestionGmUserCmd = 56;
+		stReturnQuestionLimitGmUserCmd = 57;
+		stSetPrivilegesGmUserCmd = 58;
+		stGmCommandUserCmd = 59;
+		stQueryListGmUserCmd = 60;
+		stRequestSaveChatGmUserCmd = 61;
+		stRequestRefreshUserQuestionGmUserCmd = 62;
+		stDBReturnEndGmUserCmd = 63;
+		stReturnTimeGmUserCmd = 64;
+		stRequestForbidAccountGmUserCmd = 65;
+		stRequestDBConnectionConfigGmUserCmd = 66;
+		stReturnCheckOnlineGmUserCmd = 67;
+		stRequestMyQuestionGmUserCmd = 68;
+		stNewGameClientMessageBoxGmUserCmd = 69;
+		stBroadcastDeleteZoneGmUserCmd = 70;
+		stAddNewGmUserCmd = 71;
+		stRequestDelGmUserGmUserCmd = 72;
+		stUserCmdForwardGmUserCmd = 73;
+		stDBReturnDataGmUserCmd = 74;
+		stFullForbidAccountLogDataGmUserCmd = 75;
+		stDeleteProcessedQuestionGmUserCmd = 76;
+		stQueryForbidAccountGmUserCmd = 77;
+		stAddChatConfigGmUserCmd = 78;
+		stRequestResetGmWorkStateGmUserCmd = 79;
+		stForwardToAllGmUserCmd = 80;
+		stGameClientChatMessageGMUserCmd = 81;
+		stBroadcastToWorldGmUserCmd = 82;
+		stRequestTimeGmUserCmd = 83;
+		stQequestShutDownGmUserCmd = 84;
+		stReturnListGmUserCmd = 85;
+		stQuestionOverGmUserCmd = 86;
+		stRequestLoginGmUserCmd = 87;
+		stRequestQuestionSubmitableGmUserCmd = 88;
+		stReturnNowPreProcessQusetGmUserCmd = 89;
+		stEndUserPosUserGmUserCmd = 90;
+		stReturnNoneQuestionGmUserCmd = 91;
+		stRequestResetGmUserPasswordGmUserCmd = 92;
+		stCancelShutdownGmUserCmd = 93;
+		stReturnOneQuestionGmUserCmd = 94;
+		stReturnQuestionGmUserCmd = 95;
+		stBroadcastReallySendGmUserCmd = 96;
+		stPunishUserGmUserCmd = 97;
+		stSetActivityNoteGmUserCmd = 98;
+		stDisableGMChatInputGmUserCmd = 99;
+		stProcessQuestionGmUserCmd = 100;
+		stReturnAddNewGmUserCmd = 101;
+		stRequestSeqQuestionGmUserCmd = 102;
+		stRequestZoneDicGmUserCmd = 103;
+		stReturnResetGmWorkStateGmUserCmd = 104;
+		stRequestQuestionGmUserCmd = 105;
+		stRequestSetUserGoldInGmUserCmd = 106;
 	}
+}
+
+enum GMToolRightKey
+{
+	RightKey_None				= 0x0000;
+	RightKey_Login				= 0x0001;
+	RightKey_AccountManage		= 0x0002;
+	RightKey_Broadcast			= 0x0004;
+	RightKey_ChatMonitor		= 0x0008;
+	RightKey_ShutDownNotify		= 0x0010;
+	RightKey_Punish				= 0x0020;
+	RightKey_PlayerInfo			= 0x0040;
+	RightKey_LogQuery			= 0x0080;
+	RightKey_OnlineQA			= 0x0100;
+	RightKey_ProductionCenter	= 0x0200;
+	RightKey_Namecontrol		= 0x0400;
+	RightKey_SetRecvQuestion	= 0x0800;
+	RightKey_NewVersion			= 0x1000;
+	RightKey_GMCommand			= 0x2000;
+} 
+
+enum GMOptKey
+{
+	AccountNone	= 0;
+	AccountCreate = 1;
+	AccountDelete = 2;
+	AccountPasswordModify = 3;
+	AccountPriModify = 4;
+} 
+
+enum UserType
+{
+	UserType_None	= 0;
+	UserType_VIP1	= 1;
+	UserType_VIP2	= 2;
+	UserType_VIP3	= 3;
+} 
+
+enum ReturnLoginGmType
+{
+	ReturnLoginGmType_OK			= 0;
+	ReturnLoginGmType_Error_Passwd	= 1;
+	ReturnLoginGmType_Error_NoUser	= 2;
+	ReturnLoginGmType_Error_None	= 3;
+	ReturnLoginGmType_Error_Using	= 4;
+	ReturnLoginGmType_Error_Version	= 5;
+	ReturnLoginGmType_End			= 6;
+} 
+
+enum GmServerMessageType
+{
+	GmServerMessageType_Info	= 0;
+	GmServerMessageType_Warning	= 1;
+	GmServerMessageType_Error	= 2;
+} 
+
+enum NameOperateType
+{
+	NameOperateType_Rolename= 0;
+	NameOperateType_Army	= 1;
+	NameOperateType_Corps	= 2;
+} 
+
+enum dbtype
+{
+	dbbyte = 1;
+	dbushort = 2;
+	dbuint = 3;
+	dbvarstr4 = 8;
+	dbfixstr_MAX_NAMESIZE = 9;
+} 
+
+enum enumQuestionOver
+{
+	enumQuestionOver_unknown = 0;
+	enumQuestionOver_userDel = 1;
+	enumQuestionOver_gmDel = 2;
+	enumQuestionOver_gmProcess = 3;
+	enumQuestionOver_gmPreProcess = 4;
+} 
+
+enum GameClientMessageType
+{
+	MessageType_Box = 0;
+	MessageType_MiniSize = 1;
+}
+
+message QuestionBaseData
+{
+	required uint32 time = 1;				// 问题发出的时间 
+	required uint32 id = 2;					// 任务的流水号，这可以唯一标识一个任务 
+	required uint32 userid = 3;				// 玩家的角色id 
+	required uint32 zoneid = 4;				// 玩家所在的区id 
+	required uint32 countyrid = 5;			// 玩家所属的国家id 
+	required uint32 sceneid = 6;			// 玩家所在的地图id 
+	required string name = 7;				// 玩家的角色名 
+}
+
+message ForbidAccountData
+{
+	enum ForbidType
+	{
+		ForbidType_AllZone = 0; 			// 所有区帐号封停
+		ForbidType_CurrentZone = 1; 		// 当前所在区帐号封停
+	}
+	required uint32 zoneid = 1;
+	required uint32 gmid = 2;				// gmid 
+	required string gmname = 3;				// GM名称 
+	required uint32 accid = 4;				// accid 
+	required string ip = 5;					// ip 
+	required ForbidType forbidType = 6;		// ForbidType 
+	optional string reserved = 7;			// 登陆帐号 
+	required uint32 charid = 8;				// 人物ID 
+	required string charname = 9;			// 角色名称 
+	required uint32 begtime = 10;			// 封停起始时间 
+	required uint32 endtime = 11;			// 封停结束时间 
+	required string desc = 12;				// 封号原因 
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
@@ -17,9 +235,9 @@ message StartUpGameRequestGmPmd_C
 {
 	required string key 		= 1;
 	required uint32 version 	= 2;
-	optional string compress	= 3;//压缩算法
-	optional string encrypt		= 4;//加密算法
-	optional string encryptkey	= 5;//加密key
+	optional string compress	= 3;		// 压缩算法
+	optional string encrypt		= 4;		// 加密算法
+	optional string encryptkey	= 5;		// 加密key
 	required string username	= 6;
 	required string password	= 7;
 }
@@ -27,8 +245,8 @@ message StartUpGameRequestGmPmd_C
 // 返回给区服务器的连接验证状态,这里也发送区信息的原因是考虑游戏服务器可能连接名字验证服务器比连接登陆服务器快
 message StartUpGameReturnGmPmd_S
 {
-	required bool ret 	= 1;//返回成功标志
-	optional string retdesc = 2;//返回描述
+	required bool ret = 1;					// 返回成功标志
+	optional string retdesc = 2;			// 返回描述
 }
 
 message SurportGameZoneRequestGmPmd_C
@@ -38,3 +256,777 @@ message SurportGameZoneRequestGmPmd_C
 message SurportGameZoneReturnGmPmd_S
 {
 }
+
+message stDeleteQuestionByGmUserCmd
+{
+	required uint32 id = 1;
+	required uint32 userid = 2;
+	required uint32 gmid = 3;
+}
+
+message stRequestOneQuestionGmUserCmd
+{
+	required uint32 gmid = 1;
+}
+
+message stBroadcastRequestGmUserCmd
+{
+	required uint32 dwZoneID = 1;
+	required uint32 wCountryID = 2;
+	required uint32 wSceneID = 3;
+	required uint32 dwTimeEnd = 4;
+}
+
+message stForwardToOnlyGmUserCmd
+{
+	required uint32 dwZoneID = 1;
+	required uint32 wCountryID = 2;
+	required uint32 wSceneID = 3;
+	required uint32 dwUserID = 4;
+	required string userName = 5;
+	required uint32 gmID = 6;
+	required string gmName = 7;
+	required uint32 num = 8;
+	required bytes data = 9;
+}
+
+message stGameClientMessageBoxGmUserCmd
+{
+	required string gmname = 1;
+	required uint32 zoneid = 2;
+	required uint32 countryid = 3;
+	required uint32 sceneid = 4;
+	required uint32 num = 5;
+	required bytes data = 6;
+}
+
+message stReturnZoneDicGmUserCmd
+{
+	required uint32 num = 1;
+	message Data
+	{
+		required uint32 zoneid = 1;
+		required uint32 name = 2;
+	}
+	repeated Data data = 2;
+}
+
+message stReturnForbidAccountListGmUserCmd
+{
+	required uint32 num = 1;
+}
+
+message stReturnGameClientMessageConfigGmUserCmd
+{
+	required uint32 keyID = 1;
+	required uint32 num = 2;
+	required bytes data = 3;
+}
+
+message stGMToolPunishUserGmUserCmd20071117
+{
+	required stPunishUserGmUserCmd cmd = 1;
+	required uint32 byChatType = 2;
+	required uint32 dwZoneID = 3;
+	required uint32 wCountryID = 4;
+	required uint32 wMapID = 5;
+	required uint32 num = 6;
+	required bytes data = 7;
+}
+
+message stRequestUserPosUserGmUserCmd
+{
+	required uint32 zoneid = 1;
+	required uint32 sceneid = 2;
+}
+
+message stRequestMobileInfoGmUserCmd
+{
+	required uint64 mobile = 1;
+	required uint32 accid = 2;
+}
+
+message stQueryQuestionLimitGmUserCmd
+{
+	required uint32 gmid = 1;
+}
+
+message stBroadcastDeleteGmUserCmd
+{
+	required uint32 taskID = 1;
+}
+
+message stDBQueryGmUserCmd
+{
+	required uint32 byNoLimit = 1;
+	required string tablename = 2;
+	required uint32 timebegin = 3;
+	required uint32 timeend = 4;
+	required uint32 sqllen = 5;
+	required uint32 typelen = 6;
+	required bytes data = 7;
+}
+
+message stCheckOnlineGmUserCmd
+{
+	required uint32 zoneid = 1;
+	required string name = 2;
+}
+
+message stForceChangeSexGmUserCmd
+{
+}
+
+message stGMToolEndQuestionGmUserCmd
+{
+	required uint32 gmid = 1;
+}
+
+message stReturnChatTypesGmUserCmd
+{
+	required uint32 num = 1;
+	message Data
+	{
+		required uint32 chatType = 1;
+		required uint32 name = 2;
+	}
+	repeated Data data = 2;
+}
+
+message stFullGameGmCmdLogDataGmUserCmd
+{
+	required uint32 accID = 1;
+	required uint32 charID = 2;
+	required string gmName = 3;
+	required uint32 zoneID = 4;
+	required uint32 countryID = 5;
+	required uint32 sceneID = 6;
+	required string cmd = 7;
+	required string content = 8;
+}
+
+message stBroadcastNewGmUserCmd
+{
+	required uint32 taskID = 1;
+	required uint32 gmID = 2;
+	required string gmName = 3;
+	required uint32 dwZoneID = 4;
+	required uint32 wCountryID = 5;
+	required uint32 wSceneID = 6;
+	required uint32 dwTimeFrom = 7;
+	required uint32 dwTimeEnd = 8;
+	required uint32 dwIntervalTime = 9;
+	required uint32 byPriority = 10;
+	required uint32 num = 11;
+	required bytes data = 12;
+}
+
+message stQueryNameExistGmUserCmd
+{
+	required string name = 1;
+	required uint32 optype = 2;
+}
+
+message stVerifyOnlineQaGmUserCmd
+{
+	required uint32 stamp = 1;
+	required uint32 zoneid = 2;
+	required uint32 sceneid = 3;
+	required uint32 countryid = 4;
+	required string gmname = 5;
+	required string username = 6;
+}
+
+message stRequestNameAccountGmUserCmd
+{
+	required uint32 num = 1;
+}
+
+message stReturnNameAccountGmUserCmd
+{
+	required uint32 num = 1;
+}
+
+message stReturnZoneDicMapGmUserCmd
+{
+	required uint32 zoneid = 1;
+	required uint32 num = 2;
+	message Data
+	{
+		required uint32 sceneid = 1;
+		required uint32 name = 2;
+	}
+	repeated Data data = 3;
+}
+
+message stGMToolBeginQuestionGmUserCmd
+{
+	required uint32 gmid = 1;
+}
+
+message stServerStartupGmUserCmd
+{
+	required uint32 zoneid = 1;
+	required uint32 serverid = 2;
+	required uint32 servertype = 3;
+	required string servername = 4;
+	required uint32 serverip = 5;
+	required uint32 time = 6;
+}
+
+message stSetPasswordGmUserCmd
+{
+	required string oldpasswd = 1;
+	required string newpasswd = 2;
+}
+
+message stForceInsertNameGmUserCmd
+{
+	required string name = 1;
+	required uint32 optype = 2;
+}
+
+message stReturnPreProcessQuestionGmUserCmd
+{
+	required QuestionBaseData head = 1;
+	required string desc = 2;
+	required uint32 seq = 3;
+	required uint32 gmid = 4;
+	required uint32 num = 5;
+	required bytes data = 6;
+}
+
+message stGmCommandToSceneUserCmd
+{
+	required uint32 gmid = 1;
+	required uint32 num = 2;
+	required bytes str = 3;
+}
+
+message stConfigGmUserCmd
+{
+	required uint32 num = 1;
+	required bytes config = 2;
+}
+
+message stReturnZoneDicCountryGmUserCmd
+{
+	required uint32 zoneid = 1;
+	required uint32 num = 2;
+	message Data
+	{
+		required uint32 countryid = 1;
+		required uint32 name = 2;
+	}
+	repeated Data data = 3;
+}
+
+message stRequestGameClientMessageConfigGmUserCmd
+{
+	required uint32 keyID = 1;
+}
+
+message stReturnPasswordGmUserCmd
+{
+	required uint32 retcode = 1;
+}
+
+message stResetQuestionLimitGmUserCmd
+{
+	required uint32 gmid = 1;
+	required uint32 max = 2;
+	required uint32 maxWaitTime = 3;
+	required uint32 num = 4;
+	required bytes data = 5;
+}
+
+message stRequestUnForbidAccountGmUserCmd
+{
+	required ForbidAccountData data = 1;
+}
+
+message stRequestZoneConfigGmUserCmd
+{
+	required uint32 zoneid = 1;
+}
+
+message stRequestPreProcessQuestionGmUserCmd
+{
+	required uint32 id = 1;
+	required uint32 userid = 2;
+}
+
+message stGmServerMessageGmUserCmd
+{
+	required uint32 type = 1;
+	required uint32 num = 2;
+	required bytes data = 3;
+}
+
+message stDeleteQuestionGmUserCmd
+{
+	required uint32 id = 1;
+	required uint32 userid = 2;
+}
+
+message stNotifyShutdownGmUserCmd
+{
+	required uint32 gmid = 1;
+	required string gmName = 2;
+	required uint32 zoneid = 3;
+	optional uint32 notifyTime = 4;							// 公告开始的时间
+	optional uint32 leftTime = 5;							// 停机倒计时
+	required uint32 shutdownTime = 6;
+	required uint32 num = 7;
+	required bytes data = 8;
+}
+
+message stRequestChatTypesGmUserCmd
+{
+}
+
+message stReturnUserPosUserGmUserCmd
+{
+	required uint32 num = 1;
+	required uint32 zoneid = 2;
+	required uint32 sceneid = 3;
+	required uint32 width = 4;
+	required uint32 height = 5;
+	message Data
+	{
+		required uint32 x = 1;
+		required uint32 y = 2;
+	}
+	repeated Data data = 6;
+}
+
+message stSequenceQuestionGmUserCmd
+{
+	required uint32 id = 1;
+	required uint32 seq = 2;
+}
+
+message stReturnDBConnectionConfigGmUserCmd
+{
+	required uint32 num = 1;
+	required bytes data = 2;
+}
+
+message stServerShutdownGmUserCmd
+{
+	required uint32 zoneid = 1;
+	required uint32 serverid = 2;
+	required uint32 servertype = 3;
+	required string servername = 4;
+	required uint32 serverip = 5;
+	required uint32 usernum = 6;
+	required uint32 time = 7;
+}
+
+message stCancelChatConfigGmUserCmd
+{
+	required uint32 zoneid = 1;
+	required uint32 countyrid = 2;
+	required uint32 sceneid = 3;
+	required uint32 channel = 4;
+}
+
+message stForceModifyNameGmUserCmd
+{
+	required uint32 gmid = 1;
+	required uint32 zoneid = 2;
+	required uint32 opid = 3;
+	required string oldname = 4;
+	required string newname = 5;
+	required uint32 optype = 6;
+}
+
+message stReturnLoginGmUserCmd
+{
+	required uint32 retcode = 1;
+	required uint32 gmID = 2;
+	required uint32 pri = 3;
+	required uint32 qMaxNum = 4;
+	required uint32 autoRecv = 5;
+	required uint32 workState = 6;
+	required uint32 winNum = 7;
+}
+
+message stPlayerSatisfactionGmUserCmd
+{
+	required string gmname = 1;
+	required string charname = 2;
+	required uint32 charid = 3;
+	required uint32 zoneid = 4;
+	required uint32 countryid = 5;
+	required uint32 sceneid = 6;
+	required uint32 questionid = 7;
+	required uint32 satisfaction = 8;
+	required string desc = 9;
+}
+
+message stRequestAddQuestionGmUserCmd
+{
+	required QuestionBaseData head = 1;
+	required string desc = 2;
+	required uint32 num = 3;
+	required bytes data = 4;
+}
+
+message stReturnQuestionLimitGmUserCmd
+{
+	required uint32 max = 1;
+	required uint32 maxWaitTime = 2;
+	required uint32 num = 3;
+	required bytes data = 4;
+}
+
+message stSetPrivilegesGmUserCmd
+{
+	required uint32 pri = 1;
+	required uint32 id = 2;
+}
+
+message stGmCommandUserCmd
+{
+	required uint32 num = 1;
+	required bytes str = 2;
+}
+
+message stQueryListGmUserCmd
+{
+}
+
+message stRequestSaveChatGmUserCmd
+{
+	required uint32 hashnumber = 1;
+	required string gmname = 2;
+	required uint32 chattype = 3;
+	required uint32 zoneid = 4;
+	required uint32 countryid = 5;
+	required uint32 sceneid = 6;
+	required string rolename = 7;
+	required uint32 num = 8;
+	required bytes data = 9;
+}
+
+message stRequestRefreshUserQuestionGmUserCmd
+{
+}
+
+message stDBReturnEndGmUserCmd
+{
+}
+
+message stReturnTimeGmUserCmd
+{
+	required uint32 time = 1;
+}
+
+message stRequestForbidAccountGmUserCmd
+{
+	required ForbidAccountData data = 1;
+}
+
+message stRequestDBConnectionConfigGmUserCmd
+{
+}
+
+message stReturnCheckOnlineGmUserCmd
+{
+	required uint32 zoneid = 1;
+	required string name = 2;
+	required uint32 retcode = 3;
+}
+
+message stRequestMyQuestionGmUserCmd
+{
+	required uint32 userid = 1;
+}
+
+message stNewGameClientMessageBoxGmUserCmd
+{
+	required string gmname = 1;
+	required uint32 zoneid = 2;
+	required uint32 countryid = 3;
+	required uint32 sceneid = 4;
+	required uint32 num = 5;
+	required uint32 type = 6;
+	required bytes data = 7;
+}
+
+message stBroadcastDeleteZoneGmUserCmd
+{
+	required uint32 zoneID = 1;
+}
+
+message stAddNewGmUserCmd
+{
+	required string name = 1;
+	required string password = 2;
+	required uint32 pri = 3;
+	required uint32 qMaxNum = 4;
+	required uint32 autoRecv = 5;
+	required uint32 workState = 6;
+	required uint32 winNum = 7;
+}
+
+message stRequestDelGmUserGmUserCmd
+{
+	required uint32 id = 1;
+}
+
+message stUserCmdForwardGmUserCmd
+{
+	required uint32 num = 1;
+	required uint32 userid = 2;
+	required bytes data = 3;
+}
+
+message stDBReturnDataGmUserCmd
+{
+	required uint32 num = 1;
+	required bytes data = 2;
+}
+
+message stFullForbidAccountLogDataGmUserCmd
+{
+	required uint32 byOperation = 1;
+	required ForbidAccountData data = 2;
+}
+
+message stDeleteProcessedQuestionGmUserCmd
+{
+	required uint32 id = 1;
+	required uint32 userid = 2;
+}
+
+message stQueryForbidAccountGmUserCmd
+{
+	required ForbidAccountData data = 1;
+}
+
+message stAddChatConfigGmUserCmd
+{
+	required uint32 zoneid = 1;
+	required uint32 countyrid = 2;
+	required uint32 sceneid = 3;
+	required uint32 channel = 4;
+}
+
+message stRequestResetGmWorkStateGmUserCmd
+{
+	required uint32 id = 1;
+	required uint32 qMaxNum = 2;
+	required uint32 autoRecv = 3;
+	required uint32 workState = 4;
+	required uint32 winNum = 5;
+}
+
+message stForwardToAllGmUserCmd
+{
+	required uint32 dwZoneID = 1;
+	required uint32 wCountryID = 2;
+	required uint32 wSceneID = 3;
+	required uint32 dwUserID = 4;
+	required uint32 dwProvinceID = 5;
+	required uint32 dwCityID = 6;
+	required string userName = 7;
+	required uint32 num = 8;
+	required bytes data = 9;
+}
+
+message stGameClientChatMessageGMUserCmd
+{
+	required string gmname = 1;
+	required string username = 2;
+	required uint32 zoneid = 3;
+	required uint32 countryid = 4;
+	required uint32 sceneid = 5;
+	required uint32 byChatType = 6;
+	required uint32 byChatPos = 7;
+	required uint32 color = 8;
+	required uint32 bySize = 9;
+	required bytes szInfo = 10;
+}
+
+message stBroadcastToWorldGmUserCmd
+{
+	required string name = 1;
+	required uint32 zoneid = 2;
+	required uint32 countryid = 3;
+	required uint32 sceneid = 4;
+	required uint32 provinceid = 5;
+	required uint32 cityid = 6;
+	required uint32 chatType = 7;
+	required uint32 chatpos = 8;
+	required uint32 color = 9;
+	required uint32 num = 10;
+	required bytes data = 11;
+}
+
+message stRequestTimeGmUserCmd
+{
+}
+
+message stQequestShutDownGmUserCmd
+{
+	required uint32 zoneid = 1;
+}
+
+message stReturnListGmUserCmd
+{
+	required uint32 num = 1;
+	message Data
+	{
+		required uint32 id = 1;
+		required uint32 name = 2;
+		required uint32 pri = 3;
+		required uint32 qMaxNum = 4;
+		required uint32 autoRecv = 5;
+		required uint32 workState = 6;
+		required uint32 winNum = 7;
+	}
+	repeated Data data = 2;
+}
+
+message stQuestionOverGmUserCmd
+{
+	required uint32 reason = 1;
+}
+
+message stRequestLoginGmUserCmd
+{
+	required string name = 1;
+	required string password = 2;
+	required uint32 version = 3;
+}
+
+message stRequestQuestionSubmitableGmUserCmd
+{
+	required uint32 userid = 1;
+}
+
+message stReturnNowPreProcessQusetGmUserCmd
+{
+	required uint32 id = 1;
+	required uint32 userid = 2;
+}
+
+message stEndUserPosUserGmUserCmd
+{
+	required uint32 zoneid = 1;
+	required uint32 sceneid = 2;
+}
+
+message stReturnNoneQuestionGmUserCmd
+{
+}
+
+message stRequestResetGmUserPasswordGmUserCmd
+{
+	required uint32 id = 1;
+}
+
+message stCancelShutdownGmUserCmd
+{
+	required uint32 zoneid = 1;
+}
+
+message stReturnOneQuestionGmUserCmd
+{
+	required uint32 flag = 1;
+	required QuestionBaseData head = 2;
+	required string desc = 3;
+	required uint32 seq = 4;
+	required uint32 num = 5;
+	required bytes data = 6;
+}
+
+message stReturnQuestionGmUserCmd
+{
+	required QuestionBaseData head = 1;
+	required string desc = 2;
+	required uint32 seq = 3;
+	required uint32 num = 4;
+	required bytes data = 5;
+}
+
+message stBroadcastReallySendGmUserCmd
+{
+	required uint32 taskID = 1;
+	required uint32 dwZoneID = 2;
+	required uint32 wCountryID = 3;
+	required uint32 wSceneID = 4;
+	required uint32 num = 5;
+	required bytes data = 6;
+}
+
+message stPunishUserGmUserCmd
+{
+	required string userName = 1;
+	required string GM = 2;
+	required string reason = 3;
+	required uint32 operation = 4;
+	required uint32 delay = 5;
+	required uint32 waitTime = 6;
+	required uint32 accid = 7;
+	required uint32 ip = 8;
+}
+
+message stSetActivityNoteGmUserCmd
+{
+	required string gmname = 1;
+	required uint32 zoneid = 2;
+	required uint32 num = 3;
+	required bytes data = 4;
+}
+
+message stDisableGMChatInputGmUserCmd
+{
+	required uint32 gmid = 1;
+	required string gmname = 2;
+	required string rolename = 3;
+	required uint32 id = 4;
+}
+
+message stProcessQuestionGmUserCmd
+{
+	required uint32 id = 1;
+	required uint32 gmid = 2;
+}
+
+message stReturnAddNewGmUserCmd
+{
+	required uint32 retcode = 1;
+}
+
+message stRequestSeqQuestionGmUserCmd
+{
+	required uint32 userid = 1;
+}
+
+message stRequestZoneDicGmUserCmd
+{
+}
+
+message stReturnResetGmWorkStateGmUserCmd
+{
+	required uint32 id = 1;
+	required uint32 qMaxNum = 2;
+	required uint32 autoRecv = 3;
+	required uint32 workState = 4;
+	required uint32 winNum = 5;
+}
+
+message stRequestQuestionGmUserCmd
+{
+	required uint32 userid = 1;
+}
+
+message stRequestSetUserGoldInGmUserCmd
+{
+	required string szUserName = 1;
+	required uint32 dwGold = 2;
+}
+
