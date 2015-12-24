@@ -110,26 +110,31 @@ message Gm
 		stReturnResetGmWorkStateGmUserCmd = 104;
 		stRequestQuestionGmUserCmd = 105;
 		stRequestSetUserGoldInGmUserCmd = 106;
+		stRequestIpWhiteListGmUserCmd = 107;
+		stAddIpWhiteListGmUserCmd = 108;
+		stDelIpWhiteListGmUserCmd = 109;
+		stReturnIpWhiteListGmUserCmd = 110;
 	}
 }
 
+// 用户权限标志
 enum GMToolRightKey
 {
-	RightKey_None				= 0x0000;
-	RightKey_Login				= 0x0001;
-	RightKey_AccountManage		= 0x0002;
-	RightKey_Broadcast			= 0x0004;
-	RightKey_ChatMonitor		= 0x0008;
-	RightKey_ShutDownNotify		= 0x0010;
-	RightKey_Punish				= 0x0020;
-	RightKey_PlayerInfo			= 0x0040;
-	RightKey_LogQuery			= 0x0080;
-	RightKey_OnlineQA			= 0x0100;
-	RightKey_ProductionCenter	= 0x0200;
-	RightKey_Namecontrol		= 0x0400;
-	RightKey_SetRecvQuestion	= 0x0800;
-	RightKey_NewVersion			= 0x1000;
-	RightKey_GMCommand			= 0x2000;
+	GMToolRightKey_None 				= 0x0000;
+	GMToolRightKey_Base 				= 0x0001;	// 普通权限
+	GMToolRightKey_GmToolAccountManager = 0x0002;	// 账号管理
+	GMToolRightKey_BroadcastSystem 		= 0x0004;	// 公告系统
+	GMToolRightKey_ChatMonitor 			= 0x0008;	// 聊天监控
+	GMToolRightKey_ServerStopNotify 	= 0x0010;	// 停机公告系统
+	GMToolRightKey_Punish 				= 0x0020;	// 处罚玩家
+	GMToolRightKey_InfoQuery 			= 0x0040;	// 玩家信息查询
+	GMToolRightKey_LogQuery 			= 0x0080;	// 操作日志查询
+	GMToolRightKey_OnlineQA 			= 0x0100;	// 在线答疑
+	GMToolRightKey_NameModify 			= 0x0200;	// 名称插入修改
+	GMToolRightKey_OnlineQAManage 		= 0x0400;	// 在线答疑控制设置
+	GMToolRightKey_GmCommand 			= 0x0800;	// GM指令
+	GMToolRightKey_UserScript 			= 0x1000;	// 玩家脚本
+	GMToolRightKey_ActivetyScript 		= 0x2000;	// 活动脚本
 } 
 
 enum GMOptKey
@@ -196,6 +201,41 @@ enum GameClientMessageType
 {
 	MessageType_Box = 0;
 	MessageType_MiniSize = 1;
+}
+
+enum UserPunishType
+{
+	KEEP_QUIET = 1;		/// 禁言
+	EEP_STOP = 2;		/// 定身
+	KICK_OUT = 3;		/// 踢下线
+	WARN_USER = 4;		/// 警告操作。已废弃，请选用“KEEP_QUIET”
+	THINK_ALOUD = 5;	/// 自言自语
+}
+
+message UserPos
+{
+	required uint32 x = 1;
+	required uint32 y = 2;
+}
+
+// GM账号信息
+message GMAccount
+{
+	required uint32 id = 1;
+	required string name = 2;
+	required uint32 pri = 3;
+	required uint32 qMaxNum = 4;		// 最大接单数量
+	required uint32 autoRecv = 5;		// 是否自动接单
+	required uint32 workState = 6;		// 工作状态
+	required uint32 winNum = 7;			// 聊天窗口最大数量
+}
+
+message WhiteListItem
+{
+	required string ip = 1;
+	required string desc = 2;
+	required uint32 state = 3;
+	required uint32 createtime = 4;
 }
 
 message QuestionBaseData
@@ -287,7 +327,7 @@ message stForwardToOnlyGmUserCmd
 	required uint32 gmID = 6;
 	required string gmName = 7;
 	required uint32 num = 8;
-	required bytes data = 9;
+	required string data = 9;
 }
 
 message stGameClientMessageBoxGmUserCmd
@@ -297,7 +337,7 @@ message stGameClientMessageBoxGmUserCmd
 	required uint32 countryid = 3;
 	required uint32 sceneid = 4;
 	required uint32 num = 5;
-	required bytes data = 6;
+	required string data = 6;
 }
 
 message stReturnZoneDicGmUserCmd
@@ -320,7 +360,7 @@ message stReturnGameClientMessageConfigGmUserCmd
 {
 	required uint32 keyID = 1;
 	required uint32 num = 2;
-	required bytes data = 3;
+	required string data = 3;
 }
 
 message stGMToolPunishUserGmUserCmd20071117
@@ -331,7 +371,7 @@ message stGMToolPunishUserGmUserCmd20071117
 	required uint32 wCountryID = 4;
 	required uint32 wMapID = 5;
 	required uint32 num = 6;
-	required bytes data = 7;
+	required string data = 7;
 }
 
 message stRequestUserPosUserGmUserCmd
@@ -362,9 +402,9 @@ message stDBQueryGmUserCmd
 	required string tablename = 2;
 	required uint32 timebegin = 3;
 	required uint32 timeend = 4;
-	required uint32 sqllen = 5;
-	required uint32 typelen = 6;
-	required bytes data = 7;
+	required string sqldata = 5;
+	required bytes typedata = 6;
+	required string data = 7;
 }
 
 message stCheckOnlineGmUserCmd
@@ -418,7 +458,7 @@ message stBroadcastNewGmUserCmd
 	required uint32 dwIntervalTime = 9;
 	required uint32 byPriority = 10;
 	required uint32 num = 11;
-	required bytes data = 12;
+	required string data = 12;
 }
 
 message stQueryNameExistGmUserCmd
@@ -493,14 +533,14 @@ message stReturnPreProcessQuestionGmUserCmd
 	required uint32 seq = 3;
 	required uint32 gmid = 4;
 	required uint32 num = 5;
-	required bytes data = 6;
+	required string data = 6;
 }
 
 message stGmCommandToSceneUserCmd
 {
 	required uint32 gmid = 1;
 	required uint32 num = 2;
-	required bytes str = 3;
+	required string str = 3;
 }
 
 message stConfigGmUserCmd
@@ -537,7 +577,7 @@ message stResetQuestionLimitGmUserCmd
 	required uint32 max = 2;
 	required uint32 maxWaitTime = 3;
 	required uint32 num = 4;
-	required bytes data = 5;
+	required string data = 5;
 }
 
 message stRequestUnForbidAccountGmUserCmd
@@ -558,9 +598,9 @@ message stRequestPreProcessQuestionGmUserCmd
 
 message stGmServerMessageGmUserCmd
 {
-	required uint32 type = 1;
+	required GmServerMessageType type = 1;
 	required uint32 num = 2;
-	required bytes data = 3;
+	required string data = 3;
 }
 
 message stDeleteQuestionGmUserCmd
@@ -578,7 +618,7 @@ message stNotifyShutdownGmUserCmd
 	optional uint32 leftTime = 5;							// 停机倒计时
 	required uint32 shutdownTime = 6;
 	required uint32 num = 7;
-	required bytes data = 8;
+	required string data = 8;
 }
 
 message stRequestChatTypesGmUserCmd
@@ -609,7 +649,7 @@ message stSequenceQuestionGmUserCmd
 message stReturnDBConnectionConfigGmUserCmd
 {
 	required uint32 num = 1;
-	required bytes data = 2;
+	required string data = 2;
 }
 
 message stServerShutdownGmUserCmd
@@ -670,7 +710,7 @@ message stRequestAddQuestionGmUserCmd
 	required QuestionBaseData head = 1;
 	required string desc = 2;
 	required uint32 num = 3;
-	required bytes data = 4;
+	required string data = 4;
 }
 
 message stReturnQuestionLimitGmUserCmd
@@ -678,7 +718,7 @@ message stReturnQuestionLimitGmUserCmd
 	required uint32 max = 1;
 	required uint32 maxWaitTime = 2;
 	required uint32 num = 3;
-	required bytes data = 4;
+	required string data = 4;
 }
 
 message stSetPrivilegesGmUserCmd
@@ -687,10 +727,25 @@ message stSetPrivilegesGmUserCmd
 	required uint32 id = 2;
 }
 
+message GmCommandItem
+{
+	required uint32 zoneid = 1;
+	required string username = 2;
+	required string cmd = 3;
+	required string opcode = 4;
+}
+
 message stGmCommandUserCmd
 {
-	required uint32 num = 1;
-	required bytes str = 2;
+	repeated GmCommandItem data = 1;
+}
+
+// 针对账号执行的GM指令
+message stAccountGmCommandUserCmd
+{
+	repeated GmCommandItem data = 1;
+	required uint32 charid = 2;
+	required uint32 accid = 3;
 }
 
 message stQueryListGmUserCmd
@@ -707,7 +762,7 @@ message stRequestSaveChatGmUserCmd
 	required uint32 sceneid = 6;
 	required string rolename = 7;
 	required uint32 num = 8;
-	required bytes data = 9;
+	required string data = 9;
 }
 
 message stRequestRefreshUserQuestionGmUserCmd
@@ -752,7 +807,7 @@ message stNewGameClientMessageBoxGmUserCmd
 	required uint32 sceneid = 4;
 	required uint32 num = 5;
 	required uint32 type = 6;
-	required bytes data = 7;
+	required string data = 7;
 }
 
 message stBroadcastDeleteZoneGmUserCmd
@@ -780,13 +835,13 @@ message stUserCmdForwardGmUserCmd
 {
 	required uint32 num = 1;
 	required uint32 userid = 2;
-	required bytes data = 3;
+	required string data = 3;
 }
 
 message stDBReturnDataGmUserCmd
 {
 	required uint32 num = 1;
-	required bytes data = 2;
+	required string data = 2;
 }
 
 message stFullForbidAccountLogDataGmUserCmd
@@ -833,7 +888,7 @@ message stForwardToAllGmUserCmd
 	required uint32 dwCityID = 6;
 	required string userName = 7;
 	required uint32 num = 8;
-	required bytes data = 9;
+	required string data = 9;
 }
 
 message stGameClientChatMessageGMUserCmd
@@ -847,7 +902,7 @@ message stGameClientChatMessageGMUserCmd
 	required uint32 byChatPos = 7;
 	required uint32 color = 8;
 	required uint32 bySize = 9;
-	required bytes szInfo = 10;
+	required string szInfo = 10;
 }
 
 message stBroadcastToWorldGmUserCmd
@@ -862,7 +917,7 @@ message stBroadcastToWorldGmUserCmd
 	required uint32 chatpos = 8;
 	required uint32 color = 9;
 	required uint32 num = 10;
-	required bytes data = 11;
+	required string data = 11;
 }
 
 message stRequestTimeGmUserCmd
@@ -940,7 +995,7 @@ message stReturnOneQuestionGmUserCmd
 	required string desc = 3;
 	required uint32 seq = 4;
 	required uint32 num = 5;
-	required bytes data = 6;
+	required string data = 6;
 }
 
 message stReturnQuestionGmUserCmd
@@ -949,7 +1004,7 @@ message stReturnQuestionGmUserCmd
 	required string desc = 2;
 	required uint32 seq = 3;
 	required uint32 num = 4;
-	required bytes data = 5;
+	required string data = 5;
 }
 
 message stBroadcastReallySendGmUserCmd
@@ -959,7 +1014,7 @@ message stBroadcastReallySendGmUserCmd
 	required uint32 wCountryID = 3;
 	required uint32 wSceneID = 4;
 	required uint32 num = 5;
-	required bytes data = 6;
+	required string data = 6;
 }
 
 message stPunishUserGmUserCmd
@@ -979,7 +1034,7 @@ message stSetActivityNoteGmUserCmd
 	required string gmname = 1;
 	required uint32 zoneid = 2;
 	required uint32 num = 3;
-	required bytes data = 4;
+	required string data = 4;
 }
 
 message stDisableGMChatInputGmUserCmd
@@ -1030,3 +1085,25 @@ message stRequestSetUserGoldInGmUserCmd
 	required uint32 dwGold = 2;
 }
 
+// 请求查询白名单
+message stRequestIpWhiteListGmUserCmd
+{
+}
+
+// 添加白名单
+message stAddIpWhiteListGmUserCmd
+{
+	required WhiteListItem item = 1;
+}
+
+// 删除白名单
+message stDelIpWhiteListGmUserCmd
+{
+	required string ip = 1;
+}
+	
+// 返回查询白名单
+message stReturnIpWhiteListGmUserCmd
+{
+	repeated WhiteListItem data = 1;
+}
