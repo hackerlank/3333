@@ -275,7 +275,7 @@ message StartUpGameRequestGmPmd_C
 {
 	required string key 		= 1;
 	required uint32 version 	= 2;
-	optional string compress	= 3;		// 压缩算法
+	optional string compress	= 3;		// 压缩算法 ["gzip", "flate", "zlib", "lzw"]
 	optional string encrypt		= 4;		// 加密算法
 	optional string encryptkey	= 5;		// 加密key
 	required string username	= 6;
