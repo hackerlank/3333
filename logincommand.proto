@@ -20,7 +20,9 @@ message Login
 		ReconnectKickoutLoginUserPmd_S 			= 14;
 		ServerKickoutLoginUserPmd_S 			= 15;
 		RequestZoneInfoListLoginUserPmd_C		= 16;
-
+		SetServerLangLoginUserPmd_C				= 17;
+		RequestClientIPLoginUserPmd_C			= 18;
+		ReturnClientIPLoginUserPmd_S			= 19;
 	}
 }
 
@@ -79,7 +81,7 @@ message ZoneInfoListLoginUserPmd_S
 	required uint32 gameid	 		= 2;	// 游戏编号
 	repeated ZoneInfo zonelist 		= 3;
 }
- 
+
 // 请求区服务器信息列表,选区列表
 message RequestZoneInfoListLoginUserPmd_C
 {
@@ -235,4 +237,20 @@ enum PlatType
 	PlatType_AAY  				= 86;		// 爱爱游
 }
 
+// 通知服务器所采用的编码方式和区域信息
+message SetServerLangLoginUserPmd_C
+{
+	required string lang = 1;
+	required int32 gameregion = 2;			// 游戏运营区域
+}
 
+// 客户端请求得到自己的IP
+message RequestClientIPLoginUserPmd_C
+{
+}
+
+// 返回客户端IP
+message ReturnClientIPLoginUserPmd_S
+{
+	required string pstrip = 1;
+}
