@@ -1,33 +1,32 @@
 package Pmd;
 import "pmd.proto";
 
-// TODO
 message Sdk
 {
 	enum Param
 	{
-		StartUpGameRequestSdkPmd_C 	= 1;
-		StartUpGameReturnSdkPmd_S 	= 2;
-		SupportGamePlatListSdkPmd_S	= 3;
-		UserLoginPlatRequestSdkPmd_C	= 4;
-		UserLoginPlatReturnSdkPmd_S	    = 5;
-		CreatePlatOrderRequestSdkPmd_C	= 6;
-		CreatePlatOrderReturnSdkPmd_S	= 7;
-		NotifyRechargeRequestSdkPmd_S	= 8;
-		NotifyRechargeReturnSdkPmd_C	= 9;
-		RechargeQueryRequestIOSSdkPmd_C	= 10;
-		RequestQueryPlatPointSdkPmd_C	= 11;
-		ReturnQueryPlatPointSdkPmd_S	= 12;
-		RequestRedeemPlatPointSdkPmd_C	= 13;
-		ReturnRedeemPlatPointSdkPmd_S	= 14;
-		ReturnErrorCodeSdkPmd_S		    = 15;//公共的错误返回，方便调试
-		RequestBindAccountSdkPmd_CS	    = 16;//账号绑定
-		RequestBindPlatInfoSdkPmd_CS    = 17;//查询绑定
-		RequestAccidByPlatinfoSdkPmd_CS = 18;//通过平台account查平台id
-		RequestRedeemBackPlatPointSdkPmd_C	= 19;  //将游戏币兑换成平台积分(平台货币)
-		ReturnRedeemBackPlatPointSdkPmd_S	= 20;  //游戏币兑换平台货币返回
-		RequestUnbindAccountSdkPmd_CS   = 21; //解除绑定协议
-		NotifyTapJoyRequestSdkPmd_S     = 22; //积分墙通知
+		StartUpGameRequestSdkPmd_C = 1;
+		StartUpGameReturnSdkPmd_S = 2;
+		SupportGamePlatListSdkPmd_S = 3;
+		UserLoginPlatRequestSdkPmd_C = 4;
+		UserLoginPlatReturnSdkPmd_S = 5;
+		CreatePlatOrderRequestSdkPmd_C = 6;
+		CreatePlatOrderReturnSdkPmd_S = 7;
+		NotifyRechargeRequestSdkPmd_S = 8;
+		NotifyRechargeReturnSdkPmd_C = 9;
+		RechargeQueryRequestIOSSdkPmd_C = 10;
+		RequestQueryPlatPointSdkPmd_C = 11;
+		ReturnQueryPlatPointSdkPmd_S = 12;
+		RequestRedeemPlatPointSdkPmd_C = 13;
+		ReturnRedeemPlatPointSdkPmd_S = 14;
+		ReturnErrorCodeSdkPmd_S = 15;
+		RequestBindAccountSdkPmd_CS = 16;
+		RequestBindPlatInfoSdkPmd_CS = 17;
+		RequestAccidByPlatinfoSdkPmd_CS = 18;
+		RequestRedeemBackPlatPointSdkPmd_C = 19;
+		ReturnRedeemBackPlatPointSdkPmd_S = 20;
+		RequestUnbindAccountSdkPmd_CS = 21;
+		NotifyTapJoyRequestSdkPmd_S = 22;
 	}
 }
 
@@ -36,102 +35,105 @@ message StartUpGameRequestSdkPmd_C
 {
 	required string key 		= 1;
 	required uint32 version 	= 2;
-	optional string compress	= 3;//压缩算法
-	optional string encrypt		= 4;//加密算法
-	optional string encryptkey	= 5;//加密key
+	optional string compress	= 3;		// 压缩算法
+	optional string encrypt		= 4;		// 加密算法
+	optional string encryptkey	= 5;		// 加密key
 }
 
 // 返回给区服务器的连接验证状态,这里也发送区信息的原因是考虑游戏服务器可能连接名字验证服务器比连接登陆服务器快
 message StartUpGameReturnSdkPmd_S
 {
-	required bool ret 	= 1;//返回成功标志
-	optional string retdesc = 2;//返回描述
+	required bool ret = 1;					// 返回成功标志
+	optional string retdesc = 2;			// 返回描述
 }
 
-//平台信息
+// 平台信息
 message SdkPlatInfo
 {
-	optional uint32 platid		= 1;//平台类型编号
-	optional string platname	= 5;//平台名称
+	optional uint32 platid		= 1;		// 平台类型编号
+	optional string platname	= 5;		// 平台名称
 }
-//平台编号列表
+
+// 平台编号列表
 message GamePlatList
 {
-	required GameZoneInfo gamezone	= 1;//游戏类型
-	repeated SdkPlatInfo Platinfo	= 2;//平台编号列表
+	required GameZoneInfo gamezone	= 1;	// 游戏类型
+	repeated SdkPlatInfo Platinfo	= 2;	// 平台编号列表
 }
+
 // 当前支持的平台个数
 message SupportGamePlatListSdkPmd_S
 {
-	repeated GamePlatList list 	= 1;//平台编号列表
+	repeated GamePlatList list 	= 1;		// 平台编号列表
 }
 
 // 玩家登陆平台的基础信息
 message PlatBaseData
 {
-	optional GameZoneInfo gamezone	= 1;//游戏类型
-	optional uint64 myaccid		= 2;//这个需要在后面的返回中原样返回，用于游戏平台查找对应的客户端连接,登陆验证时充当logintempid
-	optional uint32 platid		= 3;//平台编号
-	optional uint32 subplatid   = 4;//子平台编号
-	optional string plataccount	= 5;//账号信息,如果是ID，也需要转换成字符串，如果是id和account都有，就需要"id|account"链接
-	optional string session		= 6;//玩家SESSION，部分平台有这个,如果是离线验证传签名
-	optional string	extdata		= 7;//扩展数据长度
-	optional string	extdata1	= 8;//扩展数据长度
-	optional string oldplataccount	= 9;//此账号是游客账号转正式账号时的游客账号，只有第一转的时候有用
-	optional string	nickname	= 10;//平台昵称
-	optional string	faceurl		= 11;//平台头像
-	optional uint64 sdkserverid	= 12;//sdk服务器临时编号
+	optional GameZoneInfo gamezone	= 1;	// 游戏类型
+	optional uint64 myaccid		= 2;		// 这个需要在后面的返回中原样返回，用于游戏平台查找对应的客户端连接,登陆验证时充当logintempid
+	optional uint32 platid		= 3;		// 平台编号
+	optional uint32 subplatid   = 4;		// 子平台编号
+	optional string plataccount	= 5;		// 账号信息,如果是ID，也需要转换成字符串，如果是id和account都有，就需要"id|account"链接
+	optional string session		= 6;		// 玩家SESSION，部分平台有这个,如果是离线验证传签名
+	optional string	extdata		= 7;		// 扩展数据长度
+	optional string	extdata1	= 8;		// 扩展数据长度
+	optional string oldplataccount = 9;		// 此账号是游客账号转正式账号时的游客账号，只有第一转的时候有用
+	optional string	nickname	= 10;		// 平台昵称
+	optional string	faceurl		= 11;		// 平台头像
+	optional uint64 sdkserverid	= 12;		// sdk服务器临时编号
 }
+
 // 玩家请求登陆给sdk服务器
 message UserLoginPlatRequestSdkPmd_C
 {
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	optional uint32 sessiontype	= 2;//标志出PlatBaseData里面session的格式,默认0是json,1表示字符串
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	optional uint32 sessiontype	= 2;		// 标志出PlatBaseData里面session的格式,默认0是json,1表示字符串
 }
 
 // 玩家请求登陆从sdk服务器返回
 message UserLoginPlatReturnSdkPmd_S
 {
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	required uint32 ret		= 2;//返回状态,0表示成功,其他参考HttpReturnCode
-	optional string retdesc		= 3;//错误描述
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	required uint32 ret			= 2;		// 返回状态,0表示成功,其他参考HttpReturnCode
+	optional string retdesc		= 3;		// 错误描述
 }
 
 // 创建订单号，有些需要于第三方沟通，有的不需要
 message CreatePlatOrderRequestSdkPmd_C
 {
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	required string gameorder	= 2;//游戏订单号
-	required uint64 roleid		= 3;//用户在游戏内部游戏服上的角色ID
-	required string rolename	= 4;//用户在游戏内部游戏服上的角色名称
-	required float originalmoney= 5;//原价(格式:0.00),购买时应用传入的单价*总数,总原价
-	required float ordermoney	= 6;//实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
-	required uint32 goodid		= 7;//用户买了什么商品
-	required uint32 goodnum		= 8;//用户买了多少个
-	optional string goodname    = 9;//商品名称
-	optional string gooddesc    = 10;//商品描述
-	optional string redirecturl = 11; //客户端跳转url
-	optional uint32 payplatid   = 12; //支付平台id
-	optional string extdata     = 13; //做了兼容，方便以后别的平台有特殊需求
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	required string gameorder	= 2;		// 游戏订单号
+	required uint64 roleid		= 3;		// 用户在游戏内部游戏服上的角色ID
+	required string rolename	= 4;		// 用户在游戏内部游戏服上的角色名称
+	required float originalmoney= 5;		// 原价(格式:0.00),购买时应用传入的单价*总数,总原价
+	required float ordermoney	= 6;		// 实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
+	required uint32 goodid		= 7;		// 用户买了什么商品
+	required uint32 goodnum		= 8;		// 用户买了多少个
+	optional string goodname    = 9;		// 商品名称
+	optional string gooddesc    = 10;		// 商品描述
+	optional string redirecturl = 11; 		// 客户端跳转url
+	optional uint32 payplatid   = 12; 		// 支付平台id
+	optional string extdata     = 13; 		// 做了兼容，方便以后别的平台有特殊需求
 }
 
 // 创建订单号，有些需要于第三方沟通，有的不需要
 message CreatePlatOrderReturnSdkPmd_S
 {
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	required string gameorder	= 2;//游戏订单号
-	required uint64 roleid		= 3;//用户在游戏内部游戏服上的角色ID
-	required float originalmoney= 4;//原价(格式:0.00),购买时应用传入的单价*总数,总原价
-	required float ordermoney	= 5;//实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
-	required uint32 goodid		= 6;//用户买了什么商品
-	required uint32 goodnum		= 7;//用户买了多少个
-	required uint32	result		= 8;//返回值,0表示成功,1表示失败
-	optional string	noticeurl	= 9;//回调通知url
-	optional string platorder	= 10;//渠道订单号
-	optional string sign        = 11;//客户端传给第三方支付时所需签名
-	optional string redirecturl = 12; //客户端跳转url
-	optional uint32 payplatid   = 13; //支付平台id
-	optional string extdata     = 14; //做了兼容，方便以后别的平台有特殊需求
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	required string gameorder	= 2;		// 游戏订单号
+	required uint64 roleid		= 3;		// 用户在游戏内部游戏服上的角色ID
+	required float originalmoney= 4;		// 原价(格式:0.00),购买时应用传入的单价*总数,总原价
+	required float ordermoney	= 5;		// 实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
+	required uint32 goodid		= 6;		// 用户买了什么商品
+	required uint32 goodnum		= 7;		// 用户买了多少个
+	required uint32	result		= 8;		// 返回值,0表示成功,1表示失败
+	optional string	noticeurl	= 9;		// 回调通知url
+	optional string platorder	= 10;		// 渠道订单号
+	optional string sign        = 11;		// 客户端传给第三方支付时所需签名
+	optional string redirecturl = 12; 		// 客户端跳转url
+	optional uint32 payplatid   = 13; 		// 支付平台id
+	optional string extdata     = 14; 		// 做了兼容，方便以后别的平台有特殊需求
 }
 
 // 代理通知游戏服有玩家充值
@@ -140,145 +142,145 @@ message CreatePlatOrderReturnSdkPmd_S
 // 平台回调sdk后通知游戏,AS2PSRechargeCommand
 message NotifyRechargeRequestSdkPmd_S
 {
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	required string platorder	= 2;//平台订单号
-	required string gameorder	= 3;//游戏订单号
-	required uint64 roleid		= 4;//用户在游戏内部游戏服上的角色ID
-	required float originalmoney	= 5;//原价(格式:0.00),购买时应用传入的单价*总数,总原价
-	required float ordermoney	= 6;//实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
-	required uint32 goodid		= 7;//用户买了什么商品
-	required uint32 goodnum		= 8;//用户买了多少个
-	required uint32	result		= 9;//购买状态, 1, 处理中;2 支付成功;3支付失败
-	optional string	extdata		= 10;//扩展数据长度
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	required string platorder	= 2;		// 平台订单号
+	required string gameorder	= 3;		// 游戏订单号
+	required uint64 roleid		= 4;		// 用户在游戏内部游戏服上的角色ID
+	required float originalmoney= 5;		// 原价(格式:0.00),购买时应用传入的单价*总数,总原价
+	required float ordermoney	= 6;		// 实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
+	required uint32 goodid		= 7;		// 用户买了什么商品
+	required uint32 goodnum		= 8;		// 用户买了多少个
+	required uint32	result		= 9;		// 购买状态, 1, 处理中;2 支付成功;3支付失败
+	optional string	extdata		= 10;		// 扩展数据长度
 }
 
 // 平台回调sdk后通知游戏平台,PS2ASRechargeCommand
 message NotifyRechargeReturnSdkPmd_C
 {
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	required string platorder	= 2;//平台订单号
-	required string gameorder	= 3;//游戏订单号
-	required uint64 roleid		= 4;//用户在游戏内部游戏服上的角色ID
-	required uint32	result		= 5;//购买状态, 0, 支付成功, 1, 处理中;2 支付成功(兼容老版本);3支付失败
-	optional string	extdata		= 6;//扩展数据长度
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	required string platorder	= 2;		// 平台订单号
+	required string gameorder	= 3;		// 游戏订单号
+	required uint64 roleid		= 4;		// 用户在游戏内部游戏服上的角色ID
+	required uint32	result		= 5;		// 购买状态, 0, 支付成功, 1, 处理中;2 支付成功(兼容老版本);3支付失败
+	optional string	extdata		= 6;		// 扩展数据长度
 }
 
 // ISO用，玩家请求充值后通知sdk服务器去苹果服务器查询,PS2ASRechargeQueryCommand
 message RechargeQueryRequestIOSSdkPmd_C
 {
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	required string gameorder	= 2;//游戏订单号
-	required uint64 roleid		= 3;//用户在游戏内部游戏服上的角色ID
-	required float originalmoney	= 4;//原价(格式:0.00),购买时应用传入的单价*总数,总原价
-	required float ordermoney	= 5;//实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
-	optional string	token		= 6;//查询凭证
-	optional string	extdata		= 7;//扩展数据长度
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	required string gameorder	= 2;		// 游戏订单号
+	required uint64 roleid		= 3;		// 用户在游戏内部游戏服上的角色ID
+	required float originalmoney= 4;		// 原价(格式:0.00),购买时应用传入的单价*总数,总原价
+	required float ordermoney	= 5;		// 实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
+	optional string	token		= 6;		// 查询凭证
+	optional string	extdata		= 7;		// 扩展数据长度
 }
 
 // 请求平台帐号中剩余点数
 message RequestQueryPlatPointSdkPmd_C
 {
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	optional string gameorder	= 2;//游戏订单号
-}
-
-// 请求平台帐号中剩余点数返回
-message ReturnQueryPlatPointSdkPmd_S
-{
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	required string gameorder	= 2;//游戏订单号
-	required uint64 balance		= 3;//剩余点数
-	required uint32 ret		= 4;//登陆结果, 0 表示成功
-	optional string retdesc		= 5;//返回描述
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	optional string gameorder	= 2;		// 游戏订单号
+}                                              
+                                               
+// 请求平台帐号中剩余点数返回                  
+message ReturnQueryPlatPointSdkPmd_S           
+{                                              
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	required string gameorder	= 2;		// 游戏订单号
+	required uint64 balance		= 3;		// 剩余点数
+	required uint32 ret			= 4;		// 登陆结果, 0 表示成功
+	optional string retdesc		= 5;		// 返回描述
 }
 
 // 请求平台帐号中剩余点数
 message RequestRedeemPlatPointSdkPmd_C
 {
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	optional string gameorder	= 2;//游戏订单号
-	optional uint32 goodid      = 3;//游戏商品id
-	optional float  money   	= 4;//以分为单位的人民币
-	optional string extdata     = 5;//一个扩展字段方便特殊平台
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	optional string gameorder	= 2;		// 游戏订单号
+	optional uint32 goodid      = 3;		// 游戏商品id
+	optional float  money   	= 4;		// 以分为单位的人民币
+	optional string extdata     = 5;		// 一个扩展字段方便特殊平台
 }
 
 // 请求平台帐号中剩余点数返回
 message ReturnRedeemPlatPointSdkPmd_S
-{
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	required string gameorder	= 2;//游戏订单号
-	required uint32 goodid      = 3;//游戏商品id
-	required float  money		= 4;//以分为单位的人民币
-	required uint64 balance		= 5;//玩家第三方平台所剩余点数
-	required uint32 ret		    = 6;//登陆结果, 0 表示成功, 1表示失败
-	optional string retdesc		= 7;//返回描述
+{                                              
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	required string gameorder	= 2;		// 游戏订单号
+	required uint32 goodid      = 3;		// 游戏商品id
+	required float  money		= 4;		// 以分为单位的人民币
+	required uint64 balance		= 5;		// 玩家第三方平台所剩余点数
+	required uint32 ret		    = 6;		// 登陆结果, 0 表示成功, 1表示失败
+	optional string retdesc		= 7;		// 返回描述
 }
 
 // 请求将游戏币兑换成平台币
 message RequestRedeemBackPlatPointSdkPmd_C
 {
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	optional string gameorder	= 2;//游戏订单号
-	optional uint32 point       = 3;//兑出平台货币
-	optional float  money   	= 4;//以分为单位的人民币
-	optional string extdata     = 5;//一个扩展字段方便特殊平台
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	optional string gameorder	= 2;		// 游戏订单号
+	optional uint32 point       = 3;		// 兑出平台货币
+	optional float  money   	= 4;		// 以分为单位的人民币
+	optional string extdata     = 5;		// 一个扩展字段方便特殊平台
 }
 
 // 游戏币兑换平台币返回
 message ReturnRedeemBackPlatPointSdkPmd_S
 {
-	required PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	required string gameorder	= 2;//游戏订单号
-	required uint64 balance		= 3;//玩家第三方平台所剩余点数
-	optional float  money   	= 4;//以分为单位的人民币
-	required uint32 ret		    = 5;//登陆结果, 0 表示成功, 1表示失败
-	optional string retdesc		= 6;//返回描述
+	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	required string gameorder	= 2;		// 游戏订单号
+	required uint64 balance		= 3;		// 玩家第三方平台所剩余点数
+	optional float  money   	= 4;		// 以分为单位的人民币
+	required uint32 ret		    = 5;		// 登陆结果, 0 表示成功, 1表示失败
+	optional string retdesc		= 6;		// 返回描述
 }
 
-//公共的错误返回，方便调试
+// 公共的错误返回，方便调试
 message ReturnErrorCodeSdkPmd_S
 {
-	optional PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	optional uint32 ret		    = 2;//登陆结果, 0 表示成功
-	optional string retdesc		= 3;//返回描述
+	optional PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	optional uint32 ret		    = 2;		// 登陆结果, 0 表示成功
+	optional string retdesc		= 3;		// 返回描述
+}                                              
+                                               
+                                               
+// 请求绑定账号                                
+message RequestBindAccountSdkPmd_CS            
+{                                              
+	optional PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
+	optional uint32 ret	    	= 2;		// 登陆结果, 0 表示成功,1表示已经绑定过，2表示账号已经注册过
+}                                              
+                                               
+// 平台基础信息                                
+message PlatAccountInfo                        
+{                                              
+	optional uint32 platid		= 1;		// 平台编号
+	optional string plataccount	= 2;		// 账号信息,如果是ID，也需要转换成字符串，如果是id和account都有，就需要"id|account"链接
+	optional string platname    = 3;		// 平台名称
+}                                              
+                                               
+// 账号绑定信息查询                            
+message RequestBindPlatInfoSdkPmd_CS           
+{                                              
+	optional PlatBaseData data = 1;			// 玩家登陆平台的基础信息
+	repeated PlatAccountInfo bindplat = 2;	// 已绑定平台信息
+	optional uint32 ret	= 3;				// 0 表示查询成功,1表示数据查询失败
 }
 
-
-//请求绑定账号
-message RequestBindAccountSdkPmd_CS
-{
-	optional PlatBaseData data	= 1;//玩家登陆平台的基础信息
-	optional uint32 ret	    	= 2;//登陆结果, 0 表示成功,1表示已经绑定过，2表示账号已经注册过
-}
-
-// 平台基础信息
-message PlatAccountInfo
-{
-	optional uint32 platid		= 1;//平台编号
-	optional string plataccount	= 2;//账号信息,如果是ID，也需要转换成字符串，如果是id和account都有，就需要"id|account"链接
-	optional string platname    = 3;//平台名称
-}
-
-//账号绑定信息查询
-message RequestBindPlatInfoSdkPmd_CS
-{
-	optional PlatBaseData     data	  = 1;//玩家登陆平台的基础信息
-	repeated PlatAccountInfo bindplat = 2;// 已绑定平台信息
-	optional uint32 ret		          = 3;//0 表示查询成功,1表示数据查询失败
-}
-
-//能过平台id与plataccount查对应玩家uid
+// 能过平台id与plataccount查对应玩家uid
 message RequestAccidByPlatinfoSdkPmd_CS
 {
-	optional PlatBaseData     data    = 1;//玩家登陆平台的基础信息
-	repeated PlatBaseData     reqdata = 2;//请求平台玩家对应基础信息
-	optional uint32 ret		          = 3;//0 表示查询成功,1表示数据查询失败
+	optional PlatBaseData data    = 1;		// 玩家登陆平台的基础信息
+	repeated PlatBaseData reqdata = 2;		// 请求平台玩家对应基础信息
+	optional uint32 ret		      = 3;		// 0 表示查询成功,1表示数据查询失败
 }
-//解除第三方账号绑定
+// 解除第三方账号绑定
 message RequestUnbindAccountSdkPmd_CS
 {
-    optional PlatBaseData data  = 1;//玩家登陆平台的基础信息
-    optional uint32 ret         = 2;//登陆结果, 0 表示成功,1表示未绑定过
+    optional PlatBaseData data  = 1;		// 玩家登陆平台的基础信息
+    optional uint32 ret         = 2;		// 登陆结果, 0 表示成功,1表示未绑定过
 }
 
 //积分墙通知

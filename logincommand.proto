@@ -190,8 +190,8 @@ message ReconnectKickoutLoginUserPmd_S
 // 服务器主动踢玩家下线
 message ServerKickoutLoginUserPmd_S
 {
-	required uint64 accountid		= 1; // 踢下线的玩家
-	optional string desc			= 2; //描述
+	required uint64 accountid		= 1; 	// 踢下线的玩家
+	optional string desc			= 2; 	// 描述
 }
 
 // 平台用户信息

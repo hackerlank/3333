@@ -20,30 +20,30 @@ message CommonChatUserPmd_CS
 {
 	enum ChatType
 	{
-	    ChatType_None      	= 0;// 0<<0; /// 世界聊天
-	    ChatType_Lobby     	= 1;// 1<<0; /// 大厅聊天
-	    ChatType_Room       = 2;//1<<1; /// 房间聊天
-	    ChatType_Robot      = 4;//1<<2; /// 机器人聊天
+	    ChatType_None      	= 0x00;		// 世界聊天
+	    ChatType_Lobby     	= 0x01;		// 大厅聊天
+	    ChatType_Room       = 0x02;		// 房间聊天
+	    ChatType_Robot      = 0x04;		// 机器人聊天
 	}
 	enum ChatPos
 	{
-	    ChatPos_None      	= 0;// 1<<0; /// 普通聊天输出
-	    ChatPos_Normal      = 1;// 1<<0; /// 普通聊天输出
-	    ChatPos_Sys         = 2;//1<<1; /// 系统提示输出
-	    ChatPos_Tips        = 4;//1<<2; /// 冒泡提示
-	    ChatPos_Pop         = 8;//1<<3; /// 右下角弹出
-	    ChatPos_Private     = 16;//1<<4; /// 私聊输出
-	    ChatPos_Important   = 32;//1<<5; /// 重要信息，屏幕中央输出(电视^_^)
-	    ChatPos_Honor       = 64;//1<<6; /// 荣耀信息
-	    ChatPos_Gm          = 128;//1<<7; /// GM系统公告输出位置 	
+	    ChatPos_None      	= 0x00;		// 普通聊天输出
+	    ChatPos_Normal      = 0x01;		// 普通聊天输出
+	    ChatPos_Sys         = 0x02;		// 系统提示输出
+	    ChatPos_Tips        = 0x04;		// 冒泡提示
+	    ChatPos_Pop         = 0x08;		// 右下角弹出
+	    ChatPos_Private     = 0x10;		// 私聊输出
+	    ChatPos_Important   = 0x20;		// 重要信息，屏幕中央输出(电视^_^)
+	    ChatPos_Honor       = 0x40;		// 荣耀信息
+	    ChatPos_Gm          = 0x80;		// GM系统公告输出位置 	
 	}
 	optional uint64 id		= 1;
 	optional string name		= 2;
 	optional bool sexman		= 3;
-	optional uint32 chatpos 	= 4;//enum ChatPos
-	optional uint32 chattype 	= 5 [default=1];//enum ChatType
+	optional ChatPos chatpos 	= 4;
+	optional ChatType chattype 	= 5 [default = ChatType_Lobby];
 	required string info 		= 6;
-	optional uint64 time        = 7; // 增加时间戳
+	optional uint64 time        = 7; 	// 增加时间戳
 }
 
 message GMCommandChatUserPmd_C
@@ -62,14 +62,14 @@ message GMHelpInfo
 }
 message GMCommandListChatUserPmd_S
 {
-	repeated GMHelpInfo list	= 1;// [packed=true]
+	repeated GMHelpInfo list	= 1;	// [packed=true]
 }
 
 message PrivateChatUserPmd_CS
 {
-	optional uint64 id		= 1;
+	optional uint64 id			= 1;
 	optional string name		= 2;
 	optional bool sexman		= 3;
 	required string info 		= 4;
-	optional uint64 time        = 5; // 增加时间戳
+	optional uint64 time        = 5; 	// 增加时间戳
 }

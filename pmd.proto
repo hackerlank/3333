@@ -16,42 +16,42 @@ enum PlatCommand
 // HTTP请求错误返回定义
 enum HttpReturnCode
 {
-	HttpReturnCode_Null			= 0;	// 无错误
-	HttpReturnCode_DbError			= 2;	// 数据库出错
+	HttpReturnCode_Null					= 0;	// 无错误
+	HttpReturnCode_DbError				= 2;	// 数据库出错
 	HttpReturnCode_GameZoneListError	= 5;	// 找不到游戏区列表
-	HttpReturnCode_SignError		= 11;	// 签名检查错误，需要重新登陆
+	HttpReturnCode_SignError			= 11;	// 签名检查错误，需要重新登陆
 	HttpReturnCode_ServerShutDown		= 12;	// 服务器未开
 	HttpReturnCode_JsonSyntaxError		= 13;	// Json语法格式错误
 	HttpReturnCode_JsonMessageError		= 14;	// Json消息格式错误
 	HttpReturnCode_TokenValueError		= 15;	// tokenvalue为空
 	HttpReturnCode_WaiGuaUidError		= 16;	// uid与登陆uid不同
 	HttpReturnCode_NoGatewaytDown		= 17;	// 没有可用网关
-	HttpReturnCode_NoSdkServer		= 18;	// 没有可用Sdk服务器
+	HttpReturnCode_NoSdkServer			= 18;	// 没有可用Sdk服务器
 	HttpReturnCode_SdkCheckSignErr		= 19;	// 签名错误
 	HttpReturnCode_Sdk3PartyServerErr	= 20;	// 第三方服务器验证错误
-	HttpReturnCode_ProtobufErr		= 21;	// proto解析错误
-	HttpReturnCode_GatewayErr		= 22;	// 网关错误
+	HttpReturnCode_ProtobufErr			= 21;	// proto解析错误
+	HttpReturnCode_GatewayErr			= 22;	// 网关错误
 }
 
 // 服务器类型
 enum TaskType
 {
-	TaskType_Null			= 0;	// 未知
-	TaskType_Monitor		= 1;	// 监控服务器
-	TaskType_Login			= 2;	// 登陆服务器
-	TaskType_NameS			= 3;	// 名字验证服务器,这里因为有名字冲突，职能加后缀了
-	TaskType_Sdk			= 4;	// sdk服务器
-	TaskType_Gm			= 5;	// gm服务器
-	TaskType_Gateway		= 6;	// 网关服务器
-	TaskType_GameZone		= 7;	// 游戏区服务器
+	TaskType_Null			= 0;		// 未知
+	TaskType_Monitor		= 1;		// 监控服务器
+	TaskType_Login			= 2;		// 登陆服务器
+	TaskType_NameS			= 3;		// 名字验证服务器,这里因为有名字冲突，职能加后缀了
+	TaskType_Sdk			= 4;		// sdk服务器
+	TaskType_Gm				= 5;		// gm服务器
+	TaskType_Gateway		= 6;		// 网关服务器
+	TaskType_GameZone		= 7;		// 游戏区服务器
 }
 
-//游戏类型信息,以后可能会扩充
+// 游戏类型信息,以后可能会扩充
 message GameZoneInfo
 {
-	optional uint32 gameid		= 1;//游戏类型编号
-	optional uint32 zoneid		= 2;//游戏区id
-	optional string gamename	= 5;//游戏名称
-	optional string zonename	= 6;//游戏区名称
+	optional uint32 gameid		= 1;	// 游戏类型编号
+	optional uint32 zoneid		= 2;	// 游戏区id
+	optional string gamename	= 5;	// 游戏名称
+	optional string zonename	= 6;	// 游戏区名称
 }
 

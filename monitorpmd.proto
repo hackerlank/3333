@@ -19,52 +19,52 @@ message StartUpGameRequestMonitorPmd_C
 {
 	required string key 		= 1;
 	required uint32 version 	= 2;
-	optional string compress	= 3;//压缩算法
-	optional string encrypt		= 4;//加密算法
-	optional string encryptkey	= 5;//加密key
+	optional string compress	= 3;	// 压缩算法
+	optional string encrypt		= 4;	// 加密算法
+	optional string encryptkey	= 5;	// 加密key
 }
 // 返回给区服务器的连接验证状态,这里也发送区信息的原因是考虑游戏服务器可能连接名字验证服务器比连接登陆服务器快
 message StartUpGameReturnMonitorPmd_S
 {
-	required bool ret 	= 1;//返回成功标志
-	optional string retdesc = 2;//返回描述
+	required bool ret = 1;				// 返回成功标志
+	optional string retdesc = 2;		// 返回描述
 }
 
 
 // 希望监控的游戏区服
 message SupportGameZoneListSdkPmd_C
 {
-	repeated GameZoneInfo gamezonelist	= 1;//游戏类型
+	repeated GameZoneInfo gamezonelist = 1;	// 游戏类型
 }
 
 //服务器信息
 message ServerState
 {
-	required uint32 id		= 1;//id
-	required uint32 type		= 2;//TaskType
-	required uint32 state		= 3;//当前状态0关闭,1开启
-	required string addr		= 4;//id
-	optional uint32 onlinenum	= 5;//服务器名称
-	optional string name		= 6;//服务器名称
+	required uint32 id			= 1;
+	required uint32 type		= 2;	// TaskType
+	required uint32 state		= 3;	// 当前状态0关闭,1开启
+	required string addr		= 4;	// id
+	optional uint32 onlinenum	= 5;	// 服务器名称
+	optional string name		= 6;	// 服务器名称
 }
 
 message GameZoneServerState
 {
-	optional GameZoneInfo gamezone	= 1;//游戏类型
-	repeated ServerState statelist	= 2;//状态
+	optional GameZoneInfo gamezone	= 1;// 游戏类型
+	repeated ServerState statelist	= 2;// 状态
 
 }
 
 // 刷新服务器状态
 message RefreshServerStateListMonitorPmd_S
 {
-	repeated GameZoneServerState statelist	= 1;//服务器列表
-	optional bool reset			= 2;//是否需要重置列表
+	repeated GameZoneServerState statelist = 1;	// 服务器列表
+	optional bool reset = 2;					// 是否需要重置列表
 }
 
 // 刷新服务器状态
 message RefreshServerStateMonitorPmd_CSC
 {
-	required GameZoneServerState state	= 1;//服务器列表
-	optional bool reset			= 2;//是否需要重置列表
+	required GameZoneServerState state = 1;		// 服务器列表
+	optional bool reset = 2;					// 是否需要重置列表
 }

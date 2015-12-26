@@ -1,18 +1,19 @@
 package Pmd;
+
 // 版本配置文件
 message Config
 {
 	enum Version
 	{
 		option allow_alias = true;
-		Version_Login 			= 20140427;//玩家与登陆服务器,Zoneserver与登陆服务器版本号
-		Version_Game 			= 20140427;//玩家与ZoneServer服务器的版本号
-		Version_Gm 			= 20140427;//玩家与ZoneServer服务器的版本号
+		Version_Login 			= 20140427;	// 玩家与登陆服务器,Zoneserver与登陆服务器版本号
+		Version_Game 			= 20140427;	// 玩家与ZoneServer服务器的版本号
+		Version_Gm 				= 20140427;	// 玩家与ZoneServer服务器的版本号
 	}
 	enum Debug
 	{
 		option allow_alias = true;
-		Debug_All 			= 1; //Debug权限
-		Debug_Whj 			= 1; //Debug权限
+		Debug_All 			= 1; 			// Debug权限
+		Debug_Whj 			= 1; 			// Debug权限
 	}
 }

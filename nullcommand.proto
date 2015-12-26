@@ -63,5 +63,5 @@ message CheckVersionUserPmd_CS
 
 message ForwardBwNullUserPmd_CS
 {
-	optional bytes data		= 3;	// data
+	optional bytes data		= 3;
 }
