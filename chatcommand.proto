@@ -37,11 +37,11 @@ message CommonChatUserPmd_CS
 	    ChatPos_Honor       = 0x40;		// 荣耀信息
 	    ChatPos_Gm          = 0x80;		// GM系统公告输出位置 	
 	}
-	optional uint64 id		= 1;
+	optional uint64 id		    = 1;
 	optional string name		= 2;
 	optional bool sexman		= 3;
 	optional uint32 chatpos 	= 4;
-	optional uint32 chattype 	= 5 [default = ChatType_Lobby];
+	optional uint32 chattype 	= 5; 
 	required string info 		= 6;
 	optional uint64 time        = 7; 	// 增加时间戳
 }
@@ -53,7 +53,6 @@ message GMCommandChatUserPmd_C
 	required string method		= 3;
 	optional string params		= 4;
 }
-
 
 message GMHelpInfo
 {
