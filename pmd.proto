@@ -55,29 +55,3 @@ message GameZoneInfo
 	optional string zonename	= 6;	// 游戏区名称
 }
 
-// 登陆session
-message LoginSession
-{
-	optional uint32 wdLoginID		= 1;	// 
-	optional uint32 wdGatewayID		= 2;	// 
-	optional uint32 loginTempID		= 3;	// 
-	optional string pstrIP			= 4;	// 游戏名称
-	optional uint32 wdPort			= 5;	// 
-	optional GameZoneInfo gameZone		= 6;	// 
-	optional uint64 accid			= 7;	// 
-	optional uint32 state			= 8;	// 
-	optional uint32 type			= 9;	// 用户类型
-	optional string account			= 10;	// 游戏名称
-	optional string passwd			= 11;	// 
-	optional string des_key			= 12;	// des密钥
-	optional uint32 user_mask		= 13;	// 
-	optional uint32 login_type		= 14;	// 
-	optional uint64 client_mac		= 15;	// 
-	optional string numpasswd		= 16;	// 
-	optional uint64 mobile			= 17;	// 
-	optional uint32 oldzone			= 18;	// 
-	optional uint64 charid			= 19;	// 
-	optional uint32 clientType		= 20;	// ClientLoginType
-	optional uint32 wdNetType		= 21;	// 网关网络类型，0电信，1网通
-	optional uint32 userType		= 22;	// 
-}
