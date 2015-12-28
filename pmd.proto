@@ -49,9 +49,13 @@ enum TaskType
 // 游戏类型信息,以后可能会扩充
 message GameZoneInfo
 {
-	optional uint32 gameid		= 1;	// 游戏类型编号
-	optional uint32 zoneid		= 2;	// 游戏区id
-	optional string gamename	= 5;	// 游戏名称
-	optional string zonename	= 6;	// 游戏区名称
+	optional uint32 gameid 		= 1;//游戏编号
+	optional uint32 zoneid 		= 2;//区编号
+	optional string gamename 	= 3;//游戏名称
+	optional string zonename 	= 4;//区名称
+	optional string mysql 		= 5;//mysql数据库,不填表示从配置文件读取
+	optional string redis 		= 6;//redis数据库,不填表示从配置文件读取
+	optional string rethink 	= 7;//rethink数据库,不填表示从配置文件读取
+	optional string mongo 		= 8;//mongo数据库,不填表示从配置文件读取
 }
 
