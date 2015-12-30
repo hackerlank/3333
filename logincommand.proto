@@ -107,6 +107,7 @@ enum LoginReturnFailReason
 	UserTokenTimeOut	= 6;				// token已过期
 	LoginDulicate		= 7;				// 重复登陆
 	NoGatewaytDown 		= 8;				// 没有可用网关
+	AccountUsing 		= 9;				// 账号正在使用中
 }
 
 // 登陆某个区的错误返回,LoginServer返回
