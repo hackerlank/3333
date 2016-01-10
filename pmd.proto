@@ -59,3 +59,36 @@ message GameZoneInfo
 	optional string mongo 		= 8;//mongo数据库,不填表示从配置文件读取
 }
 
+enum ServerType
+{
+    UNKNOWNSERVER    = 0;
+    SUPERSERVER    = 1;
+    LOGINSERVER    = 10;
+    RECORDSERVER    = 11;
+    SESSIONSERVER    = 20;
+    SCENESSERVER    = 21;
+    GATEWAYSERVER    = 22;
+    INFOSERVER    = 23;
+    HTTPSERVER    = 24;
+    CHANGESERVER    = 25;
+    USERSERVER    = 26;
+    BILLSERVER    = 27;
+    NAMESERVER    = 28;
+    MONITORSERVER    = 29;
+    GMSERVER    = 30;
+    STATERSERVER    = 31;
+    SOUNDSERVER    = 32;
+    BILLSERVER_ALIPAY    = 33;
+    BILLSERVER_JUNKA    = 34;
+    BILLSERVER_TIANXIATONG    = 35;
+    BILLSERVER_ZONGYOU    = 36;
+    BILLSERVER_OFFLINE    = 37;
+    BILLSERVER_MESSAGE    = 38;
+    BILLSERVER_ZQB    = 39;
+    WEBGATESERVER    = 40;
+    BILLSERVER_BAIDU    = 41;
+    BILLSERVER_SHUN    = 42;
+    SDKSERVER    = 43;
+    MAX_SERVERTYPE    = 44;
+}
+
