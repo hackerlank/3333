@@ -177,14 +177,14 @@ message RechargeQueryRequestIOSSdkPmd_C
 	optional string	extdata		= 7;		// 扩展数据长度
 }
 
-// 请求平台帐号中剩余点数
+// 第三方平台帐号中剩余点数查询请求
 message RequestQueryPlatPointSdkPmd_C
 {
 	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
 	optional string gameorder	= 2;		// 游戏订单号
 }                                              
                                                
-// 请求平台帐号中剩余点数返回                  
+// 第三方平台帐号中剩余点数返回                  
 message ReturnQueryPlatPointSdkPmd_S           
 {                                              
 	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
@@ -194,7 +194,7 @@ message ReturnQueryPlatPointSdkPmd_S
 	optional string retdesc		= 5;		// 返回描述
 }
 
-// 请求平台帐号中剩余点数
+// 第三方平台帐号中点数兑换请求
 message RequestRedeemPlatPointSdkPmd_C
 {
 	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
@@ -204,7 +204,7 @@ message RequestRedeemPlatPointSdkPmd_C
 	optional string extdata     = 5;		// 一个扩展字段方便特殊平台
 }
 
-// 请求平台帐号中剩余点数返回
+// 第三方平台帐号中点数兑换返回
 message ReturnRedeemPlatPointSdkPmd_S
 {                                              
 	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
@@ -216,7 +216,7 @@ message ReturnRedeemPlatPointSdkPmd_S
 	optional string retdesc		= 7;		// 返回描述
 }
 
-// 请求将游戏币兑换成平台币
+// 将本平台游戏币兑换成第三方平台币请求
 message RequestRedeemBackPlatPointSdkPmd_C
 {
 	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
@@ -226,7 +226,7 @@ message RequestRedeemBackPlatPointSdkPmd_C
 	optional string extdata     = 5;		// 一个扩展字段方便特殊平台
 }
 
-// 游戏币兑换平台币返回
+// 将本平台游戏币兑换成第三方平台币返回
 message ReturnRedeemBackPlatPointSdkPmd_S
 {
 	required PlatBaseData data	= 1;		// 玩家登陆平台的基础信息
