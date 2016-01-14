@@ -11,6 +11,7 @@ message Null
 		FrameHeaderNullUserPmd_CS	= 4;
 		CheckVersionUserPmd_CS		= 5;
 		ForwardBwNullUserPmd_CS		= 6;
+		SetTickTimeoutNullUserPmd_CS	= 7;
 	}
 }
 
@@ -35,6 +36,11 @@ message ForwardNullUserPmd_CS
 message TickRequestNullUserPmd_CS
 {
 	required uint32 requesttime	= 1;
+}
+
+message SetTickTimeoutNullUserPmd_CS
+{
+	required uint32 sec	= 1;
 }
 message TickReturnNullUserPmd_CS
 {
