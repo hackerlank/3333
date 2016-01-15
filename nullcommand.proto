@@ -11,14 +11,16 @@ message Null
 		FrameHeaderNullUserPmd_CS	= 4;
 		CheckVersionUserPmd_CS		= 5;
 		ForwardBwNullUserPmd_CS		= 6;
+		SetTickTimeoutNullUserPmd_CS	= 7;
 	}
 }
 
 enum FrameHeader
 {
-	Bitmask_None 				= 0;	// 0
-	Bitmask_Compress			= 1;	// 1 << 0 表示压缩
-	Bitmask_Encrypt				= 2;	// 1 << 1 表示加密
+	Bitmask_None 				= 0x00;
+	Bitmask_Compress			= 0x01;	// 压缩
+	Bitmask_Encrypt				= 0x02;	// 加密
+	Bitmask_Header				= 0x04;	// 嵌套消息头
 }
 message ForwardNullUserPmd_CS
 {
@@ -35,10 +37,15 @@ message TickRequestNullUserPmd_CS
 {
 	required uint32 requesttime	= 1;
 }
+
+message SetTickTimeoutNullUserPmd_CS
+{
+	required uint32 sec	= 1;
+}
 message TickReturnNullUserPmd_CS
 {
-	required uint32 requesttime	= 1;
-	required uint32 mytime		= 2;
+	optional uint32 requesttime	= 1;
+	optional uint32 mytime		= 2;
 }
 
 message RequestCloseNullUserPmd_CS
@@ -62,7 +69,5 @@ message CheckVersionUserPmd_CS
 
 message ForwardBwNullUserPmd_CS
 {
-	optional uint32 byCmd		= 1;
-	optional uint32 byParam		= 2;
-	optional bytes data		= 3;	// data
+	optional bytes data		= 3;
 }

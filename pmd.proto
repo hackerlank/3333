@@ -4,6 +4,7 @@ package Pmd;
 enum PlatCommand
 {
 	PlatCommand_Null 		= 0;
+	PlatCommand_Gm 			= 248;	// GM服务器
 	PlatCommand_Monitor		= 249;	// 监控消息
 	PlatCommand_Login 		= 250;	// 登陆消息
 	PlatCommand_Forward		= 251;	// 登陆转发消息
@@ -35,12 +36,59 @@ enum HttpReturnCode
 // 服务器类型
 enum TaskType
 {
-	TaskType_Null			= 0;	// 未知
-	TaskType_Monitor		= 1;	// 监控服务器
-	TaskType_Login			= 2;	// 登陆服务器
-	TaskType_NameS			= 3;	// 名字验证服务器,这里因为有名字冲突，职能加后缀了
-	TaskType_Sdk			= 4;	// sdk服务器
-	TaskType_Gm				= 5;	// gm服务器
-	TaskType_Gateway		= 6;	// 网关服务器
-	TaskType_GameZone		= 7;	// 游戏区服务器
+	TaskType_Null			= 0;		// 未知
+	TaskType_Monitor		= 1;		// 监控服务器
+	TaskType_Login			= 2;		// 登陆服务器
+	TaskType_NameS			= 3;		// 名字验证服务器,这里因为有名字冲突，职能加后缀了
+	TaskType_Sdk			= 4;		// sdk服务器
+	TaskType_Gm				= 5;		// gm服务器
+	TaskType_Gateway		= 6;		// 网关服务器
+	TaskType_GameZone		= 7;		// 游戏区服务器
 }
+
+// 游戏类型信息,以后可能会扩充
+message GameZoneInfo
+{
+	optional uint32 gameid 		= 1;//游戏编号
+	optional uint32 zoneid 		= 2;//区编号
+	optional string gamename 	= 3;//游戏名称
+	optional string zonename 	= 4;//区名称
+	optional string mysql 		= 5;//mysql数据库,不填表示从配置文件读取
+	optional string redis 		= 6;//redis数据库,不填表示从配置文件读取
+	optional string rethink 	= 7;//rethink数据库,不填表示从配置文件读取
+	optional string mongo 		= 8;//mongo数据库,不填表示从配置文件读取
+}
+
+enum ServerType
+{
+    UNKNOWNSERVER    = 0;
+    SUPERSERVER    = 1;
+    LOGINSERVER    = 10;
+    RECORDSERVER    = 11;
+    SESSIONSERVER    = 20;
+    SCENESSERVER    = 21;
+    GATEWAYSERVER    = 22;
+    INFOSERVER    = 23;
+    HTTPSERVER    = 24;
+    CHANGESERVER    = 25;
+    USERSERVER    = 26;
+    BILLSERVER    = 27;
+    NAMESERVER    = 28;
+    MONITORSERVER    = 29;
+    GMSERVER    = 30;
+    STATERSERVER    = 31;
+    SOUNDSERVER    = 32;
+    BILLSERVER_ALIPAY    = 33;
+    BILLSERVER_JUNKA    = 34;
+    BILLSERVER_TIANXIATONG    = 35;
+    BILLSERVER_ZONGYOU    = 36;
+    BILLSERVER_OFFLINE    = 37;
+    BILLSERVER_MESSAGE    = 38;
+    BILLSERVER_ZQB    = 39;
+    WEBGATESERVER    = 40;
+    BILLSERVER_BAIDU    = 41;
+    BILLSERVER_SHUN    = 42;
+    SDKSERVER    = 43;
+    MAX_SERVERTYPE    = 44;
+}
+

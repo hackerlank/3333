@@ -9,7 +9,7 @@ import argparse
 
 
 package = "Pmd"
-need_prototype = ("nullcommand", "logincommand","forwardcommand","sdkcommand","monitorpmd","chatcommand",)
+need_prototype = ("nullcommand", "logincommand","forwardcommand","sdkcommand","monitorpmd","chatcommand","gmcommand",)
 
 name = os.path.abspath(__file__)
 path = os.path.dirname(name)
@@ -78,6 +78,8 @@ def build_go():
     assert(os.system(cmd) == 0)
 
 def build_cpp():
+    print("cp  Makefile.py Makefile.am")
+    os.system("cp Makefile.py Makefile.am")
     for f in glob.glob("*.pb.go"):
         print("rm %s" % f)
         os.remove(f)
@@ -96,8 +98,9 @@ def build_cpp():
         print("rm %s" % f)
         os.remove(f)
     
-    tools = os.path.join(gopath, "src/git.code4.in/mobilegameserver/tools")
-    protoc = os.path.join(tools, "protoc-" + suffix + "-2.6.1")
+    #tools = os.path.join(gopath, "src/git.code4.in/mobilegameserver/tools")
+    #protoc = os.path.join(tools, "protoc-" + suffix + "-2.6.1")
+    protoc = "../3Party/protobuf-2.6.1/src/protoc"
     for f in glob.glob("*.proto"):
         cmd = "%s  --cpp_out=. %s  --proto_path=%s   --proto_path=%s" % (protoc, f,".","../platcommon/")
         print(cmd)

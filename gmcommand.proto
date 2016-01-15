@@ -1,0 +1,39 @@
+package Pmd;
+
+message Gm
+{
+	enum Param
+	{
+		StartUpGameRequestGmPmd_C = 1;
+		StartUpGameReturnGmPmd_S = 2;
+		SurportGameZoneRequestGmPmd_C = 3;
+		SurportGameZoneReturnGmPmd_S = 4;
+	}
+}
+
+// 区服务器请求连接登陆服务器的第一个消息
+message StartUpGameRequestGmPmd_C
+{
+	required string key 		= 1;
+	required uint32 version 	= 2;
+	optional string compress	= 3;		// 压缩算法 ["gzip", "flate", "zlib", "lzw"]
+	optional string encrypt		= 4;		// 加密算法
+	optional string encryptkey	= 5;		// 加密key
+	required string username	= 6;
+	required string password	= 7;
+}
+
+// 返回给区服务器的连接验证状态,这里也发送区信息的原因是考虑游戏服务器可能连接名字验证服务器比连接登陆服务器快
+message StartUpGameReturnGmPmd_S
+{
+	required bool ret = 1;					// 返回成功标志
+	optional string retdesc = 2;			// 返回描述
+}
+
+message SurportGameZoneRequestGmPmd_C
+{
+}
+
+message SurportGameZoneReturnGmPmd_S
+{
+}

@@ -19,7 +19,10 @@ message Login
 		UserLoginReconnectLoginUserPmd_C 		= 13;
 		ReconnectKickoutLoginUserPmd_S 			= 14;
 		ServerKickoutLoginUserPmd_S 			= 15;
-
+		RequestZoneInfoListLoginUserPmd_C		= 16;
+		SetServerLangLoginUserPmd_C				= 17;
+		RequestClientIPLoginUserPmd_C			= 18;
+		ReturnClientIPLoginUserPmd_S			= 19;
 	}
 }
 
@@ -74,9 +77,15 @@ message ZoneInfo
 // 区服务器信息列表,选区列表
 message ZoneInfoListLoginUserPmd_S
 {
-	required string gamename		= 1;	// 游戏名称,(区别与区名)
+	optional string gamename		= 1;	// 游戏名称,(区别与区名)
 	required uint32 gameid	 		= 2;	// 游戏编号
 	repeated ZoneInfo zonelist 		= 3;
+}
+
+// 请求区服务器信息列表,选区列表
+message RequestZoneInfoListLoginUserPmd_C
+{
+	required uint32 gameid	 		= 1;	// 游戏编号
 }
 
 // 请求登陆某个区,发给LoginServer
@@ -98,6 +107,7 @@ enum LoginReturnFailReason
 	UserTokenTimeOut	= 6;				// token已过期
 	LoginDulicate		= 7;				// 重复登陆
 	NoGatewaytDown 		= 8;				// 没有可用网关
+	AccountUsing 		= 9;				// 账号正在使用中
 }
 
 // 登陆某个区的错误返回,LoginServer返回
@@ -181,8 +191,8 @@ message ReconnectKickoutLoginUserPmd_S
 // 服务器主动踢玩家下线
 message ServerKickoutLoginUserPmd_S
 {
-	required uint64 accountid		= 1; // 踢下线的玩家
-	optional string desc			= 2; //描述
+	required uint64 accountid		= 1; 	// 踢下线的玩家
+	optional string desc			= 2; 	// 描述
 }
 
 // 平台用户信息
@@ -229,4 +239,20 @@ enum PlatType
 	PlatType_WEIYOU				= 90;		// 微游联盟
 }
 
+// 通知服务器所采用的编码方式和区域信息
+message SetServerLangLoginUserPmd_C
+{
+	required string lang = 1;
+	required int32 gameregion = 2;			// 游戏运营区域
+}
 
+// 客户端请求得到自己的IP
+message RequestClientIPLoginUserPmd_C
+{
+}
+
+// 返回客户端IP
+message ReturnClientIPLoginUserPmd_S
+{
+	required string pstrip = 1;
+}
