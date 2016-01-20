@@ -78,8 +78,10 @@ def build_go():
     assert(os.system(cmd) == 0)
 
 def build_cpp():
-    print("cp  Makefile.py Makefile.am")
-    os.system("cp Makefile.py Makefile.am")
+    if system != "windows":
+        print("cp  Makefile.py Makefile.am")
+        os.system("cp Makefile.py Makefile.am")
+
     for f in glob.glob("*.pb.go"):
         print("rm %s" % f)
         os.remove(f)
@@ -100,18 +102,20 @@ def build_cpp():
     
     #tools = os.path.join(gopath, "src/git.code4.in/mobilegameserver/tools")
     #protoc = os.path.join(tools, "protoc-" + suffix + "-2.6.1")
-    protoc = "../3Party/protobuf-2.6.1/src/protoc"
+    protoc = os.path.normpath("../3Party/protobuf-2.6.1/src/protoc")
     for f in glob.glob("*.proto"):
-        cmd = "%s  --cpp_out=. %s  --proto_path=%s   --proto_path=%s" % (protoc, f,".","../platcommon/")
+        cmd = "%s  --cpp_out=. %s  --proto_path=%s   --proto_path=%s" % (protoc, f,".", os.path.normpath("../platcommon/"))
         print(cmd)
         assert(os.system(cmd) == 0)
-    cmd = "sed -i '/libplatcommon_la_SOURCES/d' Makefile.am"
-    assert(os.system(cmd) == 0)
-    cmd = "sed -i '$alibplatcommon_la_SOURCES = "
-    for f in glob.glob("*.pb.cc"):
-        cmd = cmd + " " + f
-    cmd = cmd + "' Makefile.am"
-    assert(os.system(cmd) == 0)
+
+    if system != "windows":
+        cmd = "sed -i '/libplatcommon_la_SOURCES/d' Makefile.am"
+        assert(os.system(cmd) == 0)
+        cmd = "sed -i '$alibplatcommon_la_SOURCES = "
+        for f in glob.glob("*.pb.cc"):
+             cmd = cmd + " " + f
+        cmd = cmd + "' Makefile.am"
+        assert(os.system(cmd) == 0)
 
 #build_go()
 
