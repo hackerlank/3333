@@ -123,6 +123,8 @@ prog = os.path.basename(os.path.abspath(__file__))
 parser = argparse.ArgumentParser(prog="./%s" % prog)
 parser.add_argument("-c", "--cpp", action="store_true", dest="cpp", help="init build environment")
 parser.add_argument("-g", "--go", action="store_true", dest="go", help="update dependent repos")
+parser.add_argument("-u", "--update", action="store_true", dest="update", help="update proto")
+parser.add_argument("-i", "--init", action="store_true", dest="init", help="init proto")
 opts = parser.parse_args()
 if opts.cpp:
     build_cpp()
