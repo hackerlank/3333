@@ -30,15 +30,15 @@ def build_go():
     for f in glob.glob("*.pb.cc"):
         print("rm %s" % f)
         os.remove(f)
-    
+
     if len(sys.argv) == 2 and sys.argv[1] == "clean":
         sys.exit(0)
-    
+
     dota = "%s/pkg/%s_*/git.code4.in/mobilegameserver/%s.a" % (gopath, system, dirname)
     for f in glob.glob(dota):
         print("rm %s" % f)
         os.remove(f)
-    
+
     tools = os.path.join(gopath, "src/git.code4.in/mobilegameserver/tools")
     protoc = os.path.join(tools, "protoc-" + suffix)
     protocgengo = os.path.join(tools, "protoc-gen-go-" + suffix)
@@ -46,7 +46,7 @@ def build_go():
         cmd = "%s --plugin=protoc-gen-go=%s --go_out=. %s" % (protoc, protocgengo, f)
         print(cmd)
         assert(os.system(cmd) == 0)
-    
+
     for na in glob.glob("*.pb.go"):
         fp = open(na)
         data = fp.read()
@@ -63,21 +63,23 @@ def build_go():
             data = data.replace(name + ".", "")
         fp.write(data)
         fp.close()
-    
+
     for f in need_prototype:
         cmd = "python %s %s.pb.go" % (os.path.join(tools, "prototype.py"), f)
         print(cmd)
         assert(os.system(cmd) == 0)
-    
+
     cmd = "%s %s ." % (os.path.join(tools, "enummap-" + suffix), package)
     print(cmd)
     assert(os.system(cmd) == 0)
-    
+
     cmd = "gofmt -w -s enummap.pb.go"
     print(cmd)
     assert(os.system(cmd) == 0)
 
 def build_cpp():
+    print("cp  Makefile.py Makefile.am")
+    os.system("cp Makefile.py Makefile.am")
     if system != "windows":
         print("cp  Makefile.py Makefile.am")
         os.system("cp Makefile.py Makefile.am")
@@ -91,15 +93,15 @@ def build_cpp():
     for f in glob.glob("*.pb.cc"):
         print("rm %s" % f)
         os.remove(f)
-    
+
     if len(sys.argv) == 2 and sys.argv[1] == "clean":
         sys.exit(0)
-    
+
     dota = "%s/pkg/%s_*/git.code4.in/mobilegameserver/%s.a" % (gopath, system, dirname)
     for f in glob.glob(dota):
         print("rm %s" % f)
         os.remove(f)
-    
+
     #tools = os.path.join(gopath, "src/git.code4.in/mobilegameserver/tools")
     #protoc = os.path.join(tools, "protoc-" + suffix + "-2.6.1")
     protoc = os.path.normpath("../3Party/protobuf-2.6.1/src/protoc")
