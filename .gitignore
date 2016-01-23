@@ -35,3 +35,5 @@ _testmain.go
 *.exe
 /*.ts
 *.meta
+.md5.pkl
+Makeifle.am
