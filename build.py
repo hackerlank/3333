@@ -114,9 +114,6 @@ def build_go():
 def build_cpp():
     print("cp  Makefile.py Makefile.am")
     os.system("cp Makefile.py Makefile.am")
-    if system != "windows":
-        print("cp  Makefile.py Makefile.am")
-        os.system("cp Makefile.py Makefile.am")
 
     for f in glob.glob("*.pb.go"):
         print("rm %s" % f)
