@@ -92,3 +92,21 @@ enum ServerType
     MAX_SERVERTYPE    = 44;
 }
 
+message ServerInfo
+{
+	optional uint32 zoneid = 1;					/**< down机区 */
+	optional uint32 serverid = 2;					/**< down机服务器id */
+	optional uint32 servertype = 3;				/**< down机服务器类型 */
+	optional uint32 protocol = 4;					/**< 协议号 */
+	optional uint32 buildtime = 5;				/**< 编译时间 */
+	optional uint32 svnversion = 6;				/**< svn 版本号 */
+	optional uint32 data1 = 7;
+	optional uint32 funcion = 8;					/**< 服务器状态ServerInfoState */
+	optional uint32 reserve0 = 9;
+	optional uint32 reserve1 = 10;
+	optional uint32 reserve2 = 11;
+	optional uint32 reserve3 = 12;
+	optional uint32 serverip = 13;					/**< down机服务器ip */
+	optional uint32 usernum = 14;					/**< down机影响人数 */
+	optional uint32 time = 15;						/**< down机服务器时间 */
+}
