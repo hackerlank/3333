@@ -24,6 +24,7 @@ message Login
 		RequestClientIPLoginUserPmd_C			= 18;
 		ReturnClientIPLoginUserPmd_S			= 19;
 		ReconnectErrorLoginUserPmd_S 			= 20;
+		CheckVersionLoginUserPmd_C 			= 21;
 	}
 }
 
@@ -261,4 +262,10 @@ message RequestClientIPLoginUserPmd_C
 message ReturnClientIPLoginUserPmd_S
 {
 	required string pstrip = 1;
+}
+
+message CheckVersionLoginUserPmd_C
+{
+	optional uint32 default_charid = 1;		// 保留字段
+	optional uint32 version = 2;
 }
