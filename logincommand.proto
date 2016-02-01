@@ -23,6 +23,8 @@ message Login
 		SetServerLangLoginUserPmd_C				= 17;
 		RequestClientIPLoginUserPmd_C			= 18;
 		ReturnClientIPLoginUserPmd_S			= 19;
+		ReconnectErrorLoginUserPmd_S 			= 20;
+		CheckVersionLoginUserPmd_C 			= 21;
 	}
 }
 
@@ -176,9 +178,10 @@ message UserLogoutTokenLoginUserPmd_C
 // 发给网关的断线重连消息
 message UserLoginReconnectLoginUserPmd_C
 {
-	required uint64 accountid		= 1;
-	required uint32 timestamp	 	= 2;	// 客户端时间戳
-	required string tokenmd5		= 3;	// md5(string(accountid) + string(timestamp) + string(tokenkey))
+	optional uint64 accountid		= 1;
+	optional uint32 timestamp	 	= 2;	// 客户端时间戳
+	optional string tokenmd5		= 3;	// md5(string(accountid) + string(timestamp) + string(tokenkey))
+	optional uint64 logintempid		= 4;	//端游用
 }
 
 
@@ -187,6 +190,11 @@ message ReconnectKickoutLoginUserPmd_S
 {
 	optional string desc			= 1;	// 描述
 }
+message ReconnectErrorLoginUserPmd_S
+{
+	optional string desc			= 1;	// 描述
+}
+ 
 
 // 服务器主动踢玩家下线
 message ServerKickoutLoginUserPmd_S
@@ -255,4 +263,10 @@ message RequestClientIPLoginUserPmd_C
 message ReturnClientIPLoginUserPmd_S
 {
 	required string pstrip = 1;
+}
+
+message CheckVersionLoginUserPmd_C
+{
+	optional uint32 default_charid = 1;		// 保留字段
+	optional uint32 version = 2;
 }
