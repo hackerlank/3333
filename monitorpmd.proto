@@ -11,6 +11,7 @@ message Monitor
 		SupportGameZoneListSdkPmd_C		= 3;
 		RefreshServerStateListMonitorPmd_S	= 4;
 		RefreshServerStateMonitorPmd_CSC	= 5;
+		stRequestNewbeeCardMonitorUserCmd 	= 6;
 	}
 }
 
@@ -68,3 +69,13 @@ message RefreshServerStateMonitorPmd_CSC
 	required GameZoneServerState state = 1;		// 服务器列表
 	optional bool reset = 2;					// 是否需要重置列表
 }
+
+message stRequestNewbeeCardMonitorUserCmd
+{
+    optional uint32 userid = 1;
+    optional string keystring = 2;
+    optional uint32 mutextype = 3;
+    optional uint32 accid = 4;
+    optional uint64 mobile = 5;
+}
+
