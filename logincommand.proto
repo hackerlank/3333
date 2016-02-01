@@ -245,6 +245,7 @@ enum PlatType
 	PlatType_HILE  				= 82;		// 嗨乐app
 	PlatType_AAY  				= 86;		// 爱爱游
 	PlatType_WEIYOU				= 90;		// 微游联盟
+	PlatType_9g					= 99;		// 万游在线
 }
 
 // 通知服务器所采用的编码方式和区域信息
