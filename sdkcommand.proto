@@ -27,6 +27,8 @@ message Sdk
 		ReturnRedeemBackPlatPointSdkPmd_S = 20;
 		RequestUnbindAccountSdkPmd_CS = 21;
 		NotifyTapJoyRequestSdkPmd_S = 22;
+		PushMsgRequestSdkPmd_C = 23; //谷歌或者苹果消息推送
+		PushMsgReturnSdkPmd_S = 24;
 	}
 }
 
@@ -292,6 +294,23 @@ message NotifyTapJoyRequestSdkPmd_S
 	optional string extdata     = 4; //扩展字段(备用)
 }
 
+//消息推送
+message PushMsgRequestSdkPmd_C
+{
+	optional PlatBaseData data  = 1; //玩家登陆平台的基础信息
+	optional uint32 msgid       = 2; //消息ID，方便游戏处理返回值
+	repeated string tokens      = 3; //设备标识
+	optional string title       = 4; //推送标题
+	optional string message     = 5; //推送的消息内容
+	optional string extdata     = 6; //预留
+}
 
-
+//消息推送
+message PushMsgReturnSdkPmd_S
+{
+	optional PlatBaseData data  = 1; //玩家登陆平台的基础信息
+	optional uint32 msgid       = 2; //消息ID
+	optional uint32 ret         = 3;
+	optional string retdesc     = 4;
+}
 
