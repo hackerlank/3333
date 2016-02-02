@@ -12,6 +12,12 @@ message Monitor
 		RefreshServerStateListMonitorPmd_S	= 4;
 		RefreshServerStateMonitorPmd_CSC	= 5;
 		stRequestNewbeeCardMonitorUserCmd 	= 6;
+		stServerShutdownMonitorUserCmd 		= 7;
+		stServerStartupMonitorUserCmd 		= 8;
+		stServerListMonitorUserCmd 		= 9;
+		stMonitorServerMessageMonitorUserCmd 	= 10;
+		stGameClientCmdExitMonitorUserCmd 	= 12;
+		stErrorLogMonitorUserCmd 		= 13;
 	}
 }
 
@@ -78,4 +84,60 @@ message stRequestNewbeeCardMonitorUserCmd
     optional uint32 accid = 4;
     optional uint64 mobile = 5;
 }
+
+enum ServerInfoState
+{
+    ServerInfoState_DoubleExp    	= 1;
+    ServerInfoState_DoubleExp_Task    	= 2;
+} 
+
+enum MonitorServerMessageType
+{
+    MonitorServerMessageType_Info    = 0;
+    MonitorServerMessageType_Warning    = 1;
+    MonitorServerMessageType_Error    = 2;
+    MonitorServerMessageType_Notify    = 3;
+} 
+
+message stServerShutdownMonitorUserCmd
+{
+    optional ServerInfo data = 1;
+}
+
+message stServerStartupMonitorUserCmd
+{
+    optional ServerInfo data = 1;
+}
+
+message stServerListMonitorUserCmd
+{
+    repeated ServerInfo data = 1;
+}
+
+message stMonitorServerMessageMonitorUserCmd
+{
+    optional uint32 gmid = 1;
+    optional uint32 type = 2;
+    optional string data = 3;
+}
+
+message ClientCmdExitInfo
+{
+	optional uint32 time = 1;
+	optional uint32 zone = 2;
+	optional uint32 num = 3;
+	optional uint32 byCmd = 4;
+	optional uint32 byParam = 5;
+	optional uint32 nettype = 6;///暂时不用
+};
+message stGameClientCmdExitMonitorUserCmd
+{
+    optional ClientCmdExitInfo data = 1;
+}
+
+message stErrorLogMonitorUserCmd
+{
+    optional string logger = 1;
+}
+
 
