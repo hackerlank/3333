@@ -491,10 +491,9 @@ message stNotifyShutdownGmUserCmd
     optional uint32 gmid = 1;
     optional string gmName = 2;
     optional uint32 zoneid = 3;
-    optional uint32 notifyTime = 4;
+    optional uint32 leftTime = 4;
     optional uint32 shutdownTime = 5;
-    optional uint32 num = 6;
-    optional bytes data = 7;
+    optional string data = 6;
 }
 
 message stCancelShutdownGmUserCmd
@@ -1001,8 +1000,7 @@ message stGmCommandUserCmd
 message stGmCommandToSceneUserCmd
 {
     optional uint32 gmid = 1;
-    optional uint32 num = 2;
-    optional bytes str = 3;
+    optional bytes str = 2;
 }
 
 message stForceChangeSexGmUserCmd
