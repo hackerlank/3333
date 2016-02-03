@@ -504,7 +504,7 @@ message stCancelShutdownGmUserCmd
 message stGmServerMessageGmUserCmd
 {
     optional uint32 type = 1;
-    optional uint32 num = 2;
+    optional uint32 gmid = 2;
     optional bytes data = 3;
 }
 
