@@ -110,3 +110,14 @@ message ServerInfo
 	optional uint32 usernum = 14;					/**< down机影响人数 */
 	optional uint32 time = 15;						/**< down机服务器时间 */
 }
+/**
+ * \author	王海军
+ * \brief
+ */
+enum NetType
+{
+	NetType_near = 0;		//近程路由，电信区连电信服务器，网通区连网通服务器
+	NetType_far = 1;		//远端路由，电信区连网通服务器，网通区连电信服务器
+	NetType_CTC = 2;				//电信
+	NetType_CNC = 3;				//网通
+};
