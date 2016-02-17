@@ -1,5 +1,5 @@
 package Pmd;
-
+/*
 message Gm
 {
 	enum Param
@@ -229,20 +229,20 @@ message ReturnDelGmUserPmd_S
 //GM权限标识
 enum GMToolRightKey
 {
-    RightKey_Login              = 1;    /**< 登陆 */
-    RightKey_AccountManage      = 2;    /**< 帐号管理 */
-    RightKey_Broadcast          = 4;    /**< 公告系统 */
-    RightKey_ChatMonitor        = 8;    /**< 聊天监控 */
-    RightKey_ShutDownNotify     = 16;   /**< 停机公告系统 */
-    RightKey_Punish             = 32;   /**< 处罚玩家 */
-    RightKey_PlayerInfo         = 64;   /**< 玩家信息查询 */
-    RightKey_LogQuery           = 128;  /**< 操作日志查询 */
-    RightKey_OnlineQA           = 256;  /**< 在线答疑 */
-    RightKey_ProductionCenter   = 512;  /**< 产品中心权限 */
-    RightKey_Namecontrol        = 1024; /**<名称插入修改 */
-    RightKey_SetRecvQuestion    = 2048; /**<自动接单管理权限*/
-    RightKey_NewVersion         = 4096; /**<兵王2新版本公告控制*/ 
-    RightKey_GMCommand          = 8192; /**<由GM工具发向游戏服务器的批量GM指令*/ 
+    RightKey_Login              = 1;    // 登陆
+    RightKey_AccountManage      = 2;    // 帐号管理 
+    RightKey_Broadcast          = 4;    // 公告系统 
+    RightKey_ChatMonitor        = 8;    // 聊天监控 
+    RightKey_ShutDownNotify     = 16;   // 停机公告系统 
+    RightKey_Punish             = 32;   // 处罚玩家 
+    RightKey_PlayerInfo         = 64;   // 玩家信息查询 
+    RightKey_LogQuery           = 128;  // 操作日志查询 
+    RightKey_OnlineQA           = 256;  // 在线答疑 
+    RightKey_ProductionCenter   = 512;  // 产品中心权限 
+    RightKey_Namecontrol        = 1024; // 名称插入修改 
+    RightKey_SetRecvQuestion    = 2048; // 自动接单管理权限
+    RightKey_NewVersion         = 4096; // 兵王2新版本公告控制 
+    RightKey_GMCommand          = 8192; // 由GM工具发向游戏服务器的批量GM指令 
 }
 
 //公告相关
@@ -308,4 +308,4 @@ message PunishRecordGmUserPmd_C
 {
     optional uint32 zoneid       = 1; //区服ID，0则表示查询当前游戏的所有区服的处罚记录
 }
-
+*/
