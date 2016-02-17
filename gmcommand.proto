@@ -1,5 +1,4 @@
 package Pmd;
-/*
 message Gm
 {
 	enum Param
@@ -22,18 +21,18 @@ message Gm
         ReturnDelGmUserPmd_S          = 14;  //删除GM账号返回
         //修改GM账号权限
         //修改账号权限返回
-        
+
         //公告相关
 		BroadcastNewGmUserPmd_CS      = 17;   //公告任务指令。该指令可用于公告的添加、修改、查询返回
 		BroadcastDeleteGmUserPmd_C    = 18;   //工具发给服务器的公告删除指令
 		BroadcastRequestGmUserPmd_C   = 19;   //工具发给服务器的对未发送完毕的公告查询的指令
-        
+
         //处罚玩家
         PunishUserGmUserPmd_CS        = 20;   //处罚玩家
-        PunishRecordGmUserPmd_C       = 21;   //查询当前处罚记录  
+        PunishRecordGmUserPmd_C       = 21;   //查询当前处罚记录
 
         //补偿玩家
-        
+
         //服务器信息查询
 		stRequestTimeGmUserCmd        = 22;   //请求游戏服务器时间
 		stReturnTimeGmUserCmd         = 23;   //返回游戏服务器时间
@@ -111,7 +110,7 @@ message Gm
 		stDeleteProcessedQuestionGmUserCmd = 98;    //预处理过命令，接单后删除命令
 		stRequestOneQuestionGmUserCmd = 99;   //GMTool 请求发送一个问题
 		stReturnOneQuestionGmUserCmd  = 100;  //返回一个问题给请求问题的GM
-		stRequestResetGmWorkStateGmUserCmd = 101;  // 设置GM 工作的相关状态  自动接单，接单最大数量，工作状态等 
+		stRequestResetGmWorkStateGmUserCmd = 101;  // 设置GM 工作的相关状态  自动接单，接单最大数量，工作状态等
 		stReturnResetGmWorkStateGmUserCmd = 102;   // 当对GM回答问题状态权限改变后广播给GMTool
 		stGmCommandUserCmd            = 103;  // 由GM工具发向游戏服务器的批量GM指令
 		stGmCommandToSceneUserCmd     = 104;  // 由GMGServer转发GM指令到游戏服务器
@@ -161,12 +160,12 @@ message GmUserInfo
     optional uint32 workstate = 7;       //工作状态
     optional uint32 winnum    = 8;       //客户端打开窗口的数量
     optional uint32 gameid    = 9;       //游戏ID，登陆后保存在GMServer，不返回给客户端
-    optional uint32 bindip    = 10;      //绑定IP 
+    optional uint32 bindip    = 10;      //绑定IP
     optional string config    = 11;      //GM配置
 }
 
 //GMClient连接GMServer的第一个协议
-message RequestLoginGmUserPmd_C 
+message RequestLoginGmUserPmd_C
 {
 	required string key 		= 1;
 	required uint32 version 	= 2;
@@ -179,10 +178,10 @@ message RequestLoginGmUserPmd_C
 	optional uint32 loginip     = 9;  // 登陆IP，当登陆方式为1时，需传入
 }
 //登陆验证返回
-message ReturnLoginGmUserPmd_S 
+message ReturnLoginGmUserPmd_S
 {
     optional uint32 retcode   = 1;   // 验证结果, 0登陆成功，1密码错误， 2账号不存在， 3未知错误，4账号正在使用，5版本号错误
-    optional GmUserInfo data  = 2;   // Gm账号信息 
+    optional GmUserInfo data  = 2;   // Gm账号信息
 }
 //GM配置
 message GmConfigDataGmUserPmd_CS
@@ -230,19 +229,19 @@ message ReturnDelGmUserPmd_S
 enum GMToolRightKey
 {
     RightKey_Login              = 1;    // 登陆
-    RightKey_AccountManage      = 2;    // 帐号管理 
-    RightKey_Broadcast          = 4;    // 公告系统 
-    RightKey_ChatMonitor        = 8;    // 聊天监控 
-    RightKey_ShutDownNotify     = 16;   // 停机公告系统 
-    RightKey_Punish             = 32;   // 处罚玩家 
-    RightKey_PlayerInfo         = 64;   // 玩家信息查询 
-    RightKey_LogQuery           = 128;  // 操作日志查询 
-    RightKey_OnlineQA           = 256;  // 在线答疑 
-    RightKey_ProductionCenter   = 512;  // 产品中心权限 
-    RightKey_Namecontrol        = 1024; // 名称插入修改 
+    RightKey_AccountManage      = 2;    // 帐号管理
+    RightKey_Broadcast          = 4;    // 公告系统
+    RightKey_ChatMonitor        = 8;    // 聊天监控
+    RightKey_ShutDownNotify     = 16;   // 停机公告系统
+    RightKey_Punish             = 32;   // 处罚玩家
+    RightKey_PlayerInfo         = 64;   // 玩家信息查询
+    RightKey_LogQuery           = 128;  // 操作日志查询
+    RightKey_OnlineQA           = 256;  // 在线答疑
+    RightKey_ProductionCenter   = 512;  // 产品中心权限
+    RightKey_Namecontrol        = 1024; // 名称插入修改
     RightKey_SetRecvQuestion    = 2048; // 自动接单管理权限
-    RightKey_NewVersion         = 4096; // 兵王2新版本公告控制 
-    RightKey_GMCommand          = 8192; // 由GM工具发向游戏服务器的批量GM指令 
+    RightKey_NewVersion         = 4096; // 兵王2新版本公告控制
+    RightKey_GMCommand          = 8192; // 由GM工具发向游戏服务器的批量GM指令
 }
 
 //公告相关
@@ -271,7 +270,7 @@ message BroadcastDeleteGmUserPmd_C
 {
     optional uint32 taskid      = 1;   //公告ID
 }
-//工具发给服务器的对未发送完毕的公告查询的指令  
+//工具发给服务器的对未发送完毕的公告查询的指令
 message BroadcastRequestGmUserPmd_C
 {
     optional uint32 zoneid    = 1;    //区服ID
@@ -282,8 +281,8 @@ message BroadcastRequestGmUserPmd_C
 message PunishUserInfo
 {
     optional uint32 gameid    = 1;   //游戏ID
-    optional uint32 zoneid    = 2;   //区服ID   
-    optional string username  = 3;   //玩家昵称 
+    optional uint32 zoneid    = 2;   //区服ID
+    optional string username  = 3;   //玩家昵称
     optional uint32 accid     = 4;   //玩家账号ID
     optional uint32 ip        = 5;   //玩家IP(封停账号时使用，针对单个IP封停)
     optional uint32 gmid      = 6;   //封停的GM ID
@@ -301,11 +300,10 @@ message PunishUserGmUserPmd_C
 //游戏服返回的处罚结果
 message PunishResultGmUserPmd_S
 {
-    optional uint32 retcode      = 1; //0成功，1失败 
+    optional uint32 retcode      = 1; //0成功，1失败
 }
 //处罚当前所有处罚记录
 message PunishRecordGmUserPmd_C
 {
     optional uint32 zoneid       = 1; //区服ID，0则表示查询当前游戏的所有区服的处罚记录
 }
-*/

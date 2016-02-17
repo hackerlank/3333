@@ -1,5 +1,6 @@
 package Pmd;
 
+/*
 message Gm
 {
 	enum Param
@@ -164,7 +165,7 @@ enum GMToolRightKey
     RightKey_SetRecvQuestion    = 2048;
     RightKey_NewVersion    	= 4096;
     RightKey_GMCommand    	= 8192;
-} 
+}
 
 message ForbidAccountData
 {
@@ -194,7 +195,7 @@ enum GMOptKey
     AccountDelete    = 2;
     AccountPasswordModify    = 3;
     AccountPriModify    = 4;
-} 
+}
 
 enum UserType
 {
@@ -202,7 +203,7 @@ enum UserType
     UserType_VIP1    = 1;
     UserType_VIP2    = 2;
     UserType_VIP3    = 3;
-} 
+}
 
 enum ReturnLoginGmType
 {
@@ -213,21 +214,21 @@ enum ReturnLoginGmType
     ReturnLoginGmType_Error_Using    = 4;
     ReturnLoginGmType_Error_Version    = 5;
     ReturnLoginGmType_End    = 6;
-} 
+}
 
 enum GmServerMessageType
 {
     GmServerMessageType_Info    = 0;
     GmServerMessageType_Warning    = 1;
     GmServerMessageType_Error    = 2;
-} 
+}
 
 enum NameOperateType
 {
     NameOperateType_Rolename    = 0;
     NameOperateType_Army    = 1;
     NameOperateType_Corps    = 2;
-} 
+}
 
 enum dbtype
 {
@@ -236,7 +237,7 @@ enum dbtype
     dbuint    = 3;
     dbvarstr4    = 8;
     dbfixstr_MAX_NAMESIZE    = 9;
-} 
+}
 
 enum enumQuestionOver
 {
@@ -245,13 +246,13 @@ enum enumQuestionOver
     enumQuestionOver_gmDel    = 2;
     enumQuestionOver_gmProcess    = 3;
     enumQuestionOver_gmPreProcess    = 4;
-} 
+}
 
 enum GameClientMessageType
 {
     MessageType_Box    = 0;
     MessageType_MiniSize    = 1;
-} 
+}
 
 
 
@@ -1013,3 +1014,4 @@ message stRequestMobileInfoGmUserCmd
     optional uint32 accid = 2;
 }
 
+// */
