@@ -46,13 +46,14 @@ message Gm
         RequestAwardUserGmUserPmd_C      = 32;   //请求给玩家发放道具
         ReturnAwardUserGmUserPmd_S       = 33;   //返回玩家道具发放结果
 
+        stGmServerMessageGmUserCmd       = 34;   // GmServer发给工具端的弹出消息
         //玩家信息相关
-        RequestUserInfoGmUserPmd_C       = 34;   //查询玩家基础信息
-        ReturnUserInfoGmUserPmd_S        = 35;   //返回玩家基础信息
-        RequestModifyUserInfoGmUserPmd_C = 36;   //更新玩家信息
-        ReturnModifyUserInfoGmUserPmd_S  = 37;   //返回更新结果
-        RequestUserPackageGmUserPmd_C    = 38;   //请求玩家背包
-        ReturnUserPackageGmUserPmd_S     = 39;   //返回玩家背包
+        RequestUserInfoGmUserPmd_C       = 35;   //查询玩家基础信息
+        ReturnUserInfoGmUserPmd_S        = 36;   //返回玩家基础信息
+        RequestModifyUserInfoGmUserPmd_C = 37;   //更新玩家信息
+        ReturnModifyUserInfoGmUserPmd_S  = 38;   //返回更新结果
+        RequestUserPackageGmUserPmd_C    = 39;   //请求玩家背包
+        ReturnUserPackageGmUserPmd_S     = 40;   //返回玩家背包
     }
 }
 
@@ -433,4 +434,11 @@ message ReturnModifyUserInfoGmUserPmd_S
     optional uint32 zoneid    = 2; //区服ID
     optional uint32 charid    = 3; //修改的角色ID
     optional uint32 gmid      = 4; //
+}
+
+message stGmServerMessageGmUserCmd
+{
+    optional uint32 type = 1;
+    optional uint32 gmid = 2;
+    optional bytes data = 3;
 }
