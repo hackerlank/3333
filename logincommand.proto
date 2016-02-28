@@ -63,10 +63,10 @@ message AccountTokenVerifyReturnLoginUserPmd_S
 // 区服务器状态
 enum ZoneState
 {
-	Shutdown 	= 0;						// 关闭状态
-	Normal 		= 1;						// 正常运行
-	Fullly 		= 2;						// 爆满
-	Startting   = 3;                        // 刚起动现无玩家
+	Shutdown 	= 0;						// 关闭状态ZoneState_Shutdown
+	Normal 		= 1;						// 正常运行ZoneState_Normal
+	Fullly 		= 2;						// 爆满ZoneState_Fullly
+	Starting	= 3;						// 正在启动ZoneState_Starting
 }
 
 // 区服务器信息
