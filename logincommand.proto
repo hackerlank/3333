@@ -66,6 +66,7 @@ enum ZoneState
 	Shutdown 	= 0;						// 关闭状态
 	Normal 		= 1;						// 正常运行
 	Fullly 		= 2;						// 爆满
+	Startting   = 3;                        // 刚起动现无玩家
 }
 
 // 区服务器信息
