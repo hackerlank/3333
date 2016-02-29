@@ -156,6 +156,7 @@ message QueryPackageCodeMonitorPmd_CS
 	optional uint32 usedzoneid = 8;
 	optional uint32 useduid    = 9;
 	optional string extdata    = 10; 
+	optional uint32 codetype   = 11;
 }
 
 // 请求使用补偿码
@@ -170,6 +171,7 @@ message RequestUsePackageCodeMonitorPmd_CS
 	optional uint32 usedzoneid = 7;
 	optional uint32 useduid    = 8;
 	optional string extdata    = 9; 
+	optional uint32 codetype   = 10;
 }
 
 // 请求插入补偿码 
@@ -184,4 +186,5 @@ message RequestInsertPackageCodeMonitorPmd_CS
 	optional uint32 usedgameid = 7;
 	optional uint32 usedzoneid = 8;
 	optional uint32 useduid    = 9;
+	optional uint32 codetype   = 10;
 }
