@@ -188,3 +188,10 @@ message RequestInsertPackageCodeMonitorPmd_CS
 	optional uint32 useduid    = 9;
 	optional uint32 codetype   = 10;
 }
+
+// 重置补偿码
+message RequestResetPackageCodeMonitorPmd_CS
+{
+	required string codeid     = 1;
+	optional uint32 ret        = 2; // 0成功，1失败
+}
