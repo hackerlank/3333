@@ -21,7 +21,7 @@ message Monitor
 		QueryPackageCodeMonitorPmd_CS      = 14; // 请求查询补偿码
 		RequestUsePackageCodeMonitorPmd_CS = 15; // 请求使用补偿码
 		RequestInsertPackageCodeMonitorPmd_CS = 16; // 请求插入一条补偿码
-		RequestResetPackageCodeMonitorPmd_CS = 16; // 请求重置一条补偿码
+		RequestResetPackageCodeMonitorPmd_CS = 17; // 请求重置一条补偿码
 	}
 }
 
