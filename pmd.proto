@@ -122,3 +122,12 @@ enum NetType
 	NetType_CTC = 2;				//电信
 	NetType_CNC = 3;				//网通
 };
+/**
+ * \author	王海军
+ * \brief	机器人id断定义
+ */
+enum RobotUid
+{
+	RobotUid_begin 	= 10000;		//最小id
+	RobotUid_end 	= 20000;		//最大id
+};
