@@ -6,9 +6,14 @@ message Config
 	enum Version
 	{
 		option allow_alias = true;
-		Version_Login 			= 20140427;	// 玩家与登陆服务器,Zoneserver与登陆服务器版本号
-		Version_Game 			= 20140427;	// 玩家与ZoneServer服务器的版本号
-		Version_Gm 				= 20140427;	// 玩家与ZoneServer服务器的版本号
+		Version_Login 			= 20150912;	// 玩家与登陆服务器,Zoneserver与登陆服务器版本号
+		Version_Game 			= 20150912;	// 玩家与ZoneServer服务器的版本号
+		Version_Gm 			= 20150912;	// 玩家与ZoneServer服务器的版本号
+		Version_Gateway			= 20150912;//游戏服务器与网关服务器的协议
+		Version_NameS			= 20150912;//游戏服务器与网关服务器的协议
+		Version_Monitor			= 20150912;//游戏服务器与网关服务器的协议
+		Version_Sdk			= 20150912;//游戏服务器与网关服务器的协议
+		Version_Build			= 20150912;//游戏服务器与网关服务器的协议
 	}
 	enum Debug
 	{
