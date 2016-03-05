@@ -53,8 +53,6 @@ message Gm
 		RequestUserPackageGmUserPmd_C             = 39;   //请求玩家背包
 		ReturnUserPackageGmUserPmd_S              = 40;   //返回玩家背包
 
-		CurrentGmLevelGmUserPmd_S              	  = 41;   //返回玩家背包
-
 		stRequestLoginGmUserCmd                   = 105;   // GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;   // 返回GM登陆验证结果
 		stConfigGmUserCmd                         = 107;   // 获取GM客户端配置
@@ -488,12 +486,6 @@ message ReturnUserPackageGmUserPmd_S
 	required uint32 zoneid     = 2; //
 	required uint32 charid     = 3; //
 	required uint32 gmid       = 4; //
-}
-
-//玩家当前gm权限
-message CurrentGmLevelGmUserPmd_S
-{
-	optional uint32 gmlevel       = 1; //权限等级,0表示无权限
 }
 //修改玩家信息
 message RequestModifyUserInfoGmUserPmd_C

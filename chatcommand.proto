@@ -8,6 +8,7 @@ message Chat
 		GMCommandChatUserPmd_C 		= 2;
 		GMCommandListChatUserPmd_S	= 4;
 		PrivateChatUserPmd_CS 		= 5;
+		CurrentGmLevelChatUserPmd_S	= 6; 
 
 	}
 }
@@ -71,4 +72,10 @@ message PrivateChatUserPmd_CS
 	optional bool sexman		= 3;
 	required string info 		= 4;
 	optional uint64 time        = 5; 	// 增加时间戳
+}
+
+//玩家当前gm权限
+message CurrentGmLevelChatUserPmd_S
+{
+	optional uint32 gmlevel       = 1; //权限等级,0表示无权限
 }
