@@ -9,14 +9,14 @@ import "logincommand.proto";
 /// Client到LoginServer和unilight之间的HTTP POST通信URL签名
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /*
-URL + "?unigame_plat_sign=" + MD5(
-	tojsonstring(HttpPackage) +
-	tostring(unigame_plat_timestamp) +
-	unigame_plat_key)
+   URL + "?unigame_plat_sign=" + MD5(
+   tojsonstring(HttpPackage) +
+   tostring(unigame_plat_timestamp) +
+   unigame_plat_key)
 
-	// 可选参数。如果指定则消息被整体压缩后以arraybuffer的二进制方式发送，下行消息会以相同方式压缩
-	+ "&compress=" + Pmd.CompressType // ["gzip", "flate", "zlib", "lzw"]
-*/
+// 可选参数。如果指定则消息被整体压缩后以arraybuffer的二进制方式发送，下行消息会以相同方式压缩
++ "&compress=" + Pmd.CompressType // ["gzip", "flate", "zlib", "lzw"]
+ */
 
 message Any
 {
@@ -76,8 +76,8 @@ message PlatTokenLoginReturn
 	required string uid = 3;						// 可唯一代表一个用户身份的ID，由平台统一生成
 	required string sid = 4;						// 组合字段：<平台id>::<平台账户>
 	required string unigame_plat_key = 5;			// 平台登录密钥，用于上行消息URL签名
-    required string unigame_plat_login = 6;			// 平台登录token，用于上行消息
-    required uint32 unigame_plat_login_life = 7;	// 平台登录token从现在开始多少秒后过期，过期后或服务器返回HttpReturnCode_SignError时客户端需要重新走登陆流程
+	required string unigame_plat_login = 6;			// 平台登录token，用于上行消息
+	required uint32 unigame_plat_login_life = 7;	// 平台登录token从现在开始多少秒后过期，过期后或服务器返回HttpReturnCode_SignError时客户端需要重新走登陆流程
 
 	optional string timezone_name = 8;				// 时区的名字
 	required int32 timezone_offset = 9;				// unilight服务器时区相对于UTC的时间偏移量，单位秒
