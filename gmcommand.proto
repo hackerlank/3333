@@ -506,12 +506,6 @@ message ReturnModifyUserInfoGmUserPmd_S
     optional uint32 gmid      = 4; //
 }
 
-message stGmServerMessageGmUserCmd
-{
-    optional uint32 type = 1;
-    optional uint32 gmid = 2;
-    optional bytes data = 3;
-}
 message QuestionBaseData
 {
     optional uint32 time = 1;						/**< 问题发出的时间 */
