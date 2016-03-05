@@ -53,6 +53,9 @@ message Gm
 		RequestUserPackageGmUserPmd_C             = 39;   //请求玩家背包
 		ReturnUserPackageGmUserPmd_S              = 40;   //返回玩家背包
 
+        //
+        SelectGamezoneGmUserPmd_C                 = 41;   //选择当前需要监控的区服
+
 		stRequestLoginGmUserCmd                   = 105;   // GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;   // 返回GM登陆验证结果
 		stConfigGmUserCmd                         = 107;   // 获取GM客户端配置
@@ -275,7 +278,13 @@ message ReturnModifyPriGmUserPmd_S
 {
 	optional uint32 retcode   = 1;  //0成功,其他失败
 }
-
+//选择需要监控的区服
+message SelectGamezoneGmUserPmd_SC
+{
+    optional uint32 retcode   = 1;  //0成功
+    required uint32 gameid    = 2;
+    required uint32 zoneid    = 3;
+}
 //公告相关
 message BroadcastInfo
 {
