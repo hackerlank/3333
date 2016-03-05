@@ -1,5 +1,5 @@
 package Pmd;
-import "pmd.proto"
+import "pmd.proto";
 message Gm
 {
 	enum Param
