@@ -11,13 +11,13 @@ message Monitor
 		SupportGameZoneListSdkPmd_C		= 3;
 		RefreshServerStateListMonitorPmd_S	= 4;
 		RefreshServerStateMonitorPmd_CSC	= 5;
-		stRequestNewbeeCardMonitorUserCmd 	= 6;
-		stServerShutdownMonitorUserCmd 		= 7;
-		stServerStartupMonitorUserCmd 		= 8;
-		stServerListMonitorUserCmd 		= 9;
-		stMonitorServerMessageMonitorUserCmd 	= 10;
-		stGameClientCmdExitMonitorUserCmd 	= 12;
-		stErrorLogMonitorUserCmd 		= 13;
+		stRequestNewbeeCardMonitorUserCmd_C 	= 6;
+		stServerShutdownMonitorUserCmd_S	= 7;
+		stServerStartupMonitorUserCmd_S		= 8;
+		stServerListMonitorUserCmd_S 		= 9;
+		stMonitorServerMessageMonitorUserCmd_S 	= 10;
+		stGameClientCmdExitMonitorUserCmd_S 	= 12;
+		stErrorLogMonitorUserCmd_S 		= 13;
 		QueryPackageCodeMonitorPmd_CS      = 14; // 请求查询补偿码
 		RequestUsePackageCodeMonitorPmd_CS = 15; // 请求使用补偿码
 		RequestInsertPackageCodeMonitorPmd_CS = 16; // 请求插入一条补偿码
@@ -80,7 +80,7 @@ message RefreshServerStateMonitorPmd_CSC
 	optional bool reset = 2;					// 是否需要重置列表
 }
 
-message stRequestNewbeeCardMonitorUserCmd
+message stRequestNewbeeCardMonitorUserCmd_C
 {
     optional uint32 userid = 1;
     optional string keystring = 2;
@@ -103,22 +103,22 @@ enum MonitorServerMessageType
     MonitorServerMessageType_Notify    = 3;
 } 
 
-message stServerShutdownMonitorUserCmd
+message stServerShutdownMonitorUserCmd_S
 {
     optional ServerInfo data = 1;
 }
 
-message stServerStartupMonitorUserCmd
+message stServerStartupMonitorUserCmd_S
 {
     optional ServerInfo data = 1;
 }
 
-message stServerListMonitorUserCmd
+message stServerListMonitorUserCmd_S
 {
     repeated ServerInfo data = 1;
 }
 
-message stMonitorServerMessageMonitorUserCmd
+message stMonitorServerMessageMonitorUserCmd_S
 {
     optional uint32 gmid = 1;
     optional uint32 type = 2;
@@ -134,12 +134,12 @@ message ClientCmdExitInfo
 	optional uint32 byParam = 5;
 	optional uint32 nettype = 6;///暂时不用
 };
-message stGameClientCmdExitMonitorUserCmd
+message stGameClientCmdExitMonitorUserCmd_S
 {
     optional ClientCmdExitInfo data = 1;
 }
 
-message stErrorLogMonitorUserCmd
+message stErrorLogMonitorUserCmd_S
 {
     optional string logger = 1;
 }
