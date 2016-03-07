@@ -17,7 +17,7 @@ message Gm
 		ReturnPasswordGmUserPmd_S                 = 10;  //更改密码返回
 		AddNewGmUserPmd_C                         = 11;  //新加账号
 		ReturnAddNewGmUserPmd_S                   = 12;  //新加账号返回
-		GMAccountListGmUserPmd_CS                 = 13;  //请求GM账号列表
+		//GMAccountListGmUserPmd_CS                 = 13;  //请求GM账号列表
 		RequestDelGmUserPmd_C                     = 14;  //删除GM账号
 		ReturnDelGmUserPmd_S                      = 15;  //删除GM账号返回
 		RequestModifyPriGmUserPmd_C               = 16;  //更改GM权限
@@ -36,7 +36,7 @@ message Gm
 		ReturnPunishUserGmUserPmd_S               = 25;   //处罚玩家返回
 		DeletePunishUserGmUserPmd_C               = 26;   //请求删除处罚
 		ReturnDeletePunishUserGmUserPmd_S         = 27;   //删除处罚结果
-		RequestPunishListGmUserPmd_C              = 28;   //查询当前处罚记录  
+		RequestPunishListGmUserPmd_C              = 28;   //查询当前处罚记录
 		ReturnPunishListGmUserPmd_S               = 29;   //返回查询列表
 
 		//奖励玩家
@@ -54,21 +54,21 @@ message Gm
 		ReturnUserPackageGmUserPmd_S              = 40;   //返回玩家背包
 
         //
-        SelectGamezoneGmUserPmd_C                 = 41;   //选择当前需要监控的区服
+        //SelectGamezoneGmUserPmd_C                 = 41;   //选择当前需要监控的区服
 
 		stRequestLoginGmUserCmd                   = 105;   // GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;   // 返回GM登陆验证结果
 		stConfigGmUserCmd                         = 107;   // 获取GM客户端配置
 		stSetPasswordGmUserCmd                    = 108;   // 设置GM密码
 		stReturnPasswordGmUserCmd                 = 109;   // 返回GM密码设置结果
-		stAddNewGmUserCmd                         = 110;  // 添加GM账户 
+		stAddNewGmUserCmd                         = 110;  // 添加GM账户
 		stReturnAddNewGmUserCmd                   = 111;  // 返回GM账户添加结果
 		stQueryListGmUserCmd                      = 112;  // 查询GM账户列表
 		stReturnListGmUserCmd                     = 113;  // 返回GM账户列表
 		stRequestZoneConfigGmUserCmd              = 114;  // 请求区配置
 		stReturnZoneDicCountryGmUserCmd           = 115;  // 返回区国家字典
 		stReturnZoneDicMapGmUserCmd               = 116;  // 返回区地图字典
-		stForwardToAllGmUserCmd                   = 117;  // 转发消息给所有GM 
+		stForwardToAllGmUserCmd                   = 117;  // 转发消息给所有GM
 		stForwardToOnlyGmUserCmd                  = 118;  // 转发消息给指定GM
 		stBroadcastNewGmUserCmd                   = 119;  // 公告任务指令。该指令可用于公告的添加、修改、查询返回
 		stBroadcastDeleteGmUserCmd                = 120;  // 工具发给服务器的公告删除指令
@@ -108,7 +108,7 @@ message Gm
 		stReturnUserPosUserGmUserCmd              = 154;  // 返回地图玩家坐标
 		stEndUserPosUserGmUserCmd                 = 155;  // 地图玩家数据发完成消息
 		stBroadcastReallySendGmUserCmd            = 156;  // 公告发送后服务器给工具端的通知消息
-		stDBQueryGmUserCmd                        = 157;  // GMTool向GMServer发送的数据库查询指令 
+		stDBQueryGmUserCmd                        = 157;  // GMTool向GMServer发送的数据库查询指令
 		stDBReturnDataGmUserCmd                   = 158;  // GMServer向GMTool返回的数据库查询结果
 		stDBReturnEndGmUserCmd                    = 159;  // GMServer向GMTool通知数据库查询结果已经发送完毕，以便客户端及时结束事务
 		stFullForbidAccountLogDataGmUserCmd       = 160;  // [与工具端无关]RecordServer填充完整的玩家封禁消息，用于GMServer日志
@@ -149,14 +149,14 @@ message Gm
 		stDeleteProcessedQuestionGmUserCmd        = 195;  // 预处理过命令，接单后删除命令
 		stRequestOneQuestionGmUserCmd             = 196;  // GMTool 请求发送一个问题
 		stReturnOneQuestionGmUserCmd              = 197;  // 返回一个问题给请求问题的GM
-		stRequestResetGmWorkStateGmUserCmd        = 198;  // 设置GM 工作的相关状态  自动接单，接单最大数量，工作状态等 
-		stReturnResetGmWorkStateGmUserCmd         = 199;  // 当对GM回答问题状态权限改变后广播给GMTool： 自动接单，接单最大数量，工作状态等 
+		stRequestResetGmWorkStateGmUserCmd        = 198;  // 设置GM 工作的相关状态  自动接单，接单最大数量，工作状态等
+		stReturnResetGmWorkStateGmUserCmd         = 199;  // 当对GM回答问题状态权限改变后广播给GMTool： 自动接单，接单最大数量，工作状态等
 		stGmCommandUserCmd                        = 200; // 由GM工具发向游戏服务器的批量GM指令
 		stGmCommandToSceneUserCmd                 = 201; // 由GMGServer转发GM指令到游戏服务器
 		stForceChangeSexGmUserCmd                 = 202; // 强制修改名称
 		stRequestMobileInfoGmUserCmd              = 203; // 手机号反查
 		stDeleteQuestionByGmUserCmd               = 204; // GM工具要求删除一个问题
-		stNewGameClientMessageBoxGmUserCmd        = 205; // 
+		stNewGameClientMessageBoxGmUserCmd        = 205; //
 	}
 }
 
@@ -201,12 +201,12 @@ message GmUserInfo
 	optional uint32 workstate = 7;       //工作状态
 	optional uint32 winnum    = 8;       //客户端打开窗口的数量
 	optional uint32 gameid    = 9;       //游戏ID，登陆后保存在GMServer，不返回给客户端
-	optional uint32 bindip    = 10;      //绑定IP 
+	optional uint32 bindip    = 10;      //绑定IP
 	optional string config    = 11;      //GM配置
 }
 
 //6 GMClient连接GMServer的第一个协议
-message RequestLoginGmUserPmd_C 
+message RequestLoginGmUserPmd_C
 {
 	required string key 		= 1;
 	required uint32 version 	= 2;
@@ -219,10 +219,10 @@ message RequestLoginGmUserPmd_C
 	optional uint32 loginip     = 9;  // 登陆IP，当登陆方式为1时，需传入
 }
 //7 登陆验证返回
-message ReturnLoginGmUserPmd_S 
+message ReturnLoginGmUserPmd_S
 {
 	optional uint32 retcode        = 1;  // 验证结果, 0登陆成功，1密码错误， 2账号不存在， 3未知错误，4账号正在使用，5版本号错误
-	optional GmUserInfo data       = 2;  // Gm账号信息 
+	optional GmUserInfo data       = 2;  // Gm账号信息
 	repeated GameZoneInfo zoneinfo = 3;  // 区服信息
 }
 
@@ -328,7 +328,7 @@ message ReturnBroadcastDeleteGmUserPmd_S
 	optional uint32 zoneid      = 3;   //
 	optional uint32 gmid        = 4;   //GM ID
 }
-//工具发给服务器的对未发送完毕的公告查询的指令  
+//工具发给服务器的对未发送完毕的公告查询的指令
 message RequestBroadcastListGmUserPmd_C
 {
 	optional uint32 zoneid    = 1;    //区服ID
@@ -347,8 +347,8 @@ message PunishUserInfo
 {
 	optional uint32 taskid    = 1;   //处罚ID
 	optional uint32 gameid    = 2;   //游戏ID
-	optional uint32 zoneid    = 3;   //区服ID   
-	optional uint32 charid    = 4;   //角色ID 
+	optional uint32 zoneid    = 3;   //区服ID
+	optional uint32 charid    = 4;   //角色ID
 	optional string charname  = 5;   //角色名称
 	optional uint32 ip        = 6;   //玩家IP(封停账号时使用，针对单个IP封停)
 	optional uint32 gmid      = 7;   //封停的GM ID
@@ -367,7 +367,7 @@ message PunishUserGmUserPmd_C
 //返回处罚结果
 message ReturnPunishUserGmUserPmd_S
 {
-	optional uint32 retcode      = 1; //0成功，1失败 
+	optional uint32 retcode      = 1; //0成功，1失败
 	optional uint32 taskid       = 2; //处罚ID，游戏服返回时需带上
 	optional uint32 zoneid       = 3; //
 	optional uint32 gmid         = 4; //
@@ -382,7 +382,7 @@ message DeletePunishUserGmUserPmd_C
 //返回删除结果
 message ReturnDeletePunishUserGmUserPmd_S
 {
-	optional uint32 retcode      = 1; //0成功，1失败 
+	optional uint32 retcode      = 1; //0成功，1失败
 	optional uint32 taskid       = 2; //处罚ID，游戏服返回时需带上
 	optional uint32 zoneid       = 3; //
 	optional uint32 gmid         = 4; //
@@ -470,7 +470,7 @@ message UserInfo
 message RequestUserInfoGmUserPmd_C
 {
 	required uint32 zoneid   = 1;
-	optional uint32 charid   = 2; 
+	optional uint32 charid   = 2;
 	optional string charname = 3;
 	optional uint32 gmid     = 4; //gmID用于查找gmtool
 }
@@ -731,7 +731,7 @@ message stReturnZoneDicMapGmUserCmd
 	}
 	repeated Data data = 3;
 }
-//17 转发消息给所有GM 
+//17 转发消息给所有GM
 message stForwardToAllGmUserCmd
 {
 	optional uint32 dwZoneID = 1;
@@ -1055,7 +1055,7 @@ message stFullForbidAccountLogDataGmUserCmd
 	optional uint32 byOperation = 1;
 	optional ForbidAccountData data = 2;
 }
-//61 [与工具端无关]ScenesServer填充完整的游戏GM指令信息，用于GMServer日志  
+//61 [与工具端无关]ScenesServer填充完整的游戏GM指令信息，用于GMServer日志
 message stFullGameGmCmdLogDataGmUserCmd
 {
 	optional uint32 accID = 1;
@@ -1251,7 +1251,7 @@ message stGameClientChatMessageGMUserCmd
 	optional uint32 bySize = 9;
 	optional bytes szInfo = 10;
 }
-//86 游戏客户端查询配置字符串 
+//86 游戏客户端查询配置字符串
 message stRequestGameClientMessageConfigGmUserCmd
 {
 	optional uint32 keyID = 1;
@@ -1296,7 +1296,7 @@ message stVerifyOnlineQaGmUserCmd
 	optional string gmname = 5;
 	optional string username = 6;
 }
-//105 
+//105
 message stNewGameClientMessageBoxGmUserCmd
 {
 	optional string gmname = 1;
