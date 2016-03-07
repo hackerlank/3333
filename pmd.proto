@@ -57,6 +57,7 @@ message GameZoneInfo
 	optional string redis 		= 6;//redis数据库,不填表示从配置文件读取
 	optional string rethink 	= 7;//rethink数据库,不填表示从配置文件读取
 	optional string mongo 		= 8;//mongo数据库,不填表示从配置文件读取
+	optional bool   separatezoneuid = 9;//是否以区为单位分uid，方便合区
 }
 
 enum ServerType
