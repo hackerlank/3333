@@ -58,6 +58,7 @@ message GameZoneInfo
 	optional string rethink 	= 7;//rethink数据库,不填表示从配置文件读取
 	optional string mongo 		= 8;//mongo数据库,不填表示从配置文件读取
 	optional uint32 zonestate	= 9;//当前区服状态0表示关闭,1表示正常,2表示无权限
+	optional bool   separatezoneuid = 10;//是否以区为单位分uid，方便合区
 }
 
 enum ServerType

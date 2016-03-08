@@ -129,6 +129,8 @@ message UserLoginReturnOkLoginUserPmd_S
 	required string gatewayurl		= 4;	// 登陆的网关地址,接下来断开连接后马上登陆这个地址
 	required uint32 gameid	 		= 5;	// 游戏编号
 	required uint32 zoneid	 		= 6;	// 区编号
+	optional bool   separatezoneuid = 7;
+	optional string zoneuid         = 8;
 }
 // 发给网关的登陆消息
 message UserLoginTokenLoginUserPmd_C
