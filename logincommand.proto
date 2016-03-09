@@ -234,6 +234,7 @@ message ThirdPlatLoginUserPmd_C
 enum PlatType
 {
 	PlatType_Normal 			= 0;		// 本平台
+	PlatType_UC 				= 4;		// UC平台
 	PlatType_LeZhuan 			= 67;		// 手上活
 	PlatType_WeChat 			= 68;		// 微信
 	PlatType_Play68 			= 69;		// play68
