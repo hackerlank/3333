@@ -129,6 +129,8 @@ message UserLoginReturnOkLoginUserPmd_S
 	required string gatewayurl		= 4;	// 登陆的网关地址,接下来断开连接后马上登陆这个地址
 	required uint32 gameid	 		= 5;	// 游戏编号
 	required uint32 zoneid	 		= 6;	// 区编号
+	optional bool   separatezoneuid = 7;
+	optional string zoneuid         = 8;
 }
 // 发给网关的登陆消息
 message UserLoginTokenLoginUserPmd_C
@@ -232,6 +234,7 @@ message ThirdPlatLoginUserPmd_C
 enum PlatType
 {
 	PlatType_Normal 			= 0;		// 本平台
+	PlatType_UC 				= 4;		// UC平台
 	PlatType_LeZhuan 			= 67;		// 手上活
 	PlatType_WeChat 			= 68;		// 微信
 	PlatType_Play68 			= 69;		// play68

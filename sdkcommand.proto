@@ -154,6 +154,7 @@ message NotifyRechargeRequestSdkPmd_S
 	required uint32 goodnum		= 8;		// 用户买了多少个
 	required uint32	result		= 9;		// 购买状态, 1, 处理中;2 支付成功;3支付失败
 	optional string	extdata		= 10;		// 扩展数据长度
+	optional uint32 type		= 11;		// 充值类型，0玩家充值，1内部充值
 }
 
 // 平台回调sdk后通知游戏平台,PS2ASRechargeCommand
