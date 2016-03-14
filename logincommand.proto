@@ -91,6 +91,24 @@ message RequestZoneInfoListLoginUserPmd_C
 	required uint32 gameid	 		= 1;	// 游戏编号
 }
 
+// 请求玩有在所有区的角色信息，及区在线信息
+message RequestUserZoneInfoLoginUserPmd_C
+{
+	required uint32 gameid	 		= 1;	// 游戏编号
+}
+
+message UserZoneInfo
+{
+	required string charname    = 1; // 角色信息，如果为“”说明在这个区里没有角色
+	required ZoneInfo zoneinfo  = 2; // zoneinfo
+	required uint32   onlinenum = 3; // 在线人数
+}
+
+message RequestUserZoneInfoLoginUserPmd_S
+{
+	repeated UserZoneInfo userzoneinfo = 1; // 玩家在各个区里的角色信息及区在线信息
+}
+
 // 请求登陆某个区,发给LoginServer
 message UserLoginRequestLoginUserPmd_C
 {
