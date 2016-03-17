@@ -75,6 +75,7 @@ message ZoneInfo
 	required uint32 zoneid	 	= 1;		// 区编号
 	required string zonename 	= 2;		// 区名称
 	optional ZoneState state 	= 3;
+    optional string opentime    = 4;
 }
 
 // 区服务器信息列表,选区列表

@@ -1,0 +1,17 @@
+package Pmd;
+import "pmd.proto";
+
+// TODO
+message Lobby
+{
+	enum Param
+	{
+		DELETE_ME 		= 1;
+	}
+}
+
+message DELETE_ME
+{
+	optional string mid 		= 1;	//机型
+}
+
