@@ -14,7 +14,7 @@ MD5_DICT = {}
 MD5_FILE = ".md5.pkl"
 
 package = "Pmd"
-need_prototype = ("nullcommand", "logincommand","forwardcommand","sdkcommand","monitorpmd","chatcommand","gmcommand","pushpmd",)
+need_prototype = ("nullcommand", "logincommand","forwardcommand","sdkcommand","monitorpmd","chatcommand","gmcommand","pushpmd","lobbypmd",)
 
 name = os.path.abspath(__file__)
 path = os.path.dirname(name)
