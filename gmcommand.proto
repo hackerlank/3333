@@ -195,7 +195,7 @@ message GmUserInfo
 	optional uint32 gmid      = 1;       //id, 用于登陆返回
 	optional string name      = 2;       //账号，创建账号使用
 	optional string password  = 3;       //密码，创建账号使用
-	optional uint32 pri       = 4;       //权限
+	optional uint64 pri       = 4;       //权限
 	optional uint32 qmaxnum   = 5;       //最大接单数
 	optional uint32 autorecv  = 6;       //是否自动接单，
 	optional uint32 workstate = 7;       //工作状态
@@ -241,6 +241,7 @@ message SetPasswordGmUserPmd_C
 message ReturnPasswordGmUserPmd_S
 {
 	optional uint32 retcode   = 1;  //0成功，1失败
+	optional string reddesc   = 2;  //错误描述
 }
 //添加GM账号
 message AddNewGmUserPmd_C
@@ -266,17 +267,20 @@ message RequestDelGmUserPmd_C
 message ReturnDelGmUserPmd_S
 {
 	optional uint32 retcode   = 1;  //0成功，1失败
+	optional string retdesc   = 2;  //失败描述
 }
 //更改权限
 message RequestModifyPriGmUserPmd_C
 {
 	required uint32 gmid      = 1;  //gm账号ID
-	required uint32 pri       = 2;  //修改后的权限
+	required uint64 pri       = 2;  //修改后的权限
+	optional uint32 gameid    = 3;  //所管辖的游戏ID
 }
 //更改权限返回
 message ReturnModifyPriGmUserPmd_S
 {
 	optional uint32 retcode   = 1;  //0成功,其他失败
+	optional string retdesc	  = 2;  //描述
 }
 //选择需要监控的区服
 message SelectGamezoneGmUserPmd_SC
