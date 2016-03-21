@@ -508,7 +508,7 @@ message ReturnUserInfoGmUserPmd_S
 //查询玩家背包
 message RequestUserPackageGmUserPmd_C
 {
-	requiret uint32 gameid	 = 1;
+	required uint32 gameid	 = 1;
 	required uint32 zoneid   = 2; //区ID
 	optional uint64 charid   = 3; //角色ID
 	optional string charname = 4; //角色名称
