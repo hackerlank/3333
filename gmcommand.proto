@@ -313,12 +313,14 @@ message BroadcastInfo
 message BroadcastNewGmUserPmd_C
 {
 	required BroadcastInfo data = 1;   //公告信息
+	optional uint32 gameid		= 2;   //
+	optional uint32 zoneid		= 3;   //
 }
 //发布公告返回
 message ReturnBroadcastNewGmUserPmd_S
 {
 	optional uint32 retcode     = 1;   //0成功，其他失败
-	optional uint32 zoneid      = 2;   //区ID
+	optional string retdesc		= 2;   //
 	optional uint32 taskid      = 3;   //
 	optional uint32 gmid        = 4;   //该字段需要返回，否则找不到对应的GMTool
 }
@@ -326,25 +328,27 @@ message ReturnBroadcastNewGmUserPmd_S
 message BroadcastDeleteGmUserPmd_C
 {
 	optional uint32 taskid      = 1;   //公告ID
-	optional uint32 zoneid      = 2;   //区ID
-	optional uint32 gmid        = 3;   //gm id
+	optional uint32 gameid		= 2;   //
+	optional uint32 zoneid      = 3;   //区ID
+	optional uint32 gmid        = 4;   //gm id
 }
 //删除返回
 message ReturnBroadcastDeleteGmUserPmd_S
 {
 	optional uint32 retcode     = 1;   //0成功
-	optional uint32 taskid      = 2;   //删除的公告ID
-	optional uint32 zoneid      = 3;   //
+	optional string retdesc		= 2;   //
+	optional uint32 taskid      = 3;   //删除的公告ID
 	optional uint32 gmid        = 4;   //GM ID
 }
 //工具发给服务器的对未发送完毕的公告查询的指令
 message RequestBroadcastListGmUserPmd_C
 {
-	optional uint32 zoneid    = 1;    //区服ID
-	optional uint32 sceneid   = 2;    //场景ID
-	optional uint32 countryid = 3;
-	optional uint32 btype     = 4;    //根据类型查找
-	optional uint32 endtime   = 5;    //结束时间在此之后的
+	optional uint32 gameid	  = 1;
+	optional uint32 zoneid    = 2;    //区服ID
+	optional uint32 sceneid   = 3;    //场景ID
+	optional uint32 countryid = 4;
+	optional uint32 btype     = 5;    //根据类型查找
+	optional uint32 endtime   = 6;    //结束时间在此之后的
 }
 //公告列表
 message ReturnBroadcastListGmUserPmd_S
@@ -372,13 +376,15 @@ message PunishUserInfo
 message PunishUserGmUserPmd_C
 {
 	required PunishUserInfo data = 1; //处罚玩家信息
+	optional uint32 gameid		 = 2;
+	optional uint32 zoneid		 = 3;
 }
 //返回处罚结果
 message ReturnPunishUserGmUserPmd_S
 {
 	optional uint32 retcode      = 1; //0成功，1失败
-	optional uint32 taskid       = 2; //处罚ID，游戏服返回时需带上
-	optional uint32 zoneid       = 3; //
+	optional string retdesc		 = 2;
+	optional uint32 taskid       = 3; //处罚ID，游戏服返回时需带上
 	optional uint32 gmid         = 4; //
 }
 //删除处罚
