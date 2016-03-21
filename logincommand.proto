@@ -25,6 +25,7 @@ message Login
 		ReturnClientIPLoginUserPmd_S			= 19;
 		ReconnectErrorLoginUserPmd_S 			= 20;
 		CheckVersionLoginUserPmd_C 			= 21;
+		PushAccountVerifyLoginUserPmd_C 		= 22;
 	}
 }
 
@@ -42,6 +43,21 @@ message AccountTokenVerifyLoginUserPmd_CS
 	optional string compress		= 9;	// 压缩算法
 	optional string encrypt			= 10;	// 加密算法
 	optional string encryptkey		= 11;	// 加密key
+}
+
+// 推送客户端连接上来的认证信息,简单验证,主要用来分配网关
+message PushAccountVerifyLoginUserPmd_C
+{
+	optional uint64 accid			= 1;	// accid
+	optional string account 	 	= 2;	// 账号id
+	optional uint32 zoneid			= 3;	// 这里约定为每个游戏的gameid,这个消息本身的gameid为4000,约定为推送服务器
+	optional string token 		 	= 4;	// token 默认约定即可(暂时不用)
+	optional uint32 version 		= 5;	// 当前客户端login版本号Version_Login(暂时不用)
+	optional string mid			= 6;	// 机器码
+	optional uint32 gameversion 		= 7;	// 当前客户端game版本号Version_Login(暂时不用)
+	optional string compress		= 8;	// 压缩算法(暂时不用)
+	optional string encrypt			= 9;	// 加密算法(暂时不用)
+	optional string encryptkey		= 10;	// 加密key(暂时不用)
 }
 
 enum VerifyReturnReason

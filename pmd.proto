@@ -61,6 +61,7 @@ message GameZoneInfo
 	optional string mongo 		= 8;//mongo数据库,不填表示从配置文件读取
 	optional uint32 zonestate	= 9;//当前区服状态0表示关闭,1表示正常,2表示无权限
 	optional bool   separatezoneuid = 10;//是否以区为单位分uid，方便合区
+	optional string lobby 		= 11;//大厅服务器配置,如果是大厅服务器,则用这个url监听,如果是unilight,则用来连大厅
 }
 
 enum ServerType
