@@ -56,7 +56,7 @@ message Gm
 		ReturnUserRecordGmUserPmd_S				  = 42;   //返回玩家记录
         
         // 所有的给Lua处理的全部用json方式用这个协议包装
-        RequestExecGmCommandGmPmd_SC              = 26,
+        RequestExecGmCommandGmPmd_SC              = 43;
         //
         //SelectGamezoneGmUserPmd_C                 = 41;   //选择当前需要监控的区服
 
