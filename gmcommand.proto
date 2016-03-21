@@ -52,6 +52,8 @@ message Gm
 		ReturnModifyUserInfoGmUserPmd_S           = 38;   //返回更新结果
 		RequestUserPackageGmUserPmd_C             = 39;   //请求玩家背包
 		ReturnUserPackageGmUserPmd_S              = 40;   //返回玩家背包
+		RequestUserRecordGmUserPmd_C			  = 41;   //查询玩家记录(战斗、关卡、打牌记录)
+		ReturnUserRecordGmUserPmd_S				  = 42;   //返回玩家记录
 
         //
         //SelectGamezoneGmUserPmd_C                 = 41;   //选择当前需要监控的区服
@@ -201,8 +203,9 @@ message GmUserInfo
 	optional uint32 workstate = 7;       //工作状态
 	optional uint32 winnum    = 8;       //客户端打开窗口的数量
 	optional uint32 gameid    = 9;       //游戏ID，登陆后保存在GMServer，不返回给客户端
-	optional uint32 bindip    = 10;      //绑定IP
-	optional string config    = 11;      //GM配置
+	optional uint32 zoneid	  = 10;		 //
+	optional uint32 bindip    = 11;      //绑定IP
+	optional string config    = 12;      //GM配置
 }
 
 //6 GMClient连接GMServer的第一个协议
@@ -241,7 +244,7 @@ message SetPasswordGmUserPmd_C
 message ReturnPasswordGmUserPmd_S
 {
 	optional uint32 retcode   = 1;  //0成功，1失败
-	optional string reddesc   = 2;  //错误描述
+	optional string retdesc   = 2;  //错误描述
 }
 //添加GM账号
 message AddNewGmUserPmd_C
@@ -252,6 +255,7 @@ message AddNewGmUserPmd_C
 message ReturnAddNewGmUserPmd_S
 {
 	optional uint32 retcode   = 1;  //0成功，1失败
+	optional string retdesc	  = 2;  //描述
 }
 //请求获取GM账号列表
 message GmAccountListGmUserPmd_CS
@@ -303,6 +307,7 @@ message BroadcastInfo
 	optional uint32 intervaltime=10;   //公告间隔时间
 	optional uint32 btype       =11;   //公告类型
 	optional string content     =12;   //公告内容
+	optional uint32 recordtime	=13;   //发布时间
 }
 //公告任务指令。该指令可用于公告的添加、修改、查询返回,发送的时候请发送一条
 message BroadcastNewGmUserPmd_C
@@ -352,7 +357,7 @@ message PunishUserInfo
 	optional uint32 taskid    = 1;   //处罚ID
 	optional uint32 gameid    = 2;   //游戏ID
 	optional uint32 zoneid    = 3;   //区服ID
-	optional uint32 charid    = 4;   //角色ID
+	optional uint64 charid    = 4;   //角色ID
 	optional string charname  = 5;   //角色名称
 	optional uint32 ip        = 6;   //玩家IP(封停账号时使用，针对单个IP封停)
 	optional uint32 gmid      = 7;   //封停的GM ID
@@ -396,7 +401,7 @@ message ReturnDeletePunishUserGmUserPmd_S
 message RequestPunishListGmUserPmd_C
 {
 	optional uint32 zoneid       = 1; //区服ID，0则表示查询当前游戏的所有区服的处罚记录
-	optional uint32 charid       = 2; //根据玩家角色ID
+	optional uint64 charid       = 2; //根据玩家角色ID
 	optional string charname     = 3; //根据玩家昵称
 	optional uint32 gmid         = 4; //根据处罚gm来查找
 	optional uint32 ptype        = 5; //根据类型来查找
@@ -438,7 +443,7 @@ message ReturnAwardTypeGmUserPmd_S
 message RequestAwardUserGmUserPmd_C
 {
 	required uint32 zoneid     = 1;
-	required uint32 charid     = 2; //
+	required uint64 charid     = 2; //
 	repeated ItemTypeInfo data = 3; //补偿的道具、礼包等
 	optional uint32 gmid       = 4; //
 }
@@ -447,7 +452,7 @@ message ReturnAwardUserGmUserPmd_S
 {
 	optional uint32 retcode   = 1; //
 	optional uint32 zoneid    = 2; //
-	optional uint32 charid    = 3; //
+	optional uint64 charid    = 3; //
 	required uint32 gmid      = 4; //
 }
 
@@ -455,7 +460,7 @@ message ReturnAwardUserGmUserPmd_S
 message UserInfo
 {
 	optional uint32 zoneid      = 1;  //区ID
-	optional uint32 charid      = 2;  //角色ID
+	optional uint64 charid      = 2;  //角色ID
 	optional string charname    = 3;  //玩家昵称
 	optional string profession  = 4;  //职业名称
 	optional string countryname = 5;  //所属国家名称
@@ -474,21 +479,23 @@ message UserInfo
 message RequestUserInfoGmUserPmd_C
 {
 	required uint32 zoneid   = 1;
-	optional uint32 charid   = 2;
+	optional uint64 charid   = 2;
 	optional string charname = 3;
 	optional uint32 gmid     = 4; //gmID用于查找gmtool
 }
 //返回玩家信息
 message ReturnUserInfoGmUserPmd_S
 {
-	required UserInfo data   = 1; //玩家信息
-	required uint32 gmid     = 2; //
+	required uint32 retcode  = 1; //查询状态
+	optional string retdesc	 = 2; //描述
+	required UserInfo data   = 3; //玩家信息
+	required uint32 gmid     = 4; //
 }
 //查询玩家背包
 message RequestUserPackageGmUserPmd_C
 {
 	required uint32 zoneid   = 1; //区ID
-	optional uint32 charid   = 2; //角色ID
+	optional uint64 charid   = 2; //角色ID
 	optional string charname = 3; //角色名称
 	optional uint32 gmid     = 4; //
 }
@@ -497,14 +504,14 @@ message ReturnUserPackageGmUserPmd_S
 {
 	repeated ItemTypeInfo data = 1; //道具信息
 	required uint32 zoneid     = 2; //
-	required uint32 charid     = 3; //
+	required uint64 charid     = 3; //
 	required uint32 gmid       = 4; //
 }
 //修改玩家信息
 message RequestModifyUserInfoGmUserPmd_C
 {
 	required uint32 zoneid    = 1;
-	required uint32 charid    = 2;
+	required uint64 charid    = 2;
 	required uint32 optype    = 3; //修改类型，1昵称，2等级，3vip等级，4gm权限，5金币(与RMB类似货币),6游戏币
 	optional string charname  = 4; //修改昵称的时候需要
 	optional uint32 opnum     = 5; //修改的最终结果
@@ -515,9 +522,37 @@ message ReturnModifyUserInfoGmUserPmd_S
 {
 	optional uint32 retcode   = 1; //0成功，其他失败
 	optional uint32 zoneid    = 2; //区服ID
-	optional uint32 charid    = 3; //修改的角色ID
+	optional uint64 charid    = 3; //修改的角色ID
 	optional uint32 gmid      = 4; //
 }
+//请求玩家记录
+message RequestUserRecordGmUserPmd_C
+{
+	required uint32 zoneid			= 1; //
+	optional uint64 charid			= 2; //
+	required uint32 optype			= 3; //1打牌记录，2、关卡记录，3、任务...
+	optional string charname		= 4; //昵称，id， 二选一即可
+	optional uint32 recordtime		= 5; //查询起始时间
+	optional uint32 gmid			= 6; //gmid
+}
+message RecordInfo
+{
+	required uint32 recordid		= 1;
+	required uint32 state			= 2; //记录状态，0平、1赢、2输
+	optional uint32 gold			= 3; //输赢金币数额
+	optional uint32 coin			= 4; //输赢游戏币数额
+	required uint32 starttime		= 5; //开始时间
+	optional uint32 endtime			= 6; //结束时间
+}
+//返回
+message ReturnUserRecordGmUserPmd_S
+{
+	required uint32 retcode			= 1;
+	optional string retdesc			= 2;
+	repeated RecordInfo data		= 3; //记录详情
+	optional uint32 recordnum		= 4; //如果记录太多需要分页请求，则这里给出总数
+}
+
 
 message QuestionBaseData
 {
