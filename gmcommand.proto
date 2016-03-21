@@ -171,7 +171,7 @@ message RequestExecGmCommandGmPmd_SC
     required uint32 zoneid  = 2;
     required uint32 gmid    = 3;
     required string gmdo    = 4;
-    required string message = 5;
+    required string msg     = 5;
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
@@ -317,7 +317,7 @@ message BroadcastInfo
 	optional uint32 starttime   = 8;   //公告开始时间
 	optional uint32 endtime     = 9;   //公告结束时间
 	optional uint32 intervaltime=10;   //公告间隔时间
-	optional uint32 btype       =11;   //公告类型
+	optional uint32 btype       =11;   //公告类型, 1、主界面滚动公告, 2、聊天界面公告
 	optional string content     =12;   //公告内容
 	optional uint32 recordtime	=13;   //发布时间
 }
