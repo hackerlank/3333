@@ -54,7 +54,9 @@ message Gm
 		ReturnUserPackageGmUserPmd_S              = 40;   //返回玩家背包
 		RequestUserRecordGmUserPmd_C			  = 41;   //查询玩家记录(战斗、关卡、打牌记录)
 		ReturnUserRecordGmUserPmd_S				  = 42;   //返回玩家记录
-
+        
+        // 所有的给Lua处理的全部用json方式用这个协议包装
+        RequestExecGmCommandGmPmd_SC              = 26,
         //
         //SelectGamezoneGmUserPmd_C                 = 41;   //选择当前需要监控的区服
 
@@ -160,6 +162,16 @@ message Gm
 		stDeleteQuestionByGmUserCmd               = 204; // GM工具要求删除一个问题
 		stNewGameClientMessageBoxGmUserCmd        = 205; //
 	}
+}
+
+// 给lua执行的
+message RequestExecGmCommandGmPmd_SC
+{
+    required uint32 gameid  = 1;
+    required uint32 zoneid  = 2;
+    required uint32 gmid    = 3;
+    required string gmdo    = 4;
+    required string message = 5;
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
