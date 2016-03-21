@@ -315,7 +315,7 @@ message BroadcastNewGmUserPmd_C
 	required BroadcastInfo data = 1;   //公告信息
 	optional uint32 gameid		= 2;   //
 	optional uint32 zoneid		= 3;   //
-	optional uint32 gmid		= 4;   ///DeletePunishUserGmUserPmd_C
+	optional uint32 gmid		= 4;   //
 }
 //发布公告返回
 message ReturnBroadcastNewGmUserPmd_S
@@ -355,6 +355,7 @@ message RequestBroadcastListGmUserPmd_C
 message ReturnBroadcastListGmUserPmd_S
 {
 	repeated BroadcastInfo data = 1; //
+	optional uint32 gmid		= 2;
 }
 
 message PunishUserInfo
@@ -379,6 +380,7 @@ message PunishUserGmUserPmd_C
 	required PunishUserInfo data = 1; //处罚玩家信息
 	optional uint32 gameid		 = 2;
 	optional uint32 zoneid		 = 3;
+	optional uint32 gmid		 = 4;
 }
 //返回处罚结果
 message ReturnPunishUserGmUserPmd_S
@@ -419,6 +421,7 @@ message RequestPunishListGmUserPmd_C
 message ReturnPunishListGmUserPmd_S
 {
 	repeated PunishUserInfo data = 1;
+	optional uint32 gmid		 = 2;
 }
 
 //玩家奖励、补偿
@@ -463,7 +466,7 @@ message RequestAwardUserGmUserPmd_C
 message ReturnAwardUserGmUserPmd_S
 {
 	optional uint32 retcode   = 1; //
-	optional uint32 zoneid    = 2; //
+	optional string retdesc   = 2;
 	optional uint64 charid    = 3; //
 	required uint32 gmid      = 4; //
 }
@@ -471,22 +474,22 @@ message ReturnAwardUserGmUserPmd_S
 //玩家信息相关
 message UserInfo
 {
-	optional uint32 zoneid      = 1;  //区ID
-	optional uint64 charid      = 2;  //角色ID
-	optional string charname    = 3;  //玩家昵称
-	optional string profession  = 4;  //职业名称
-	optional string countryname = 5;  //所属国家名称
-	optional uint32 level       = 6;  //角色等级
-	optional uint32 viplevel    = 7;  //Vip等级
-	optional uint32 oldzoneid   = 8;  //合服前的区ID
-	optional uint32 lastofftime = 9;  //最后一次登录时间
-	optional uint32 lastloginip = 10; //最后一次登录IP
-	optional uint32 gmlevel     = 11; //gm权限
-	optional uint32 createtime  = 12; //角色创建时间
-	optional uint32 isonline    = 13; //是否在线
-	optional uint32 glodnum     = 14; //金币、钻石数（跟RMB类似的货币）
-	optional uint32 money       = 15; //普通货币数(普通游戏币)
-	optional uint32 gameid		= 16;
+	optional uint32 gameid		= 1;
+	optional uint32 zoneid      = 2;  //区ID
+	optional uint64 charid      = 3;  //角色ID
+	optional string charname    = 4;  //玩家昵称
+	optional string profession  = 5;  //职业名称
+	optional string countryname = 6;  //所属国家名称
+	optional uint32 level       = 7;  //角色等级
+	optional uint32 viplevel    = 8;  //Vip等级
+	optional uint32 oldzoneid   = 9;  //合服前的区ID
+	optional uint32 lastofftime = 10; //最后一次登录时间
+	optional uint32 lastloginip = 11; //最后一次登录IP
+	optional uint32 gmlevel     = 12; //gm权限
+	optional uint32 createtime  = 13; //角色创建时间
+	optional uint32 isonline    = 14; //是否在线
+	optional uint32 glodnum     = 15; //金币、钻石数（跟RMB类似的货币）
+	optional uint32 money       = 16; //普通货币数(普通游戏币)
 }
 //请求玩家基础信息
 message RequestUserInfoGmUserPmd_C
@@ -538,9 +541,10 @@ message RequestModifyUserInfoGmUserPmd_C
 message ReturnModifyUserInfoGmUserPmd_S
 {
 	optional uint32 retcode   = 1; //0成功，其他失败
-	optional uint32 zoneid    = 2; //区服ID
-	optional uint64 charid    = 3; //修改的角色ID
-	optional uint32 gmid      = 4; //
+	optional string retdesc   = 2;
+	optional uint32 zoneid    = 3; //区服ID
+	optional uint64 charid    = 4; //修改的角色ID
+	optional uint32 gmid      = 5; //
 }
 //请求玩家记录
 message RequestUserRecordGmUserPmd_C
