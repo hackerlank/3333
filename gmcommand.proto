@@ -60,6 +60,8 @@ message Gm
         //
         //SelectGamezoneGmUserPmd_C                 = 41;   //选择当前需要监控的区服
 
+        // 关于脚本热重启
+        RequestHotRestartGmUserPmd_CS             = 50;    // 脚本热重重启请求
 		stRequestLoginGmUserCmd                   = 105;   // GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;   // 返回GM登陆验证结果
 		stConfigGmUserCmd                         = 107;   // 获取GM客户端配置
@@ -171,6 +173,14 @@ message RequestExecGmCommandGmPmd_SC
     required uint32 zoneid  = 2;
     required uint32 gmid    = 3;
     required string msg     = 4; // msg 为协议gmdo: data:
+}
+
+// 脚本热重启请求
+message RequestHotRestartGmUserPmd_CS
+{
+    required uint32 gameid  = 1;
+    required uint32 zoneid  = 2;
+    required uint32 gmid    = 3;
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
