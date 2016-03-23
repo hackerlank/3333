@@ -62,6 +62,8 @@ message Gm
 
         // 关于脚本热重启
         RequestHotRestartGmUserPmd_CS             = 50;    // 脚本热重重启请求
+        RequesetScriptUpdateGmUserPmd_CS          = 51;    // 脚本更新命令，也就是pull
+
 		stRequestLoginGmUserCmd                   = 105;   // GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;   // 返回GM登陆验证结果
 		stConfigGmUserCmd                         = 107;   // 获取GM客户端配置
@@ -181,6 +183,16 @@ message RequestHotRestartGmUserPmd_CS
     required uint32 gameid  = 1;
     required uint32 zoneid  = 2;
     required uint32 gmid    = 3;
+    optional uint32 ret     = 4;
+}
+
+// 脚本更新命令，也就是pull
+message RequesetScriptUpdateGmUserPmd_CS
+{
+    required uint32 gameid  = 1;
+    required uint32 zoneid  = 2;
+    required uint32 gmid    = 3;
+    optional uint32 ret     = 4;
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
