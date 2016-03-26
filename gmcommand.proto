@@ -63,6 +63,7 @@ message Gm
         // 关于脚本热重启
         RequestHotRestartGmUserPmd_CS             = 50;    // 脚本热重重启请求
         RequesetScriptUpdateGmUserPmd_CS          = 51;    // 脚本更新命令，也就是pull
+        RequesetRefreshGatewaylistGmUserPmd_CS    = 52;    // 刷新网关列表，为动态配置多网关做准备 
 
 		stRequestLoginGmUserCmd                   = 105;   // GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;   // 返回GM登陆验证结果
@@ -188,6 +189,15 @@ message RequestHotRestartGmUserPmd_CS
 
 // 脚本更新命令，也就是pull
 message RequesetScriptUpdateGmUserPmd_CS
+{
+    required uint32 gameid  = 1;
+    required uint32 zoneid  = 2;
+    required uint32 gmid    = 3;
+    optional uint32 ret     = 4;
+}
+
+// 刷新网关列表，为动态配置多网关做准备 
+message RequesetRefreshGatewaylistGmUserPmd_CS
 {
     required uint32 gameid  = 1;
     required uint32 zoneid  = 2;
