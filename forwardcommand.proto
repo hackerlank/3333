@@ -9,6 +9,7 @@ message Forward
 		//LoginLobbyRes							= 3;
 		WebSocketForwardUserPmd_C 				= 4;
 		WebSocketForwardUserPmd_S 				= 5;
+		BehaviorMessageForwardUserPmd_CS 				= 6;
 	}
 }
 
