@@ -26,6 +26,7 @@ message Login
 		ReconnectErrorLoginUserPmd_S 			= 20;
 		CheckVersionLoginUserPmd_C 			= 21;
 		PushAccountVerifyLoginUserPmd_C 		= 22;
+		BehaviorClientVerifyLoginUserPmd_C 		= 23;
 	}
 }
 
@@ -311,4 +312,18 @@ message CheckVersionLoginUserPmd_C
 {
 	optional uint32 default_charid = 1;		// 保留字段
 	optional uint32 version = 2;
+}
+message BehaviorClientVerifyLoginUserPmd_C
+{
+	required string account 	 	= 1;	// 平台账号
+	required string token 		 	= 2;	// token 可以是第三方认证
+	required uint32 version 		= 3;	// 当前客户端login版本号Version_Login
+	optional uint32 gameid			= 4;	// if filled, will send ZoneInfoListLoginUserPmd_S for select, else auto select zone
+	optional string mid				= 5;	// 机器码
+	optional uint32 platid 			= 6;	// 平台编号
+	optional uint32 zoneid			= 7;	// if filled, will auto login UserLoginRequestLoginUserPmd_C, UserLoginTokenLoginSmd_SC
+	optional uint32 gameversion 	= 8;	// 当前客户端game版本号Version_Login
+	optional string compress		= 9;	// 压缩算法
+	optional string encrypt			= 10;	// 加密算法
+	optional string encryptkey		= 11;	// 加密key
 }
