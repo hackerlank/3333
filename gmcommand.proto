@@ -54,7 +54,7 @@ message Gm
 		ReturnUserPackageGmUserPmd_S              = 40;   //返回玩家背包
 		RequestUserRecordGmUserPmd_C			  = 41;   //查询玩家记录(战斗、关卡、打牌记录)
 		ReturnUserRecordGmUserPmd_S				  = 42;   //返回玩家记录
-        
+
         // 所有的给Lua处理的全部用json方式用这个协议包装
         RequestExecGmCommandGmPmd_SC              = 43;
         //
@@ -63,12 +63,11 @@ message Gm
         // 关于脚本热重启
         RequestHotRestartGmUserPmd_CS             = 50;    // 脚本热重重启请求
         RequesetScriptUpdateGmUserPmd_CS          = 51;    // 脚本更新命令，也就是pull
-        RequesetRefreshGatewaylistGmUserPmd_CS    = 52;    // 刷新网关列表，为动态配置多网关做准备 
+        RequesetRefreshGatewaylistGmUserPmd_CS    = 52;    // 刷新网关列表，为动态配置多网关做准备
 
 		RequestGenerateCodeGmUserPmd_C			  = 55;    // 生成礼包码
 		ReturnGenerateCodeGmUserPmd_S			  = 56;    // 生成礼包码返回
 		RequestOpeartorCodeGmUserPmd_C			  = 57;	   // 操作礼包码
-		ReturnOperatorCOdeGmUserPmd_S			  = 58;	   //
 
 		stRequestLoginGmUserCmd                   = 105;   // GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;   // 返回GM登陆验证结果
@@ -201,7 +200,7 @@ message RequesetScriptUpdateGmUserPmd_CS
     optional uint32 ret     = 4;
 }
 
-// 刷新网关列表，为动态配置多网关做准备 
+// 刷新网关列表，为动态配置多网关做准备
 message RequesetRefreshGatewaylistGmUserPmd_CS
 {
     required uint32 gameid  = 1;
