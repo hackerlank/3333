@@ -143,6 +143,7 @@ message StErrorLogMonitorUserCmd_S
 {
     optional string logger 		= 1;
     optional GameZoneInfo gamezone	= 2;// 游戏类型
+    optional string remoteaddr	= 3;// 服务器IP
 }
 
 // 查询礼包码
