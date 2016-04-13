@@ -35,5 +35,11 @@ message WebSocketForwardUserPmd_S
 // 长连接时玩家跟区服务器的通信是通过网关转发的,统一用这个消息互相传递
 message BehaviorMessageForwardUserPmd_CS
 {
-	optional string msg	 			= 1; // 文本格式
+    enum Type
+    {
+        NormalText      = 1;    // 普通编辑器消息
+        UploadTree      = 2;    // 上传行为树
+    }
+	repeated string msg	 			= 1; // 文本格式
+    optional Type   type            = 2 [default = NormalText]; // 消息类型
 }
