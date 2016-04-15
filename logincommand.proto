@@ -287,7 +287,6 @@ enum PlatType
 	PlatType_WEIYOU				= 90;		// 微游联盟
 	PlatType_9g					= 99;		// 万游在线
 	PlatType_XueChi				= 133;		// 雪池
-	PlatType_XueChi				= 133;		// 雪池
 	PlatType_Egret				= 134;		// 白鹭开放平台
 	PlatType_AoXun				= 140;		// 鎏信
 }
