@@ -493,9 +493,9 @@ message PunishUserInfo
 	optional uint32 gmid      = 7;   //封停的GM ID
 	optional string reason    = 8;   //处罚原因
 	optional uint32 ptype     = 9;   //处罚操作,1警告，2禁言，3自言自语，4关禁闭，5踢下线，6封号
-	optional uint32 delay     = 10;  //处罚时长/剩余处罚时间，单位分钟
-	optional uint32 waittime  = 11;  //延迟多久开始处罚
-	optional uint32 punishtime= 12;  //下发处罚的时间戳
+	optional uint64 starttime = 10;  //开始时间
+	optional uint64 endtime   = 11;  //结束时间
+	optional uint64 punishtime= 12;  //下发处罚的时间戳
 
 }
 //处罚玩家
