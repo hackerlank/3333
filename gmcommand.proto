@@ -69,6 +69,8 @@ message Gm
 		RequestGenerateCodeGmUserPmd_C			  = 55;    // 生成礼包码
 		ReturnGenerateCodeGmUserPmd_S			  = 56;    // 生成礼包码返回
 		RequestOpeartorCodeGmUserPmd_C			  = 57;	   // 操作礼包码
+		ReturnOpreatorCodeGmUserPmd_S			  = 58;    // 操作礼包码返回
+		GameOrderListGmUserPmd_CS				  = 59;    // 订单列表
 
 		stRequestLoginGmUserCmd                   = 105;   // GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;   // 返回GM登陆验证结果
@@ -249,7 +251,7 @@ message CodeInfo
 	optional uint64 id			= 1;
 	optional uint32 gameid		= 2;
 	optional uint32 zoneid		= 3;
-	optional uint64 uid			= 4;
+	optional uint64 charid		= 4;
 	optional uint32 codetype	= 5;
 	optional string code		= 6;
 	optional uint32 createtime	= 7;
@@ -262,6 +264,26 @@ message ReturnOpreatorCodeGmUserPmd_S
 	required uint32 retcode		= 1;
 	optional string retdesc		= 2;
 	optional CodeInfo data		= 3;
+}
+
+message OrderInfo
+{
+	optional uint64 id		  = 1;
+	optional uint32 zoneid    = 2;
+	optional uint64 charid    = 3;
+	optional string gameorder = 4;
+	optional float  money     = 5;
+	optional uint64 createtime= 6;
+}
+
+message GameOrderListGmUserPmd_CS
+{
+	required uint32 gameid	  = 1;
+	required uint32 zoneid    = 2;
+	optional uint64 charid    = 3;
+	required uint32 gmid      = 4;
+	optional uint64 timestamp = 5;
+	repeated OrderInfo data   = 6;
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
