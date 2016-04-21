@@ -57,6 +57,7 @@ message Gm
 
         // 所有的给Lua处理的全部用json方式用这个协议包装
         RequestExecGmCommandGmPmd_SC              = 43;
+		RequestGameZoneErrorGmPmd_S				  = 44;   //客户端发送的游戏区服错误
         //
         //SelectGamezoneGmUserPmd_C                 = 41;   //选择当前需要监控的区服
 
@@ -180,6 +181,13 @@ message RequestExecGmCommandGmPmd_SC
     required uint32 zoneid  = 2;
     required uint32 gmid    = 3;
     required string msg     = 4; // msg 为协议gmdo: data:
+}
+
+message RequestGameZoneErrorGmPmd_S
+{
+	required uint32 retcode	 = 1;
+	optional string retdesc	 = 2;
+	required uint32 gmid	 = 3;
 }
 
 // 脚本热重启请求
@@ -468,7 +476,7 @@ message PunishUserInfo
 	optional uint32 punishtime= 12;  //下发处罚的时间戳
 
 }
-//处罚玩家、返回当前受处罚的玩家,支持批量处罚，返回消息是：ReturnPunishUserGmUserPmd_S
+//处罚玩家
 message PunishUserGmUserPmd_C
 {
 	required PunishUserInfo data = 1; //处罚玩家信息
