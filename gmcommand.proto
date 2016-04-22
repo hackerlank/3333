@@ -535,12 +535,12 @@ message ReturnDeletePunishUserGmUserPmd_S
 message RequestPunishListGmUserPmd_C
 {
 	required uint32 gameid		 = 1;
-	optional uint32 zoneid       = 2; //区服ID，0则表示查询当前游戏的所有区服的处罚记录
+	required uint32 zoneid       = 2; //区服ID，0则表示查询当前游戏的所有区服的处罚记录
 	optional uint64 charid       = 3; //根据玩家角色ID
 	optional string charname     = 4; //根据玩家昵称
 	optional uint32 gmid         = 5; //根据处罚gm来查找
 	optional uint32 ptype        = 6; //根据类型来查找
-	optional uint32 endtime      = 7; //根据结束时间来查找,查找该时间点之后还有效的处罚
+	optional uint64 recordtime   = 7; //处罚记录时间戳
 }
 message ReturnPunishListGmUserPmd_S
 {
