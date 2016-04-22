@@ -27,6 +27,8 @@ message Login
 		CheckVersionLoginUserPmd_C 			= 21;
 		PushAccountVerifyLoginUserPmd_C 		= 22;
 		BehaviorClientVerifyLoginUserPmd_C 		= 23;
+		RequestUserZoneInfoLoginUserPmd_C       = 24;
+		RequestUserZoneInfoLoginUserPmd_S       = 25;
 	}
 }
 
