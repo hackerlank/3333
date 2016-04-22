@@ -157,13 +157,16 @@ def build_cpp():
     if bNew:
         pickle_wr('wb',MD5_DICT)
     if system != "windows":
-        cmd = "sed -i '/libplatcommon_la_SOURCES/d' Makefile.am"
-        assert(os.system(cmd) == 0)
-        cmd = "sed -i '$alibplatcommon_la_SOURCES = "
-        for f in glob.glob("*.pb.cc"):
-             cmd = cmd + " " + f
-        cmd = cmd + "' Makefile.am"
-        assert(os.system(cmd) == 0)
+        modify_makefile("Makefile.am")
+
+def modify_makefile(makefile):
+    sources = " ".join(glob.glob("*.pb.cc"))
+    cmd = ("sed -i 's|PLATCOMM_SRC =.*|PLATCOMM_SRC = %s|g' %s") % (sources, makefile)
+    assert(os.system(cmd) == 0)
+
+    sources = " ".join(glob.glob("gbuffer/*.cpp"))
+    cmd = ("sed -i 's|GBUFFER_SRC =.*|GBUFFER_SRC = %s|g' %s") % (sources, makefile)
+    assert(os.system(cmd) == 0)
 
 #build_go()
 
