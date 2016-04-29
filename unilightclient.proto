@@ -8,15 +8,14 @@ import "logincommand.proto";
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /// Client到LoginServer和unilight之间的HTTP POST通信URL签名
 ////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-   URL + "?unigame_plat_sign=" + MD5(
-   tojsonstring(HttpPackage) +
-   tostring(unigame_plat_timestamp) +
-   unigame_plat_key)
-
+//
+//   URL + "?unigame_plat_sign=" + MD5(
+//   tojsonstring(HttpPackage) +
+//   tostring(unigame_plat_timestamp) +
+//   unigame_plat_key)
+//
 // 可选参数。如果指定则消息被整体压缩后以arraybuffer的二进制方式发送，下行消息会以相同方式压缩
-+ "&compress=" + Pmd.CompressType // ["gzip", "flate", "zlib", "lzw"]
- */
+//	 + "&compress=" + Pmd.CompressType // ["gzip", "flate", "zlib", "lzw"]
 
 message Any
 {

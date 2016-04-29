@@ -40,6 +40,6 @@ message BehaviorMessageForwardUserPmd_CS
         NormalText      = 1;    // 普通编辑器消息
         UploadTree      = 2;    // 上传行为树
     }
-	repeated string msg	 			= 1; // 文本格式
-    optional Type   type            = 2 [default = NormalText]; // 消息类型
+	repeated string msg	 	= 1; // 文本格式
+    optional Type   type    = 2 [default = NormalText]; // 消息类型
 }

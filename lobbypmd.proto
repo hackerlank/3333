@@ -1,7 +1,6 @@
 package Pmd;
 import "pmd.proto";
 
-// TODO
 message Lobby
 {
 	enum Param
@@ -12,6 +11,6 @@ message Lobby
 
 message DELETE_ME
 {
-	optional string mid 		= 1;	//机型
+	optional string mid 		= 1;	// 机型
 }
 

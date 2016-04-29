@@ -24,7 +24,7 @@ message Login
 		RequestClientIPLoginUserPmd_C			= 18;
 		ReturnClientIPLoginUserPmd_S			= 19;
 		ReconnectErrorLoginUserPmd_S 			= 20;
-		CheckVersionLoginUserPmd_C 			= 21;
+		CheckVersionLoginUserPmd_C 				= 21;
 		PushAccountVerifyLoginUserPmd_C 		= 22;
 		BehaviorClientVerifyLoginUserPmd_C 		= 23;
 		RequestUserZoneInfoLoginUserPmd_C       = 24;
@@ -56,8 +56,8 @@ message PushAccountVerifyLoginUserPmd_C
 	optional uint32 zoneid			= 3;	// 这里约定为每个游戏的gameid,这个消息本身的gameid为4000,约定为推送服务器
 	optional string token 		 	= 4;	// token 默认约定即可(暂时不用)
 	optional uint32 version 		= 5;	// 当前客户端login版本号Version_Login(暂时不用)
-	optional string mid			= 6;	// 机器码
-	optional uint32 gameversion 		= 7;	// 当前客户端game版本号Version_Login(暂时不用)
+	optional string mid				= 6;	// 机器码
+	optional uint32 gameversion 	= 7;	// 当前客户端game版本号Version_Login(暂时不用)
 	optional string compress		= 8;	// 压缩算法(暂时不用)
 	optional string encrypt			= 9;	// 加密算法(暂时不用)
 	optional string encryptkey		= 10;	// 加密key(暂时不用)
@@ -279,7 +279,7 @@ enum PlatType
 	PlatType_AiBei    			= 70;		// 爱贝云
 	PlatType_Facebook    		= 71;		// Facebook
 	PlatType_GooglePlay    		= 72;		// GooglePlay
-	PlatType_XingZhiZhu 		= 73;		// 性之助
+	PlatType_XingZhiZhu 		= 73;		// 性之助（就叫这个名字）
 	PlatType_HuoWu 				= 74;		// 火舞
 	PlatType_CaiGuo 			= 77;		// 彩果
 	PlatType_1758				= 79;		// 1758

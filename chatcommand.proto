@@ -4,17 +4,17 @@ message Chat
 {
 	enum Param
 	{
-		CommonChatUserPmd_CS 			= 1;
-		GMCommandChatUserPmd_C 			= 2;
-		GMCommandListChatUserPmd_S		= 4;
-		PrivateChatUserPmd_CS 			= 5;
-		CurrentGmLevelChatUserPmd_S		= 6; 
-		stAddHideButtonBookChatUserPmd_S 	= 7;
-		stAddHideButtonChatUserPmd_S 		= 8;
+		CommonChatUserPmd_CS 					= 1;
+		GMCommandChatUserPmd_C 					= 2;
+		GMCommandListChatUserPmd_S				= 4;
+		PrivateChatUserPmd_CS 					= 5;
+		CurrentGmLevelChatUserPmd_S				= 6; 
+		stAddHideButtonBookChatUserPmd_S 		= 7;
+		stAddHideButtonChatUserPmd_S 			= 8;
 		stAddHideButtonNewFunctionChatUserPmd_S = 9;
 		stAddHideButtonServerHotKeyChatUserPmd_S= 10;
-		stCommonChatUserPmd_CS 			= 11;
-		stMessageBoxChatUserPmd_S 		= 12;
+		stCommonChatUserPmd_CS 					= 11;
+		stMessageBoxChatUserPmd_S 				= 12;
 
 	}
 }
@@ -40,7 +40,7 @@ message CommonChatUserPmd_CS
 	    ChatPos_Tips        = 0x04;		// 冒泡提示
 	    ChatPos_Pop         = 0x08;		// 右下角弹出
 	    ChatPos_Private     = 0x10;		// 私聊输出
-	    ChatPos_Important   = 0x20;		// 重要信息，屏幕中央输出(电视^_^)
+	    ChatPos_Important   = 0x20;		// 重要信息，屏幕中央输出(电视)
 	    ChatPos_Honor       = 0x40;		// 荣耀信息
 	    ChatPos_Gm          = 0x80;		// GM系统公告输出位置 	
 	}
@@ -80,10 +80,10 @@ message PrivateChatUserPmd_CS
 	optional uint64 time        = 5; 	// 增加时间戳
 }
 
-//玩家当前gm权限
+// 玩家当前gm权限
 message CurrentGmLevelChatUserPmd_S
 {
-	optional uint32 gmlevel       = 1; //权限等级,0表示无权限
+	optional uint32 gmlevel       = 1; // 权限等级,0表示无权限
 }
 
 // 服务器端发送右边提示
@@ -130,7 +130,7 @@ message stAddHideButtonServerHotKeyChatUserPmd_S
 
 message stCommonChatUserPmd_CS
 {
-	optional uint32 byChatType = 1;//CHATTYPE
+	optional uint32 byChatType = 1;		// CHATTYPE
 	optional uint32 byChatColor = 2;
 	optional uint32 byItemNum = 3;
 	optional uint32 byChatPos = 4;
@@ -145,9 +145,9 @@ message stCommonChatUserPmd_CS
 	optional uint32 byUserCmd = 13;
 	optional uint32 byUserParam = 14;
 	optional string szInfo = 15;
-	optional uint32 profession = 16;	//职业enumProfession
-	optional uint32 sex = 17;	// 性别enmCharSex
-	optional uint32 timestamp = 18;	// 时间(unix时间戳) 
+	optional uint32 profession = 16;	// 职业enumProfession
+	optional uint32 sex = 17;			// 性别enmCharSex
+	optional uint32 timestamp = 18;		// 时间(unix时间戳) 
 }
 
 // 系统对话框，支持打开指定窗口

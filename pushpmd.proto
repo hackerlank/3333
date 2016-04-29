@@ -1,12 +1,11 @@
 package Pmd;
 import "pmd.proto";
 
-// TODO
 message Push
 {
 	enum Param
 	{
-		ClientInstallFinishPushPmd_C 		= 1;
+		ClientInstallFinishPushPmd_C 	= 1;
 		ClientUninstallPushPmd_C 		= 2;
 		ClientStartPushPmd_C 			= 3;
 		ClientExitPushPmd_C 			= 4;
@@ -19,7 +18,7 @@ message Push
 // 客户端安装按成第一次登陆
 message ClientInstallFinishPushPmd_C
 {
-	optional string mid 		= 1;	//机型
+	optional string mid 		= 1;	// 机型
 }
 
 // 卸载
@@ -50,6 +49,6 @@ message ServiceExitPushPmd_C
 // 消息推送
 message NotifyMessagePushPmd_S
 {
-	optional uint32 type 		= 1;	//消息类型
-	optional string info 		= 2;	//消息内容
+	optional uint32 type 		= 1;	// 消息类型
+	optional string info 		= 2;	// 消息内容
 }
