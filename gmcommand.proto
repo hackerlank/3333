@@ -75,6 +75,7 @@ message Gm
 		QueryPackageCodeGmUserPmd_CS			  = 60;     // 查询礼包码
 		RequestUsePackageCodeGmUserPmd_CS		  = 61;		// 请求使用礼包码
 		FeedbackGmUserPmd_CS					  = 62;     // 玩家反馈内容
+		RequestFeedbackListGmUserPmd_C            = 63;     // 请求反馈列表-gmtools
 
 		stRequestLoginGmUserCmd                   = 105;	// GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;	// 返回GM登陆验证结果
@@ -332,12 +333,24 @@ message FeedbackData
 	optional string content    = 9;
 	required uint32 star       = 10;
 	required uint64 recordtime = 11;
+	optional uint64 recordid   = 12;  //返回给Gmtools时使用
 }
 
 message FeedbackGmUserPmd_CS
 {
 	repeated FeedbackData data   = 1;
 	optional uint32 feedbacktype = 2; //默认0，问卷反馈
+}
+
+
+message RequestFeedbackListGmUserPmd_C
+{
+	required uint32 gameid       = 1;
+	required uint32 zoneid       = 2;
+	optional uint64 charid       = 3;
+	optional uint32 feedbacktype = 4; //类型
+	optional uint32 action       = 5; //是否处理，0所有， 1未处理， 2已处理 
+	optional uint64 lastid       = 6; //上次请求的最大ID,数量较多时用来翻页
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
