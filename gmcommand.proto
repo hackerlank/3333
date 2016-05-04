@@ -336,7 +336,8 @@ message FeedbackData
 
 message FeedbackGmUserPmd_CS
 {
-	repeated FeedbackData data = 1;
+	repeated FeedbackData data   = 1;
+	optional uint32 feedbacktype = 2; //默认0，问卷反馈
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
