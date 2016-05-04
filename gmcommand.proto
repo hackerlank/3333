@@ -74,6 +74,7 @@ message Gm
 
 		QueryPackageCodeGmUserPmd_CS			  = 60;     // 查询礼包码
 		RequestUsePackageCodeGmUserPmd_CS		  = 61;		// 请求使用礼包码
+		FeedbackGmUserPmd_CS					  = 62;     // 玩家反馈内容
 
 		stRequestLoginGmUserCmd                   = 105;	// GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;	// 返回GM登陆验证结果
@@ -316,6 +317,26 @@ message RequestUsePackageCodeGmUserPmd_CS
 	optional uint64 useduid    = 8;
 	optional string extdata    = 9;  
 	optional uint32 codetype   = 10; 
+}
+
+message FeedbackData
+{
+	required uint32 gameid     = 1;
+	required uint32 zoneid     = 2;
+	required uint64 charid	   = 3;
+	required string charname   = 4;
+	required uint32 userlevel  = 5;
+	required uint32 viplevel   = 6;
+	optional uint32 feedbackid = 7;
+	optional string subject    = 8;
+	optional string content    = 9;
+	required uint32 star       = 10;
+	required uint64 recordtime = 11;
+}
+
+message FeedbackGmUserPmd_CS
+{
+	repeated FeedbackData data = 1;
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
