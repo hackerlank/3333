@@ -351,6 +351,8 @@ message RequestFeedbackListGmUserPmd_C
 	optional uint32 feedbacktype = 4; //类型
 	optional uint32 action       = 5; //是否处理，0所有， 1未处理， 2已处理 
 	optional uint64 lastid       = 6; //上次请求的最大ID,数量较多时用来翻页
+	optional uint64 starttime    = 7;
+	optional uint64 endtime      = 8;
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
