@@ -152,7 +152,7 @@ message NotifyRechargeRequestSdkPmd_S
 	required float ordermoney	= 6;		// 实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
 	required uint32 goodid		= 7;		// 用户买了什么商品
 	required uint32 goodnum		= 8;		// 用户买了多少个
-	required uint32	result		= 9;		// 购买状态, 1, 处理中;2 支付成功;3支付失败
+	required uint32	result		= 9;		// 购买状态, 1, 处理中;2 支付成功;3支付失败,4登陆失效,5表示金额是查询的余额
 	optional string	extdata		= 10;		// 扩展数据长度
 	optional uint32 type		= 11;		// 充值类型，0玩家充值，1内部充值
 }
