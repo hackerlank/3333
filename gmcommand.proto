@@ -310,7 +310,8 @@ message RequestUsePackageCodeGmUserPmd_CS
 {
 	required string codeid     = 1;
 	required uint64 accid      = 2;
-	optional uint32 ret        = 3; // 0成功，1补偿码不存在失败，2 补偿码超过使用时间 ，3补偿码被人使用
+	optional uint32 typemutex  = 3; // 0不限制,1当前类型只能使用一个,由于不同游戏对礼包码的限制不同，故加此参数
+	optional uint32 ret        = 3; // 0成功，1补偿码不存在失败，2 补偿码超过使用时间 ，3补偿码被人使用 4已使用同类型礼包码
 	optional uint64 createtime = 4;
 	optional uint64 usedtime   = 5;
 	optional uint32 usedgameid = 6;
