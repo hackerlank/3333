@@ -169,6 +169,7 @@ message UserLoginReturnOkLoginUserPmd_S
 	required uint32 zoneid	 		= 6;	// 区编号
 	optional bool   separatezoneuid = 7;
 	optional string zoneuid         = 8;
+	optional string gatewayurltcp		= 9;	// 登陆的网关地址tcp,
 }
 // 发给网关的登陆消息
 message UserLoginTokenLoginUserPmd_C
