@@ -195,6 +195,7 @@ message ReturnQueryPlatPointSdkPmd_S
 	required uint64 balance		= 3;		// 剩余点数
 	required uint32 ret			= 4;		// 登陆结果, 0 表示成功
 	optional string retdesc		= 5;		// 返回描述
+    optional float  money       = 6;        // 
 }
 
 // 第三方平台帐号中点数兑换请求
