@@ -74,7 +74,7 @@ message ForwardBwNullUserPmd_CS
 	optional bytes data		= 3;
 }
 message FrameSyncData{
-	optional bytes data		= 1;
+	optional string data		= 1;
 }
 //帧同步下发
 message BroadListFrameSyncNullUserPmd_S
