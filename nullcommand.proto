@@ -74,7 +74,7 @@ message ForwardBwNullUserPmd_CS
 	optional bytes data		= 3;
 }
 message FrameSyncData{
-	optional uint32 roomuserid	= 1;
+	optional uint64 tempid		= 1;//房间内临时用户编号,也可以是accountid,但是为了后期后话流量,可以选择用更小的id
 	optional string data		= 2;
 }
 //帧同步下发
