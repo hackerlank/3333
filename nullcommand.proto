@@ -74,7 +74,8 @@ message ForwardBwNullUserPmd_CS
 	optional bytes data		= 3;
 }
 message FrameSyncData{
-	optional string data		= 1;
+	optional uint32 roomuserid	= 1;
+	optional string data		= 2;
 }
 //帧同步下发
 message BroadListFrameSyncNullUserPmd_S
