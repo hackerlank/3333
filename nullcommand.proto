@@ -12,6 +12,8 @@ message Null
 		CheckVersionUserPmd_CS		= 5;
 		ForwardBwNullUserPmd_CS		= 6;
 		SetTickTimeoutNullUserPmd_CS	= 7;
+		BroadListFrameSyncNullUserPmd_S	= 8;
+		RequestUpFrameSyncNullUserPmd_C	= 9;
 	}
 }
 
@@ -70,4 +72,20 @@ message CheckVersionUserPmd_CS
 message ForwardBwNullUserPmd_CS
 {
 	optional bytes data		= 3;
+}
+message FrameSyncData{
+	optional bytes data		= 1;
+}
+//帧同步下发
+message BroadListFrameSyncNullUserPmd_S
+{
+	optional uint32 num			= 1;
+	repeated FrameSyncData datalist		= 2;
+	optional uint32 randseed		= 3;
+}
+//帧同步上行
+message RequestUpFrameSyncNullUserPmd_C
+{
+	optional uint32 num			= 1;
+	optional FrameSyncData data		= 2;
 }
