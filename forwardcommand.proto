@@ -17,6 +17,7 @@ message Forward
 message UserJsMessageForwardUserPmd_CS
 {
 	optional string msg	 			= 1; // json消息内容
+	optional bytes msgbytes	 		= 2; // json消息用bytes 
 }
 
 // HTTP请求切换到websocket链接
