@@ -87,6 +87,5 @@ message BroadListFrameSyncNullUserPmd_S
 //帧同步上行
 message RequestUpFrameSyncNullUserPmd_C
 {
-	optional uint32 num			= 1;
-	optional FrameSyncData data		= 2;
+	optional string data			= 1;
 }
