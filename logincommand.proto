@@ -162,11 +162,11 @@ message UserLoginReturnFailLoginUserPmd_S
 message UserLoginReturnOkLoginUserPmd_S
 {
 	required uint64 accountid 		= 1;	// 账号
-	required uint64 logintempid 	= 2;	// 生成一个临时编号,用于校验,登陆网关时传上去
-	required uint64 tokenid			= 3;	// 随机token
-	required string gatewayurl		= 4;	// 登陆的网关地址,接下来断开连接后马上登陆这个地址
-	required uint32 gameid	 		= 5;	// 游戏编号
-	required uint32 zoneid	 		= 6;	// 区编号
+	optional uint64 logintempid 	= 2;	// 生成一个临时编号,用于校验,登陆网关时传上去
+	optional uint64 tokenid			= 3;	// 随机token
+	optional string gatewayurl		= 4;	// 登陆的网关地址,接下来断开连接后马上登陆这个地址
+	optional uint32 gameid	 		= 5;	// 游戏编号
+	optional uint32 zoneid	 		= 6;	// 区编号
 	optional bool   separatezoneuid = 7;
 	optional string zoneuid         = 8;
 	optional string gatewayurltcp		= 9;	// 登陆的网关地址tcp,
