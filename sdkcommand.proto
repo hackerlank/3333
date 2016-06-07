@@ -29,6 +29,7 @@ message Sdk
 		NotifyTapJoyRequestSdkPmd_S = 22;
 		PushMsgRequestSdkPmd_C = 23;
 		PushMsgReturnSdkPmd_S = 24;
+		BindAccountPhoneSdkPmd_CS = 25;
 	}
 }
 
@@ -314,4 +315,12 @@ message PushMsgReturnSdkPmd_S
 	optional uint32 ret         = 3;
 	optional string retdesc     = 4;
 }
-
+//绑定手机号
+message BindAccountPhoneSdkPmd_CS
+{
+	required PlatBaseData data = 1; //玩家账号基础信息
+	required string phone      = 2; //玩家手机号 
+	optional string code       = 3; //验证码，如不填，则表示请求验证码
+	optional uint32 ret        = 4; //返回, 0成功，1验证码错误, 2手机已绑定，3系统错误, 4请求次数太多
+	optional string retdesc    = 5; //描述
+}
