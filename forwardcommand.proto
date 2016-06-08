@@ -27,10 +27,12 @@ message WebSocketForwardUserPmd_C
 }
 message WebSocketForwardUserPmd_S
 {
-	required uint64 accountid           = 1;
-	required string jsongatewayurl      = 2;
-	required string gatewayurl          = 3;
-	required string gatewayurltcp       = 4;
+	required uint64 accountid 			= 2;
+	required string jsongatewayurl 		= 4;
+	required uint64 tokenid 			= 5;
+	required uint64 logintempid 		= 6;
+	required string gatewayurl          = 7;
+	required string gatewayurltcp       = 8;
 }
 
 // 长连接时玩家跟区服务器的通信是通过网关转发的,统一用这个消息互相传递
