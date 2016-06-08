@@ -12,9 +12,10 @@ message Null
 		CheckVersionUserPmd_CS		= 5;
 		ForwardBwNullUserPmd_CS		= 6;
 		SetTickTimeoutNullUserPmd_CS	= 7;
-		StartFrameSyncNullUserPmd_CS	= 8;
-		BroadListFrameSyncNullUserPmd_S	= 9;
-		RequestUpFrameSyncNullUserPmd_C	= 10;
+		MaxDefualtNullUserPmd		= 15;//这里为了节省流量,特殊处理系,15以下为系统用,以上也可以被应用层使用
+		StartFrameSyncNullUserPmd_CS	= 16;
+		BroadListFrameSyncNullUserPmd_S	= 17;
+		RequestUpFrameSyncNullUserPmd_C	= 18;
 	}
 }
 
@@ -79,6 +80,10 @@ message FrameSyncData{
 	optional string data		= 2;
 }
 
+ 
+message MaxDefualtNullUserPmd
+{
+}
 message StartFrameSyncNullUserPmd_CS
 {
 	optional uint32 msec			= 1;//频率,毫毛,1000/msec=帧率
