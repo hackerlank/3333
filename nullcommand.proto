@@ -16,6 +16,8 @@ message Null
 		StartFrameSyncNullUserPmd_CS	= 16;
 		BroadListFrameSyncNullUserPmd_S	= 17;
 		RequestUpFrameSyncNullUserPmd_C	= 18;
+		HistoryListFrameSyncNullUserPmd_S= 19;
+		StopFrameSyncNullUserPmd_SC	= 20;
 	}
 }
 
@@ -84,11 +86,13 @@ message FrameSyncData{
 message MaxDefualtNullUserPmd
 {
 }
+//帧同步启动
 message StartFrameSyncNullUserPmd_CS
 {
 	optional uint32 msec			= 1;//频率,毫毛,1000/msec=帧率
 	optional uint32 randseed		= 2;//随机种子
 	optional string initdata		= 3;//起始数据
+	optional string roomid			= 4;//如果填了这个,表示帧同步数据可以通过网关转发,而不用经过unilight,提高ping值
 }
 //帧同步下发
 message BroadListFrameSyncNullUserPmd_S
@@ -100,4 +104,18 @@ message BroadListFrameSyncNullUserPmd_S
 message RequestUpFrameSyncNullUserPmd_C
 {
 	optional string data			= 1;
+}
+message HistoryFrameSyncData{
+	optional uint32 num			= 1;
+	repeated FrameSyncData datalist		= 2;
+}
+//帧同步历史列表
+message HistoryListFrameSyncNullUserPmd_S
+{
+	repeated HistoryFrameSyncData datalist	= 1;
+}
+//帧同步结束,上发结算消息
+message StopFrameSyncNullUserPmd_SC
+{
+	optional string resultdata		= 1;//结算数据
 }
