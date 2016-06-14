@@ -12,8 +12,12 @@ message Null
 		CheckVersionUserPmd_CS		= 5;
 		ForwardBwNullUserPmd_CS		= 6;
 		SetTickTimeoutNullUserPmd_CS	= 7;
-		BroadListFrameSyncNullUserPmd_S	= 8;
-		RequestUpFrameSyncNullUserPmd_C	= 9;
+		MaxDefualtNullUserPmd		= 15;//这里为了节省流量,特殊处理系,15以下为系统用,以上也可以被应用层使用
+		StartFrameSyncNullUserPmd_CS	= 16;
+		BroadListFrameSyncNullUserPmd_S	= 17;
+		RequestUpFrameSyncNullUserPmd_C	= 18;
+		HistoryListFrameSyncNullUserPmd_S= 19;
+		StopFrameSyncNullUserPmd_SC	= 20;
 	}
 }
 
@@ -77,15 +81,41 @@ message FrameSyncData{
 	optional uint64 tempid		= 1;//房间内临时用户编号,也可以是accountid,但是为了后期后话流量,可以选择用更小的id
 	optional string data		= 2;
 }
+
+ 
+message MaxDefualtNullUserPmd
+{
+}
+//帧同步启动
+message StartFrameSyncNullUserPmd_CS
+{
+	optional uint32 msec			= 1;//频率,毫毛,1000/msec=帧率
+	optional uint32 randseed		= 2;//随机种子
+	optional string initdata		= 3;//起始数据
+	optional string roomid			= 4;//如果填了这个,表示帧同步数据可以通过网关转发,而不用经过unilight,提高ping值
+}
 //帧同步下发
 message BroadListFrameSyncNullUserPmd_S
 {
 	optional uint32 num			= 1;
 	repeated FrameSyncData datalist		= 2;
-	optional uint32 randseed		= 3;
 }
 //帧同步上行
 message RequestUpFrameSyncNullUserPmd_C
 {
 	optional string data			= 1;
+}
+message HistoryFrameSyncData{
+	optional uint32 num			= 1;
+	repeated FrameSyncData datalist		= 2;
+}
+//帧同步历史列表
+message HistoryListFrameSyncNullUserPmd_S
+{
+	repeated HistoryFrameSyncData datalist	= 1;
+}
+//帧同步结束,上发结算消息
+message StopFrameSyncNullUserPmd_SC
+{
+	optional string resultdata		= 1;//结算数据
 }
