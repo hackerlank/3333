@@ -113,6 +113,7 @@ message HistoryFrameSyncData{
 message HistoryListFrameSyncNullUserPmd_S
 {
 	repeated HistoryFrameSyncData datalist	= 1;
+	optional bool finished			= 2;//因为列表可能会很大,需要分段发送,就需要有个结束标志
 }
 //帧同步结束,上发结算消息
 message StopFrameSyncNullUserPmd_SC
