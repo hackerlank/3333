@@ -444,7 +444,7 @@ message RequestStockInfoGmUserPmd_CS
 	required uint32 gameid		= 1;
 	required uint32 zoneid		= 2;
 	optional uint32 gmid		= 3;
-	optional StockData data		= 4; //库存数据
+	repeated StockData data		= 4; //库存数据
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
