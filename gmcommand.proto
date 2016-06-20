@@ -374,8 +374,8 @@ message RequestPointReportGmUserPmd_CS
 	required uint32 gameid		= 1;
 	required uint32 zoneid		= 2; 
 	optional uint64 charid		= 3; //如果charid不为0，则表示检索单个玩家的积分兑换报表
-	optional uint32 startdate	= 4; //检索起始日期，年月日形式的整数，方便查询
-	optional uint32 enddate		= 5; //检索截止日期，同上
+	optional uint32 starttime	= 4; //开始时间戳
+	optional uint32 endtime		= 5; //结束时间戳
 	optional uint32 gmid		= 6;
 	repeated PointReportData data = 7; //报表数据
 }
