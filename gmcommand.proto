@@ -463,7 +463,7 @@ message RedPacketsInfo
 	required uint64				id = 1;
 	required uint64	  srcuid	   = 2;
 	required string   srcnickname  = 3;
-	required uint64   desuid	   = 4
+	required uint64   desuid	   = 4;
 	required string   desnickname  = 5;
 	required uint64   money        = 6;
 	required uint64   recordtime   = 7;
