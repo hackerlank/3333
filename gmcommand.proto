@@ -81,6 +81,8 @@ message Gm
 		RequestPointDetailGmUserPmd_CS			  = 65;		// 请求积分兑换明细，需要逻辑服自行处理查询，monitor没有带入带出前的积分详情
 		RequestBettingDetailGmUserPmd_CS		  = 66;		// 请求投注详情
 		RequestStockInfoGmUserPmd_CS			  = 67;		// 请求库存信息
+		RequestRedPacketsGmUserPmd_CS		      = 69;		// 查询红包 
+		RequestedSubgameListGmUserPmd_CS		  = 70;		// 查询子游戏列表
 
 		stRequestLoginGmUserCmd                   = 105;	// GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;	// 返回GM登陆验证结果
@@ -445,6 +447,55 @@ message RequestStockInfoGmUserPmd_CS
 	required uint32 zoneid		= 2;
 	optional uint32 gmid		= 3;
 	repeated StockData data		= 4; //库存数据
+}
+
+// 请求在线玩家列表
+message RequestOnlineUserInfoGmUserPmd_CS
+{
+	required uint32 gameid		= 1;
+	required uint32 zoneid		= 2;
+	optional uint32 gmid		= 3;
+	repeated UserInfo data   = 4; // 玩家信息
+}
+
+message RedPacketsInfo
+{
+	required uint64				id = 1;
+	required string   srcnickname  = 2;
+	required string   desnickname  = 3;
+	required uint64   money        = 4;
+	required uint64   exchangetime = 5;
+}
+
+// 查询红包
+message	RequestRedPacketsGmUserPmd_CS
+{
+	required uint32 gameid				= 1;
+	required uint32 zoneid				= 2;
+	optional uint32 gmid				= 3;
+	optional uint64 starttime			= 4;
+	optional uint64 endtime				= 5;
+	optional uint64 srcuid				= 6; // 发送红包者
+	optional uint64 desuid				= 7; // 收包接受者
+	repeated RedPacketsInfo  data       = 8; //红包
+}
+
+message SubgameList
+{
+	required uint64   gameid   = 1; // gameid
+	required uint64   zoneid   = 2; // zoneid
+	required string   gamename = 3; // 游戏名字
+	required string   zonename = 4; // 区名字
+}
+
+// 查询子游戏列表
+message RequestedSubgameListGmUserPmd_CS
+{
+	required uint32 gameid				= 1;
+	required uint32 zoneid				= 2;
+	optional uint32 gmid				= 3;
+	repeated SubgameList data           = 4;
+
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
