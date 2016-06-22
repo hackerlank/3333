@@ -439,6 +439,7 @@ message StockData
 	optional uint64 threshold	= 3; //阈值
 	optional uint64 lottery		= 4; //彩金
 	optional uint64 profit		= 5; //利润
+	optional uint32 subgameid	= 6; //大厅内子游戏ID
 }
 
 message RequestStockInfoGmUserPmd_CS
@@ -447,6 +448,7 @@ message RequestStockInfoGmUserPmd_CS
 	required uint32 zoneid		= 2;
 	optional uint32 gmid		= 3;
 	repeated StockData data		= 4; //库存数据
+	optional uint32 subgameid	= 5; //大厅内子游戏ID
 }
 
 // 请求在线玩家列表
