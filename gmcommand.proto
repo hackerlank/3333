@@ -81,8 +81,10 @@ message Gm
 		RequestPointDetailGmUserPmd_CS			  = 65;		// 请求积分兑换明细，需要逻辑服自行处理查询，monitor没有带入带出前的积分详情
 		RequestBettingDetailGmUserPmd_CS		  = 66;		// 请求投注详情
 		RequestStockInfoGmUserPmd_CS			  = 67;		// 请求库存信息
+		//6/22新加协议
 		RequestRedPacketsGmUserPmd_CS		      = 69;		// 查询红包 
 		RequestedSubgameListGmUserPmd_CS		  = 70;		// 查询子游戏列表
+		RequestOnlineUserInfoGmUserPmd_CS		  = 71;		// 请求在线或者离线玩家列表
 
 		stRequestLoginGmUserCmd                   = 105;	// GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;	// 返回GM登陆验证结果
@@ -456,8 +458,9 @@ message RequestOnlineUserInfoGmUserPmd_CS
 {
 	required uint32 gameid		= 1;
 	required uint32 zoneid		= 2;
-	optional uint32 gmid		= 3;
-	repeated UserInfo data   = 4; // 玩家信息
+	required uint32 isonline	= 3; //0在线，1离线
+	optional uint32 gmid		= 4;
+	repeated UserInfo data		= 5; // 玩家信息
 }
 
 message RedPacketsInfo
