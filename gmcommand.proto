@@ -461,10 +461,12 @@ message RequestOnlineUserInfoGmUserPmd_CS
 message RedPacketsInfo
 {
 	required uint64				id = 1;
-	required string   srcnickname  = 2;
-	required string   desnickname  = 3;
-	required uint64   money        = 4;
-	required uint64   exchangetime = 5;
+	required uint64	  srcuid	   = 2;
+	required string   srcnickname  = 3;
+	required uint64   desuid	   = 4
+	required string   desnickname  = 5;
+	required uint64   money        = 6;
+	required uint64   recordtime   = 7;
 }
 
 // 查询红包
@@ -483,9 +485,9 @@ message	RequestRedPacketsGmUserPmd_CS
 message SubgameList
 {
 	required uint64   gameid   = 1; // gameid
-	required uint64   zoneid   = 2; // zoneid
+	optional uint64   zoneid   = 2; // zoneid
 	required string   gamename = 3; // 游戏名字
-	required string   zonename = 4; // 区名字
+	optional string   zonename = 4; // 区名字
 }
 
 // 查询子游戏列表
