@@ -4,6 +4,7 @@ package Pmd;
 enum PlatCommand
 {
 	PlatCommand_Null 		= 0;
+	PlatCommand_Logger 		= 245;	// 日志服务器
 	PlatCommand_Lobby 		= 246;	// 大厅服务器
 	PlatCommand_Push 		= 247;	// 推送服务器
 	PlatCommand_Gm 			= 248;	// GM服务器

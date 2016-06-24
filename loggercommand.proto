@@ -1,0 +1,70 @@
+package Pmd;
+import "pmd.proto";
+
+message Logger
+{
+	enum Param
+	{
+		StartUpServerRequestLoggerPmd_C 	= 1;
+		StartUpServerReturnLoggerPmd_S 		= 2;
+		GameZoneNewLineRequestLoggerPmd_C 	= 3;
+		GameZoneNewLineWriteLoggerPmd_S 	= 4;
+		GameZoneHistoryLineRequestLoggerPmd_C 	= 5;
+		GameZoneHistoryLineWriteLoggerPmd_S 	= 6;
+	}
+}
+
+// 验证消息
+message StartUpServerRequestLoggerPmd_C
+{
+	optional string key 		= 1;
+	optional uint32 version 	= 2;
+	optional string compress	= 3;		// 压缩算法
+	optional string encrypt		= 4;		// 加密算法
+	optional string encryptkey	= 5;		// 加密key
+}
+
+// 验证消息返回
+message StartUpServerReturnLoggerPmd_S
+{
+	optional bool ret = 1;					// 返回成功标志
+	optional string retdesc = 2;			// 返回描述
+}
+
+// 行日志信息
+message LineInfo
+{
+	optional uint64 id		= 1;		// 类实例id,上行时只代表accid
+	optional string name		= 2;		// 类实例名称,上行时只代表角色id,账号id
+	optional string classname	= 3;		// 类名
+	optional string servername	= 4;		// 服务器名称
+	optional uint32 level		= 5;		// 日志等级,DEBUG,WARNING,ERROR,INFO
+	optional uint32 timestamp	= 6;		// 
+	optional string log		= 7;		// 日志内容
+}
+
+// 请求日志信息
+message GameZoneNewLineRequestLoggerPmd_C
+{
+	optional GameZoneInfo gamezone	= 1;	// 游戏类型
+	optional LineInfo level		= 2;	// 日志等级,DEBUG,WARNING,ERROR,INFO
+}
+
+// 日志
+message GameZoneNewLineWriteLoggerPmd_S
+{
+	optional LineInfo line 	= 1;		// 最新日志
+}
+
+// 请求日志信息
+message GameZoneHistoryLineRequestLoggerPmd_C
+{
+	optional GameZoneInfo gamezone	= 1;	// 游戏类型
+	optional LineInfo level		= 2;	// 日志等级,DEBUG,WARNING,ERROR,INFO
+}
+
+// 历史日志
+message GameZoneHistoryLineWriteLoggerPmd_S
+{
+	repeated LineInfo linelist 	= 1;		// 历史日志
+}
