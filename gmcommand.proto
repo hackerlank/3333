@@ -85,6 +85,7 @@ message Gm
 		RequestRedPacketsGmUserPmd_CS		      = 69;		// 查询红包 
 		RequestedSubgameListGmUserPmd_CS		  = 70;		// 查询子游戏列表
 		RequestOnlineUserInfoGmUserPmd_CS		  = 71;		// 请求在线或者离线玩家列表
+		RequestWinningListGmUserPmd_CS			  = 72;		// 请求输赢排行榜
 
 		stRequestLoginGmUserCmd                   = 105;	// GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;	// 返回GM登陆验证结果
@@ -381,7 +382,10 @@ message RequestPointReportGmUserPmd_CS
 	optional uint32 starttime	= 4; //开始时间戳
 	optional uint32 endtime		= 5; //结束时间戳
 	optional uint32 gmid		= 6;
-	repeated PointReportData data = 7; //报表数据
+	optional uint32 curpage		= 7; //当前页
+	optional uint32 maxpage		= 8; //最大页数
+	optional uint32 perpage		= 9; //每页数量
+	repeated PointReportData data = 10; //报表数据
 }
 
 message PointDetailData
@@ -405,7 +409,10 @@ message RequestPointDetailGmUserPmd_CS
 	optional uint64 starttime	= 5;
 	optional uint64 endtime		= 6;
 	optional uint32 gmid		= 7;
-	repeated PointDetailData data = 8; //检索数据
+	optional uint32 curpage		= 8; //当前页
+	optional uint32 maxpage		= 9; //最大页数
+	optional uint32 perpage		= 10; //每页数量
+	repeated PointDetailData data = 11; //检索数据
 }
 
 message BettingDetailData 
@@ -431,7 +438,11 @@ message RequestBettingDetailGmUserPmd_CS
 	optional uint64 starttime	= 6;
 	optional uint64 endtime		= 7;
 	optional uint32 gmid		= 8;
-	repeated BettingDetailData data		= 9; //投注详情
+	optional uint32 subgameid	= 9;
+	optional uint32 curpage		= 10; //当前页
+	optional uint32 maxpage		= 11; //最大页数
+	optional uint32 perpage		= 12; //每页数量
+	repeated BettingDetailData data		= 13; //投注详情
 }
 
 message StockData
@@ -458,14 +469,19 @@ message RequestOnlineUserInfoGmUserPmd_CS
 {
 	required uint32 gameid		= 1;
 	required uint32 zoneid		= 2;
-	required uint32 isonline	= 3; //0在线，1离线
-	optional uint32 gmid		= 4;
-	repeated UserInfo data		= 5; // 玩家信息
+	optional uint64 charid		= 3;
+	optional string charname	= 4;
+	required uint32 isonline	= 5; //0在线，1离线
+	optional uint32 gmid		= 6;
+	optional uint32 curpage		= 7; //当前第几页,请求第几页
+	optional uint32 maxpage		= 8; //最大页数
+	optional uint32 perpage		= 9; //每页数量
+	repeated UserInfo data		= 10; //玩家信息
 }
 
 message RedPacketsInfo
 {
-	required uint64				id = 1;
+	required string	  id		   = 1;
 	required uint64	  srcuid	   = 2;
 	required string   srcnickname  = 3;
 	required uint64   desuid	   = 4;
@@ -484,7 +500,11 @@ message	RequestRedPacketsGmUserPmd_CS
 	optional uint64 endtime				= 5;
 	optional uint64 srcuid				= 6; // 发送红包者
 	optional uint64 desuid				= 7; // 收包接受者
-	repeated RedPacketsInfo  data       = 8; //红包
+	optional string packetcode			= 8; // 红包兑换码
+	optional uint32 curpage				= 9; //当前第几页,请求第几页
+	optional uint32 maxpage				= 10; //最大页数
+	optional uint32 perpage				= 11; //每页数量
+	repeated RedPacketsInfo  data       = 12; // 红包
 }
 
 message SubgameList
@@ -503,6 +523,30 @@ message RequestedSubgameListGmUserPmd_CS
 	optional uint32 gmid				= 3;
 	repeated SubgameList data           = 4;
 
+}
+
+message WinLoseInfo
+{
+	required uint32 id					= 1; //排名
+	required uint64 charid				= 2; //角色ID
+	required string charname			= 3; //角色昵称
+	required uint32 viplevel			= 4;
+	required uint32 isonline			= 5;
+	required int64  totalnum			= 6; //总输赢
+	required uint64 curnum				= 7; //当前剩余金币
+}
+
+//输赢排行榜，之所以不传从第几条到第几条，是为了前端分页方便
+message RequestWinningListGmUserPmd_CS
+{
+	required uint32 gameid				= 1;
+	required uint32 zoneid				= 2;
+	optional uint32 gmid				= 3;
+	optional uint32 subgameid			= 4;
+	optional uint32 curpage				= 5; //当前第几页
+	optional uint32 maxpage				= 6; //最大页数
+	optional uint32 perpage				= 7; //每页数量
+	repeated WinLoseInfo data			= 8; //输赢信息列表
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
