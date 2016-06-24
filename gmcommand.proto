@@ -543,10 +543,12 @@ message RequestWinningListGmUserPmd_CS
 	required uint32 zoneid				= 2;
 	optional uint32 gmid				= 3;
 	optional uint32 subgameid			= 4;
-	optional uint32 curpage				= 5; //当前第几页
-	optional uint32 maxpage				= 6; //最大页数
-	optional uint32 perpage				= 7; //每页数量
-	repeated WinLoseInfo data			= 8; //输赢信息列表
+	optional uint64 starttime			= 5;
+	optional uint64 endtime				= 6;
+	optional uint32 curpage				= 7; //当前第几页
+	optional uint32 maxpage				= 8; //最大页数
+	optional uint32 perpage				= 9; //每页数量
+	repeated WinLoseInfo data			= 10; //输赢信息列表
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
