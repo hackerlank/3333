@@ -438,10 +438,11 @@ message RequestBettingDetailGmUserPmd_CS
 	optional uint64 starttime	= 6;
 	optional uint64 endtime		= 7;
 	optional uint32 gmid		= 8;
-	optional uint32 curpage		= 9; //当前页
-	optional uint32 maxpage		= 10; //最大页数
-	optional uint32 perpage		= 11; //每页数量
-	repeated BettingDetailData data		= 12; //投注详情
+	optional uint32 subgameid	= 9;
+	optional uint32 curpage		= 10; //当前页
+	optional uint32 maxpage		= 11; //最大页数
+	optional uint32 perpage		= 12; //每页数量
+	repeated BettingDetailData data		= 13; //投注详情
 }
 
 message StockData
