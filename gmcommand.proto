@@ -471,7 +471,7 @@ message RequestOnlineUserInfoGmUserPmd_CS
 	required uint32 zoneid		= 2;
 	optional uint64 charid		= 3;
 	optional string charname	= 4;
-	required uint32 isonline	= 5; //0在线，1离线
+	required uint32 isonline	= 5; //1在线，2离线, 0未选中
 	optional uint32 gmid		= 6;
 	optional uint32 curpage		= 7; //当前第几页,请求第几页
 	optional uint32 maxpage		= 8; //最大页数
