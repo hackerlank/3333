@@ -5,8 +5,8 @@ message Logger
 {
 	enum Param
 	{
-		StartUpServerRequestLoggerPmd_C 	= 1;
-		StartUpServerReturnLoggerPmd_S 		= 2;
+		StartUpLoggerRequestLoggerPmd_C 	= 1;
+		StartUpLoggerReturnLoggerPmd_S 		= 2;
 		GameZoneNewLineRequestLoggerPmd_C 	= 3;
 		GameZoneNewLineWriteLoggerPmd_S 	= 4;
 		GameZoneHistoryLineRequestLoggerPmd_C 	= 5;
@@ -15,7 +15,7 @@ message Logger
 }
 
 // 验证消息
-message StartUpServerRequestLoggerPmd_C
+message StartUpLoggerRequestLoggerPmd_C
 {
 	optional string key 		= 1;
 	optional uint32 version 	= 2;
@@ -25,7 +25,7 @@ message StartUpServerRequestLoggerPmd_C
 }
 
 // 验证消息返回
-message StartUpServerReturnLoggerPmd_S
+message StartUpLoggerReturnLoggerPmd_S
 {
 	optional bool ret = 1;					// 返回成功标志
 	optional string retdesc = 2;			// 返回描述
