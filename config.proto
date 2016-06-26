@@ -14,6 +14,7 @@ message Config
 		Version_Monitor			= 20150912;	// 游戏服务器与Monitor服务器的协议
 		Version_Sdk				= 20150912;	// 游戏服务器与Sdk服务器的协议
 		Version_Build			= 20150912;	// 游戏服务器与Build服务器的协议
+		Version_Logger			= 20160626;	// 日志服务器
 	}
 	enum Debug
 	{

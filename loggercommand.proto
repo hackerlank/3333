@@ -47,7 +47,7 @@ message LineInfo
 message GameZoneNewLineRequestLoggerPmd_C
 {
 	optional GameZoneInfo gamezone	= 1;	// 游戏类型
-	optional LineInfo level		= 2;	// 日志等级,DEBUG,WARNING,ERROR,INFO
+	optional LineInfo filter	= 2;	// 日志等级,DEBUG,WARNING,ERROR,INFO
 }
 
 // 日志
@@ -60,7 +60,7 @@ message GameZoneNewLineWriteLoggerPmd_S
 message GameZoneHistoryLineRequestLoggerPmd_C
 {
 	optional GameZoneInfo gamezone	= 1;	// 游戏类型
-	optional LineInfo level		= 2;	// 日志等级,DEBUG,WARNING,ERROR,INFO
+	optional LineInfo filter	= 2;	// 日志等级,DEBUG,WARNING,ERROR,INFO
 }
 
 // 历史日志
