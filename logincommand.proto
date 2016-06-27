@@ -135,6 +135,7 @@ message RequestUserZoneInfoLoginUserPmd_S
 message MobileRegeristRequestRandCodeLoginUserPmd_CS //客户端发到登陆服务器,登陆服务器发到sdkserver
 {
 	optional string   mobilenum 	= 1; // 手机号
+	optional string   randcode 	= 2; // 随机码
 }
  
 message MobileRegeristReturnRandCodeLoginUserPmd_S //
