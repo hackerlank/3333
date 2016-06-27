@@ -76,6 +76,16 @@ message Gm
 		RequestUsePackageCodeGmUserPmd_CS		  = 61;		// 请求使用礼包码
 		FeedbackGmUserPmd_CS					  = 62;     // 玩家反馈内容
 		RequestFeedbackListGmUserPmd_C            = 63;     // 请求反馈列表-gmtools
+		//以下协议主要用于需要进行积分兑换的游戏，游戏自行角色是否实现
+		RequestPointReportGmUserPmd_CS			  = 64;		// 请求兑换积分报表，
+		RequestPointDetailGmUserPmd_CS			  = 65;		// 请求积分兑换明细，需要逻辑服自行处理查询，monitor没有带入带出前的积分详情
+		RequestBettingDetailGmUserPmd_CS		  = 66;		// 请求投注详情
+		RequestStockInfoGmUserPmd_CS			  = 67;		// 请求库存信息
+		//6/22新加协议
+		RequestRedPacketsGmUserPmd_CS		      = 69;		// 查询红包 
+		RequestedSubgameListGmUserPmd_CS		  = 70;		// 查询子游戏列表
+		RequestOnlineUserInfoGmUserPmd_CS		  = 71;		// 请求在线或者离线玩家列表
+		RequestWinningListGmUserPmd_CS			  = 72;		// 请求输赢排行榜
 
 		stRequestLoginGmUserCmd                   = 105;	// GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;	// 返回GM登陆验证结果
@@ -356,6 +366,190 @@ message RequestFeedbackListGmUserPmd_C
 	optional uint64 endtime      = 8;
 }
 
+message PointReportData 
+{
+	required uint32 recorddate	= 1; //日期
+	required uint64 redeemin	= 2; //兑入积分
+	required uint64 redeemout	= 3; //兑出积分
+	optional int64  redeemtotal = 4; //盈亏积分
+}
+
+message RequestPointReportGmUserPmd_CS
+{
+	required uint32 gameid		= 1;
+	required uint32 zoneid		= 2; 
+	optional uint64 charid		= 3; //如果charid不为0，则表示检索单个玩家的积分兑换报表
+	optional uint32 starttime	= 4; //开始时间戳
+	optional uint32 endtime		= 5; //结束时间戳
+	optional uint32 gmid		= 6;
+	optional uint32 curpage		= 7; //当前页
+	optional uint32 maxpage		= 8; //最大页数
+	optional uint32 perpage		= 9; //每页数量
+	repeated PointReportData data = 10; //报表数据
+}
+
+message PointDetailData
+{
+	optional uint64 id			= 1;
+	required uint64 recordtime	= 2; //时间戳
+	required uint64 charid		= 3; //角色Id
+	optional string charname	= 4; //角色名称
+	required uint32 ptype		= 5; //积分类型，2兑入，3兑出
+	required uint64 redeemnum	= 6; //兑换数额
+	optional uint64 originnum	= 7; //兑换前数额
+	optional uint64 currentnum	= 8; //兑换后数额
+}
+
+message RequestPointDetailGmUserPmd_CS
+{
+	required uint32 gameid		= 1;
+	required uint32 zoneid		= 2;
+	optional uint64 charid		= 3;
+	optional uint32 ptype		= 4; //兑换类型，2兑入，3兑出
+	optional uint64 starttime	= 5;
+	optional uint64 endtime		= 6;
+	optional uint32 gmid		= 7;
+	optional uint32 curpage		= 8; //当前页
+	optional uint32 maxpage		= 9; //最大页数
+	optional uint32 perpage		= 10; //每页数量
+	repeated PointDetailData data = 11; //检索数据
+}
+
+message BettingDetailData 
+{
+	optional uint64 id			= 1;
+	optional uint64 roundid		= 2; //对局Id
+	required uint64 recordtime	= 3; //记录时间
+	required uint64 charid		= 4; //角色Id
+	optional string charname	= 5; //角色名称
+	required int64	winlosenum	= 6; //输赢数
+	optional uint64 totalnum	= 7; //剩余数
+	optional uint64 dealerid	= 8; //庄家id
+	optional uint64 dealernum	= 9; //庄家输赢数
+}
+
+message RequestBettingDetailGmUserPmd_CS
+{
+	required uint32 gameid		= 1;
+	required uint32 zoneid		= 2;
+	optional uint64 charid		= 3;
+	optional uint64 dealerid	= 4; //庄家ID
+	optional uint64 roundid		= 5; //对局，回合
+	optional uint64 starttime	= 6;
+	optional uint64 endtime		= 7;
+	optional uint32 gmid		= 8;
+	optional uint32 subgameid	= 9;
+	optional uint32 curpage		= 10; //当前页
+	optional uint32 maxpage		= 11; //最大页数
+	optional uint32 perpage		= 12; //每页数量
+	repeated BettingDetailData data		= 13; //投注详情
+}
+
+message StockData
+{
+	optional uint64 id			= 1;
+	optional uint64 stock		= 2;
+	optional uint64 threshold	= 3; //阈值
+	optional uint64 lottery		= 4; //彩金
+	optional uint64 profit		= 5; //利润
+	optional uint32 subgameid	= 6; //大厅内子游戏ID
+}
+
+message RequestStockInfoGmUserPmd_CS
+{
+	required uint32 gameid		= 1;
+	required uint32 zoneid		= 2;
+	optional uint32 gmid		= 3;
+	repeated StockData data		= 4; //库存数据
+	optional uint32 subgameid	= 5; //大厅内子游戏ID
+}
+
+// 请求在线玩家列表
+message RequestOnlineUserInfoGmUserPmd_CS
+{
+	required uint32 gameid		= 1;
+	required uint32 zoneid		= 2;
+	optional uint64 charid		= 3;
+	optional string charname	= 4;
+	required uint32 isonline	= 5; //1在线，2离线, 0未选中
+	optional uint32 gmid		= 6;
+	optional uint32 curpage		= 7; //当前第几页,请求第几页
+	optional uint32 maxpage		= 8; //最大页数
+	optional uint32 perpage		= 9; //每页数量
+	repeated UserInfo data		= 10; //玩家信息
+}
+
+message RedPacketsInfo
+{
+	required string	  id		   = 1;
+	required uint64	  srcuid	   = 2;
+	required string   srcnickname  = 3;
+	required uint64   desuid	   = 4;
+	required string   desnickname  = 5;
+	required uint64   money        = 6;
+	required uint64   recordtime   = 7;
+}
+
+// 查询红包
+message	RequestRedPacketsGmUserPmd_CS
+{
+	required uint32 gameid				= 1;
+	required uint32 zoneid				= 2;
+	optional uint32 gmid				= 3;
+	optional uint64 starttime			= 4;
+	optional uint64 endtime				= 5;
+	optional uint64 srcuid				= 6; // 发送红包者
+	optional uint64 desuid				= 7; // 收包接受者
+	optional string packetcode			= 8; // 红包兑换码
+	optional uint32 curpage				= 9; //当前第几页,请求第几页
+	optional uint32 maxpage				= 10; //最大页数
+	optional uint32 perpage				= 11; //每页数量
+	repeated RedPacketsInfo  data       = 12; // 红包
+}
+
+message SubgameList
+{
+	required uint64   gameid   = 1; // gameid
+	optional uint64   zoneid   = 2; // zoneid
+	required string   gamename = 3; // 游戏名字
+	optional string   zonename = 4; // 区名字
+}
+
+// 查询子游戏列表
+message RequestedSubgameListGmUserPmd_CS
+{
+	required uint32 gameid				= 1;
+	required uint32 zoneid				= 2;
+	optional uint32 gmid				= 3;
+	repeated SubgameList data           = 4;
+
+}
+
+message WinLoseInfo
+{
+	required uint32 id					= 1; //排名
+	required uint64 charid				= 2; //角色ID
+	required string charname			= 3; //角色昵称
+	required uint32 viplevel			= 4;
+	required uint32 isonline			= 5;
+	required int64  totalnum			= 6; //总输赢
+	required uint64 curnum				= 7; //当前剩余金币
+}
+
+//输赢排行榜，之所以不传从第几条到第几条，是为了前端分页方便
+message RequestWinningListGmUserPmd_CS
+{
+	required uint32 gameid				= 1;
+	required uint32 zoneid				= 2;
+	optional uint32 gmid				= 3;
+	optional uint32 subgameid			= 4;
+	optional uint64 timestamp			= 5; //最近3小时换成3600*3，秒数
+	optional uint32 curpage				= 6; //当前第几页
+	optional uint32 maxpage				= 7; //最大页数
+	optional uint32 perpage				= 8; //每页数量
+	repeated WinLoseInfo data			= 9; //输赢信息列表
+}
+
 // 区服务器请求连接登陆服务器的第一个消息
 message StartUpGameRequestGmPmd_C
 {
@@ -553,7 +747,7 @@ message ReturnBroadcastDeleteGmUserPmd_S
 	optional uint32 gmid        = 4;   //GM ID
 }
 
-// 工具发给服务器的对未发送完毕的公告查询的指令
+// 向GM服务器的查询未发送完毕的公告
 message RequestBroadcastListGmUserPmd_C
 {
 	optional uint32 gameid	  = 1;
@@ -711,6 +905,7 @@ message UserInfo
 	optional uint32 isonline    = 14; // 是否在线
 	optional uint32 glodnum     = 15; // 金币、钻石数（跟RMB类似的货币）
 	optional uint32 money       = 16; // 普通货币数(普通游戏币)
+	optional int64  totalwin    = 17; // 棋牌需求：总输赢, 20160614
 }
 
 // 请求玩家基础信息

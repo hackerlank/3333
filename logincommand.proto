@@ -29,6 +29,10 @@ message Login
 		BehaviorClientVerifyLoginUserPmd_C 		= 23;
 		RequestUserZoneInfoLoginUserPmd_C       = 24;
 		RequestUserZoneInfoLoginUserPmd_S       = 25;
+		MobileRegeristRequestRandCodeLoginUserPmd_CS	= 26;
+		MobileRegeristReturnRandCodeLoginUserPmd_S	= 27;
+		MobileRegeristRequestCreateAccountLoginUserPmd_C= 28;
+		MobileRegeristReturnCreateAccountLoginUserPmd_S	= 29;
 	}
 }
 
@@ -128,6 +132,29 @@ message RequestUserZoneInfoLoginUserPmd_S
 {
 	repeated UserZoneInfo userzoneinfo = 1; // 玩家在各个区里的角色信息及区在线信息
 }
+message MobileRegeristRequestRandCodeLoginUserPmd_CS //客户端发到登陆服务器,登陆服务器发到sdkserver
+{
+	optional string   mobilenum 	= 1; // 手机号
+}
+ 
+message MobileRegeristReturnRandCodeLoginUserPmd_S //
+{
+	optional string retcode		= 1;
+	optional string desc		= 2; // 错误描述
+}
+message MobileRegeristRequestCreateAccountLoginUserPmd_C//客户端发到登陆服务器,如果创建成功,直接登陆
+{
+	optional string   mobilenum 	= 1; // 手机号
+	optional string   randcode 	= 2; // 随机码
+	optional string   password 	= 3; // 密码
+}
+
+message MobileRegeristReturnCreateAccountLoginUserPmd_S //
+{
+	optional string retcode		= 1;
+	optional string desc		= 2; // 错误描述
+}
+ 
 
 // 请求登陆某个区,发给LoginServer
 message UserLoginRequestLoginUserPmd_C
