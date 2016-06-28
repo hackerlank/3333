@@ -33,7 +33,8 @@ message Login
 		MobileRegeristReturnRandCodeLoginUserPmd_S	= 27;
 		MobileRegeristRequestCreateAccountLoginUserPmd_C= 28;
 		MobileRegeristReturnCreateAccountLoginUserPmd_S	= 29;
-		SupoortGameListLoginUserPmd_S			= 30;
+		RequestSupoortGameListLoginUserPmd_C		= 30;
+		ReturnSupoortGameListLoginUserPmd_S		= 31;
 	}
 }
 
@@ -366,7 +367,11 @@ message BehaviorClientVerifyLoginUserPmd_C
 	optional string encryptkey		= 11;	// 加密key
 }
 
-message SupoortGameListLoginUserPmd_S
+message RequestSupoortGameListLoginUserPmd_C
+{
+}
+
+message ReturnSupoortGameListLoginUserPmd_S
 {
 	message Game
 	{
