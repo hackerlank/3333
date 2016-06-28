@@ -137,12 +137,14 @@ message MobileRegeristRequestRandCodeLoginUserPmd_CS //客户端发到登陆服�
 	optional string   mobilenum 	= 1; // 手机号
 	optional string   email 	= 2; // 邮箱
 	optional string   randcode 	= 3; // 随机码
+	optional uint64 logintempid 	= 4;	// 登陆临时编号,如果sdkserver出现错误,返回时用,服务器间使用,客户端无视
 }
  
 message MobileRegeristReturnRandCodeLoginUserPmd_S //
 {
-	optional string retcode		= 1;
+	optional uint32 retcode		= 1;	//0表示成功,1表示手机号码填写有误,2表示请求发送短信速度过快,3表示短信服务器未开
 	optional string desc		= 2; // 错误描述
+	optional uint64 logintempid 	= 3;	// 登陆临时编号,如果sdkserver出现错误,返回时用,服务器间使用,客户端无视
 }
 message MobileRegeristRequestCreateAccountLoginUserPmd_C//客户端发到登陆服务器,如果创建成功,直接登陆
 {
@@ -153,7 +155,7 @@ message MobileRegeristRequestCreateAccountLoginUserPmd_C//客户端发到登陆�
 
 message MobileRegeristReturnCreateAccountLoginUserPmd_S //
 {
-	optional string retcode		= 1;
+	optional uint32 retcode		= 1;	//0表示成功,1表示手机号码填写有误,2表示数日频率过快,3表示验证码错误
 	optional string desc		= 2; // 错误描述
 }
  
