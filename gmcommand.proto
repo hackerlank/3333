@@ -779,7 +779,7 @@ message PunishUserInfo
 	optional uint64 starttime = 10;  // 开始时间
 	optional uint64 endtime   = 11;  // 结束时间
 	optional uint64 punishtime= 12;  // 下发处罚的时间戳
-
+	optional uint32 state	  = 13;  // 当前处罚的状态
 }
 
 // 处罚玩家
@@ -827,13 +827,21 @@ message RequestPunishListGmUserPmd_C
 	optional string charname     = 4; // 根据玩家昵称
 	optional uint32 gmid         = 5; // 根据处罚gm来查找
 	optional uint32 ptype        = 6; // 根据类型来查找
-	optional uint64 recordtime   = 7; // 处罚记录时间戳
+	optional uint32 state		 = 7; // 状态，已结束1，未结束2, 已删除3
+	optional uint64 starttime	 = 8; // 起始时间
+	optional uint64 endtime		 = 9; // 结束时间
+	optional uint32 curpage		 = 10; //
+	optional uint32 maxpage		 = 11; //
+	optional uint32 perpage		 = 12; //
 }
 
 message ReturnPunishListGmUserPmd_S
 {
 	repeated PunishUserInfo data = 1;
 	optional uint32 gmid		 = 2;
+	optional uint32 curpage		 = 3;
+	optional uint32 maxpage		 = 4;
+	optional uint32 perpage		 = 5;
 }
 
 //玩家奖励、补偿
