@@ -371,12 +371,12 @@ message RequestSupoortGameListLoginUserPmd_C
 {
 }
 
+message ReturnSupoortGameListLoginUserPmd_S_Game
+{
+	optional string gamename		= 1;	// 游戏名称,(区别与区名)
+	required uint32 gameid	 		= 2;	// 游戏编号
+}
 message ReturnSupoortGameListLoginUserPmd_S
 {
-	message Game
-	{
-		optional string gamename		= 1;	// 游戏名称,(区别与区名)
-		required uint32 gameid	 		= 2;	// 游戏编号
-	}
-	repeated Game gamelist 		= 1;
+	repeated ReturnSupoortGameListLoginUserPmd_S_Game gamelist 		= 1;
 }
