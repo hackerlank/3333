@@ -350,6 +350,8 @@ message FeedbackData
 	required uint64 recordtime = 11;
 	optional uint64 recordid   = 12;  //返回给Gmtools时使用
 	optional uint32 state	   = 13;  //状态，1未处理，2已处理, 3忽略
+	optional string reply	   = 14;  //GM回复
+	optional string phonenum   = 15;  //手机号
 }
 
 message FeedbackGmUserPmd_CS
@@ -383,7 +385,7 @@ message RequestDealFeedbackGmUserPmd_CS
 	required uint32 zoneid		= 2;
 	required uint32 recordid	= 3; //反馈ID
 	required uint32 state		= 4; //处理后的状态，2处理并回复， 3忽略
-	optional string content		= 5; //回复内容
+	optional string reply		= 5; //回复内容
 	optional uint32 retcode		= 6; //处理结果，成功0， 其他失败
 	optional string retdesc		= 7;
 	optional uint32 gmid		= 8; //返回处理结果的时候必须返回，用于查找gmtool客户端的Id
