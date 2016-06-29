@@ -77,9 +77,19 @@ message ForwardBwNullUserPmd_CS
 {
 	optional bytes data		= 3;
 }
+
+message UserInitData
+{
+    optional int64   x   = 1;
+    optional int64   y   = 2;
+    optional int64   z   = 3;
+    optional string data = 4;
+}
+
 message FrameSyncData{
 	optional uint64 tempid		= 1;//房间内临时用户编号,也可以是accountid,但是为了后期后话流量,可以选择用更小的id
 	optional string data		= 2;
+    optional UserInitData init  = 3;//玩家初始化信息
 }
 
  
