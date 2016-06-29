@@ -86,6 +86,7 @@ message Gm
 		RequestedSubgameListGmUserPmd_CS		  = 70;		// 查询子游戏列表
 		RequestOnlineUserInfoGmUserPmd_CS		  = 71;		// 请求在线或者离线玩家列表
 		RequestWinningListGmUserPmd_CS			  = 72;		// 请求输赢排行榜
+		RequestDealFeedbackGmUserPmd_CS			  = 72;     // 处理反馈
 
 		stRequestLoginGmUserCmd                   = 105;	// GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;	// 返回GM登陆验证结果
@@ -299,6 +300,9 @@ message GameOrderListGmUserPmd_CS
 	required uint32 gmid      = 4;
 	optional uint64 timestamp = 5;
 	repeated OrderInfo data   = 6;
+	optional uint32 curpage   = 7;
+	optional uint32 maxpage	  = 8;
+	optional uint32 perpage   = 9;
 }
 
 message QueryPackageCodeGmUserPmd_CS 
@@ -345,12 +349,16 @@ message FeedbackData
 	required uint32 star       = 10;
 	required uint64 recordtime = 11;
 	optional uint64 recordid   = 12;  //返回给Gmtools时使用
+	optional uint32 state	   = 13;  //状态，1未处理，2已处理, 3忽略
 }
 
 message FeedbackGmUserPmd_CS
 {
 	repeated FeedbackData data   = 1;
-	optional uint32 feedbacktype = 2; //默认0，问卷反馈
+	optional uint32 feedbacktype = 2; //默认0，问卷反馈, 1在线反馈(需要客服处理，通过邮件回复的)
+	optional uint32 curpage		 = 3;
+	optional uint32 maxpage		 = 4;
+	optional uint32 perpage		 = 5;
 }
 
 
@@ -359,11 +367,26 @@ message RequestFeedbackListGmUserPmd_C
 	required uint32 gameid       = 1;
 	required uint32 zoneid       = 2;
 	optional uint64 charid       = 3;
-	optional uint32 feedbacktype = 4; //类型
+	optional uint32 feedbacktype = 4; //类型,0问卷反馈，1在线反馈
 	optional uint32 action       = 5; //是否处理，0所有， 1未处理， 2已处理 
 	optional uint64 lastid       = 6; //上次请求的最大ID,数量较多时用来翻页
 	optional uint64 starttime    = 7;
 	optional uint64 endtime      = 8;
+	optional uint32 curpage		 = 9;
+	optional uint32 maxpage		 = 10;
+	optional uint32 perpage		 = 11;
+}
+
+message RequestDealFeedbackGmUserPmd_CS
+{
+	required uint32 gameid		= 1;
+	required uint32 zoneid		= 2;
+	required uint32 recordid	= 3; //反馈ID
+	required uint32 state		= 4; //处理后的状态，2处理并回复， 3忽略
+	optional string content		= 5; //回复内容
+	optional uint32 retcode		= 6; //处理结果，成功0， 其他失败
+	optional string retdesc		= 7;
+	optional uint32 gmid		= 8; //返回处理结果的时候必须返回，用于查找gmtool客户端的Id
 }
 
 message PointReportData 
@@ -758,6 +781,9 @@ message RequestBroadcastListGmUserPmd_C
 	optional uint32 countryid = 4;       
 	optional uint32 btype     = 5;    // 根据类型查找
 	optional uint32 endtime   = 6;    // 结束时间在此之后的
+	optional uint32 curpage	  = 7;
+	optional uint32 maxpage	  = 8;
+	optional uint32 perpage	  = 9;
 }
 
 // 公告列表
@@ -765,6 +791,9 @@ message ReturnBroadcastListGmUserPmd_S
 {
 	repeated BroadcastInfo data = 1; //
 	optional uint32 gmid		= 2;
+	optional uint32 curpage		= 3;
+	optional uint32 maxpage		= 4;
+	optional uint32 perpage		= 5;
 }
 
 message PunishUserInfo
@@ -989,6 +1018,9 @@ message RequestUserRecordGmUserPmd_C
 	optional string charname		= 5; // 昵称，id， 二选一即可
 	optional uint32 recordtime		= 6; // 查询起始时间
 	optional uint32 gmid			= 7;
+	optional uint32 curpage			= 8;
+	optional uint32 maxpage			= 9;
+	optional uint32 perpage			= 10;
 }
 
 message RecordInfo
@@ -1009,6 +1041,9 @@ message ReturnUserRecordGmUserPmd_S
 	repeated RecordInfo data		= 3; // 记录详情
 	optional uint32 recordnum		= 4; // 如果记录太多需要分页请求，则这里给出总数
 	required uint32 gmid			= 5;
+	optional uint32 curpage			= 6;
+	optional uint32 maxpage			= 7;
+	optional uint32 perpage			= 8;
 }
 
 message QuestionBaseData
