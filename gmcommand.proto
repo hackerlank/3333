@@ -426,6 +426,8 @@ message BettingDetailData
 	optional uint64 totalnum	= 7; //剩余数
 	optional uint64 dealerid	= 8; //庄家id
 	optional uint64 dealernum	= 9; //庄家输赢数
+	optional string betdetail   = 10; //下注明细
+	optional string lotterydetail= 11; //开奖明细
 }
 
 message RequestBettingDetailGmUserPmd_CS
