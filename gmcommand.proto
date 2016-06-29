@@ -86,7 +86,7 @@ message Gm
 		RequestedSubgameListGmUserPmd_CS		  = 70;		// 查询子游戏列表
 		RequestOnlineUserInfoGmUserPmd_CS		  = 71;		// 请求在线或者离线玩家列表
 		RequestWinningListGmUserPmd_CS			  = 72;		// 请求输赢排行榜
-		RequestDealFeedbackGmUserPmd_CS			  = 72;     // 处理反馈
+		RequestDealFeedbackGmUserPmd_CS			  = 73;     // 处理反馈
 
 		stRequestLoginGmUserCmd                   = 105;	// GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;	// 返回GM登陆验证结果
