@@ -355,7 +355,7 @@ message FeedbackData
 message FeedbackGmUserPmd_CS
 {
 	repeated FeedbackData data   = 1;
-	optional uint32 feedbacktype = 2; //默认0，问卷反馈, 1在线反馈(需要客服处理，通过邮件回复的)
+	optional uint32 feedbacktype = 2; //默认0问卷, 1BUG, 2建议, 3充值，4其他
 	optional uint32 curpage		 = 3;
 	optional uint32 maxpage		 = 4;
 	optional uint32 perpage		 = 5;
@@ -367,9 +367,9 @@ message RequestFeedbackListGmUserPmd_C
 	required uint32 gameid       = 1;
 	required uint32 zoneid       = 2;
 	optional uint64 charid       = 3;
-	optional uint32 feedbacktype = 4; //类型,0问卷反馈，1在线反馈
-	optional uint32 action       = 5; //是否处理，0所有， 1未处理， 2已处理 
-	optional uint64 lastid       = 6; //上次请求的最大ID,数量较多时用来翻页
+	optional string charname	 = 4;
+	optional uint32 feedbacktype = 5; ///默认0问卷, 1BUG, 2建议, 3充值，4其他
+	optional uint32 action       = 6; //是否处理，0所有， 1未处理， 2已处理, 3忽略 
 	optional uint64 starttime    = 7;
 	optional uint64 endtime      = 8;
 	optional uint32 curpage		 = 9;
