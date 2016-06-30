@@ -32,7 +32,7 @@ message Login
 		MobileRegeristRequestRandCodeLoginUserPmd_CS	= 26;
 		MobileRegeristReturnRandCodeLoginUserPmd_S	= 27;
 		MobileRegeristRequestCreateAccountLoginUserPmd_C= 28;
-		MobileRegeristReturnCreateAccountLoginUserPmd_S	= 29;
+		MobileRegeristReturnCreateAccountFailLoginUserPmd_S	= 29;
 		RequestSupoortGameListLoginUserPmd_C		= 30;
 		ReturnSupoortGameListLoginUserPmd_S		= 31;
 	}
