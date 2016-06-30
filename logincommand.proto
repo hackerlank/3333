@@ -150,6 +150,7 @@ message MobileRegeristReturnRandCodeLoginUserPmd_S //
 	optional string desc		= 2; // 错误描述
 	optional uint64 logintempid 	= 3;	// 登陆临时编号,如果sdkserver出现错误,返回时用,服务器间使用,客户端无视
 }
+
 message MobileRegeristRequestCreateAccountLoginUserPmd_C//客户端发到登陆服务器,如果创建成功,直接登陆
 {
 	optional string   mobilenum 	= 1; // 手机号
@@ -158,15 +159,46 @@ message MobileRegeristRequestCreateAccountLoginUserPmd_C//客户端发到登陆�
 	optional string   passwordmd5 	= 4; // md5密码，直接存数据库 
 }
 
-message MobileRegeristReturnCreateAccountLoginUserPmd_S //
+// 手机注册失败返回, 当成功后，返回UserRequestPlatTokenLoginOkLoginUserPmd_S协议，客户端直接选区
+message MobileRegeristReturnCreateAccountFailLoginUserPmd_S //
 {
 	required uint32 retcode		   = 1;	//0表示成功,1表示手机号码填写有误,2表示数日频率过快,3表示验证码错误
 	optional string desc		= 2; // 错误描述
-	optional uint64 uid         = 3;
-	optional string unigame_plat_key = 4;			// 平台登录密钥，用于上行消息URL签名
-	optional string unigame_plat_login = 5;			// 平台登录token，用于上行消息
-	optional uint32 unigame_plat_login_life = 6;	// 平台登录token从现在开始多少秒后过期，过期后或服务器返回HttpReturnCode_SignError时客户端需要重新走登陆流程
-	optional string timezone_name = 7;				// 时区的名字
+}
+
+// 玩家使用密码登陆验证请求
+message UserRequestPlatTokenByPasswordLoginUserPmd_C
+{
+    required   uint32     gameid      = 1; // 游戏id
+    required   uint32     platid      = 2; // 平台id, 手机号注册登陆：129
+    required   string     account     = 3; // 账户信息，手机号注册为用户手机号
+    required   string     passwordmd5 = 4; // 密码统一为md5
+}
+
+// 玩家第三方验证登陆请求
+message UserRequestPlatTokenByThirdLoginUserPmd_C
+{
+	required PlatInfo platinfo 	= 1;// 平台用户信息
+	required uint32 gameid		= 2;// 游戏编号
+}
+
+// 玩家请求登陆成功返回
+message UserRequestPlatTokenLoginOkLoginUserPmd_S
+{
+    required uint64 uid            = 1; // 平台分配的uid
+	required string platkey        = 2; // 平台登录密钥，用于上行消息URL签名
+	required string platlogin      = 3; // 平台登录token，用于上行消息
+	required uint32 platloginlife  = 4; // 平台登录token从现在开始多少秒后过期，过期后或服务器返回HttpReturnCode_SignError时客户端需要重新走登陆流程
+	required string timezonename   = 5; // 时区的名字
+	optional string timezoneoffset = 6; // 服务器时区相对于UTC的时间偏移量,单位是秒
+    optional PlatInfo platinfo     = 7; // 平台验证后的反悔的信息
+}
+
+// 玩家请求登陆失败返回
+message UserRequestPlatTokenLoginFailLoginUserPmd_S
+{
+    required  uint32    retcode    = 1; 
+    required  string    desc       = 2; // 验证失败描述信息
 }
 
 // 请求登陆某个区,发给LoginServer
@@ -194,7 +226,6 @@ enum LoginReturnFailReason
 // 登陆某个区的错误返回,LoginServer返回
 message UserLoginReturnFailLoginUserPmd_S
 {
-
 	required LoginReturnFailReason retcode 	= 1;
 	required string desc	 				= 2; // 错误描述
 }
