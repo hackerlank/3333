@@ -384,11 +384,14 @@ message RequestDealFeedbackGmUserPmd_CS
 	required uint32 gameid		= 1;
 	required uint32 zoneid		= 2;
 	required uint32 recordid	= 3; //反馈ID
-	required uint32 state		= 4; //处理后的状态，2处理并回复， 3忽略
-	optional string reply		= 5; //回复内容
-	optional uint32 retcode		= 6; //处理结果，成功0， 其他失败
-	optional string retdesc		= 7;
-	optional uint32 gmid		= 8; //返回处理结果的时候必须返回，用于查找gmtool客户端的Id
+	optional uint64 charid		= 4;
+	optional uint32 state		= 5; //处理后的状态，2处理并回复， 3忽略
+	optional string subject		= 6; //回复标题
+	optional string reply		= 7; //回复内容
+	optional uint32 feedbacktype= 8; //反馈类型
+	optional uint32 retcode		= 9; //处理结果，成功0， 其他失败
+	optional string retdesc		= 10;
+	optional uint32 gmid		= 11; //返回处理结果的时候必须返回，用于查找gmtool客户端的Id
 }
 
 message PointReportData 
