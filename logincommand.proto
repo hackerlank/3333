@@ -135,6 +135,7 @@ message RequestUserZoneInfoLoginUserPmd_S
 {
 	repeated UserZoneInfo userzoneinfo = 1; // 玩家在各个区里的角色信息及区在线信息
 }
+
 message MobileRegeristRequestRandCodeLoginUserPmd_CS //客户端发到登陆服务器,登陆服务器发到sdkserver
 {
 	optional string   mobilenum 	= 1; // 手机号
@@ -152,16 +153,21 @@ message MobileRegeristReturnRandCodeLoginUserPmd_S //
 message MobileRegeristRequestCreateAccountLoginUserPmd_C//客户端发到登陆服务器,如果创建成功,直接登陆
 {
 	optional string   mobilenum 	= 1; // 手机号
-	optional string   randcode 	= 2; // 随机码
-	optional string   password 	= 3; // 密码
+	optional string   randcode 	    = 2; // 随机码
+	optional string   password 	    = 3; // 密码明文，存数据库时存的是md5值
+	optional string   passwordmd5 	= 4; // md5密码，直接存数据库 
 }
 
 message MobileRegeristReturnCreateAccountLoginUserPmd_S //
 {
-	optional uint32 retcode		= 1;	//0表示成功,1表示手机号码填写有误,2表示数日频率过快,3表示验证码错误
+	required uint32 retcode		   = 1;	//0表示成功,1表示手机号码填写有误,2表示数日频率过快,3表示验证码错误
 	optional string desc		= 2; // 错误描述
+	optional uint64 uid         = 3;
+	optional string unigame_plat_key = 4;			// 平台登录密钥，用于上行消息URL签名
+	optional string unigame_plat_login = 5;			// 平台登录token，用于上行消息
+	optional uint32 unigame_plat_login_life = 6;	// 平台登录token从现在开始多少秒后过期，过期后或服务器返回HttpReturnCode_SignError时客户端需要重新走登陆流程
+	optional string timezone_name = 7;				// 时区的名字
 }
- 
 
 // 请求登陆某个区,发给LoginServer
 message UserLoginRequestLoginUserPmd_C
