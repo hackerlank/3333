@@ -12,6 +12,7 @@ message Null
 		CheckVersionUserPmd_CS		= 5;
 		ForwardBwNullUserPmd_CS		= 6;
 		SetTickTimeoutNullUserPmd_CS	= 7;
+		SetPingTimeNullUserPmd_S	= 8;
 		MaxDefualtNullUserPmd		= 15;//这里为了节省流量,特殊处理系,15以下为系统用,以上也可以被应用层使用
 		StartFrameSyncNullUserPmd_CS	= 16;
 		BroadListFrameSyncNullUserPmd_S	= 17;
@@ -42,6 +43,11 @@ message ForwardNullUserPmd_CS
 message TickRequestNullUserPmd_CS
 {
 	required uint32 requesttime	= 1;
+}
+
+message SetPingTimeNullUserPmd_S
+{
+	optional uint32 pingmsec 	= 1;         // 当前ping值,毫秒
 }
 
 message SetTickTimeoutNullUserPmd_CS
