@@ -49,10 +49,14 @@ message HttpPackageReturn
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 // 请求区列表【不需要签名】【无时序要求】
+// 返回的内容是ZoneInfoListLoginUserPmd_S的内容，但消息类型签名还是"RequestZoneList" @赵卧龙 2016-07-01
 message RequestZoneList
 {
+	// 以下字段均拷贝自ZoneInfoListLoginUserPmd_S，用于接收下行数据，上行请求无须填写
+	optional string gamename		= 1;	// 游戏名称,(区别与区名)
+	required uint32 gameid	 		= 2;	// 游戏编号
+	repeated ZoneInfo zonelist 		= 3;
 }
-// return ZoneInfoListLoginUserPmd_S
 
 // 选区【必须签名】
 message RequestSelectZone
