@@ -86,7 +86,7 @@ message PlatBaseData
 	optional string	faceurl		= 11;		// 平台头像
 	optional uint64 sdkserverid	= 12;		// sdk服务器临时编号
 	optional uint32 oldplatid	= 13;		// @20160628如果当前是通过微信移动授权，则该字段返回相应的微信公众号授权的platid
-	optional uint32 clienttype  = 14;		// 客户端类型，http：0， tcp:为1 
+	optional uint32 clienttype  = 14;		// 客户端类型，http：0， 1为新的http tcp:为2 
 
 }
 
