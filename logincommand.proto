@@ -372,6 +372,7 @@ enum PlatType
 	PlatType_AoXin				= 140;		// 鎏信
 	PlatType_HUOSU				= 145;		// 火速,云游平台
 	PlatType_RONGQIANG				= 151;		// 荣强网络
+	PlatType_RongQiangApp		=152;		//荣强app
 }
 
 // 通知服务器所采用的编码方式和区域信息
