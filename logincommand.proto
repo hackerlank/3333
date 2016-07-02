@@ -29,11 +29,20 @@ message Login
 		BehaviorClientVerifyLoginUserPmd_C 		= 23;
 		RequestUserZoneInfoLoginUserPmd_C       = 24;
 		RequestUserZoneInfoLoginUserPmd_S       = 25;
+
 		MobileRegeristRequestRandCodeLoginUserPmd_CS	= 26;
 		MobileRegeristReturnRandCodeLoginUserPmd_S	= 27;
 		MobileRegeristRequestCreateAccountLoginUserPmd_C= 28;
-		MobileRegeristReturnCreateAccountLoginUserPmd_S	= 29;
-	}
+		MobileRegeristReturnCreateAccountFailLoginUserPmd_S	= 29;
+
+		RequestSupoortGameListLoginUserPmd_C		= 30;
+		ReturnSupoortGameListLoginUserPmd_S		= 31;
+        
+        UserRequestPlatTokenByPasswordLoginUserPmd_C = 32;
+        UserRequestPlatTokenByThirdLoginUserPmd_C = 33;
+        UserRequestPlatTokenLoginOkLoginUserPmd_S = 34;
+        UserRequestPlatTokenLoginFailLoginUserPmd_S = 35; 
+    }
 }
 
 // 客户端发给登陆服务器的登陆验证消息
@@ -109,6 +118,7 @@ message ZoneInfoListLoginUserPmd_S
 	repeated ZoneInfo zonelist 		= 3;
 }
 
+
 // 请求区服务器信息列表,选区列表
 message RequestZoneInfoListLoginUserPmd_C
 {
@@ -132,29 +142,71 @@ message RequestUserZoneInfoLoginUserPmd_S
 {
 	repeated UserZoneInfo userzoneinfo = 1; // 玩家在各个区里的角色信息及区在线信息
 }
+
 message MobileRegeristRequestRandCodeLoginUserPmd_CS //客户端发到登陆服务器,登陆服务器发到sdkserver
 {
 	optional string   mobilenum 	= 1; // 手机号
+	optional string   email 	= 2; // 邮箱
+	optional string   randcode 	= 3; // 随机码
+	optional uint64 logintempid 	= 4;	// 登陆临时编号,如果sdkserver出现错误,返回时用,服务器间使用,客户端无视
 }
  
 message MobileRegeristReturnRandCodeLoginUserPmd_S //
 {
-	optional string retcode		= 1;
-	optional string desc		= 2; // 错误描述
+	optional uint32 retcode		    = 1; //0表示成功,1表示手机号码填写有误,2表示请求发送短信速度过快,3表示短信服务器未开
+	optional string desc		    = 2; // 错误描述
+	optional uint64 logintempid 	= 3; // 登陆临时编号,如果sdkserver出现错误,返回时用,服务器间使用,客户端无视
+    optional uint64 timeouttimemes  = 4; // 短信过期时间
 }
+
 message MobileRegeristRequestCreateAccountLoginUserPmd_C//客户端发到登陆服务器,如果创建成功,直接登陆
 {
 	optional string   mobilenum 	= 1; // 手机号
-	optional string   randcode 	= 2; // 随机码
-	optional string   password 	= 3; // 密码
+	optional string   randcode 	    = 2; // 随机码
+	optional string   passwordmd5 	= 3; // md5密码，直接存数据库 
 }
 
-message MobileRegeristReturnCreateAccountLoginUserPmd_S //
+// 手机注册失败返回, 当成功后，返回UserRequestPlatTokenLoginOkLoginUserPmd_S协议，客户端直接选区
+message MobileRegeristReturnCreateAccountFailLoginUserPmd_S //
 {
-	optional string retcode		= 1;
-	optional string desc		= 2; // 错误描述
+	required uint32 retcode		   = 1;	//0表示成功,1表示手机号码填写有误,2表示数日频率过快,3表示验证码错误
+	optional string desc		   = 2; // 错误描述
 }
- 
+
+// 玩家使用密码登陆验证请求
+message UserRequestPlatTokenByPasswordLoginUserPmd_C
+{
+    required   uint32     gameid      = 1; // 游戏id
+    required   uint32     platid      = 2; // 平台id, 手机号注册登陆：129
+    required   string     account     = 3; // 账户信息，手机号注册为用户手机号
+    required   string     passwordmd5 = 4; // 密码统一为md5
+}
+
+// 玩家第三方验证登陆请求
+message UserRequestPlatTokenByThirdLoginUserPmd_C
+{
+	required PlatInfo platinfo 	= 1;// 平台用户信息
+	required uint32 gameid		= 2;// 游戏编号
+}
+
+// 玩家请求登陆成功返回
+message UserRequestPlatTokenLoginOkLoginUserPmd_S
+{
+    required uint64 uid            = 1; // 平台分配的uid
+	required string platkey        = 2; // 平台登录密钥，用于上行消息URL签名
+	required string platlogin      = 3; // 平台登录token，用于上行消息
+	required uint32 platloginlife  = 4; // 平台登录token从现在开始多少秒后过期，过期后或服务器返回HttpReturnCode_SignError时客户端需要重新走登陆流程
+	required string timezonename   = 5; // 时区的名字
+	optional string timezoneoffset = 6; // 服务器时区相对于UTC的时间偏移量,单位是秒
+    optional PlatInfo platinfo     = 7; // 平台验证后的反悔的信息
+}
+
+// 玩家请求登陆失败返回
+message UserRequestPlatTokenLoginFailLoginUserPmd_S
+{
+    required  uint32    retcode    = 1; 
+    required  string    desc       = 2; // 验证失败描述信息
+}
 
 // 请求登陆某个区,发给LoginServer
 message UserLoginRequestLoginUserPmd_C
@@ -181,7 +233,6 @@ enum LoginReturnFailReason
 // 登陆某个区的错误返回,LoginServer返回
 message UserLoginReturnFailLoginUserPmd_S
 {
-
 	required LoginReturnFailReason retcode 	= 1;
 	required string desc	 				= 2; // 错误描述
 }
@@ -359,4 +410,18 @@ message BehaviorClientVerifyLoginUserPmd_C
 	optional string compress		= 9;	// 压缩算法
 	optional string encrypt			= 10;	// 加密算法
 	optional string encryptkey		= 11;	// 加密key
+}
+
+message RequestSupoortGameListLoginUserPmd_C
+{
+}
+
+message ReturnSupoortGameListLoginUserPmd_S_Game
+{
+	optional string gamename		= 1;	// 游戏名称,(区别与区名)
+	required uint32 gameid	 		= 2;	// 游戏编号
+}
+message ReturnSupoortGameListLoginUserPmd_S
+{
+	repeated ReturnSupoortGameListLoginUserPmd_S_Game gamelist 		= 1;
 }

@@ -69,35 +69,84 @@ message GameZoneInfo
 
 enum ServerType
 {
-    UNKNOWNSERVER    = 0;
-    SUPERSERVER    = 1;
-    LOGINSERVER    = 10;
-    RECORDSERVER    = 11;
-    SESSIONSERVER    = 20;
-    SCENESSERVER    = 21;
-    GATEWAYSERVER    = 22;
-    INFOSERVER    = 23;
-    HTTPSERVER    = 24;
-    CHANGESERVER    = 25;
-    USERSERVER    = 26;
-    BILLSERVER    = 27;
-    NAMESERVER    = 28;
-    MONITORSERVER    = 29;
-    GMSERVER    = 30;
-    STATERSERVER    = 31;
-    SOUNDSERVER    = 32;
-    BILLSERVER_ALIPAY    = 33;
-    BILLSERVER_JUNKA    = 34;
-    BILLSERVER_TIANXIATONG    = 35;
-    BILLSERVER_ZONGYOU    = 36;
-    BILLSERVER_OFFLINE    = 37;
-    BILLSERVER_MESSAGE    = 38;
-    BILLSERVER_ZQB    = 39;
-    WEBGATESERVER    = 40;
-    BILLSERVER_BAIDU    = 41;
-    BILLSERVER_SHUN    = 42;
-    SDKSERVER    = 43;
-    MAX_SERVERTYPE    = 44;
+	option allow_alias = true;
+	UNKNOWNSERVER    = 0;
+	SUPERSERVER    = 1;
+	LOGINSERVER    = 10;
+	RECORDSERVER    = 11;
+	SESSIONSERVER    = 20;
+	SCENESSERVER    = 21;
+	GATEWAYSERVER    = 22;
+	INFOSERVER    = 23;
+	HTTPSERVER    = 24;
+	CHANGESERVER    = 25;
+	USERSERVER    = 26;
+	BILLSERVER    = 27;
+	NAMESERVER    = 28;
+	MONITORSERVER    = 29;
+	GMSERVER    = 30;
+	STATERSERVER    = 31;
+	SOUNDSERVER    = 32;
+	BILLSERVER_ALIPAY    = 33;
+	BILLSERVER_JUNKA    = 34;
+	BILLSERVER_TIANXIATONG    = 35;
+	BILLSERVER_ZONGYOU    = 36;
+	BILLSERVER_OFFLINE    = 37;
+	BILLSERVER_MESSAGE    = 38;
+	BILLSERVER_ZQB    = 39;
+	WEBGATESERVER    = 40;
+	BILLSERVER_BAIDU    = 41;
+	BILLSERVER_SHUN    = 42;
+	SDKSERVER    = 43;
+	LOGGERSERVER    = 44;
+	UNILIGHT    = 45;
+	MAX_SERVERTYPE    = 46;
+	UnknownServer    	= 0;
+	SuperServer		= 1;
+	LoginServer		= 10;
+	RecordServer		= 11;
+	SessionServer		= 20;
+	SceneServer		= 21;
+	GatewayServer		= 22;
+	InfoServer		= 23;
+	HttpsServer		= 24;
+	ChangeServer		= 25;
+	UserServer		= 26;
+	BillServer		= 27;
+	NameServer		= 28;
+	MonitorServer		= 29;
+	GmServer		= 30;
+	StateServer		= 31;
+	SoundServer		= 32;
+	WebGateServer		= 40;
+	SdkServer		= 43;
+	LoggerServer		= 44;
+	UniServer		= 45;
+}
+
+message ServerName
+{
+    optional string   Super    	= 1 [default = "SuperServer"]; // 
+    optional string   Login    	= 10 [default = "LoginServer"]; // 
+    optional string   Record    = 11 [default = "RecordServer"]; // 
+    optional string   Session   = 20 [default = "SessionServer"]; // 
+    optional string   Scene    	= 21 [default = "ScenesServer"]; // 
+    optional string   Gateway   = 22 [default = "GatewayServer"]; // 
+    optional string   Info	= 23 [default = "InfoServer"]; // 
+    optional string   Https	= 24 [default = "HttpsServer"]; // 
+    optional string   Change	= 25 [default = "ChangeServer"]; // 
+    optional string   User	= 26 [default = "UserServer"]; // 
+    optional string   Bill	= 27 [default = "BillServer"]; // 
+    optional string   Name	= 28 [default = "NameServer"]; // 
+    optional string   Monitor	= 29 [default = "MonitorServer"]; // 
+    optional string   GmServer	= 30 [default = "GmServer"]; // 
+    optional string   State	= 31 [default = "StateServer"]; // 
+    optional string   Sound	= 32 [default = "SoundServer"]; // 
+    optional string   WebGate	= 40 [default = "WebGateServer"]; // 
+    optional string   Sdk	= 43 [default = "SdkServer"]; // 
+    optional string   Logger	= 44 [default = "LoggerServer"]; // 
+    optional string   Uni	= 45 [default = "UniServer"]; // 
+
 }
 
 message ServerInfo
