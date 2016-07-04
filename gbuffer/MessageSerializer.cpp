@@ -124,16 +124,6 @@ namespace gbuffer {
 			return NULL;
 		}
 		//Bwsdk::logger->debug("MessageSerializer::Deserialize decode ForwardNullUserPmd_CS:%d,%d",nmdout->bycmd(),nmdout->byparam());
-		// 由消息类型得到构造器
-		const google::protobuf::Message *prototype = m_unserializeTable[(nmdout->bycmd() << 8) + nmdout->byparam()];
-		if(prototype == NULL)
-		{
-			Bwsdk::logger->error("MessageSerializer::Deserialize find err:[%d,%d]",nmdout->bycmd(),nmdout->byparam());
-			return NULL;
-		}
-		// 构造对应的消息并解析
-		Message* message = prototype->New();
-		//assert(message->GetTypeName() == prototype->GetTypeName());
 		if(nmdout->has_data())
 		{
 			if(nmdout->bitmask() & Pmd::Bitmask_Compress)
@@ -157,20 +147,26 @@ namespace gbuffer {
 						Bwsdk::logger->fatal("(%s,%d,%d)Z_DATA_ERROR." ,nmdout->GetTypeName().c_str(),nmdout->bycmd(),nmdout->byparam());
 						break;
 				}
-				if(message->ParseFromArray(data,data_len) == false)
-				{
-					Bwsdk::logger->error("MessageSerializer::Deserialize decode err:[%d,%d],%s",nmdout->bycmd(),nmdout->byparam(),message->GetTypeName().c_str());
-					delete message;
-					return NULL;
-				}
+				nmdout->set_data(data,data_len);
+				nmdout->set_bitmask(nmdout->bitmask() & (~Pmd::Bitmask_Compress));
 			}
-			else if(message->ParseFromArray(nmdout->data().c_str(),nmdout->data().size()) == false)
+		}
+		// 由消息类型得到构造器
+		const google::protobuf::Message *prototype = m_unserializeTable[(nmdout->bycmd() << 8) + nmdout->byparam()];
+		if(prototype == NULL)
+		{
+			Bwsdk::logger->error("MessageSerializer::Deserialize find err:[%d,%d]",nmdout->bycmd(),nmdout->byparam());
+			return NULL;
+		}
+		// 构造对应的消息并解析
+		Message* message = prototype->New();
+		//assert(message->GetTypeName() == prototype->GetTypeName());
+			if(message->ParseFromArray(nmdout->data().c_str(),nmdout->data().size()) == false)
 			{
 				Bwsdk::logger->error("MessageSerializer::Deserialize decode err:[%d,%d],%s",nmdout->bycmd(),nmdout->byparam(),message->GetTypeName().c_str());
 				delete message;
 				return NULL;
 			}
-		}
 		return message;
 	}
 

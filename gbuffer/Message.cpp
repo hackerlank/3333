@@ -5,6 +5,7 @@
 #include "platcommon/chatcommand.pb.h"
 #include "platcommon/forwardcommand.pb.h"
 #include "platcommon/logincommand.pb.h"
+#include "platcommon/loggercommand.pb.h"
 #include "platcommon/config.pb.h"
 #include "platcommon/monitorpmd.pb.h"
 #include "platcommon/sdkcommand.pb.h"
@@ -14,6 +15,7 @@
 #include "servercommon/smd.pb.h"
 #include "servercommon/gate.pb.h"
 #include "servercommon/login.pb.h"
+#include "servercommon/logger.pb.h"
 #include "servercommon/name.pb.h"
 #include "servercommon/monitor.pb.h"
 #include "servercommon/sdk.pb.h"
@@ -68,6 +70,7 @@ void initParamDescriptor()
 	Pmd::Null_Param_descriptor();
 	Pmd::Monitor_Param_descriptor();
 	Pmd::Login_Param_descriptor();
+	Pmd::Logger_Param_descriptor();
 	Pmd::Forward_Param_descriptor();
 	Pmd::Sdk_Param_descriptor();
 	Pmd::Gm_Param_descriptor();
@@ -75,11 +78,11 @@ void initParamDescriptor()
 
 	Smd::Gate_Param_descriptor();
 	Smd::Login_Param_descriptor();
+	Smd::Logger_Param_descriptor();
 	Smd::NameS_Param_descriptor();
 	Smd::Monitor_Param_descriptor();
 	Smd::Gm_Param_descriptor();
 	Smd::Build_Param_descriptor();
-
 
 	GameSmd::UserLoginShareSmd_Param_descriptor();
 
@@ -99,7 +102,7 @@ void initParamDescriptor()
 
 	GameCmd::AuctionUserCmd_Param_descriptor();
 	GameCmd::ChatUserCmd_Param_descriptor();
-	//GameCmd::Cmd_Param_descriptor();
+	// GameCmd::Cmd_Param_descriptor();
 	GameCmd::ControlUserCmd_Param_descriptor();
 	GameCmd::CountryUserCmd_Param_descriptor();
 	GameCmd::CorpsUserCmd_Param_descriptor();
@@ -134,17 +137,18 @@ void initParamDescriptor()
 	GameCmd::MsgBoxUserCmd_Param_descriptor();
 }
 
-namespace gbuffer{
+namespace gbuffer
+{
 	bool RegisterMessage(MessageSerializer* serializer)
 	{
 		initParamDescriptor();
-		if(serializer->Register(Pmd::PlatCommand_descriptor(),"Pmd") == false)
+		if (serializer->Register(Pmd::PlatCommand_descriptor(), "Pmd") == false)
 			return false;
-		if(serializer->Register(Smd::ServerCommand_descriptor(),"Smd") == false)
+		if (serializer->Register(Smd::ServerCommand_descriptor(), "Smd") == false)
 			return false;
-		if(serializer->Register(GameSmd::ServerCommand_descriptor(),"GameSmd") == false)
+		if (serializer->Register(GameSmd::ServerCommand_descriptor(), "GameSmd") == false)
 			return false;
-		if(serializer->Register(GameCmd::ClientCommand_descriptor(),"GameCmd") == false)
+		if (serializer->Register(GameCmd::ClientCommand_descriptor(), "GameCmd") == false)
 			return false;
 		return true;
 	}
