@@ -30,7 +30,7 @@ message Sdk
 		PushMsgRequestSdkPmd_C = 23;
 		PushMsgReturnSdkPmd_S = 24;
 		BindAccountPhoneSdkPmd_CS = 25;
-		RequestMobileRegeristRandCodeSdkPmd_CS = 26;
+		RequestMobileRegistRandCodeSdkPmd_CS = 26;
 	}
 }
 
@@ -330,7 +330,7 @@ message BindAccountPhoneSdkPmd_CS
 	optional string retdesc    = 5; //描述
 }
 
-message RequestMobileRegeristRandCodeSdkPmd_CS 
+message RequestMobileRegistRandCodeSdkPmd_CS 
 {
 	required PlatBaseData data	= 1;
 	optional string   mobilenum = 2; // 客户端填写的手机号

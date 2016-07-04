@@ -151,8 +151,9 @@ message MobileRegistRequestRandCodeLoginUserPmd_C //客户端发到登陆服务�
  
 message MobileRegistReturnRandCodeLoginUserPmd_S 
 {
-	optional uint32 retcode		    = 1; //0表示成功,1表示手机号码填写有误,2表示请求发送短信速度过快,3表示短信服务器未开
+	required uint32 retcode		    = 1; //0表示成功,1表示手机号码填写有误,2表示请求发送短信速度过快,3表示短信服务器未开
 	optional string desc		    = 2; // 错误描述
+	optional uint64  timeout        = 3; // 超时时间 
 }
 
 message MobileRegistRequestCreateAccountLoginUserPmd_C//客户端发到登陆服务器,如果创建成功,直接登陆
@@ -168,7 +169,6 @@ message MobileRegistReturnCreateAccountFailLoginUserPmd_S //
 {
 	required uint32 retcode		   = 1;	//0表示成功,1表示手机号码填写有误,2表示数日频率过快,3表示验证码错误
 	optional string desc		   = 2; // 错误描述
-	optional uint64 timeout        = 3; // 超时时间 
 }
 
 // 玩家使用密码登陆验证请求
