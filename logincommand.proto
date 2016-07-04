@@ -30,10 +30,10 @@ message Login
 		RequestUserZoneInfoLoginUserPmd_C       = 24;
 		RequestUserZoneInfoLoginUserPmd_S       = 25;
 
-		MobileRegeristRequestRandCodeLoginUserPmd_CS	= 26;
-		MobileRegeristReturnRandCodeLoginUserPmd_S	= 27;
-		MobileRegeristRequestCreateAccountLoginUserPmd_C= 28;
-		MobileRegeristReturnCreateAccountFailLoginUserPmd_S	= 29;
+		MobileRegistRequestRandCodeLoginUserPmd_CS	= 26;
+		MobileRegistReturnRandCodeLoginUserPmd_S	= 27;
+		MobileRegistRequestCreateAccountLoginUserPmd_C= 28;
+		MobileRegistReturnCreateAccountFailLoginUserPmd_S	= 29;
 
 		RequestSupoortGameListLoginUserPmd_C		= 30;
 		ReturnSupoortGameListLoginUserPmd_S		= 31;
@@ -143,24 +143,19 @@ message RequestUserZoneInfoLoginUserPmd_S
 	repeated UserZoneInfo userzoneinfo = 1; // 玩家在各个区里的角色信息及区在线信息
 }
 
-message MobileRegeristRequestRandCodeLoginUserPmd_CS //客户端发到登陆服务器,登陆服务器发到sdkserver
+message MobileRegistRequestRandCodeLoginUserPmd_C //客户端发到登陆服务器
 {
-	optional string   mobilenum = 1; // 客户端填写的手机号
-	optional string   randcode 	= 2; // 随机码, 服务器生成的随机号传给sdkserver发短信，客户端无视
-	optional uint64 logintempid = 3; // 登陆临时编号,如果sdkserver出现错误,返回时用,服务器间使用,客户端无视
-	optional uint32 clienttype  = 4; // 登陆临时编号,服务器用来标识客户端类别,客户端无视
+	required string   mobilenum = 1; // 客户端填写的手机号
+    required uint32   gameid    = 2; // 游戏id
 }
  
-message MobileRegeristReturnRandCodeLoginUserPmd_S //
+message MobileRegistReturnRandCodeLoginUserPmd_S 
 {
 	optional uint32 retcode		    = 1; //0表示成功,1表示手机号码填写有误,2表示请求发送短信速度过快,3表示短信服务器未开
 	optional string desc		    = 2; // 错误描述
-	optional uint64 logintempid 	= 3; // 登陆临时编号,如果sdkserver出现错误,返回时用,服务器间使用,客户端无视
-    optional uint64 timeouttimemes  = 4; // 短信过期时间
-	optional uint32 clienttype      = 5; // 登陆临时编号,服务器用来标识客户端类别,客户端无视 
 }
 
-message MobileRegeristRequestCreateAccountLoginUserPmd_C//客户端发到登陆服务器,如果创建成功,直接登陆
+message MobileRegistRequestCreateAccountLoginUserPmd_C//客户端发到登陆服务器,如果创建成功,直接登陆
 {
 	optional string   mobilenum 	= 1; // 手机号
 	optional string   randcode 	    = 2; // 随机码
@@ -168,7 +163,7 @@ message MobileRegeristRequestCreateAccountLoginUserPmd_C//客户端发到登陆�
 }
 
 // 手机注册失败返回, 当成功后，返回UserRequestPlatTokenLoginOkLoginUserPmd_S协议，客户端直接选区
-message MobileRegeristReturnCreateAccountFailLoginUserPmd_S //
+message MobileRegistReturnCreateAccountFailLoginUserPmd_S //
 {
 	required uint32 retcode		   = 1;	//0表示成功,1表示手机号码填写有误,2表示数日频率过快,3表示验证码错误
 	optional string desc		   = 2; // 错误描述
