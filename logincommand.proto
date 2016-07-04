@@ -30,7 +30,7 @@ message Login
 		RequestUserZoneInfoLoginUserPmd_C       = 24;
 		RequestUserZoneInfoLoginUserPmd_S       = 25;
 
-		MobileRegistRequestRandCodeLoginUserPmd_CS	= 26;
+		MobileRegistRequestRandCodeLoginUserPmd_C	= 26;
 		MobileRegistReturnRandCodeLoginUserPmd_S	= 27;
 		MobileRegistRequestCreateAccountLoginUserPmd_C= 28;
 		MobileRegistReturnCreateAccountFailLoginUserPmd_S	= 29;
@@ -157,9 +157,10 @@ message MobileRegistReturnRandCodeLoginUserPmd_S
 
 message MobileRegistRequestCreateAccountLoginUserPmd_C//客户端发到登陆服务器,如果创建成功,直接登陆
 {
-	optional string   mobilenum 	= 1; // 手机号
-	optional string   randcode 	    = 2; // 随机码
-	optional string   password      = 3; // 密码
+	required string   mobilenum 	= 1; // 手机号
+	required string   randcode 	    = 2; // 随机码
+	required string   password      = 3; // 密码
+    required uint32   gameid        = 4; // 游戏id
 }
 
 // 手机注册失败返回, 当成功后，返回UserRequestPlatTokenLoginOkLoginUserPmd_S协议，客户端直接选区
@@ -167,6 +168,7 @@ message MobileRegistReturnCreateAccountFailLoginUserPmd_S //
 {
 	required uint32 retcode		   = 1;	//0表示成功,1表示手机号码填写有误,2表示数日频率过快,3表示验证码错误
 	optional string desc		   = 2; // 错误描述
+	optional uint64 timeout        = 3; // 超时时间 
 }
 
 // 玩家使用密码登陆验证请求
