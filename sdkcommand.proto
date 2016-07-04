@@ -183,6 +183,7 @@ message RechargeQueryRequestIOSSdkPmd_C
 	required float ordermoney	= 5;		// 实际价格(格式:0.00),购买时应用传入的单价*总数,总实际 价格
 	optional string	token		= 6;		// 查询凭证
 	optional string	extdata		= 7;		// 扩展数据长度
+	optional uint32 payplatid	= 8;		// 支付平台		
 }
 
 // 第三方平台帐号中剩余点数查询请求
