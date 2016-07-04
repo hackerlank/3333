@@ -30,6 +30,7 @@ message Sdk
 		PushMsgRequestSdkPmd_C = 23;
 		PushMsgReturnSdkPmd_S = 24;
 		BindAccountPhoneSdkPmd_CS = 25;
+		RequestMobileRegeristRandCodeSdkPmd_CS = 26;
 	}
 }
 
@@ -328,3 +329,13 @@ message BindAccountPhoneSdkPmd_CS
 	optional uint32 ret        = 4; //返回, 0成功，1验证码错误, 2手机已绑定，3系统错误, 4请求次数太多,5该账号已绑定
 	optional string retdesc    = 5; //描述
 }
+
+message RequestMobileRegeristRandCodeSdkPmd_CS 
+{
+	required PlatBaseData data	= 1;
+	optional string   mobilenum = 2; // 客户端填写的手机号
+	optional string   randcode  = 3; // 随机码, 服务器生成的随机号传给sdkserver发短信，客户端无视
+	optional uint64 logintempid = 4; // 登陆临时编号,如果sdkserver出现错误,返回时用,服务器间使用,客户端无视
+	optional uint32 clienttype  = 5; // 登陆临时编号,服务器用来标识客户端类别,客户端无视
+}
+
