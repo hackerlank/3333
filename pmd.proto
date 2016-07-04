@@ -102,11 +102,11 @@ enum ServerType
 	UNILIGHT    = 45;
 	MAX_SERVERTYPE    = 46;
 	UnknownServer    	= 0;
-	SuperServer		= 1;
+	//SuperServer		= 1;//会有namespace冲突,先屏蔽
 	LoginServer		= 10;
-	RecordServer		= 11;
-	SessionServer		= 20;
-	SceneServer		= 21;
+	//RecordServer		= 11;//会有namespace冲突,先屏蔽
+	//SessionServer		= 20;//会有namespace冲突,先屏蔽
+	//SceneServer		= 21;//会有namespace冲突,先屏蔽
 	GatewayServer		= 22;
 	InfoServer		= 23;
 	HttpsServer		= 24;
