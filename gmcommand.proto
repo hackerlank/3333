@@ -371,7 +371,7 @@ message RequestFeedbackListGmUserPmd_C
 	optional uint64 charid       = 3;
 	optional string charname	 = 4;
 	optional uint32 feedbacktype = 5; ///默认0问卷, 1BUG, 2建议, 3充值，4其他
-	optional uint32 action       = 6; //是否处理，0所有， 1未处理， 2已处理, 3忽略 
+	optional uint32 state        = 6; //是否处理，0所有， 1未处理， 2已处理, 3忽略 
 	optional uint64 starttime    = 7;
 	optional uint64 endtime      = 8;
 	optional uint32 curpage		 = 9;
