@@ -88,6 +88,12 @@ message Gm
 		RequestWinningListGmUserPmd_CS			  = 72;		// 请求输赢排行榜
 		RequestDealFeedbackGmUserPmd_CS			  = 73;     // 处理反馈
 
+		//20160706
+		AddBlackWhitelistGmUserPmd_CS			  = 74;		//添加黑白名单
+		ModBlackWhitelistGmUserPmd_CS			  = 75;		//修改黑白名单
+		DelBlackWhitelistGmUserPmd_CS			  = 76;		//删除黑白名单
+		RequestBlackWhitelistGmUserPmd_CS		  = 77;		//查询黑白名单
+
 		stRequestLoginGmUserCmd                   = 105;	// GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;	// 返回GM登陆验证结果
 		stConfigGmUserCmd                         = 107;	// 获取GM客户端配置
@@ -578,6 +584,72 @@ message RequestWinningListGmUserPmd_CS
 	optional uint32 maxpage				= 7; //最大页数
 	optional uint32 perpage				= 8; //每页数量
 	repeated WinLoseInfo data			= 9; //输赢信息列表
+}
+
+message BlackWhitelistInfo
+{
+	optional uint32 id				= 1;
+	optional uint64 charid			= 2;  //之所以这些是optional，为了兼容添加黑白名单时只输入用户名或者ID
+	optional string charname		= 3;
+	optional uint64 setchips		= 4;  //设定筹码
+	optional uint64 curchips		= 5;  //当前已经执行的筹码
+	optional float  winrate			= 6;  //胜率
+	optional uint32 state			= 7;  //状态,0有效, 1无效
+	optional uint32 type			= 8;  //类型,0黑名单, 1白名单
+	optional uint32 settimes		= 9;  //设定生效次数
+	optional uint32 curtimes		= 10; //当前已经生效的次数
+	optional uint32 intervaltimes	= 11; //间隔次数
+	optional uint64 recordtime		= 12; //记录黑白名单的时间戳
+}
+
+message AddBlackWhitelistGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint32 subgameid				= 3;  //防止策划要求针对子游戏的黑白名单
+	optional uint32 gmid					= 4;
+	repeated BlackWhitelistInfo data		= 5;
+	optional uint32 retcode					= 6;
+	optional string retdesc					= 7;
+}
+
+message ModBlackWhitelistGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint32 subgameid				= 3;
+	optional uint32 gmid					= 4;
+	required BlackWhitelistInfo data		= 5;
+	optional uint32 retcode					= 6;
+	optional string retdesc					= 7;
+}
+
+message DelBlackWhitelistGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint32 subgameid				= 3;
+	optional uint32 gmid					= 4;
+	repeated uint32 recordids				= 5;  //需要删除的ID
+	optional uint64 charid					= 6;  //需要删除哪个玩家黑白名单
+	optional uint32 retcode					= 7;  //执行结果，0成功，其他失败
+	optional string retdesc					= 8;  //失败描述
+}
+
+message RequestBlackWhitelistGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint32 subgameid				= 3;
+	optional uint32 gmid					= 4;
+	optional uint64 charid					= 5;
+	optional string charname				= 6;
+	optional uint64 starttime				= 7;  //根据时间范围进行查找
+	optional uint64 endtime					= 8;
+	optional uint32 curpage					= 9;
+	optional uint32 maxpage					= 10; //
+	optional uint32 perpage					= 11;
+	repeated BroadcastInfo data				= 12; //黑白名单列表
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
