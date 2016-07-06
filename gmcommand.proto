@@ -591,15 +591,16 @@ message BlackWhitelistInfo
 	optional uint32 id				= 1;
 	optional uint64 charid			= 2;  //之所以这些是optional，为了兼容添加黑白名单时只输入用户名或者ID
 	optional string charname		= 3;
-	optional uint64 setchips		= 4;  //设定筹码
-	optional uint64 curchips		= 5;  //当前已经执行的筹码
-	optional float  winrate			= 6;  //胜率
-	optional uint32 state			= 7;  //状态,0有效, 1无效
-	optional uint32 type			= 8;  //类型,0黑名单, 1白名单
-	optional uint32 settimes		= 9;  //设定生效次数
-	optional uint32 curtimes		= 10; //当前已经生效的次数
-	optional uint32 intervaltimes	= 11; //间隔次数
-	optional uint64 recordtime		= 12; //记录黑白名单的时间戳
+	optional uint32 subgameid		= 4;  //子游戏ID，方便批量删除
+	optional uint64 setchips		= 5;  //设定筹码
+	optional uint64 curchips		= 6;  //当前已经执行的筹码
+	optional float  winrate			= 7;  //胜率
+	optional uint32 state			= 8;  //状态,0有效, 1无效
+	optional uint32 type			= 9;  //类型,0黑名单, 1白名单
+	optional uint32 settimes		= 10; //设定生效次数
+	optional uint32 curtimes		= 11; //当前已经生效的次数
+	optional uint32 intervaltimes	= 12; //间隔次数
+	optional uint64 recordtime		= 13; //记录黑白名单的时间戳
 }
 
 message AddBlackWhitelistGmUserPmd_CS
@@ -624,16 +625,21 @@ message ModBlackWhitelistGmUserPmd_CS
 	optional string retdesc					= 7;
 }
 
+message BlackWhitelistUnit
+{
+	optional uint32 subgameid			= 1; //子游戏ID
+	required uint64 charid				= 2; //角色ID
+}
+
 message DelBlackWhitelistGmUserPmd_CS
 {
 	required uint32 gameid					= 1;
 	required uint32 zoneid					= 2;
 	optional uint32 subgameid				= 3;
 	optional uint32 gmid					= 4;
-	repeated uint32 recordids				= 5;  //需要删除的ID
-	optional uint64 charid					= 6;  //需要删除哪个玩家黑白名单
-	optional uint32 retcode					= 7;  //执行结果，0成功，其他失败
-	optional string retdesc					= 8;  //失败描述
+	repeated BlackWhitelistUnit data		= 5;  //需要删除的单元
+	optional uint32 retcode					= 6;  //执行结果，0成功，其他失败
+	optional string retdesc					= 7;  //失败描述
 }
 
 message RequestBlackWhitelistGmUserPmd_CS
