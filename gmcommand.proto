@@ -649,7 +649,7 @@ message RequestBlackWhitelistGmUserPmd_CS
 	optional uint32 curpage					= 9;
 	optional uint32 maxpage					= 10; //
 	optional uint32 perpage					= 11;
-	repeated BroadcastInfo data				= 12; //黑白名单列表
+	repeated BlackWhitelistInfo data		= 12; //黑白名单列表
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
