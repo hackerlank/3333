@@ -37,11 +37,11 @@ message Login
 
 		RequestSupoortGameListLoginUserPmd_C		= 30;
 		ReturnSupoortGameListLoginUserPmd_S		= 31;
-        
+
         UserRequestPlatTokenByPasswordLoginUserPmd_C = 32;
         UserRequestPlatTokenByThirdLoginUserPmd_C = 33;
         UserRequestPlatTokenLoginOkLoginUserPmd_S = 34;
-        UserRequestPlatTokenLoginFailLoginUserPmd_S = 35; 
+        UserRequestPlatTokenLoginFailLoginUserPmd_S = 35;
     }
 }
 
@@ -148,15 +148,15 @@ message MobileRegistRequestRandCodeLoginUserPmd_C //客户端发到登陆服务�
 	required string   mobilenum = 1; // 客户端填写的手机号
     required uint32   gameid    = 2; // 游戏id
 }
- 
-message MobileRegistReturnRandCodeLoginUserPmd_S 
+
+message MobileRegistReturnRandCodeLoginUserPmd_S
 {
 	required uint32 retcode		    = 1; //0表示成功,1表示手机号码填写有误,2表示请求发送短信速度过快,3表示短信服务器未开
 	optional string desc		    = 2; // 错误描述
-	optional uint64  timeout        = 3; // 超时时间 
+	optional uint64  timeout        = 3; // 超时时间
 }
 
-message MobileRegistRequestCreateAccountLoginUserPmd_C//客户端发到登陆服务器,如果创建成功,直接登陆
+message MobileRegistRequestCreateAccountLoginUserPmd_C //客户端发到登陆服务器,如果创建成功,直接登陆
 {
 	required string   mobilenum 	= 1; // 手机号
 	required string   randcode 	    = 2; // 随机码
@@ -177,7 +177,7 @@ message UserRequestPlatTokenByPasswordLoginUserPmd_C
     required   uint32     gameid      = 1; // 游戏id
     required   uint32     platid      = 2; // 平台id, 手机号注册登陆：129
     required   string     account     = 3; // 账户信息，手机号注册为用户手机号
-    required   string     password    = 4; // 密码 
+    required   string     password    = 4; // 密码
 }
 
 // 玩家第三方验证登陆请求
@@ -202,7 +202,7 @@ message UserRequestPlatTokenLoginOkLoginUserPmd_S
 // 玩家请求登陆失败返回
 message UserRequestPlatTokenLoginFailLoginUserPmd_S
 {
-    required  uint32    retcode    = 1; 
+    required  uint32    retcode    = 1;
     required  string    desc       = 2; // 验证失败描述信息
 }
 
@@ -312,7 +312,7 @@ message ReconnectErrorLoginUserPmd_S
 {
 	optional string desc			= 1;	// 描述
 }
- 
+
 
 // 服务器主动踢玩家下线
 message ServerKickoutLoginUserPmd_S
@@ -365,7 +365,7 @@ enum PlatType
 	PlatType_AAY  				= 86;		// 爱爱游
 	PlatType_WEIYOU				= 90;		// 微游联盟
 	PlatType_9g					= 99;		// 万游在线
-	PlatType_MOBILE				= 129;		// 手机 
+	PlatType_MOBILE				= 129;		// 手机
 	PlatType_XueChi				= 133;		// 雪池
 	PlatType_Egret				= 134;		// 白鹭开放平台
 	PlatType_AoXin				= 140;		// 鎏信
