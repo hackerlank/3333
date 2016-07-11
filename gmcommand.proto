@@ -606,6 +606,8 @@ message BlackWhitelistInfo
 	optional uint32 curtimes		= 11; //当前已经生效的次数
 	optional uint32 intervaltimes	= 12; //间隔次数
 	optional uint64 recordtime		= 13; //记录黑白名单的时间戳
+	optional uint32 gameid			= 14;
+	optional uint32 zoneid			= 15;
 }
 
 message AddBlackWhitelistGmUserPmd_CS
@@ -671,6 +673,7 @@ message GmMailInfo
 	optional string content					= 9;
 	repeated ItemInfo attachment			= 10; //附件
 	optional uint32 state					= 11; //0成功，1发送失败
+	optional uint32 recordtime				= 12; //发送时间
 }
 
 message RequestSendMailGmUserPmd_CS 
@@ -995,13 +998,14 @@ message RequestAwardTypeGmUserPmd_C
 message ItemInfo
 {
 	required uint32 itemid     = 1; // 道具ID
-	required string itemname   = 2; // 道具名称
+	optional string itemname   = 2; // 道具名称
 	optional uint32 itemnum    = 3; // 道具数量，奖励、补偿玩家时使用
+	optional uint32 itemtype   = 4; // 道具类型
 }
 message ItemTypeInfo
 {
 	required uint32 itemtype   = 1; // 道具类型
-	required string typename   = 2; // 类型名称
+	optional string typename   = 2; // 类型名称
 	repeated ItemInfo data     = 3; // 道具
 }
 
