@@ -94,6 +94,9 @@ message Gm
 		DelBlackWhitelistGmUserPmd_CS			  = 76;		//删除黑白名单
 		RequestBlackWhitelistGmUserPmd_CS		  = 77;		//查询黑白名单
 
+		//20160711
+		RequestSendMailGmUserPmd_CS				  = 78;		//发送邮件
+
 		stRequestLoginGmUserCmd                   = 105;	// GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;	// 返回GM登陆验证结果
 		stConfigGmUserCmd                         = 107;	// 获取GM客户端配置
@@ -596,7 +599,7 @@ message BlackWhitelistInfo
 	optional uint32 subgameid		= 4;  //子游戏ID，方便批量删除
 	optional uint32 setchips		= 5;  //设定筹码
 	optional uint32 curchips		= 6;  //当前已经执行的筹码
-	optional uint32  winrate			= 7;  //胜率
+	optional uint32 winrate			= 7;  //胜率
 	optional uint32 state			= 8;  //状态,0有效, 1无效
 	optional uint32 type			= 9;  //类型,0黑名单, 1白名单
 	optional uint32 settimes		= 10; //设定生效次数
@@ -627,19 +630,13 @@ message ModBlackWhitelistGmUserPmd_CS
 	optional string retdesc					= 7;
 }
 
-message BlackWhitelistUnit
-{
-	optional uint32 subgameid			= 1; //子游戏ID
-	required uint64 charid				= 2; //角色ID
-}
-
 message DelBlackWhitelistGmUserPmd_CS
 {
 	required uint32 gameid					= 1;
 	required uint32 zoneid					= 2;
 	optional uint32 subgameid				= 3;
 	optional uint32 gmid					= 4;
-	repeated BlackWhitelistUnit data		= 5;  //需要删除的单元
+	repeated uint32 ids						= 5;  //需要删除的ID
 	optional uint32 retcode					= 6;  //执行结果，0成功，其他失败
 	optional string retdesc					= 7;  //失败描述
 }
@@ -650,14 +647,40 @@ message RequestBlackWhitelistGmUserPmd_CS
 	required uint32 zoneid					= 2;
 	optional uint32 subgameid				= 3;
 	optional uint32 gmid					= 4;
-	optional uint64 charid					= 5;
-	optional string charname				= 6;
-	optional uint64 starttime				= 7;  //根据时间范围进行查找
-	optional uint64 endtime					= 8;
-	optional uint32 curpage					= 9;
-	optional uint32 maxpage					= 10; //
-	optional uint32 perpage					= 11;
-	repeated BlackWhitelistInfo data		= 12; //黑白名单列表
+	optional uint32 id						= 5;  //根据ID来查询
+	optional uint64 charid					= 6;
+	optional string charname				= 7;
+	optional uint64 starttime				= 8;  //根据时间范围进行查找
+	optional uint64 endtime					= 9;
+	optional uint32 curpage					= 10;
+	optional uint32 maxpage					= 11; //
+	optional uint32 perpage					= 12;
+	repeated BlackWhitelistInfo data		= 13; //黑白名单列表
+}
+
+message GmMailInfo
+{
+	optional uint64 id						= 1;
+	optional uint32 gameid					= 2;
+	optional uint32 zoneid					= 3;
+	optional uint32 type					= 4; //0单人邮件，1多人邮件
+	optional uint32 gmid					= 5;
+	optional uint64 charid					= 6;
+	optional string charname				= 7;
+	optional string subject					= 8;
+	optional string content					= 9;
+	repeated ItemInfo attachment			= 10; //附件
+	optional uint32 state					= 11; //0成功，1发送失败
+}
+
+message RequestSendMailGmUserPmd_CS 
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional GmMailInfo data				= 3;
+	optional uint32 gmid					= 4;
+	optional uint32 retcode					= 5;
+	optional string retdesc					= 6;
 }
 
 // 区服务器请求连接登陆服务器的第一个消息
