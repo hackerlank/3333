@@ -39,11 +39,7 @@ message Gm
 		RequestPunishListGmUserPmd_C              = 28;		// 查询当前处罚记录
 		ReturnPunishListGmUserPmd_S               = 29;		// 返回查询列表
 		
-		// 奖励玩家		
-		RequestAwardTypeGmUserPmd_C               = 30;		// 查询奖励类型ID
-		ReturnAwardTypeGmUserPmd_S                = 31;		// 返回道具类型
-		RequestAwardUserGmUserPmd_C               = 32;		// 请求给玩家发放道具
-		ReturnAwardUserGmUserPmd_S                = 33;		// 返回玩家道具发放结果
+		RequestItemTypeInfoGmUserPmd_CS			  = 30;		// 请求游戏道具、物品等相关信息
 		
 		// 玩家信息相关		
 		RequestUserInfoGmUserPmd_C                = 35;		// 查询玩家基础信息
@@ -986,15 +982,6 @@ message ReturnPunishListGmUserPmd_S
 	optional uint32 perpage		 = 5;
 }
 
-//玩家奖励、补偿
-//请求相关道具类型
-message RequestAwardTypeGmUserPmd_C
-{
-	required uint32 gameid		= 1;
-	optional uint32 zoneid      = 2; // 区服ID
-	optional uint32 gmid        = 3; // 用于查找GMTool
-}
-
 message ItemInfo
 {
 	required uint32 itemid     = 1; // 道具ID
@@ -1008,33 +995,15 @@ message ItemTypeInfo
 	optional string typename   = 2; // 类型名称
 	repeated ItemInfo data     = 3; // 道具
 }
-
-// 返回相关道具类型
-message ReturnAwardTypeGmUserPmd_S
+//请求相关道具类型
+message RequestItemTypeInfoGmUserPmd_CS
 {
-	repeated ItemTypeInfo data = 1;
-	required uint32 gameid	   = 2;
-	required uint32 zoneid     = 3;
-	required uint32 gmid       = 4;
-}
-
-// 请求补偿玩家
-message RequestAwardUserGmUserPmd_C
-{
-	required uint32 gameid	   = 1;
-	required uint32 zoneid     = 2;
-	required uint64 charid     = 3;
-	repeated ItemTypeInfo data = 4; // 补偿的道具、礼包等
-	optional uint32 gmid       = 5;
-}
-
-// 补偿结果
-message ReturnAwardUserGmUserPmd_S
-{
-	optional uint32 retcode   = 1;
-	optional string retdesc   = 2;
-	optional uint64 charid    = 3;
-	required uint32 gmid      = 4;
+	required uint32 gameid		= 1;
+	optional uint32 zoneid      = 2; // 区服ID
+	optional uint32 gmid        = 3; // 用于查找GMTool
+	repeated ItemTypeInfo data	= 4; // 道具信息
+	optional uint32 retcode		= 5; //
+	optional string retdesc		= 6; 
 }
 
 // 玩家信息相关
