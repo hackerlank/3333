@@ -10,18 +10,12 @@ message Gm
 		SurportGameZoneReturnGmPmd_S              = 4;		// 返回当前支持的区服
 		ReconnectKickoutGmSmd_S                   = 5;		// 踢下线
 		// GM账号相关                                  		   
-		RequestLoginGmUserPmd_C                   = 6;		// GM请求登陆验证
-		ReturnLoginGmUserPmd_S                    = 7;		// GM登陆验证结果
-		GmConfigDataGmUserPmd_CS                  = 8;		// GM配置文件
-		SetPasswordGmUserPmd_C                    = 9;		// 更改密码
-		ReturnPasswordGmUserPmd_S                 = 10;		// 更改密码返回
-		AddNewGmUserPmd_C                         = 11;		// 新加账号
-		ReturnAddNewGmUserPmd_S                   = 12;		// 新加账号返回
-		//GMAccountListGmUserPmd_CS               = 13;		// 请求GM账号列表
-		RequestDelGmUserPmd_C                     = 14;		// 删除GM账号
-		ReturnDelGmUserPmd_S                      = 15;		// 删除GM账号返回
-		RequestModifyPriGmUserPmd_C               = 16;		// 更改GM权限
-		ReturnModifyPriGmUserPmd_S                = 17;		// 更改权限返回
+		RequestLoginGmUserPmd_C						= 6;		// GM请求登陆验证
+		ReturnLoginGmUserPmd_S						= 7;		// GM登陆验证结果
+		SetPasswordGmUserPmd_CS						= 8;		// 更改密码
+		AddNewGmUserPmd_CS							= 9;		// 新加账号
+		RequestDelGmUserPmd_CS						= 10;		// 删除GM账号
+		RequestModifyPriGmUserPmd_CS				= 11;		// 更改GM权限
 
 		// 公告相关
 		BroadcastNewGmUserPmd_C                   = 18;		// 公告任务指令。该指令可用于公告的添加、修改、查询返回
@@ -751,37 +745,21 @@ message ReturnLoginGmUserPmd_S
 	repeated GameZoneInfo zoneinfo = 3;  // 区服信息
 }
 
-// GM配置
-message GmConfigDataGmUserPmd_CS
-{
-	optional string data      = 1;   // GM账号配置
-}
-
 // 更改密码
-message SetPasswordGmUserPmd_C
+message SetPasswordGmUserPmd_CS
 {
 	required string oldpassword = 1; // 老密码
 	required string newpassword = 2; // 新密码
-}
-
-// 更改密码返回
-message ReturnPasswordGmUserPmd_S
-{
-	optional uint32 retcode   = 1;  // 0成功，1失败
-	optional string retdesc   = 2;  // 错误描述
+	optional uint32 retcode		= 3;
+	optional string retdesc		= 4;
 }
 
 // 添加GM账号
-message AddNewGmUserPmd_C
+message AddNewGmUserPmd_CS
 {
-	required GmUserInfo data  = 1;  //GM账号数据
-}
-
-// 添加GM账号返回
-message ReturnAddNewGmUserPmd_S
-{
-	optional uint32 retcode   = 1;  // 0成功，1失败
-	optional string retdesc	  = 2;  // 描述
+	required GmUserInfo data	= 1;  //GM账号数据
+	optional uint32 retcode		= 2;
+	optional string retdesc		= 3;
 }
 
 // 请求获取GM账号列表
@@ -791,31 +769,22 @@ message GmAccountListGmUserPmd_CS
 }
 
 // 请求删除GM账号
-message RequestDelGmUserPmd_C
+message RequestDelGmUserPmd_CS
 {
-	required uint32 gmid      = 1;
-}
-
-// 删除结果
-message ReturnDelGmUserPmd_S
-{
-	optional uint32 retcode   = 1;  // 0成功，1失败
-	optional string retdesc   = 2;  // 失败描述
+	required uint32 gmid		= 1;
+	optional uint32 retcode		= 2;
+	optional string retdesc		= 3;
 }
 
 // 更改权限
-message RequestModifyPriGmUserPmd_C
+message RequestModifyPriGmUserPmd_CS
 {
-	required uint32 gmid      = 1;  // GM账号ID
-	required uint64 pri       = 2;  // 修改后的权限
-	optional uint32 gameid    = 3;  // 所管辖的游戏ID
-}
-
-// 更改权限返回
-message ReturnModifyPriGmUserPmd_S
-{
-	optional uint32 retcode   = 1;  // 0成功,其他失败
-	optional string retdesc	  = 2;  // 描述
+	required uint32 gmid		= 1;  // GM账号ID
+	required uint64 pri			= 2;  // 修改后的权限
+	optional uint32 gameid		= 3;  // 所管辖的游戏ID
+	optional uint32 zoneid		= 4;  //
+	optional uint32 retcode		= 5;
+	optional string retdesc		= 6;
 }
 
 // 选择需要监控的区服
