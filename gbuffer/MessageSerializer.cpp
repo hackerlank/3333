@@ -1,3 +1,4 @@
+#include <set>
 #include "google/protobuf/descriptor.h"
 #include "google/protobuf/io/zero_copy_stream_impl_lite.h"
 #include "bwsdk/Bwsdk.h"
@@ -25,17 +26,18 @@ namespace
 namespace gbuffer {
 	//google::protobuf::io::CodedOutputStream::StaticVarintSize32<1> StaticVarintSize32_1;
 	//CodedOutputStream::VarintSize32(1)
+	
 	int VarintSize32(unsigned int value)
 	{
 		return google::protobuf::io::CodedOutputStream::VarintSize32(google::protobuf::uint32(value));
 	}
-
 
 	using namespace google::protobuf;
 
 	MessageSerializer::MessageSerializer()
 	{
 		bzero(m_unserializeTable,sizeof(m_unserializeTable));
+		bzero(m_HandleInCPP,sizeof(m_HandleInCPP));
 	}
 	int MessageSerializer::GetMessageCmd(const google::protobuf::Message* message) const
 	{
@@ -99,6 +101,7 @@ namespace gbuffer {
 		}
 		return output->ByteCount() - pos;
 	}
+	
 
 	int MessageSerializer::Serialize(const google::protobuf::Message* message, void* bufOUT, size_t bufSize,bool needlen) const
 	{
@@ -106,6 +109,7 @@ namespace gbuffer {
 		google::protobuf::io::CodedOutputStream coded(&stream);
 		return Serialize(message, &coded,needlen);
 	}
+
 	int MessageSerializer::SerializeMessageSize(int msglen, void* bufOUT, size_t bufSize) const
 	{
 		google::protobuf::io::ArrayOutputStream stream(bufOUT, bufSize);
@@ -152,21 +156,26 @@ namespace gbuffer {
 			}
 		}
 		// 由消息类型得到构造器
-		const google::protobuf::Message *prototype = m_unserializeTable[(nmdout->bycmd() << 8) + nmdout->byparam()];
+		//判断消息是否在c++中handle 如果true使用c++中反序列化结构 否则使用lua中的反序列化结构
+		unsigned int uMsgID = (nmdout->bycmd() << 8) + nmdout->byparam();
+		int nType = m_HandleInCPP[uMsgID] ? 0 : 1;
+
+		const google::protobuf::Message *prototype = m_unserializeTable[nType][uMsgID];
 		if(prototype == NULL)
 		{
-			Bwsdk::logger->error("MessageSerializer::Deserialize find err:[%d,%d]",nmdout->bycmd(),nmdout->byparam());
+			Bwsdk::logger->error("MessageSerializer::Deserialize find err:[%d,%d] nType: %d",nmdout->bycmd(),nmdout->byparam(), nType);
 			return NULL;
 		}
 		// 构造对应的消息并解析
 		Message* message = prototype->New();
 		//assert(message->GetTypeName() == prototype->GetTypeName());
-			if(message->ParseFromArray(nmdout->data().c_str(),nmdout->data().size()) == false)
-			{
-				Bwsdk::logger->error("MessageSerializer::Deserialize decode err:[%d,%d],%s",nmdout->bycmd(),nmdout->byparam(),message->GetTypeName().c_str());
-				delete message;
-				return NULL;
-			}
+		if(message->ParseFromArray(nmdout->data().c_str(),nmdout->data().size()) == false)
+		{
+			Bwsdk::logger->error("MessageSerializer::Deserialize decode err:[%d,%d],%s",nmdout->bycmd(),nmdout->byparam(),message->GetTypeName().c_str());
+			delete message;
+			return NULL;
+		}
+
 		return message;
 	}
 
@@ -202,7 +211,7 @@ namespace gbuffer {
 		return int(ret);
 	}
 
-	bool MessageSerializer::Register(unsigned char byCmd,unsigned char byParam, const Descriptor* typeDescriptor)
+	bool MessageSerializer::Register(unsigned char byCmd,unsigned char byParam, const Descriptor* typeDescriptor, bool bLua)
 	{
 		if(typeDescriptor == NULL)
 		{
@@ -210,17 +219,18 @@ namespace gbuffer {
 			return false;
 		}
 		const Message* prototype = MessageFactory::generated_factory()->GetPrototype(typeDescriptor);
-		if(m_unserializeTable[(byCmd<<8) + byParam] != NULL && m_unserializeTable[(byCmd<<8) + byParam] != prototype)
+		int nType = bLua ? 1 : 0;
+		if(m_unserializeTable[nType][(byCmd<<8) + byParam] != NULL && m_unserializeTable[nType][(byCmd<<8) + byParam] != prototype)
 		{
-			Bwsdk::logger->error("MessageSerializer::Register insert err[%u,%u],%p,%p",byCmd,byParam,m_unserializeTable[(byCmd<<8) + byParam],prototype);
+			Bwsdk::logger->error("MessageSerializer::Register insert err[%u,%u],%p,%p",byCmd,byParam,m_unserializeTable[nType][(byCmd<<8) + byParam],prototype);
 			return false;
 		}
-		m_unserializeTable[(byCmd<<8) + byParam] = prototype;
+		m_unserializeTable[nType][(byCmd<<8) + byParam] = prototype;
 		m_serializeTable.insert(std::make_pair(typeDescriptor, (byCmd<<8) + byParam));
 		return true;
 	}
 
-	bool MessageSerializer::Register(const EnumDescriptor* byCmdEnum,const std::string ns)
+	bool MessageSerializer::Register(const EnumDescriptor* byCmdEnum,const std::string ns, bool bLua)
 	{
 		if(byCmdEnum == NULL)// || byParamEnum == NULL)
 		{
@@ -258,10 +268,15 @@ namespace gbuffer {
 					return false;
 				}
 
-				if(Register(c,t, message) == false)
+				if(Register(c,t, message, bLua) == false)
 				{
 					Bwsdk::logger->error("MessageSerializer::Register insert err:[%d,%d],%s",c,t,byParamEnum->full_name().c_str());
 					return false;
+				}
+				
+				//if (Bwsdk::IsHandleInCPP(message))
+				{
+					m_HandleInCPP[(c<<8) + t] = true;
 				}
 			}
 		}
