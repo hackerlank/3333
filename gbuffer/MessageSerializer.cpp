@@ -274,7 +274,7 @@ namespace gbuffer {
 					return false;
 				}
 				
-				//if (Bwsdk::IsHandleInCPP(message))
+				if (Bwsdk::IsHandleInCPP(message))
 				{
 					m_HandleInCPP[(c<<8) + t] = true;
 				}
