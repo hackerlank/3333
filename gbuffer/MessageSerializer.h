@@ -34,6 +34,7 @@ namespace gbuffer {
 		serialize_table m_serializeTable;
 		const google::protobuf::Message* m_unserializeTable[2][65536];
 		bool m_HandleInCPP[65536];
+		bool m_DispatchToLua;
 	public:
 		bool Register(unsigned char byCmd,unsigned char byParam, const google::protobuf::Descriptor* typeDescriptor, bool bLua = false);
 		bool Register(const google::protobuf::EnumDescriptor* byCmdEnum,const std::string ns, bool bLua = false);
@@ -50,6 +51,7 @@ namespace gbuffer {
 		google::protobuf::Message* Deserialize(const void* buf, size_t bufSize,Pmd::ForwardNullUserPmd_CS *&nmdout);
 		google::protobuf::Message* Deserialize(const void* buf, size_t bufSize,Pmd::ForwardNullUserPmd_CS &nmdout);
 		int DeserializeMessageSize(const void* buf, size_t bufSize,size_t &sizeLen);
+		void SetDispatchToLua(bool tolua){ m_DispatchToLua = tolua; }
 	};
 	bool RegisterMessage(MessageSerializer* serializer);
 }

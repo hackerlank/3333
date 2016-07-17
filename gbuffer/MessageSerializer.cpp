@@ -38,6 +38,7 @@ namespace gbuffer {
 	{
 		bzero(m_unserializeTable,sizeof(m_unserializeTable));
 		bzero(m_HandleInCPP,sizeof(m_HandleInCPP));
+		m_DispatchToLua = true;
 	}
 	int MessageSerializer::GetMessageCmd(const google::protobuf::Message* message) const
 	{
@@ -158,7 +159,7 @@ namespace gbuffer {
 		// 由消息类型得到构造器
 		//判断消息是否在c++中handle 如果true使用c++中反序列化结构 否则使用lua中的反序列化结构
 		unsigned int uMsgID = (nmdout->bycmd() << 8) + nmdout->byparam();
-		int nType = m_HandleInCPP[uMsgID] ? 0 : 1;
+		int nType = (m_HandleInCPP[uMsgID] or !m_DispatchToLua) ? 0 : 1;
 
 		const google::protobuf::Message *prototype = m_unserializeTable[nType][uMsgID];
 		if(prototype == NULL)
