@@ -87,6 +87,17 @@ message Gm
 		//20160711
 		RequestSendMailGmUserPmd_CS				  = 78;		//发送邮件
 
+		//20160719日志查询相关协议
+		RequestLoginRecordGmUserPmd_CS			  = 79;		//玩家登陆日志查询
+		RequestConsumeRecordGmUserPmd_CS		  = 80;		//消耗类日志查询
+		RequestActionRecordGmUserPmd_CS			  = 81;		//任务、活动、PVE、PVP日志相关
+		RequestStrengthenRecordGmUserPmd_CS		  = 82;		//强化日志
+		RequestMailRecordGmUserPmd_CS			  = 83;		//邮件相关日志
+		RequestRankRecordGmUserPmd_CS			  = 84;		//排行榜日志
+		RequestBossRecordGmUserPmd_CS			  = 85;		//boss相关日志
+		RequestRenameRecordGmUserPmd_CS			  = 86;		//角色改名相关的日志
+		//RequestGmRecordGmUserPmd_CS				  = 87;		//GM操作记录日志，这个协议GM服务器有记录，游戏不需要实现
+
 		stRequestLoginGmUserCmd                   = 105;	// GM登陆请求
 		stReturnLoginGmUserCmd                    = 106;	// 返回GM登陆验证结果
 		stConfigGmUserCmd                         = 107;	// 获取GM客户端配置
@@ -675,6 +686,256 @@ message RequestSendMailGmUserPmd_CS
 	optional uint32 retcode					= 5;
 	optional string retdesc					= 6;
 }
+
+message LoginRecordData
+{
+	optional uint64 id						= 1;
+	optional uint32 type					= 2; //0登陆，1退出
+	optional uint64 accid					= 3; //账号ID
+	optional uint64 charid					= 4; //角色ID
+	optional string charname				= 5; //角色昵称
+	optional string imei					= 6; //手机型号相关imei
+	optional string ip						= 7; //登录IP
+	optional string mac						= 8; //mac
+	optional uint64 ts						= 9; //时间戳
+	optional uint32 onlinemin				= 10;//在线时长，单位:分
+}
+
+message RequestLoginRecordGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint64 accid					= 3; //账号ID，查询条件，可选
+	optional uint64 charid					= 4; //角色ID，查询条件，可选
+	optional uint64 starttime				= 5; //查询时间范围
+	optional uint64 endtime					= 6; //查询时间范围，时间戳
+	repeated LoginRecordData data			= 7; //登陆日志
+	optional uint32 gmid					= 8;
+	optional uint32 curpage					= 9;  //请求第几页
+	optional uint32 maxpage					= 10; //该字段需要游戏返回，用于前端显示有多少页
+	optional uint32 perpage					= 11; //每页条数
+}
+
+message ConsumeRecordData
+{
+	optional uint64 id						= 1;
+	optional uint64 accid					= 2; //玩家账号ID
+	optional uint64 charid					= 3; //角色ID
+	optional string charname				= 4; //角色名称
+	optional uint32 itemid					= 5; //道具、货币ID
+	optional string itemname				= 6; //道具、货币名称
+	optional uint32 optype					= 7; //1获得，2失去
+	optional uint32 actionid				= 8; //行为ID
+	optional string actionname				= 9; //行为名称/行为说明
+	optional uint32 beforenum				= 10; //行为前数量
+	optional uint32 afternum				= 11; //行为后数量
+	optional uint32 usednum					= 12; //使用、获得数量
+	optional uint64 ts						= 13; //记录时间戳
+	optional string ext						= 14; //备注,其他
+}
+//消耗获得类日志记录的查询请求
+message RequestConsumeRecordGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint64 charid					= 3; //角色ID，查询条件
+	required uint32 type					= 4; //1道具日志，2货币日志
+	optional uint32 itemid					= 5; //道具、货币ID
+	optional uint32 optype					= 6; //操作类型，0所有，1获得，2失去
+	optional uint32 actionid				= 7; //行为ID
+	optional uint64 starttime				= 8; //时间范围，时间戳
+	optional uint64 endtime					= 9; //时间范围，时间戳,秒
+	repeated ConsumeRecordData data			= 10; //日志数据
+	optional uint32 gmid					= 11;
+	optional uint32 curpage					= 12;
+	optional uint32 maxpage					= 13;
+	optional uint32 perpage					= 14;
+}
+
+message ActionRecordData
+{
+	optional uint64 id						= 1;
+	optional uint64 accid					= 2; //账号ID
+	optional uint64 charid					= 3; //角色ID
+	optional string charname				= 4; //角色昵称
+	optional uint32 acttype					= 5; //活动、任务、PVE、PVP类型
+	optional string typename				= 6; //活动、任务、PVE、PVP类型名称
+	optional uint32 actionid				= 7; //活动、任务、PVE、PVP id
+	optional string actionname				= 8; //活动、任务、PVE、PVP 名称
+	optional uint32 state					= 9; //任务/活动：1提交、2失败、3放弃、4承接，PVE/PVP：1成功、2失败、3放弃
+	optional uint32 power					= 10; //战力
+	optional uint32 lastmin					= 11; //持续时间，单位：分
+	optional uint64 starttime				= 12; //玩家开始参与的时间戳
+	optional uint64 endtime					= 13; //玩家结束参与的时间戳
+	optional string ext1					= 14; //对应多人参与的PVE/PVP，记录角色ID和战力,对应GM界面的我方情况
+	optional string ext2					= 15; //对应多人参与的pve/pvp，记录对方的角色ID和战力,对应GM界面的敌方情况
+}
+
+message RequestActionRecordGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint64 charid					= 3; //角色ID
+	required uint32 type					= 4; //1PVE， 2活动，3任务， 4PVP
+	optional uint32 acttype					= 5; //活动类型ID，PVE类型ID，PVP玩法类型ID，活动类型ID,该字段游戏和运营商量
+	optional uint32 actionid				= 6; //活动ID，任务ID，PVE,PVP id
+	optional uint64 starttime				= 7;
+	optional uint64 endtime					= 8;
+	repeated ActionRecordData data			= 9; //活动等日志数据
+	optional uint32 gmid					= 10;
+	optional uint32 curpage					= 11;
+	optional uint32 maxpage					= 12;
+	optional uint32 perpage					= 13;
+}
+
+message StrengthenRecordData
+{
+	optional uint64 id						= 1;
+	optional uint64 accid					= 2;
+	optional uint64 charid					= 3;
+	optional string charname				= 4;
+	optional uint32 optarget				= 5; //强化对象ID
+	optional string targetname				= 6; //强化对象名称
+	optional uint32 optype					= 7; //强化类型ID
+	optional string typename				= 8; //强化类型名称
+	optional uint32 opresult				= 9; //1成功、2失败
+	optional uint32 beforenum				= 10; //强化前属性、等级数值
+	optional uint32 afternum				= 11; //强化后属性、等级数值
+	optional uint64 ts						= 12; //强化时间戳
+	optional string ext						= 13; //强化消耗的道具货币记录字符串，由逗号分隔,"type*id*num,type*id*num"
+}
+
+message RequestStrengthenRecordGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint64 charid					= 3;
+	optional uint32 optarget				= 4; //强化对象ID
+	optional uint32 optype					= 5; //强化类型
+	optional uint32 state					= 6; //强化结果 0所有，1成功，2失败
+	optional uint64 starttime				= 7;
+	optional uint64 endtime					= 8;
+	repeated StrengthenRecordData data		= 9; //强化日志数据
+	optional uint32 gmid					= 10;
+	optional uint32 curpage					= 11;
+	optional uint32 maxpage					= 12;
+	optional uint32 perpage					= 13;
+}
+
+message MailRecordData
+{
+	optional uint64 id						= 1;
+	optional uint64 charid					= 2; //发件人ID
+	optional string charname				= 3; //发件人昵称
+	optional uint64 recvid					= 4; //收件人ID
+	optional string recvname				= 5; //收件人昵称
+	optional string subject					= 6; //邮件标题
+	optional string content					= 7; //邮件内容
+	optional string attachment				= 8; //邮件附件，道具构成的字符串，由逗号分隔,"type*id*num,type*id*num"
+	optional uint32 state					= 9; //附件状态，0没有附件，1附件已领取，2附件未领取
+	optional uint64 ts						= 10; //时间戳
+	optional uint32 optype					= 11; //邮件类型，1系统邮件，2个人邮件
+}
+
+message RequestMailRecordGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint64 charid					= 3; //发件人ID
+	optional uint64 recvid					= 4; //收件人ID
+	optional uint32 optype					= 5; //邮件类型，0全部、1系统邮件、2个人邮件
+	optional uint64 starttime				= 6;
+	optional uint64 endtime					= 7;
+	repeated MailRecordData data			= 8; //邮件日志数据
+	optional uint32 gmid					= 9;
+	optional uint32 curpage					= 10;
+	optional uint32 maxpage					= 11;
+	optional uint32 perpage					= 12;
+}
+
+message RankRecordData
+{
+	optional uint64 id						= 1;
+	optional uint64 rankid					= 2; //名次
+	optional string rankname				= 3; //排行榜名称
+	optional uint64 accid					= 4; //账号ID
+	optional uint64 charid					= 5; //角色ID
+	optional string charname				= 6; //角色名称
+	optional string profession				= 7; //角色职业名称
+	optional uint32 power					= 8; //角色战力
+	optional uint64 ts						= 9; //时间戳
+	optional string ext						= 10; //影响排名的因素
+}
+
+message RequestRankRecordGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint32 ranktype				= 3; //排行榜标识
+	optional string rankname				= 4; //排行榜名称
+	optional uint64 starttime				= 5;
+	optional uint64 endtime					= 6;
+	repeated RankRecordData	data			= 7; //排行榜日志数据
+	optional uint32 gmid					= 8;
+	optional uint32 curpage					= 9;
+	optional uint32 maxpage					= 10;
+	optional uint32 perpage					= 11;
+
+}
+
+message BossRecordData
+{
+	optional uint64 id						= 1;
+	optional uint32 bosstype				= 2;
+	optional string bossname				= 3;
+	optional uint32 acttype					= 4; //1掉落，2刷新
+	optional string actcontent				= 5; //掉落或者刷新内容
+	optional uint64 charid					= 6; //角色ID
+	optional string charname				= 7; //角色昵称
+	optional uint64 ts						= 8; //时间戳
+}
+
+message RequestBossRecordGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint32 bosstype				= 3; //boss类型，0全部，1野外boss， 2世界boss
+	optional string bossname				= 4; //boss名称
+	optional uint64 starttime				= 5; //开始时间戳
+	optional uint64 endtime					= 6; //结束时间戳
+	repeated BossRecordData data			= 7; //boss日志数据
+	optional uint32 gmid					= 8;
+	optional uint32 curpage					= 9;
+	optional uint32 maxpage					= 10;
+	optional uint32 perpage					= 11;
+}
+
+message RenameRecordData
+{
+	optional uint64 id						= 1;
+	optional uint64 accid					= 2; //账号ID
+	optional uint64 charid					= 3; //角色ID
+	optional string oldname					= 4; //改名前昵称
+	optional string newname					= 5; //改名后昵称
+	optional uint64 ts						= 6; //改名时间戳
+}
+
+message RequestRenameRecordGmUserPmd_CS
+{
+	required uint32 gameid					= 1;
+	required uint32 zoneid					= 2;
+	optional uint64 charid					= 3;
+	optional string oldname					= 4;
+	optional string newname					= 5;
+	optional uint64 starttime				= 6;
+	optional uint64 endtime					= 7;
+	repeated RenameRecordData data			= 8;
+	optional uint32 gmid					= 9;
+	optional uint32 curpage					= 10;
+	optional uint32 maxpage					= 11;
+	optional uint32 perpage					= 12;
+}
+
 
 // 区服务器请求连接登陆服务器的第一个消息
 message StartUpGameRequestGmPmd_C
