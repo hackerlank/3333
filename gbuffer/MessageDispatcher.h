@@ -9,6 +9,7 @@
 #include "bwsdk/Bwsdk.h"
 
 namespace gbuffer {
+
 	template<typename TMessageHandler>
 	class MessageDispatcher
 	{
@@ -69,6 +70,7 @@ namespace gbuffer {
 			const bool ok = dispatcher.Register(TMessage::descriptor(),
 				reinterpret_cast<typename TMessageDispatcher::MessageHandler>(handler));
 			assert(ok && "Duplicate MessageDispatcher register.");
+			Bwsdk::SetHandleInCPP(TMessage::descriptor());
 		}
 	};
 }
