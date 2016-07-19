@@ -41,6 +41,7 @@ namespace gbuffer {
 
 	public:
 		/// @return 序列化后的字节数，失败时<0
+		int SerializeNmd(const Pmd::ForwardNullUserPmd_CS *nmd, void* bufOUT, size_t bufSize,bool needlen=false) const;
 		int Serialize(const google::protobuf::Message* message, google::protobuf::io::CodedOutputStream* output,bool needlen=false) const;
 		int Serialize(const google::protobuf::Message* message, void* bufOUT, size_t bufSize,bool needlen=false) const;
 		int GetMessageCmd(const google::protobuf::Message* message) const;

@@ -104,6 +104,23 @@ namespace gbuffer {
 	}
 	
 
+	int MessageSerializer::SerializeNmd(const Pmd::ForwardNullUserPmd_CS *nmd, void* bufOUT, size_t bufSize,bool needlen) const
+	{
+		google::protobuf::io::ArrayOutputStream stream(bufOUT, bufSize);
+		google::protobuf::io::CodedOutputStream output(&stream);
+		const int pos = output.ByteCount();
+		if(needlen)
+		{
+			int alllen = nmd->ByteSize();// + msglen;
+			output.WriteVarint32(google::protobuf::uint32(alllen));
+		}
+		if(nmd->SerializeToCodedStream(&output) == false)// || message.SerializeToCodedStream(output) == false)
+		{
+			Bwsdk::logger->error("SerializeNmd err:");
+			return -1;
+		}
+		return output.ByteCount() - pos;
+	}
 	int MessageSerializer::Serialize(const google::protobuf::Message* message, void* bufOUT, size_t bufSize,bool needlen) const
 	{
 		google::protobuf::io::ArrayOutputStream stream(bufOUT, bufSize);
