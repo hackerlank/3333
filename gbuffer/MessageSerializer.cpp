@@ -38,7 +38,7 @@ namespace gbuffer {
 	{
 		bzero(m_unserializeTable,sizeof(m_unserializeTable));
 		bzero(m_HandleInCPP,sizeof(m_HandleInCPP));
-		m_DispatchToLua = true;
+		m_DispatchToLua = false;
 	}
 	int MessageSerializer::GetMessageCmd(const google::protobuf::Message* message) const
 	{
