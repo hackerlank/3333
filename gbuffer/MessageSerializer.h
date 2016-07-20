@@ -36,8 +36,8 @@ namespace gbuffer {
 		bool m_HandleInCPP[65536];
 		bool m_DispatchToLua;
 	public:
-		bool Register(unsigned char byCmd,unsigned char byParam, const google::protobuf::Descriptor* typeDescriptor, bool bLua = false);
-		bool Register(const google::protobuf::EnumDescriptor* byCmdEnum,const std::string ns, bool bLua = false);
+		bool Register(unsigned char byCmd,unsigned char byParam, const google::protobuf::Descriptor* typeDescriptor, bool bDynamic);
+		bool Register(const google::protobuf::EnumDescriptor* byCmdEnum,const std::string ns, bool bDynamic = false);
 
 	public:
 		/// @return 序列化后的字节数，失败时<0
@@ -55,5 +55,6 @@ namespace gbuffer {
 		void SetDispatchToLua(bool tolua){ m_DispatchToLua = tolua; }
 	};
 	bool RegisterMessage(MessageSerializer* serializer);
+	void RegisterProtoMsg(MessageSerializer* serializer, const char* enumType, const char* ns, bool bDynamic);
 }
 

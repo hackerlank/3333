@@ -3,7 +3,7 @@
 #include "google/protobuf/io/zero_copy_stream_impl_lite.h"
 #include "bwsdk/Bwsdk.h"
 #include "bwsdk/bSocket.h"
-
+#include "bwsdk/LuaProtoBuf.h"
 #include "platcommon/nullcommand.pb.h"
 
 #include "MessageSerializer.h"
@@ -229,7 +229,7 @@ namespace gbuffer {
 		return int(ret);
 	}
 
-	bool MessageSerializer::Register(unsigned char byCmd,unsigned char byParam, const Descriptor* typeDescriptor, bool bLua)
+	bool MessageSerializer::Register(unsigned char byCmd,unsigned char byParam, const Descriptor* typeDescriptor, bool bDynamic)
 	{
 		if(typeDescriptor == NULL)
 		{
@@ -237,7 +237,7 @@ namespace gbuffer {
 			return false;
 		}
 		const Message* prototype = MessageFactory::generated_factory()->GetPrototype(typeDescriptor);
-		int nType = bLua ? 1 : 0;
+		int nType = bDynamic ? 1 : 0;
 		if(m_unserializeTable[nType][(byCmd<<8) + byParam] != NULL && m_unserializeTable[nType][(byCmd<<8) + byParam] != prototype)
 		{
 			Bwsdk::logger->error("MessageSerializer::Register insert err[%u,%u],%p,%p",byCmd,byParam,m_unserializeTable[nType][(byCmd<<8) + byParam],prototype);
@@ -248,7 +248,7 @@ namespace gbuffer {
 		return true;
 	}
 
-	bool MessageSerializer::Register(const EnumDescriptor* byCmdEnum,const std::string ns, bool bLua)
+	bool MessageSerializer::Register(const EnumDescriptor* byCmdEnum,const std::string ns, bool bDynamic)
 	{
 		if(byCmdEnum == NULL)// || byParamEnum == NULL)
 		{
@@ -263,7 +263,18 @@ namespace gbuffer {
 			std::string cmdname = item->name().substr(found+1);
 			const std::string paramtype = ns + "." + cmdname + ".Param";
 			//Bwsdk::logger->debug("MessageSerializer::Register byCmdEnum:%d,%s,%s",c,paramtype.c_str(),item->name().c_str());
-			const EnumDescriptor* byParamEnum = DescriptorPool::generated_pool()->FindEnumTypeByName(paramtype);
+			const EnumDescriptor* byParamEnum = NULL;
+		
+			//这里要根据来源选择具体 protobuf_pool
+			if (bDynamic)
+			{
+				byParamEnum = GetEnumDescriptor(paramtype);
+			}
+			else
+			{
+				byParamEnum = DescriptorPool::generated_pool()->FindEnumTypeByName(paramtype);
+			}
+
 			if(byParamEnum == NULL)
 			{
 				Bwsdk::logger->error("MessageSerializer::Register err:%d,%s,%s",c,paramtype.c_str(),item->name().c_str());
@@ -279,14 +290,24 @@ namespace gbuffer {
 				}
 				const int t = item->number();
 				//Bwsdk::logger->debug("MessageSerializer::Register byParamEnum:[%d,%d],%s,%s",c,t,byParamEnum->full_name().c_str(),item->name().c_str());
-				const Descriptor* message = DescriptorPool::generated_pool()->FindMessageTypeByName(ns + "." + item->name());
+
+				const Descriptor* message = NULL;
+				if (bDynamic)
+				{
+					message = GetMessageDescriptor(ns + "." + item->name());
+				}
+				else
+				{
+					message = DescriptorPool::generated_pool()->FindMessageTypeByName(ns + "." + item->name());
+				}
+
 				if(message == NULL)
 				{
 					Bwsdk::logger->error("MessageSerializer::Register find err:[%d,%d],%s,%s",c,t,byParamEnum->full_name().c_str(),(ns + "." + item->name()).c_str());
 					return false;
 				}
 
-				if(Register(c,t, message, bLua) == false)
+				if(Register(c,t, message, bDynamic) == false)
 				{
 					Bwsdk::logger->error("MessageSerializer::Register insert err:[%d,%d],%s",c,t,byParamEnum->full_name().c_str());
 					return false;
@@ -300,4 +321,5 @@ namespace gbuffer {
 		}
 		return true;
 	}
+
 }
