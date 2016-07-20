@@ -694,11 +694,17 @@ message LoginRecordData
 	optional uint64 accid					= 3; //账号ID
 	optional uint64 charid					= 4; //角色ID
 	optional string charname				= 5; //角色昵称
-	optional string imei					= 6; //手机型号相关imei
-	optional string ip						= 7; //登录IP
-	optional string mac						= 8; //mac
-	optional uint64 ts						= 9; //时间戳
-	optional uint32 onlinemin				= 10;//在线时长，单位:分
+	optional uint32 userlevel				= 6; //角色等级
+	optional uint32 viplevel				= 7; //vip等级
+	optional uint32 gold					= 8; //金币数量-由充值获得或者赠送获得，类似rmb的货币
+	optional uint32 money					= 9; //仅次于金币的游戏币数量
+	optional uint32 power					= 10; //战力
+	optional uint32 guid					= 11; //新手指引
+	optional string imei					= 12; //手机型号相关imei
+	optional string ip						= 13; //登录IP
+	optional string mac						= 14; //mac
+	optional uint64 ts						= 15; //时间戳
+	optional uint32 onlinemin				= 16; //在线时长，单位:分
 }
 
 message RequestLoginRecordGmUserPmd_CS
@@ -722,16 +728,17 @@ message ConsumeRecordData
 	optional uint64 accid					= 2; //玩家账号ID
 	optional uint64 charid					= 3; //角色ID
 	optional string charname				= 4; //角色名称
-	optional uint32 itemid					= 5; //道具、货币ID
-	optional string itemname				= 6; //道具、货币名称
-	optional uint32 optype					= 7; //1获得，2失去
-	optional uint32 actionid				= 8; //行为ID
-	optional string actionname				= 9; //行为名称/行为说明
-	optional uint32 beforenum				= 10; //行为前数量
-	optional uint32 afternum				= 11; //行为后数量
-	optional uint32 usednum					= 12; //使用、获得数量
-	optional uint64 ts						= 13; //记录时间戳
-	optional string ext						= 14; //备注,其他
+	optional uint32 itemtype				= 5; //道具类型
+	optional uint32 itemid					= 6; //道具、货币ID
+	optional string itemname				= 7; //道具、货币名称
+	optional uint32 optype					= 8; //1获得，2失去
+	optional uint32 actionid				= 9; //行为ID
+	optional string actionname				= 10; //行为名称/行为说明
+	optional uint32 beforenum				= 11; //行为前数量
+	optional uint32 afternum				= 12; //行为后数量
+	optional uint32 usednum					= 13; //使用、获得数量
+	optional uint64 ts						= 14; //记录时间戳
+	optional string ext						= 15; //备注,其他
 }
 //消耗获得类日志记录的查询请求
 message RequestConsumeRecordGmUserPmd_CS
