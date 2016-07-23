@@ -42,6 +42,8 @@ message Login
         UserRequestPlatTokenByThirdLoginUserPmd_C = 33;
         UserRequestPlatTokenLoginOkLoginUserPmd_S = 34;
         UserRequestPlatTokenLoginFailLoginUserPmd_S = 35;
+		EmailRegistRequestCreateAccountLoginUserPmd_C= 36;
+        EmailRegistReturnCreateAccountLoginUserPmd_S= 37;
     }
 }
 
@@ -56,8 +58,8 @@ message AccountTokenVerifyLoginUserPmd_CS
 	optional uint32 platid 			= 6;	// 平台编号
 	optional uint32 zoneid			= 7;	// if filled, will auto login UserLoginRequestLoginUserPmd_C, UserLoginTokenLoginSmd_SC
 	optional uint32 gameversion 	= 8;	// 当前客户端game版本号Version_Login
-	optional string compress		= 9;	// 压缩算法
-	optional string encrypt			= 10;	// 加密算法
+	optional string compress		= 9;	// 压缩算法 
+    optional string encrypt			= 10;	// 加密算法
 	optional string encryptkey		= 11;	// 加密key
 }
 
@@ -169,6 +171,24 @@ message MobileRegistReturnCreateAccountFailLoginUserPmd_S //
 {
 	required uint32 retcode		   = 1;	//0表示成功,1表示手机号码填写有误,2表示数日频率过快,3表示验证码错误
 	optional string desc		   = 2; // 错误描述
+}
+
+// 请求邮箱注册 
+message EmailRegistRequestCreateAccountLoginUserPmd_C//客户端发到登陆服务器
+{
+	required string   email     = 1; // 客户端填写的email url
+    required string   password  = 2; // 密码
+    required uint32   gameid    = 3; // 游戏id
+    optional bool     isbind    = 4; // 是否以游客模式绑定？
+    optional string   uid       = 5; // 需要替换绑定的uid
+}
+
+// 当邮箱注册失败后，会返回，当成功后，返回UserRequestPlatTokenLoginOkLoginUserPmd_S协议，客户端直接选区
+message EmailRegistReturnCreateAccountLoginUserPmd_S//客户端发到登陆服务器
+{
+    required uint32       ret  = 1; // 0表示成功，1表示失败
+    optional string       desc = 2; // 原因描述
+    optional uint64       uid  = 3; // 分配的uid
 }
 
 // 玩家使用密码登陆验证请求
