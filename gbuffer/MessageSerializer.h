@@ -6,7 +6,7 @@
 #pragma once
 #include <map>
 #include <stdlib.h>
-
+#include "google/protobuf/message.h"
 #include "google/protobuf/io/coded_stream.h"
 
 namespace Pmd{
@@ -17,8 +17,9 @@ namespace google{ namespace protobuf{
 	class Message;
 	class EnumDescriptor;
 }}
-
+	
 namespace gbuffer {
+	
 	int VarintSize32(unsigned int value);
 	// 封包结构: {<category, type><Command>}
 	/// @ref https://developers.google.com/protocol-buffers/docs/techniques#streaming
@@ -28,18 +29,19 @@ namespace gbuffer {
 		MessageSerializer();
 		typedef std::map<const google::protobuf::Descriptor*, unsigned int> serialize_table;
 		typedef std::map<unsigned int, const google::protobuf::Message*> unserialize_table;
-
+		
 	private:
 		serialize_table m_serializeTable;
-		//unserialize_table m_unserializeTable;
-		const google::protobuf::Message* m_unserializeTable[65536];
+		const google::protobuf::Message* m_unserializeTable[2][65536];
+		bool m_HandleInCPP[65536];
+		bool m_DispatchToLua;
 	public:
-		bool Register(unsigned char byCmd,unsigned char byParam, const google::protobuf::Descriptor* typeDescriptor);
-		bool Register(const google::protobuf::EnumDescriptor* byCmdEnum,const std::string ns);
+		bool Register(unsigned char byCmd,unsigned char byParam, const google::protobuf::Descriptor* typeDescriptor, bool bDynamic);
+		bool Register(const google::protobuf::EnumDescriptor* byCmdEnum,const std::string ns, bool bDynamic = false);
 
-		//size_t size() const {return m_unserializeTable.size();}
 	public:
 		/// @return 序列化后的字节数，失败时<0
+		int SerializeNmd(const Pmd::ForwardNullUserPmd_CS *nmd, void* bufOUT, size_t bufSize,bool needlen=false) const;
 		int Serialize(const google::protobuf::Message* message, google::protobuf::io::CodedOutputStream* output,bool needlen=false) const;
 		int Serialize(const google::protobuf::Message* message, void* bufOUT, size_t bufSize,bool needlen=false) const;
 		int GetMessageCmd(const google::protobuf::Message* message) const;
@@ -50,7 +52,9 @@ namespace gbuffer {
 		google::protobuf::Message* Deserialize(const void* buf, size_t bufSize,Pmd::ForwardNullUserPmd_CS *&nmdout);
 		google::protobuf::Message* Deserialize(const void* buf, size_t bufSize,Pmd::ForwardNullUserPmd_CS &nmdout);
 		int DeserializeMessageSize(const void* buf, size_t bufSize,size_t &sizeLen);
+		void SetDispatchToLua(bool tolua){ m_DispatchToLua = tolua; }
 	};
 	bool RegisterMessage(MessageSerializer* serializer);
+	void RegisterProtoMsg(MessageSerializer* serializer, const char* enumType, const char* ns, bool bDynamic);
 }
 

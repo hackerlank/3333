@@ -1,4 +1,4 @@
-
+#include "bwsdk/LuaProtoBuf.h"
 #include "MessageSerializer.h"
 #include "platcommon/pmd.pb.h"
 #include "platcommon/nullcommand.pb.h"
@@ -151,5 +151,15 @@ namespace gbuffer
 		if (serializer->Register(GameCmd::ClientCommand_descriptor(), "GameCmd") == false)
 			return false;
 		return true;
+	}
+	
+	void RegisterProtoMsg(MessageSerializer* serializer, const char* enumType, const char* ns, bool bDynamic)
+	{
+		const google::protobuf::EnumDescriptor* enumDesc = GetEnumDescriptor(enumType);
+		if (enumDesc == NULL)
+			return;
+		if (ns == NULL)
+			return;
+		serializer->Register(enumDesc, ns, bDynamic);
 	}
 }
