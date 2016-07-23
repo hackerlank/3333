@@ -186,9 +186,9 @@ message EmailRegistRequestCreateAccountLoginUserPmd_C//客户端发到登陆服�
 // 当邮箱注册失败后，会返回，当成功后，返回UserRequestPlatTokenLoginOkLoginUserPmd_S协议，客户端直接选区
 message EmailRegistReturnCreateAccountLoginUserPmd_S//客户端发到登陆服务器
 {
-    required uint32       ret  = 1; // 0表示成功，1表示失败
-    optional string       desc = 2; // 原因描述
-    optional uint64       uid  = 3; // 分配的uid
+    required uint32       retcode = 1; // 0表示成功，1表示失败
+    optional string       desc    = 2; // 原因描述
+    optional uint64       uid     = 3; // 分配的uid
 }
 
 // 玩家使用密码登陆验证请求
