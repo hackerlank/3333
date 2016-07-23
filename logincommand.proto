@@ -180,7 +180,7 @@ message EmailRegistRequestCreateAccountLoginUserPmd_C//客户端发到登陆服�
     required string   password  = 2; // 密码
     required uint32   gameid    = 3; // 游戏id
     optional bool     isbind    = 4; // 是否以游客模式绑定？
-    optional string   uid       = 5; // 需要替换绑定的uid
+    optional uint64   uid       = 5; // 需要替换绑定的uid
 }
 
 // 当邮箱注册失败后，会返回，当成功后，返回UserRequestPlatTokenLoginOkLoginUserPmd_S协议，客户端直接选区
