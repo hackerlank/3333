@@ -236,7 +236,13 @@ namespace gbuffer {
 			Bwsdk::logger->error("MessageSerializer::Register err");
 			return false;
 		}
-		const Message* prototype = MessageFactory::generated_factory()->GetPrototype(typeDescriptor);
+		const Message* prototype = NULL;
+		
+		if (bDynamic)
+			prototype = GetMessageProtoType(typeDescriptor);
+		else
+			prototype = MessageFactory::generated_factory()->GetPrototype(typeDescriptor);
+
 		int nType = bDynamic ? 1 : 0;
 		if(m_unserializeTable[nType][(byCmd<<8) + byParam] != NULL && m_unserializeTable[nType][(byCmd<<8) + byParam] != prototype)
 		{
