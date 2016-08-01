@@ -1,0 +1,651 @@
+gbuffer/Message.lo: gbuffer/Message.cpp /usr/include/stdc-predef.h \
+ ../bwsdk/inc/bwsdk/LuaProtoBuf.h /usr/include/c++/4.8/string \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/os_defines.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/cpu_defines.h \
+ /usr/include/c++/4.8/bits/stringfwd.h \
+ /usr/include/c++/4.8/bits/memoryfwd.h \
+ /usr/include/c++/4.8/bits/char_traits.h \
+ /usr/include/c++/4.8/bits/stl_algobase.h \
+ /usr/include/c++/4.8/bits/functexcept.h \
+ /usr/include/c++/4.8/bits/exception_defines.h \
+ /usr/include/c++/4.8/bits/cpp_type_traits.h \
+ /usr/include/c++/4.8/ext/type_traits.h \
+ /usr/include/c++/4.8/ext/numeric_traits.h \
+ /usr/include/c++/4.8/bits/stl_pair.h /usr/include/c++/4.8/bits/move.h \
+ /usr/include/c++/4.8/bits/concept_check.h \
+ /usr/include/c++/4.8/bits/stl_iterator_base_types.h \
+ /usr/include/c++/4.8/bits/stl_iterator_base_funcs.h \
+ /usr/include/c++/4.8/debug/debug.h \
+ /usr/include/c++/4.8/bits/stl_iterator.h \
+ /usr/include/c++/4.8/bits/postypes.h /usr/include/c++/4.8/cwchar \
+ /usr/include/wchar.h /usr/include/stdio.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h \
+ /usr/include/xlocale.h /usr/include/c++/4.8/bits/allocator.h \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++allocator.h \
+ /usr/include/c++/4.8/ext/new_allocator.h /usr/include/c++/4.8/new \
+ /usr/include/c++/4.8/exception \
+ /usr/include/c++/4.8/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/4.8/bits/localefwd.h \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++locale.h \
+ /usr/include/c++/4.8/clocale /usr/include/locale.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/4.8/iosfwd \
+ /usr/include/c++/4.8/cctype /usr/include/ctype.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap-16.h \
+ /usr/include/c++/4.8/bits/ostream_insert.h \
+ /usr/include/c++/4.8/bits/cxxabi_forced.h \
+ /usr/include/c++/4.8/bits/stl_function.h \
+ /usr/include/c++/4.8/backward/binders.h \
+ /usr/include/c++/4.8/bits/range_access.h \
+ /usr/include/c++/4.8/bits/basic_string.h \
+ /usr/include/c++/4.8/ext/atomicity.h \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr.h \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/atomic_word.h \
+ /usr/include/c++/4.8/bits/basic_string.tcc gbuffer/MessageSerializer.h \
+ /usr/include/c++/4.8/map /usr/include/c++/4.8/bits/stl_tree.h \
+ /usr/include/c++/4.8/bits/stl_map.h \
+ /usr/include/c++/4.8/bits/stl_multimap.h /usr/include/stdlib.h \
+ /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/bits/sigset.h \
+ /usr/include/x86_64-linux-gnu/sys/sysmacros.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/message.h \
+ /usr/include/c++/4.8/vector /usr/include/c++/4.8/bits/stl_construct.h \
+ /usr/include/c++/4.8/ext/alloc_traits.h \
+ /usr/include/c++/4.8/bits/stl_uninitialized.h \
+ /usr/include/c++/4.8/bits/stl_vector.h \
+ /usr/include/c++/4.8/bits/stl_bvector.h \
+ /usr/include/c++/4.8/bits/vector.tcc \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/message_lite.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/stubs/common.h \
+ /usr/include/assert.h /usr/include/c++/4.8/cstddef /usr/include/string.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h /usr/include/stdint.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/descriptor.h \
+ /usr/include/c++/4.8/set /usr/include/c++/4.8/bits/stl_set.h \
+ /usr/include/c++/4.8/bits/stl_multiset.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/io/coded_stream.h \
+ /usr/include/x86_64-linux-gnu/sys/param.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h /usr/include/signal.h \
+ /usr/include/x86_64-linux-gnu/bits/signum.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo.h \
+ /usr/include/x86_64-linux-gnu/bits/sigaction.h \
+ /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstack.h \
+ /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h \
+ /usr/include/x86_64-linux-gnu/bits/param.h /usr/include/linux/param.h \
+ /usr/include/x86_64-linux-gnu/asm/param.h \
+ /usr/include/asm-generic/param.h ../platcommon/pmd.pb.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/generated_message_util.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/stubs/once.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/stubs/atomicops.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/stubs/platform_macros.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/stubs/atomicops_internals_x86_gcc.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/repeated_field.h \
+ /usr/include/c++/4.8/iterator /usr/include/c++/4.8/ostream \
+ /usr/include/c++/4.8/ios /usr/include/c++/4.8/bits/ios_base.h \
+ /usr/include/c++/4.8/bits/locale_classes.h \
+ /usr/include/c++/4.8/bits/locale_classes.tcc \
+ /usr/include/c++/4.8/streambuf /usr/include/c++/4.8/bits/streambuf.tcc \
+ /usr/include/c++/4.8/bits/basic_ios.h \
+ /usr/include/c++/4.8/bits/locale_facets.h /usr/include/c++/4.8/cwctype \
+ /usr/include/wctype.h \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/ctype_base.h \
+ /usr/include/c++/4.8/bits/streambuf_iterator.h \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/ctype_inline.h \
+ /usr/include/c++/4.8/bits/locale_facets.tcc \
+ /usr/include/c++/4.8/bits/basic_ios.tcc \
+ /usr/include/c++/4.8/bits/ostream.tcc /usr/include/c++/4.8/istream \
+ /usr/include/c++/4.8/bits/istream.tcc \
+ /usr/include/c++/4.8/bits/stream_iterator.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/stubs/type_traits.h \
+ /usr/include/c++/4.8/utility /usr/include/c++/4.8/bits/stl_relops.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/stubs/template_util.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/extension_set.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/generated_enum_reflection.h \
+ ../3Party/protobuf-2.6.1/src/google/protobuf/unknown_field_set.h \
+ ../platcommon/nullcommand.pb.h ../platcommon/chatcommand.pb.h \
+ ../platcommon/forwardcommand.pb.h ../platcommon/logincommand.pb.h \
+ ../platcommon/loggercommand.pb.h ../platcommon/pmd.pb.h \
+ ../platcommon/config.pb.h ../platcommon/monitorpmd.pb.h \
+ ../platcommon/sdkcommand.pb.h ../platcommon/gmcommand.pb.h \
+ ../servercommon/super.pb.h pmd.pb.h ../servercommon/common.pb.h \
+ ../servercommon/smd.pb.h ../servercommon/gate.pb.h \
+ ../servercommon/login.pb.h ../servercommon/logger.pb.h \
+ ../servercommon/name.pb.h ../servercommon/monitor.pb.h \
+ ../servercommon/sdk.pb.h ../servercommon/gm.pb.h \
+ ../servercommon/build.pb.h ../common/server/SessionCommand.pb.h \
+ ../common/user/Cmd.pb.h ../common/user/Serialize.pb.h \
+ ../common/user/Cmd.pb.h ../common/user/PropertyUserCmd.pb.h \
+ ../common/user/Pet.pb.h ../common/server/RelationCommand.pb.h \
+ ../common/user/RelationUserCmd.pb.h ../common/user/MsgBoxUserCmd.pb.h \
+ ../common/server/gamesmd.pb.h ../common/server/SceneCommand.pb.h \
+ ../common/server/RecordCommand.pb.h ../common/user/PropertyUserCmd.pb.h \
+ ../common/user/SysSettingUserCmd.pb.h ../common/server/ShareCommand.pb.h \
+ ../common/server/RecordCommand.pb.h ../common/user/AuctionUserCmd.pb.h \
+ ../common/user/ChatUserCmd.pb.h ../common/user/Cmd.pb.h \
+ ../common/user/ControlUserCmd.pb.h ../common/user/CountryUserCmd.pb.h \
+ ../common/user/CorpsUserCmd.pb.h ../common/user/CopyUserCmd.pb.h \
+ ../common/user/AirShipUserCmd.pb.h ../common/user/AwardUserCmd.pb.h \
+ ../common/user/BuyCommissionUserCmd.pb.h \
+ ../common/user/InviteComposeUserCmd.pb.h ../common/user/RoleUserCmd.pb.h \
+ ../common/user/LotteryUserCmd.pb.h ../common/user/DataUserCmd.pb.h \
+ ../common/user/GoldUserCmd.pb.h ../common/user/LogonUserCmd.pb.h \
+ ../common/user/MagicUserCmd.pb.h ../common/user/MailUserCmd.pb.h \
+ ../common/user/MapScreenUserCmd.pb.h ../common/user/MoveUserCmd.pb.h \
+ ../common/user/PropertyUserCmd.pb.h ../common/user/QuestUserCmd.pb.h \
+ ../common/user/ReliveUserCmd.pb.h ../common/user/RequestUserCmd.pb.h \
+ ../common/user/ArmyEquipUserCmd.pb.h ../common/user/ScriptUserCmd.pb.h \
+ ../common/user/SelectUserCmd.pb.h ../common/user/SkillUserCmd.pb.h \
+ ../common/user/SysSettingUserCmd.pb.h ../common/user/TimerUserCmd.pb.h \
+ ../common/user/RelationUserCmd.pb.h ../common/user/EquipUserCmd.pb.h \
+ ../common/user/TradeUserCmd.pb.h ../common/user/Serialize.pb.h \
+ ../common/user/DemonUserCmd.pb.h ../common/user/MsgBoxUserCmd.pb.h
+
+/usr/include/stdc-predef.h:
+
+../bwsdk/inc/bwsdk/LuaProtoBuf.h:
+
+/usr/include/c++/4.8/string:
+
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h:
+
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/os_defines.h:
+
+/usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/cpu_defines.h:
+
+/usr/include/c++/4.8/bits/stringfwd.h:
+
+/usr/include/c++/4.8/bits/memoryfwd.h:
+
+/usr/include/c++/4.8/bits/char_traits.h:
+
+/usr/include/c++/4.8/bits/stl_algobase.h:
+
+/usr/include/c++/4.8/bits/functexcept.h:
+
+/usr/include/c++/4.8/bits/exception_defines.h:
+
+/usr/include/c++/4.8/bits/cpp_type_traits.h:
+
+/usr/include/c++/4.8/ext/type_traits.h:
+
+/usr/include/c++/4.8/ext/numeric_traits.h:
+
+/usr/include/c++/4.8/bits/stl_pair.h:
+
+/usr/include/c++/4.8/bits/move.h:
+
+/usr/include/c++/4.8/bits/concept_check.h:
+
+/usr/include/c++/4.8/bits/stl_iterator_base_types.h:
+
+/usr/include/c++/4.8/bits/stl_iterator_base_funcs.h:
+
+/usr/include/c++/4.8/debug/debug.h:
+
+/usr/include/c++/4.8/bits/stl_iterator.h:
+
+/usr/include/c++/4.8/bits/postypes.h:
+
+/usr/include/c++/4.8/cwchar:
+
+/usr/include/wchar.h:
+
+/usr/include/stdio.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/c++/4.8/bits/allocator.h:
+
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++allocator.h:
+
+/usr/include/c++/4.8/ext/new_allocator.h:
+
+/usr/include/c++/4.8/new:
+
+/usr/include/c++/4.8/exception:
+
+/usr/include/c++/4.8/bits/atomic_lockfree_defines.h:
+
+/usr/include/c++/4.8/bits/localefwd.h:
+
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/c++locale.h:
+
+/usr/include/c++/4.8/clocale:
+
+/usr/include/locale.h:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/include/c++/4.8/iosfwd:
+
+/usr/include/c++/4.8/cctype:
+
+/usr/include/ctype.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+/usr/include/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap-16.h:
+
+/usr/include/c++/4.8/bits/ostream_insert.h:
+
+/usr/include/c++/4.8/bits/cxxabi_forced.h:
+
+/usr/include/c++/4.8/bits/stl_function.h:
+
+/usr/include/c++/4.8/backward/binders.h:
+
+/usr/include/c++/4.8/bits/range_access.h:
+
+/usr/include/c++/4.8/bits/basic_string.h:
+
+/usr/include/c++/4.8/ext/atomicity.h:
+
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr.h:
+
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr-default.h:
+
+/usr/include/pthread.h:
+
+/usr/include/sched.h:
+
+/usr/include/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/timex.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/atomic_word.h:
+
+/usr/include/c++/4.8/bits/basic_string.tcc:
+
+gbuffer/MessageSerializer.h:
+
+/usr/include/c++/4.8/map:
+
+/usr/include/c++/4.8/bits/stl_tree.h:
+
+/usr/include/c++/4.8/bits/stl_map.h:
+
+/usr/include/c++/4.8/bits/stl_multimap.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigset.h:
+
+/usr/include/x86_64-linux-gnu/sys/sysmacros.h:
+
+/usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/message.h:
+
+/usr/include/c++/4.8/vector:
+
+/usr/include/c++/4.8/bits/stl_construct.h:
+
+/usr/include/c++/4.8/ext/alloc_traits.h:
+
+/usr/include/c++/4.8/bits/stl_uninitialized.h:
+
+/usr/include/c++/4.8/bits/stl_vector.h:
+
+/usr/include/c++/4.8/bits/stl_bvector.h:
+
+/usr/include/c++/4.8/bits/vector.tcc:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/message_lite.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/stubs/common.h:
+
+/usr/include/assert.h:
+
+/usr/include/c++/4.8/cstddef:
+
+/usr/include/string.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h:
+
+/usr/include/stdint.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/descriptor.h:
+
+/usr/include/c++/4.8/set:
+
+/usr/include/c++/4.8/bits/stl_set.h:
+
+/usr/include/c++/4.8/bits/stl_multiset.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/io/coded_stream.h:
+
+/usr/include/x86_64-linux-gnu/sys/param.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/signal.h:
+
+/usr/include/x86_64-linux-gnu/bits/signum.h:
+
+/usr/include/x86_64-linux-gnu/bits/siginfo.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigaction.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigstack.h:
+
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigthread.h:
+
+/usr/include/x86_64-linux-gnu/bits/param.h:
+
+/usr/include/linux/param.h:
+
+/usr/include/x86_64-linux-gnu/asm/param.h:
+
+/usr/include/asm-generic/param.h:
+
+../platcommon/pmd.pb.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/generated_message_util.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/stubs/once.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/stubs/atomicops.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/stubs/platform_macros.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/stubs/atomicops_internals_x86_gcc.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/repeated_field.h:
+
+/usr/include/c++/4.8/iterator:
+
+/usr/include/c++/4.8/ostream:
+
+/usr/include/c++/4.8/ios:
+
+/usr/include/c++/4.8/bits/ios_base.h:
+
+/usr/include/c++/4.8/bits/locale_classes.h:
+
+/usr/include/c++/4.8/bits/locale_classes.tcc:
+
+/usr/include/c++/4.8/streambuf:
+
+/usr/include/c++/4.8/bits/streambuf.tcc:
+
+/usr/include/c++/4.8/bits/basic_ios.h:
+
+/usr/include/c++/4.8/bits/locale_facets.h:
+
+/usr/include/c++/4.8/cwctype:
+
+/usr/include/wctype.h:
+
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/ctype_base.h:
+
+/usr/include/c++/4.8/bits/streambuf_iterator.h:
+
+/usr/include/x86_64-linux-gnu/c++/4.8/bits/ctype_inline.h:
+
+/usr/include/c++/4.8/bits/locale_facets.tcc:
+
+/usr/include/c++/4.8/bits/basic_ios.tcc:
+
+/usr/include/c++/4.8/bits/ostream.tcc:
+
+/usr/include/c++/4.8/istream:
+
+/usr/include/c++/4.8/bits/istream.tcc:
+
+/usr/include/c++/4.8/bits/stream_iterator.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/stubs/type_traits.h:
+
+/usr/include/c++/4.8/utility:
+
+/usr/include/c++/4.8/bits/stl_relops.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/stubs/template_util.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/extension_set.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/generated_enum_reflection.h:
+
+../3Party/protobuf-2.6.1/src/google/protobuf/unknown_field_set.h:
+
+../platcommon/nullcommand.pb.h:
+
+../platcommon/chatcommand.pb.h:
+
+../platcommon/forwardcommand.pb.h:
+
+../platcommon/logincommand.pb.h:
+
+../platcommon/loggercommand.pb.h:
+
+../platcommon/pmd.pb.h:
+
+../platcommon/config.pb.h:
+
+../platcommon/monitorpmd.pb.h:
+
+../platcommon/sdkcommand.pb.h:
+
+../platcommon/gmcommand.pb.h:
+
+../servercommon/super.pb.h:
+
+pmd.pb.h:
+
+../servercommon/common.pb.h:
+
+../servercommon/smd.pb.h:
+
+../servercommon/gate.pb.h:
+
+../servercommon/login.pb.h:
+
+../servercommon/logger.pb.h:
+
+../servercommon/name.pb.h:
+
+../servercommon/monitor.pb.h:
+
+../servercommon/sdk.pb.h:
+
+../servercommon/gm.pb.h:
+
+../servercommon/build.pb.h:
+
+../common/server/SessionCommand.pb.h:
+
+../common/user/Cmd.pb.h:
+
+../common/user/Serialize.pb.h:
+
+../common/user/Cmd.pb.h:
+
+../common/user/PropertyUserCmd.pb.h:
+
+../common/user/Pet.pb.h:
+
+../common/server/RelationCommand.pb.h:
+
+../common/user/RelationUserCmd.pb.h:
+
+../common/user/MsgBoxUserCmd.pb.h:
+
+../common/server/gamesmd.pb.h:
+
+../common/server/SceneCommand.pb.h:
+
+../common/server/RecordCommand.pb.h:
+
+../common/user/PropertyUserCmd.pb.h:
+
+../common/user/SysSettingUserCmd.pb.h:
+
+../common/server/ShareCommand.pb.h:
+
+../common/server/RecordCommand.pb.h:
+
+../common/user/AuctionUserCmd.pb.h:
+
+../common/user/ChatUserCmd.pb.h:
+
+../common/user/Cmd.pb.h:
+
+../common/user/ControlUserCmd.pb.h:
+
+../common/user/CountryUserCmd.pb.h:
+
+../common/user/CorpsUserCmd.pb.h:
+
+../common/user/CopyUserCmd.pb.h:
+
+../common/user/AirShipUserCmd.pb.h:
+
+../common/user/AwardUserCmd.pb.h:
+
+../common/user/BuyCommissionUserCmd.pb.h:
+
+../common/user/InviteComposeUserCmd.pb.h:
+
+../common/user/RoleUserCmd.pb.h:
+
+../common/user/LotteryUserCmd.pb.h:
+
+../common/user/DataUserCmd.pb.h:
+
+../common/user/GoldUserCmd.pb.h:
+
+../common/user/LogonUserCmd.pb.h:
+
+../common/user/MagicUserCmd.pb.h:
+
+../common/user/MailUserCmd.pb.h:
+
+../common/user/MapScreenUserCmd.pb.h:
+
+../common/user/MoveUserCmd.pb.h:
+
+../common/user/PropertyUserCmd.pb.h:
+
+../common/user/QuestUserCmd.pb.h:
+
+../common/user/ReliveUserCmd.pb.h:
+
+../common/user/RequestUserCmd.pb.h:
+
+../common/user/ArmyEquipUserCmd.pb.h:
+
+../common/user/ScriptUserCmd.pb.h:
+
+../common/user/SelectUserCmd.pb.h:
+
+../common/user/SkillUserCmd.pb.h:
+
+../common/user/SysSettingUserCmd.pb.h:
+
+../common/user/TimerUserCmd.pb.h:
+
+../common/user/RelationUserCmd.pb.h:
+
+../common/user/EquipUserCmd.pb.h:
+
+../common/user/TradeUserCmd.pb.h:
+
+../common/user/Serialize.pb.h:
+
+../common/user/DemonUserCmd.pb.h:
+
+../common/user/MsgBoxUserCmd.pb.h:
